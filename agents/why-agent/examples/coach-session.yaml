@@ -1,0 +1,59 @@
+# Coach Session Example
+# Helping someone understand why they're not getting promoted
+
+input:
+  problem: "I keep getting passed over for promotion"
+  context: "Senior engineer, 3 years at company, good performance reviews"
+  personality: "coach"
+  skill: "drill-down"
+
+output:
+  problem_statement: "User has been in senior engineer role for 3 years with positive performance reviews but has not been promoted to staff level."
+
+  questioning_sequence:
+    - level: 1
+      question: "When you say you're getting 'passed over,' what happens exactly?"
+      answer: "Other people who started after me have been promoted to staff, but I haven't."
+
+    - level: 2
+      question: "What do you think distinguishes them from your situation?"
+      answer: "They seem to have more visibility. They present at all-hands, they lead cross-team projects."
+
+    - level: 3
+      question: "Why do you think they have more visibility than you?"
+      answer: "They volunteer for those opportunities. I tend to focus on my own team's work."
+
+    - level: 4
+      question: "What makes you focus on your team's work rather than volunteering for broader opportunities?"
+      answer: "I guess I feel like I should finish my own work first. And honestly, I'm not sure how to get involved in those projects."
+
+    - level: 5
+      question: "What would need to change for you to feel ready to pursue those opportunities?"
+      answer: "I'd need to either have less on my plate, or decide that visibility work is part of my job, not extra. And I'd need to know who to talk to about getting involved."
+
+  root_causes:
+    - cause: "Framing visibility work as 'extra' rather than part of the role"
+      confidence: high
+      evidence: "User's own words: 'finish my own work first' implies visibility is additional"
+
+    - cause: "Unclear path to cross-team opportunities"
+      confidence: medium
+      evidence: "User says they're 'not sure how to get involved'"
+
+  verification:
+    - test: "If user reframed visibility as core work, would behavior change?"
+      result: "Likely: user acknowledged this mental shift during conversation"
+    - test: "If user knew how to find opportunities, would they pursue them?"
+      result: "Possibly: still need to address the 'finish my work first' framing"
+
+  insights:
+    - insight: "Promotion at this level requires visible impact, not just delivered work"
+      source: "Implied by pattern of who gets promoted"
+    - insight: "User has capability but isn't deploying it strategically"
+      source: "Good reviews suggest competence; lack of visibility suggests positioning"
+
+  next_steps:
+    - "Reframe: visibility and cross-team impact are part of the staff role, not extras"
+    - "Identify one cross-team initiative to explore"
+    - "Talk to manager about how to balance team work with broader impact"
+    - "Observe how promoted peers spend their time"

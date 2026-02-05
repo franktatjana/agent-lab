@@ -1,0 +1,117 @@
+# Fishbone Analysis Example
+# Analyzing why customer support response times are increasing
+
+input:
+  problem: "Customer support response time has increased from 4 hours to 12 hours"
+  context: "SaaS company, no recent major incidents, team size unchanged"
+  personality: "facilitator"
+  skill: "fishbone-analysis"
+
+output:
+  problem_statement: "Average first response time to customer support tickets has increased from 4 hours to 12 hours over the past quarter, despite no change in team size or major incidents."
+
+  fishbone:
+    - category: People
+      causes:
+        - cause: "Two experienced agents left last month"
+          likelihood: high
+          evidence: "HR records confirm departures; new hires still ramping"
+        - cause: "Remaining team feeling overworked and demotivated"
+          likelihood: medium
+          evidence: "Anecdotal; needs survey data"
+        - cause: "New agents lack product knowledge"
+          likelihood: medium
+          evidence: "Training records show accelerated onboarding"
+
+    - category: Process
+      causes:
+        - cause: "Ticket routing is inefficient; wrong agents get wrong tickets"
+          likelihood: high
+          evidence: "30% of tickets get reassigned at least once"
+        - cause: "No triage process; all tickets treated equally"
+          likelihood: medium
+          evidence: "Simple questions wait as long as complex issues"
+        - cause: "Escalation process is unclear"
+          likelihood: low
+          evidence: "Some escalation delays, but not systematic"
+
+    - category: Technology
+      causes:
+        - cause: "New ticketing system introduced 6 weeks ago"
+          likelihood: high
+          evidence: "Response times increased shortly after rollout"
+        - cause: "Knowledge base search is poor"
+          likelihood: medium
+          evidence: "Agents report difficulty finding articles"
+        - cause: "No automation for common questions"
+          likelihood: low
+          evidence: "Competitors have chatbots; we don't"
+
+    - category: Environment
+      causes:
+        - cause: "Holiday season increasing ticket volume"
+          likelihood: high
+          evidence: "Volume up 40% month-over-month"
+        - cause: "Remote work making collaboration harder"
+          likelihood: low
+          evidence: "Team has been remote for 2 years; not new"
+
+    - category: Materials
+      causes:
+        - cause: "Documentation for new features is incomplete"
+          likelihood: medium
+          evidence: "Recent releases had sparse docs"
+        - cause: "Customer questions are more complex"
+          likelihood: low
+          evidence: "No clear trend in complexity"
+
+    - category: Measurement
+      causes:
+        - cause: "Response time wasn't being measured until recently"
+          likelihood: low
+          evidence: "We now have data; problem may have existed earlier"
+        - cause: "No alerting on queue depth"
+          likelihood: medium
+          evidence: "Team doesn't see backlog building until it's large"
+
+  drill_down_results:
+    - cause: "New ticketing system introduced 6 weeks ago"
+      drill:
+        - question: "Why is the new system affecting response times?"
+          answer: "Interface is slower and agents can't find ticket history easily"
+        - question: "Why can't agents find ticket history?"
+          answer: "Search function doesn't search previous tickets; only knowledge base"
+        - question: "Why wasn't this caught before rollout?"
+          answer: "No agent acceptance testing; IT deployed without support team input"
+      root_cause: "Ticketing system was deployed without support team input or acceptance testing"
+
+    - cause: "Ticket routing is inefficient"
+      drill:
+        - question: "Why are tickets going to wrong agents?"
+          answer: "Auto-routing rules were copied from old system; don't match new categories"
+        - question: "Why weren't rules updated?"
+          answer: "Nobody owned the migration of routing rules"
+      root_cause: "Routing rules migration had no owner during system transition"
+
+  root_causes:
+    - cause: "Ticketing system deployed without support team acceptance testing"
+      category: Process / Technology
+      confidence: high
+      evidence: "Timeline matches; agents confirm usability issues"
+
+    - cause: "Routing rules migration had no owner"
+      category: Process
+      confidence: high
+      evidence: "30% reassignment rate; rules confirmed outdated"
+
+    - cause: "Experienced agent departures during system transition"
+      category: People
+      confidence: medium
+      evidence: "Knowledge gap compounded system issues"
+
+  next_steps:
+    - "Emergency: Fix ticket search to include history"
+    - "This week: Update routing rules with support team input"
+    - "This month: Conduct support team UAT on remaining system issues"
+    - "Ongoing: Backfill training for new agents"
+    - "Future: Establish process for support team input on tooling changes"

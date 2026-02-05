@@ -30,6 +30,18 @@ Research and synthesis specialist. Evaluates sources, synthesizes findings, trac
 
 ---
 
+### [why-agent](agents/why-agent/)
+
+Root cause analysis specialist. Drills down from symptoms to what's really going on through structured questioning. *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** drill-down (5 Whys), fishbone-analysis, challenge-assumptions, a3-problem-solving
+- **Personalities:** coach, investigator, facilitator
+- **Frameworks:** 5 Whys, Fishbone/Ishikawa, A3 Thinking, Socratic Method
+
+**When to use:** Production incidents, quality issues, team problems, process breakdowns, any situation where you need to find the real cause before jumping to solutions. Part of the Thinking Chain: why → systems-thinker → strategist → tactician.
+
+---
+
 ## Agent Ideas
 
 Future agents under consideration. See [agents/ideas.md](agents/ideas.md) for details and references.

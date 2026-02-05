@@ -1,0 +1,53 @@
+# Basic Drill Down Example
+# A simple 5 Whys analysis of a production incident
+
+input:
+  problem: "The payment processing system went down for 2 hours"
+  context: "E-commerce platform, happened during Black Friday peak"
+  personality: "investigator"
+  skill: "drill-down"
+
+output:
+  problem_statement: "Payment processing system became unavailable for 2 hours during Black Friday peak traffic, affecting approximately 15,000 attempted transactions."
+
+  questioning_sequence:
+    - level: 1
+      question: "Why did the payment processing system go down?"
+      answer: "The database connection pool was exhausted; no new connections could be established."
+
+    - level: 2
+      question: "Why was the database connection pool exhausted?"
+      answer: "Connections were being held open longer than usual due to slow queries."
+
+    - level: 3
+      question: "Why were queries running slowly?"
+      answer: "A new product catalog query was doing full table scans instead of using indexes."
+
+    - level: 4
+      question: "Why was the query doing full table scans?"
+      answer: "The query was added last week without database review; missing index wasn't caught."
+
+    - level: 5
+      question: "Why wasn't the missing index caught before deployment?"
+      answer: "Database changes don't go through performance review; no process exists for this."
+
+  root_causes:
+    - cause: "No database performance review process for new queries"
+      confidence: high
+      evidence: "Confirmed: deployment checklist has no database review step; team confirmed this has never been required"
+
+    - cause: "Connection pool sized for normal load, not peak"
+      confidence: medium
+      evidence: "Pool size was set 2 years ago; traffic has grown 5x since then"
+
+  verification:
+    - test: "Would a performance review have caught this?"
+      result: "Yes: the full table scan is obvious when query plan is examined"
+    - test: "If we add this process, would similar issues be prevented?"
+      result: "Yes: query performance issues would be identified before deployment"
+
+  next_steps:
+    - "Add database performance review to deployment checklist"
+    - "Review and resize connection pool for peak capacity"
+    - "Audit recent queries for similar performance issues"
+    - "Add query performance monitoring and alerting"
