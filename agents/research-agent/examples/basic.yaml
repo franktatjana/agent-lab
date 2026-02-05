@@ -1,0 +1,32 @@
+# Basic Research Example
+
+input:
+  topic: "context engineering best practices for LLM agents"
+  scope: "focused"
+  max_sources: 5
+
+output:
+  summary: |
+    Context engineering involves curating what information enters an LLM's
+    context window to maximize task performance within token limits. Key
+    practices include strategic ordering (critical instructions first and last),
+    using structured formats like XML or JSON for clarity, and filtering for
+    relevance to prevent attention dilution.
+
+  key_points:
+    - "Ordering matters: critical instructions go first and last"
+    - "Structured formats (XML, JSON) help parsing"
+    - "Relevance filtering prevents attention dilution"
+    - "Dynamic assembly based on runtime needs improves efficiency"
+
+  sources:
+    - url: "https://example.com/context-engineering"
+      relevance: "Primary source on ordering strategies"
+    - url: "https://example.com/prompt-structure"
+      relevance: "Detailed examples of structured formats"
+
+  confidence: "high"
+
+  gaps:
+    - "Limited information on context budget optimization"
+    - "Few benchmarks comparing different ordering strategies"

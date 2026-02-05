@@ -1,0 +1,43 @@
+# Cultural Bridge Example
+# Skill: Adapt a message for a target culture while preserving intent
+
+input:
+  source_culture: "US"
+  target_culture: "Japanese"
+  message: "I think we should move faster on this. The current timeline is too slow and we're losing market share."
+  context: "Email to Japanese partner"
+
+output:
+  cultural_context:
+    source: "US directness, urgency-focused, individual accountability"
+    target: "Japanese indirect communication, harmony-preserving, group consensus"
+    relevant_dimensions:
+      - "Communication style: US (very low-context) vs Japan (high-context)"
+      - "Time orientation: US (short-term) vs Japan (long-term)"
+
+  potential_friction:
+    - "Direct criticism of timeline may cause loss of face"
+    - "'We're losing' implies blame, threatening group harmony"
+    - "Urgency framing may seem pushy and disrespectful of process"
+
+  recommendations:
+    - "Frame as shared challenge, not criticism"
+    - "Acknowledge their perspective before suggesting change"
+    - "Use 'perhaps' and 'might consider' rather than 'should'"
+
+  reframed_message: |
+    Thank you for your continued partnership on this project. We greatly value
+    the thorough approach your team brings.
+
+    As we review market conditions together, we notice some competitive pressures
+    that might benefit from our collective attention. Perhaps we could explore
+    whether any adjustments to our timeline might help us respond to these
+    conditions while maintaining the quality standards we both value.
+
+    We would welcome the opportunity to discuss this at your convenience.
+
+  confidence: "high"
+
+  caveats:
+    - "Relationship context matters: if trust is established, more directness may be acceptable"
+    - "Industry norms may vary from general cultural patterns"

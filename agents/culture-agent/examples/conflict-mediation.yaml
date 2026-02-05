@@ -1,0 +1,61 @@
+# Conflict Mediation Example
+# Skill: Resolve a cultural misunderstanding that has already occurred
+
+input:
+  source_culture: "Dutch"
+  target_culture: "Brazilian"
+  context: "Project feedback meeting escalated into conflict"
+  situation: |
+    Dutch manager gave direct critical feedback in a team meeting: "This proposal
+    has serious problems. The timeline is unrealistic and the budget assumptions
+    are wrong." Brazilian team members felt publicly humiliated and have become
+    disengaged. Dutch manager is confused why the team is now unresponsive.
+
+output:
+  cultural_context:
+    source: |
+      Dutch culture is famously direct. Feedback is given straightforwardly,
+      seen as respectful honesty. Public critique is normal and not personal.
+      Efficiency valued over diplomacy. "Just say what you mean."
+    target: |
+      Brazilian culture values personal relationships and warmth (calor humano).
+      Public criticism causes loss of face (vergonha). Feedback should be
+      private, softened, and relationship-preserving. Harmony in the group
+      is paramount.
+    relevant_dimensions:
+      - "Confrontation: Netherlands (very direct) vs Brazil (indirect, face-saving)"
+      - "Individualism: Netherlands (80) vs Brazil (38) - group harmony more important in Brazil"
+      - "Power Distance: Netherlands (38) vs Brazil (69) - public critique from authority feels harsher"
+
+  diagnosis:
+    root_cause: "Public direct criticism violated Brazilian norms around face-saving and group harmony"
+    dutch_perspective: "I was being honest and efficient. Why are they taking it personally?"
+    brazilian_perspective: "I was humiliated in front of colleagues. The manager doesn't respect us."
+    gap: "Both sides have valid cultural logic; neither understood the other's frame"
+
+  resolution_path:
+    immediate:
+      - "Dutch manager should have private one-on-one conversations with each team member"
+      - "Acknowledge the feedback delivery may have felt harsh (without abandoning the content)"
+      - "Express genuine appreciation for their work and commitment"
+    ongoing:
+      - "Establish feedback norms: critical feedback in private, praise in public"
+      - "Dutch manager adapts delivery: 'sandwich' critique with positives"
+      - "Team establishes safe channel for concerns (perhaps through a Brazilian liaison)"
+    reframe_for_dutch: |
+      Your feedback content was valid, but the delivery damaged trust. In Brazilian
+      context, public criticism, even if accurate, signals disrespect. The team's
+      disengagement is a rational response to what felt like humiliation. Rebuilding
+      requires acknowledging the impact, not the intent.
+    reframe_for_brazilian: |
+      The Dutch manager's directness was not intended as disrespect. In Dutch culture,
+      honest critique is a form of respect. They expected you to engage with the
+      content, not the delivery. Understanding this doesn't excuse the hurt, but
+      may help rebuild the working relationship.
+
+  confidence: "high"
+
+  caveats:
+    - "Individual personalities vary: some Brazilians prefer directness, some Dutch are diplomatic"
+    - "Organizational culture may override national patterns"
+    - "Power dynamics matter: junior Dutch employee might not be this direct either"

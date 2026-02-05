@@ -1,0 +1,37 @@
+# Executive Brief Example
+# Skill: Deep Research with executive personality and asset export
+
+input:
+  topic: "AI agent security vulnerabilities"
+  scope: "broad"
+  personality: "executive"
+  output_format: "markdown"
+  max_sources: 10
+  export_assets:
+    - report
+    - bibliography
+
+output: |
+  # Research: AI Agent Security Vulnerabilities
+
+  ## Key Findings
+  - Prompt injection remains the top attack vector (78% of reported incidents)
+  - Tool-use agents have expanded attack surface vs. chat-only systems
+  - Authentication and authorization gaps in multi-agent systems
+  - Data exfiltration via unmonitored tool outputs
+  - Insufficient input validation at agent boundaries
+
+  ## Confidence: high
+
+  ## Sources
+  1. [OWASP LLM Top 10](https://owasp.org/...): Security framework
+  2. [Anthropic Safety Research](https://anthropic.com/...): Attack taxonomy
+
+  ## Gaps
+  - Limited data on production incident rates
+
+assets_generated:
+  - path: "ai-agent-security-vulnerabilities-report.md"
+    type: "report"
+  - path: "ai-agent-security-vulnerabilities-sources.bib"
+    type: "bibliography"

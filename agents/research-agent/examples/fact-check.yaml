@@ -1,0 +1,22 @@
+# Fact Check Example
+# Skill: Verify a specific claim against multiple sources
+
+input:
+  topic: "fact-check"
+  claim: "GPT-4 can pass the bar exam"
+
+output:
+  verdict: "supported"
+  confidence: "high"
+
+  evidence_for:
+    - "OpenAI reports GPT-4 scored in the 90th percentile on the Uniform Bar Exam"
+    - "Independent verification by legal educators confirmed performance"
+
+  evidence_against: []
+
+  nuance: "Performance varies by jurisdiction; simulated exam conditions differ from actual practice"
+
+  sources:
+    - url: "https://openai.com/research/gpt-4"
+      relevance: "Primary source"

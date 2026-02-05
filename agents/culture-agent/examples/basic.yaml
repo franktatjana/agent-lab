@@ -1,0 +1,28 @@
+# Basic Culture Agent Example
+# Simplest valid input demonstrating core functionality
+
+input:
+  source_culture: "German"
+  target_culture: "US"
+  context: "Business meeting"
+
+output:
+  cultural_context:
+    source: "German: thorough preparation, direct communication, formal structure"
+    target: "US: action-oriented, optimistic framing, informal style"
+    relevant_dimensions:
+      - "Uncertainty Avoidance: Germany (65) vs US (46)"
+      - "Communication: Both direct, but US adds positive framing"
+
+  potential_friction:
+    - "German thoroughness may seem slow to US counterparts"
+    - "US quick decisions may seem unreliable to Germans"
+
+  recommendations:
+    - "Germans: add positive framing to direct feedback"
+    - "US: allow time for analysis before expecting commitment"
+
+  confidence: "high"
+
+  caveats:
+    - "Regional and company culture variations apply"

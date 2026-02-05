@@ -1,0 +1,40 @@
+# Meeting Prep Example
+# Skill: Prepare a party for a cross-cultural meeting or negotiation
+
+input:
+  source_culture: "German"
+  target_culture: "US"
+  context: "First partnership meeting, video call"
+  meeting_type: "kickoff"
+  personality: "business"
+
+output:
+  cultural_context:
+    source: |
+      German business culture values thorough preparation, formal structure,
+      punctuality, and systematic decision-making. Hierarchy is respected.
+      Meetings follow agendas. Criticism is direct and factual.
+    target: |
+      US business culture values efficiency, optimism, and action-orientation.
+      Communication is direct but wrapped in positivity. Meetings move fast.
+      Informality is standard; first names used immediately.
+    relevant_dimensions:
+      - "Power Distance: Germany (35) vs US (40) - similar, but US more informal"
+      - "Uncertainty Avoidance: Germany (65) vs US (46) - Germans need more detail"
+      - "Communication: Both low-context and direct, but US adds positive framing"
+
+  potential_friction:
+    - "Germans may perceive US enthusiasm as superficial"
+    - "US may perceive German thoroughness as slow or overly cautious"
+    - "German direct criticism may feel harsh without US-style positive sandwich"
+
+  recommendations:
+    - "Germans: Add positive framing before critique"
+    - "US: Allow time for German analysis; caution reflects thoroughness"
+    - "Both: Clarify decision-making timelines explicitly"
+
+  confidence: "high"
+
+  caveats:
+    - "Regional variation matters: Bavarians differ from Berliners"
+    - "Company culture may override national patterns"

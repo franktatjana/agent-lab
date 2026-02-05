@@ -1,0 +1,45 @@
+# Culture Comparison Example
+# Skill: Compare two or more cultures across key dimensions
+
+input:
+  source_culture: "French"
+  target_culture: "Chinese"
+  context: "Joint venture negotiation"
+
+output:
+  cultural_context:
+    source: |
+      French business culture values intellectual debate, explicit disagreement,
+      and logical argumentation. Hierarchy exists but ideas can be challenged.
+      Relationship-building happens over meals and conversation. Directness
+      is appreciated but delivered with eloquence.
+    target: |
+      Chinese business culture emphasizes relationship (guanxi) before business,
+      indirect communication to preserve face, and hierarchical respect.
+      Decisions involve consensus-building. Long-term orientation prioritizes
+      relationship over immediate gains.
+    relevant_dimensions:
+      - "Power Distance: France (68) vs China (80) - both hierarchical, China more so"
+      - "Individualism: France (71) vs China (20) - major gap, collectivist vs individualist"
+      - "Communication: France (medium-context) vs China (high-context)"
+      - "Confrontation: France confrontational vs China harmony-preserving"
+
+  potential_friction:
+    - "French directness in critique may cause Chinese partners to lose face"
+    - "French impatience with slow consensus may seem disrespectful"
+    - "Chinese indirect 'no' may be missed by French expecting explicit responses"
+    - "French debate-style may feel aggressive; Chinese silence may feel evasive"
+
+  recommendations:
+    - "French side: soften critique, allow face-saving alternatives"
+    - "French side: invest in relationship-building before pushing business"
+    - "Chinese side: be more explicit about concerns with French partners"
+    - "Both: clarify decision-making process and timeline expectations upfront"
+    - "Both: use written summaries to confirm understanding after meetings"
+
+  confidence: "high"
+
+  caveats:
+    - "Regional variation significant: Shanghai business culture differs from Beijing"
+    - "Generational differences matter: younger Chinese executives may be more direct"
+    - "Industry context affects norms: tech sector often more westernized"
