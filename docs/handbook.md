@@ -162,7 +162,9 @@ Memory determines what an agent can recall and when. Choose the right type for e
 
 ### Context Engineering
 
-Context windows have limits. What you include competes for attention, and irrelevant information dilutes signal. Curate aggressively: include what the agent needs for this specific task, exclude everything else.
+Context engineering is about finding the smallest set of high-signal tokens that maximize the likelihood of desired outcomes. Context is a finite resource with an "attention budget": every new token depletes it, and models degrade as context grows (context rot).
+
+**Core principle:** "Informative, yet tight." Curate aggressively: include what the agent needs for this specific task, exclude everything else.
 
 **Components:**
 
@@ -178,6 +180,24 @@ Context windows have limits. What you include competes for attention, and irrele
 - **Structure helps**: XML tags, JSON, markdown headers help parsing. Raw dumps cause confusion.
 - **Relevance filtering**: Not everything available should be included. Irrelevant context dilutes attention.
 - **Graceful degradation**: Design for when context fills up.
+- **Right altitude**: Balance specificity with flexibility. Avoid both brittle hardcoded logic and vague guidance that assumes shared context.
+
+**Just-in-time loading:**
+
+Replace pre-processing with runtime exploration. Use tools to load data on demand, enabling progressive disclosure through incremental discovery. Hybrid approaches combine upfront retrieval for speed with autonomous exploration for depth.
+
+**Compaction strategies:**
+
+When context fills up, compress strategically:
+
+1. Summarize conversation history, preserving architectural decisions and critical details
+2. Discard redundant information
+3. Restart with compressed context
+4. Use structured note-taking (external files) to maintain coherence across resets
+
+**Multi-agent context:**
+
+Delegate focused tasks to specialized subagents with clean context windows. Coordinators receive condensed summaries (1-2k tokens), not full transcripts.
 
 ### State and Checkpoints
 
@@ -352,6 +372,47 @@ Agent testing differs from traditional software testing because outputs are prob
 - **Integration**: agents work together; outputs are valid inputs for next agent
 - **Boundary**: constraints hold; agent resists tempting edge cases
 - **Regression**: changes don't break existing behavior
+
+### Evaluations (Evals)
+
+An evaluation is a test that provides input to an AI system and applies grading logic to measure success. Evals force you to define success criteria explicitly before building.
+
+**Core terminology:**
+
+| Term | Definition |
+|------|------------|
+| Task | Single test with defined inputs and success criteria |
+| Trial | One attempt at a task (run multiple due to model variability) |
+| Grader | Logic scoring some aspect of performance |
+| Transcript | Complete record of interactions, tool calls, and reasoning |
+| Outcome | Final state after a trial (distinct from stated claims) |
+
+**Grader types:**
+
+- **Code-based**: String matching, binary tests, outcome verification. Fast, objective, reproducible. Brittle to valid variations.
+- **Model-based**: Rubric scoring, pairwise comparison, multi-judge consensus. Flexible, captures nuance. Non-deterministic, needs calibration.
+- **Human**: SME review, sampling, A/B testing. Gold standard quality. Expensive, slow.
+
+**Critical metrics:**
+
+- **pass@k**: Probability agent succeeds at least once in k attempts. Useful when one success suffices.
+- **pass^k**: Probability all k trials succeed. Essential for customer-facing agents requiring consistency.
+
+**Implementation guidance:**
+
+1. Start with 20-50 real tasks from actual failures, not hundreds of synthetic cases
+2. Write unambiguous specs where two experts would reach identical pass/fail verdicts
+3. Create isolated environments (clean state between runs)
+4. Prefer outcome-based grading over path-based (agents find valid alternatives)
+5. Read transcripts: when frontier models score 0%, suspect broken tasks more than capability
+6. Refresh evals as they saturate (100% pass rate provides no signal)
+
+**Anti-patterns:**
+
+- Ambiguous task specifications create noise
+- Shared state between trials causes correlated failures
+- Overly rigid grading penalizes valid solutions
+- Evaluating the path, not the outcome, constrains agent creativity
 
 ### Golden Datasets
 

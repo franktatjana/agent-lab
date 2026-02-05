@@ -167,15 +167,37 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 
 ---
 
-## Anti-Patterns to Avoid
+## Evaluations
 
-- **Context stuffing**, More tokens ≠ smarter. Load what's needed, when it's needed.
-- **Monolithic prompts**, If you can't test it in isolation, it's too big.
-- **Fixed output format**, Your future integrations will hate you.
-- **Over-engineering**, Three similar lines beat a premature abstraction.
-- **Silent failure**, If the agent fails, it should say so. Surprises are for birthdays.
-- **Helpful scope creep**, Research agent starts recommending, recommender starts deciding, decider starts executing. Keep lanes.
+**Do:**
+
+- Start with 20-50 real tasks from actual failures, not hundreds of synthetic cases
+- Write unambiguous specs where two domain experts would reach identical pass/fail verdicts
+- Use pass@k (succeeds once in k tries) vs pass^k (succeeds all k tries) based on your use case
+- Grade outcomes, not paths: agents find valid alternatives you didn't anticipate
+- Read transcripts: when frontier models score 0%, suspect broken tasks more than capability
+
+**Don't:**
+
+- Share state between trials: causes correlated failures and inflated metrics
+- Create overly rigid grading: exact filepath requirements penalize valid solutions
+- Build huge synthetic datasets before validating with real failures
+- Skip isolation: trials need clean state between runs
+
+*Why it matters: Without evals, debugging is reactive and improvement is unmeasurable. Evals force explicit success criteria and enable rapid model adoption.*
 
 ---
 
-*Sources: Anthropic docs on [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), [building agents](https://www.anthropic.com/research/building-effective-agents), [long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), [agent skills](https://claude.com/blog/equipping-agents-for-the-real-world-with-agent-skills)*
+## Anti-Patterns to Avoid
+
+- **Context stuffing**: More tokens ≠ smarter. Load what's needed, when it's needed.
+- **Monolithic prompts**: If you can't test it in isolation, it's too big.
+- **Fixed output format**: Your future integrations will hate you.
+- **Over-engineering**: Three similar lines beat a premature abstraction.
+- **Silent failure**: If the agent fails, it should say so. Surprises are for birthdays.
+- **Helpful scope creep**: Research agent starts recommending, recommender starts deciding, decider starts executing. Keep lanes.
+- **Ambiguous eval specs**: If two experts disagree on pass/fail, your eval is noise, not signal.
+
+---
+
+*Sources: Anthropic docs on [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), [building agents](https://www.anthropic.com/research/building-effective-agents), [long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), [agent skills](https://claude.com/blog/equipping-agents-for-the-real-world-with-agent-skills), [demystifying evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)*

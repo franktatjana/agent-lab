@@ -34,7 +34,10 @@ What agents are, why they matter, industry perspectives.
 
 Identity, responsibility, boundaries, and architecture patterns.
 
-- [Building Effective AI Agents](https://www.anthropic.com/research/building-effective-agents) - Anthropic's guide: workflows vs agents, five workflow patterns, when to use agents
+- [Building Effective AI Agents](https://www.anthropic.com/research/building-effective-agents) - Anthropic's guide: workflows vs agents, five workflow patterns, when to use agents (Dec 2024)
+- [How We Built Our Multi-Agent Research System](https://www.anthropic.com/engineering/how-we-built-our-multi-agent-research-system) - Engineering challenges from deploying multiple Claude agents (Jun 2025)
+- [Writing Effective Tools for Agents](https://www.anthropic.com/engineering/writing-effective-tools-for-agents-with-agents) - Optimizing tool quality and having Claude improve its own tools (Sep 2025)
+- [Claude Code: Best Practices for Agentic Coding](https://www.anthropic.com/engineering/claude-code-best-practices-for-agentic-coding) - Patterns for using Claude Code across codebases (Apr 2025)
 - [Building agents with the Claude Agent SDK](https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk) - Anthropic's SDK design principles
 - [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) - Anthropic's loadable capability packages
 - [Equipping Agents with Agent Skills](https://claude.com/blog/equipping-agents-for-the-real-world-with-agent-skills) - Progressive disclosure, skill isolation, design best practices
@@ -102,6 +105,7 @@ Multi-agent systems, pipelines, coordination patterns.
 
 Testing strategies, evaluation frameworks, benchmarks.
 
+- [Demystifying Evals for AI Agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) - Anthropic's comprehensive guide: grader types, pass@k vs pass^k metrics, agent-specific approaches, implementation roadmap (Jan 2026)
 - [Test Cases, Goldens, and Datasets](https://www.confident-ai.com/docs/llm-evaluation/core-concepts/test-cases-goldens-datasets) - Confident AI's guide to golden datasets as ground truth for LLM evaluation
 - [Building a Golden Dataset for AI Evaluation](https://www.getmaxim.ai/articles/building-a-golden-dataset-for-ai-evaluation-a-step-by-step-guide/) - Step-by-step guide to creating evaluation datasets
 - [Testing for LLM Applications](https://langfuse.com/blog/2025-10-21-testing-llm-applications) - Langfuse practical guide to LLM testing strategies
