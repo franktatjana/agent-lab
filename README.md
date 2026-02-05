@@ -14,18 +14,18 @@ Browse documented agent concepts ready for implementation:
 
 | Category | What's Here |
 |----------|-------------|
-| **Thinking Chain** | [why](agents/ideas.md#why-agent) → [systems-thinker](agents/ideas.md#systems-thinker-agent) → [strategist](agents/ideas.md#strategist-agent) → [tactician](agents/ideas.md#tactician-agent) — four agents that can work alone or chain together |
-| **Support** | [supportive-colleague](agents/ideas.md#supportive-colleague-agent), [superhero](agents/ideas.md#superhero-agent) (8 Marvel hero personalities) |
+| **Thinking Chain** | [why](agents/agent-ideas.md#why-agent) → [systems-thinker](agents/agent-ideas.md#systems-thinker-agent) → [strategist](agents/agent-ideas.md#strategist-agent) → [tactician](agents/agent-ideas.md#tactician-agent) — four agents that can work alone or chain together |
+| **Support** | [supportive-colleague](agents/agent-ideas.md#supportive-colleague-agent), [superhero](agents/agent-ideas.md#superhero-agent) (8 Marvel hero personalities) |
 | **Communication** | generation, feedback-coach, presentation-coach, storytelling, pitch, difficult-conversations |
 | **Career** | interview-prep, resume, salary-negotiation, networking, mentorship, promotion, skill-gap, onboarding |
 | **Organization** | corporate-navigator, change-management, knowledge-transfer, team-dynamics, meeting-facilitator |
 | **Decision & Strategy** | decision-facilitator, design-thinking, negotiation |
 
-Full specs with frameworks, skills, and references: **[agents/ideas.md](agents/ideas.md)**
+Full specs with frameworks, skills, and references: **[agents/agent-ideas.md](agents/agent-ideas.md)**
 
 ## How to Navigate
 
-**Start with the agents.** The [Agent Catalog](AGENTS.md) lists everything, both complete implementations and concepts in development.
+**Start with the agents.** The [Agent Catalogue](agent-catalogue.md) lists everything, both complete implementations and concepts in development.
 
 **Go deeper with the handbook.** The [Handbook](docs/handbook.md) documents the patterns behind good agent design: identity, capabilities, context, behavior, operations, quality. It's the reference manual for building agents that actually work.
 

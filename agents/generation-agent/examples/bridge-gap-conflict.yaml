@@ -1,0 +1,101 @@
+# Example: Bridge Gap - Team Conflict
+# Resolving communication friction between manager and report
+
+description: |
+  A Boomer manager feels their Millennial report doesn't communicate enough.
+  The Millennial feels micromanaged. Both have legitimate perspectives that
+  need bridging.
+
+skill: bridge-gap
+personality: default
+
+# Input
+input:
+  generation_a: boomer
+  generation_b: millennial
+  relationship: manager/report
+  friction_point: "Manager says report doesn't communicate enough; report feels micromanaged"
+  context: remote team
+  output_format: yaml
+
+# Expected Output
+output:
+  generations:
+    a: "Baby Boomer (Manager)"
+    b: "Millennial (Report)"
+
+  clash_analysis:
+    - area: "Communication frequency"
+      generation_a_preference: "Regular check-ins signal engagement and allow for coaching"
+      generation_b_preference: "Autonomy to work independently; updates when there's something to share"
+      why_it_creates_friction: "Manager's care reads as distrust; report's independence reads as disengagement"
+
+    - area: "Communication medium"
+      generation_a_preference: "Synchronous communication (calls, meetings) builds relationship"
+      generation_b_preference: "Async updates (Slack, email) allow focused work time"
+      why_it_creates_friction: "Manager can't 'see' work happening; report feels interrupted"
+
+    - area: "Visibility of progress"
+      generation_a_preference: "Regular verbal updates provide confidence things are on track"
+      generation_b_preference: "Shared documents and status updates speak for themselves"
+      why_it_creates_friction: "Different definitions of what 'keeping informed' means"
+
+  shared_values:
+    - value: "Project success"
+      how_a_expresses_it: "Close monitoring ensures nothing falls through cracks"
+      how_b_expresses_it: "Deep focus time produces quality work"
+
+    - value: "Professional growth"
+      how_a_expresses_it: "Real-time feedback and coaching"
+      how_b_expresses_it: "Autonomy to develop and then receive feedback"
+
+    - value: "Trust"
+      how_a_expresses_it: "Built through regular interaction and visibility"
+      how_b_expresses_it: "Demonstrated through delivered results"
+
+  bridge_strategies:
+    - strategy: "Structured async updates + scheduled sync"
+      description: "Regular written updates replace ad-hoc check-ins; scheduled calls replace unexpected ones"
+      for_boomer: "Accept written updates as legitimate visibility. Trust that silence means focused work, not avoidance."
+      for_millennial: "Proactive updates build trust. A 2-minute daily update prevents 5 check-ins."
+
+    - strategy: "Explicit working agreement"
+      description: "Documented mutual expectations for communication frequency and channels"
+      for_boomer: "Specify what information you need and when. 'I need to know X by Y' is clearer than 'keep me informed.'"
+      for_millennial: "Propose a cadence: 'Would a daily Slack update work, with a weekly call?' Being proactive shows engagement."
+
+    - strategy: "Output-based visibility"
+      description: "Shared dashboard or document showing work progress in real-time"
+      for_boomer: "Check the shared doc instead of asking. The information is there."
+      for_millennial: "Keep status visible. Manager shouldn't have to ask what's happening."
+
+  conversation_starters:
+    - scenario: "Manager opening the conversation"
+      phrase: "I want to make sure my management style works for you. I've noticed I'm checking in a lot, and I want to understand how you prefer to communicate. What cadence works best for you?"
+
+    - scenario: "Report opening the conversation"
+      phrase: "I want to make sure you have the visibility you need into my work. I'm wondering if we could set up a system that keeps you informed without needing to check in as often. Would you be open to trying something different?"
+
+    - scenario: "Finding middle ground"
+      phrase: "What if I sent a quick daily update at end of day, and we had one 15-minute call per week for anything that needs discussion? Would that give you what you need?"
+
+  warning_signs:
+    - "One side consistently accommodates while the other doesn't adjust"
+    - "Resentment building despite surface-level agreement"
+    - "Manager still checking in outside agreed cadence"
+    - "Report going silent or becoming defensive"
+    - "Conflict escalating to performance discussions"
+
+  success_indicators:
+    - "Both report feeling respected and informed"
+    - "Check-in frequency decreases naturally"
+    - "Information flows proactively both directions"
+    - "Trust builds over time rather than eroding"
+    - "Focus shifts from 'are you working' to 'how can I help'"
+
+# Notes for testing
+notes:
+  - Both perspectives are valid and must be honored
+  - Solution requires mutual adaptation
+  - Power dynamic (manager/report) adds complexity
+  - Remote context amplifies communication challenges

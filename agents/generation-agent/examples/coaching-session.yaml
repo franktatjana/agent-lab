@@ -1,0 +1,122 @@
+# Example: Coaching Session
+# Helping a Gen X leader communicate with Gen Z team members
+
+description: |
+  A Gen X manager is struggling to connect with their Gen Z team.
+  They describe the team as "always on their phones but never available"
+  and want to improve communication.
+
+skill: coach-sender
+personality: coach
+
+# Input
+input:
+  sender_generation: gen-x
+  target_generations:
+    - gen-z
+  challenges: "Team is always on their phones but never answers when I call. They respond to Slack eventually but it feels like pulling teeth to get face time."
+  strengths: "Direct communicator, gets to the point, team respects my expertise"
+  learning_style: principles
+  output_format: yaml
+
+# Expected Output
+output:
+  assessment:
+    current_patterns:
+      - "Expects phone calls to be answered like they were in earlier career"
+      - "Interprets async communication as avoidance or disengagement"
+      - "Values face time as primary relationship-building tool"
+    strengths_to_leverage:
+      - "Directness is valued across generations when applied appropriately"
+      - "Technical expertise gives credibility; communication is the gap"
+      - "Genuine care for team is evident, just expressed differently"
+    growth_areas:
+      - "Channel flexibility: meeting team where they are"
+      - "Async appreciation: understanding text as legitimate work communication"
+      - "Reframing: 'on phone' doesn't mean 'available for calls'"
+
+  skill_development:
+    - skill: "Channel flexibility"
+      why_it_matters: "Your team's preferred channel is where they're most responsive and engaged"
+      current_level: "Strong preference for synchronous; async feels like compromise"
+      target_level: "Natural choice of channel based on message type and recipient preference"
+
+    - skill: "Async-first mindset"
+      why_it_matters: "Gen Z often does their best thinking with time to compose responses"
+      current_level: "Async feels slow and disconnected"
+      target_level: "Recognizes async as efficient and respectful of focus time"
+
+  exercises:
+    - exercise: "The 24-Hour Slack Experiment"
+      purpose: "Experience async communication from a learning perspective"
+      how_to_do_it: |
+        For one week, try this sequence for non-urgent matters:
+        1. Default to Slack instead of calling
+        2. Send clear, complete messages (context + question + timeline)
+        3. Allow 24 hours for response before following up
+        4. Notice: How does the quality of responses compare to phone?
+      success_looks_like: "You discover that async responses are often more thoughtful and complete"
+
+    - exercise: "The 'Phone or Slack?' Question"
+      purpose: "Build habit of meeting team members where they are"
+      how_to_do_it: |
+        For important but non-urgent discussions, ask:
+        "I want to discuss X. Would you prefer a quick call or Slack thread?"
+        Track what they choose and how the conversation goes.
+      success_looks_like: "You have data on individual preferences and honor them"
+
+    - exercise: "Observe Phone Usage"
+      purpose: "Reframe 'always on phones' into accurate observation"
+      how_to_do_it: |
+        Next time you notice team on phones, observe without judgment:
+        - Are they responding to work Slack?
+        - Are they checking docs or email?
+        - Are they on break (which is legitimate)?
+        Notice: How much of 'phone time' is actually work communication?
+      success_looks_like: "You distinguish between 'available on phone' and 'available for phone calls'"
+
+  mental_models:
+    - model: "The Phone Is Not a Phone"
+      description: "For Gen Z, a smartphone is primarily a texting and app device. Voice calls are one rare use among many. When they're 'on their phone,' they're often working, just not in the way you expect."
+      when_to_apply: "When frustration builds about team being 'on phones but not answering'"
+
+    - model: "Async Is Respect"
+      description: "Async communication respects the recipient's focus time and gives them space to think. It's not avoidance; it's courtesy."
+      when_to_apply: "When tempted to interpret slow response as disengagement"
+
+    - model: "Channel Match = Engagement"
+      description: "People engage most fully on their preferred channel. Using their channel isn't compromising; it's optimizing for outcome."
+      when_to_apply: "When choosing how to communicate important information"
+
+  progress_indicators:
+    - indicator: "Channel choice"
+      novice: "Default to phone; async feels like compromise"
+      developing: "Chooses async for some messages; still prefers calls"
+      proficient: "Natural channel selection based on message type and recipient"
+
+    - indicator: "Response interpretation"
+      novice: "Slow async response = avoidance or disengagement"
+      developing: "Accepts async but still prefers immediate"
+      proficient: "Values thoughtful async responses as often superior"
+
+    - indicator: "Team relationship"
+      novice: "Friction over communication; team feels micromanaged"
+      developing: "Less friction; team more responsive"
+      proficient: "Team proactively communicates; mutual respect evident"
+
+  reflection_questions:
+    - "What if 'always on their phone' actually meant 'always available, just differently'?"
+    - "When you were their age, what new communication technology did older colleagues struggle with?"
+    - "What's the actual outcome you want: face time, or effective communication?"
+    - "How might they perceive unexpected phone calls?"
+    - "What would it look like to truly meet them where they are?"
+
+  next_session_focus: "Review experiments: What did you try? What did you notice? What surprised you?"
+
+# Notes for testing
+notes:
+  - Coach personality asks questions before providing answers
+  - Reframes negative interpretation ("always on phones") into curiosity
+  - Exercises are concrete and observable
+  - Progress indicators help track development over time
+  - Reflection questions promote self-discovery

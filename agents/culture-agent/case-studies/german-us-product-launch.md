@@ -1,10 +1,38 @@
 # German-US Product Launch Meeting
 
+*This case study is fictional. Names, characters, companies, and scenarios are hypothetical. Any resemblance to actual persons or organizations is purely coincidental.*
+
 ## Situation
 
 Maria, a product manager at a Munich-based automotive supplier, was preparing for a critical meeting with her US counterparts in Detroit. The meeting would finalize a joint product launch timeline. Previous meetings had gone poorly: the German team felt the Americans were "making promises they couldn't keep" while the US team complained the Germans were "blocking progress with endless requirements." Maria's VP asked her to prepare differently this time.
 
 Maria had three days before the meeting. She needed to understand what was going wrong and how to bridge the gap. The stakes were high: the partnership was worth €50M annually, and both sides were frustrated enough to consider alternative partners.
+
+## How the Agent Was Triggered
+
+Maria accessed the culture-agent through her company's internal collaboration platform, which integrates AI assistants for common business scenarios.
+
+**Trigger method:** Microsoft Teams app, "Meeting Preparation" workflow
+
+**Data sources available to the agent:**
+
+- Hofstede cultural dimensions database (built-in reference)
+- Erin Meyer Culture Map framework (built-in reference)
+- Company's previous cross-cultural meeting notes (anonymized patterns)
+- Public business culture guides for Germany and US
+
+**Data sources provided by Maria:**
+
+- Meeting context and history (two failed previous meetings)
+- Participant list with roles and relationship status
+- Specific friction points from email threads (paraphrased)
+- Desired outcomes for the upcoming meeting
+
+**What the agent could NOT access:**
+
+- Confidential negotiation terms
+- Individual personality assessments
+- Internal company politics on either side
 
 ## Agent Configuration
 

@@ -16,6 +16,8 @@
 
 For quick dos/don'ts, see [lessons-learned.md](lessons-learned.md).
 
+**Note:** This handbook synthesizes guidance from multiple sources (see [bookmarks.md](bookmarks.md)) with practical patterns derived from experience. Where specific frameworks or taxonomies appear without citation, they represent useful mental models rather than established industry standards.
+
 ---
 
 ## Part 1: Foundation
@@ -341,24 +343,6 @@ Coordination failures are the most common source of bugs in multi-agent systems.
 - **Contracts**: explicit input/output expectations
 - **Conflict resolution**: handling contradictory outputs or resource competition
 - **Shared context**: shared memory, coordinator agent, explicit passing
-
-### Agent Hierarchy
-
-Not all agents need the same level of autonomy. Match expertise level to task complexity: junior agents for routine work with clear procedures, senior agents for ambiguous situations requiring judgment.
-
-**Expertise levels:**
-
-- **Junior**: follows procedures, asks often, escalates edge cases
-- **Senior**: exercises judgment, handles ambiguity, knows when rules should bend
-- **Expert**: minimal guidance, synthesizes across domains, challenges assumptions
-
-Same task ("review this code") produces different behavior:
-
-- Junior: checks style guides
-- Senior: questions architecture
-- Expert: asks if the feature should exist
-
-**Micro-agents:** Single-purpose function nodes doing one thing well. Like microservices, enable reuse and isolation but add coordination overhead.
 
 ---
 

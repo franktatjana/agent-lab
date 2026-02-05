@@ -2,12 +2,6 @@
 .DS_Store
 Thumbs.db
 
-# Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-
 # Environment
 .env
 .env.local
@@ -15,9 +9,5 @@ Thumbs.db
 # Temporary
 *.tmp
 *.log
-
-# Local notes
-notes.md
-
-# Claude instructions (private)
-CLAUDE.md
+*.swp
+*.swo

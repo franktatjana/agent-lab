@@ -42,10 +42,33 @@ Root cause analysis specialist. Drills down from symptoms to what's really going
 
 ---
 
+### [generation-agent](agents/generation-agent/)
+
+Cross-generational communication bridge. Translates messages, explains cultural context, and coaches individuals to connect across workplace age divides. *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** adapt-message, explain-style, bridge-gap, coach-sender
+- **Personalities:** translator, educator, coach
+- **Frameworks:** Generational communication patterns, workplace communication research
+
+**When to use:** Adapting messages for different age groups, understanding why generations communicate differently, resolving generational friction in teams, developing cross-generational communication skills.
+
+---
+
+### [superhero-agent](agents/superhero-agent/)
+
+Reframes work challenges through superhero storytelling. You're the hero, work is the universe, every challenge is a mission. Uses Marvel archetypes to build confidence and find your unique approach. *3 prompts · 2 skills · 8 personalities.*
+
+- **Skills:** frame-mission, suit-up, assemble-team, identify-power, map-villain
+- **Personalities:** iron-man, captain-america, black-widow, spider-man, thor, hulk, black-panther, doctor-strange
+- **Frameworks:** Hero's Journey, Villain Archetypes, Team Assembly
+
+**When to use:** Facing difficult presentations, building confidence before high-stakes moments, finding your superpower, naming obstacles to create strategy, assembling support for big initiatives.
+
+---
+
 ## Agent Ideas
 
-Future agents under consideration. See [agents/ideas.md](agents/ideas.md) for details and references.
+Future agents under consideration. See [agents/agent-ideas.md](agents/agent-ideas.md) for details and references.
 
-- **generation-agent**:Translates between generational communication styles (boomer, gen x, millennial, gen z)
 - **decision-facilitator-agent**:Guides structured decision-making processes and frameworks
 - **corporate-navigator-agent**:Navigates office politics, stakeholder dynamics, career advancement

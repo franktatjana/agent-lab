@@ -1,0 +1,43 @@
+# mission-briefing.yaml
+# Example input/output for the frame-mission skill
+
+input:
+  challenge: "I need to present a controversial recommendation to the executive team"
+  context: "Product team, recommending we kill a feature that sales loves but users hate"
+  your_strengths: "Data analysis, user research, direct communication"
+  what_feels_hard: "Sales VP is powerful and will push back hard"
+  personality: "captain-america"
+
+output:
+  mission_briefing:
+    codename: "Operation Truth to Power"
+    stakes: "You're not just presenting a recommendation. You're standing up for users who can't be in that room. Sales has numbers; you have truth."
+    victory_condition: "The recommendation is heard fairly. Decision-makers understand the user impact, not just the revenue impact."
+
+  your_powers:
+    primary: "Data-backed conviction. You don't just think you're right; you can prove it."
+    secondary:
+      - "Direct communication (you won't dance around the point)"
+      - "User empathy (you can make executives feel what users feel)"
+      - "Analytical rigor (your recommendation isn't a hunch)"
+    watch_out_for: "Your directness might come across as dismissive of sales concerns. The shield deflects attacks; it doesn't win hearts."
+
+  the_villain:
+    name: "Loki (The Trickster)"
+    real_identity: "The Sales VP isn't evil; they're playing a different game with different metrics"
+    signature_move: "Charm, misdirection, reframing to make your data seem less certain"
+    weakness: "Can't argue against users, only against you. Shift the battlefield."
+
+  your_team:
+    needed_powers:
+      - role: "Nick Fury (air cover)"
+        who: "Someone senior bought in before the meeting"
+      - role: "War Machine (backup)"
+        who: "Another voice supporting the recommendation"
+      - role: "Pepper Potts (translator)"
+        who: "Someone who can frame this in terms Sales cares about"
+
+  next_move:
+    immediate: "Brief one ally who'll be in the room. You need at least one head nodding."
+    this_week: "Arrive early tomorrow. Claim your space. Heroes don't shuffle in apologetically."
+    mantra: "The price of freedom is high. It always has been. And it's a price I'm willing to pay."

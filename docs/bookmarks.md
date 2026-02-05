@@ -58,7 +58,7 @@ Prompt design, structure, versioning, and drift prevention.
 - [LangChain Prompt Templates](https://python.langchain.com/docs/concepts/prompt_templates/) - Composable, modular prompt templates
 - [Prompt Templates Guide](https://latenode.com/blog/ai-frameworks-technical-infrastructure/langchain-setup-tools-agents-memory/langchain-prompt-templates-complete-guide-with-examples) - Complete guide with composable patterns
 - [Claude Skills Deep Dive](https://leehanchung.github.io/blogs/2025/10/26/claude-skills-deep-dive/) - First principles analysis of Claude's skill architecture
-- [XML Tag-Based Prompt Construction](https://kloss.xyz/blog/prompt-building) - Structured prompt building with role, mission, rules, constraints, discovery, evaluation, and fallback patterns (klöss)
+- [XML Tag-Based Prompt Construction](https://kloss.xyz/blog/prompt-building) - Structured prompt building with role, mission, rules, constraints, discovery, evaluation, and fallback patterns
 
 ---
 

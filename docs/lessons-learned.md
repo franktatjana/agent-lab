@@ -147,6 +147,26 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 
 ---
 
+## Case Studies & Documentation
+
+**Do:**
+
+- Document how agents are triggered: Slack bot, web portal, CLI, API integration
+- Specify data sources: what's automatic, what's user-provided, what's unavailable
+- Show the full scenario: situation → trigger → configuration → interaction → outcome
+- Include what the agent could NOT access, limitations matter as much as capabilities
+
+**Don't:**
+
+- Write case studies that only show agent output without explaining the input pipeline
+- Assume readers know how to invoke the agent
+- Skip the "what went wrong" or "what was adjusted" parts
+- Create case studies for features, not real scenarios
+
+*Why it matters: Agents don't exist in isolation. They're triggered by integrations and fed by data sources. Users need to understand the full context to replicate success.*
+
+---
+
 ## Core Principles
 
 **Do:**

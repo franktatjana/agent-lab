@@ -1,8 +1,9 @@
 # Agent Ideas
 
+*These are exploratory concepts, not validated designs. Ideas may require additional research, IP review, or proof-of-concept work before implementation.*
+
 | Name | Description |
 |------|-------------|
-| [generation-agent](#generation-agent) | Bridges communication styles between workplace generations |
 | [decision-facilitator-agent](#decision-facilitator-agent) | Guides structured decision-making using proven frameworks |
 | [corporate-navigator-agent](#corporate-navigator-agent) | Navigates office politics and stakeholder dynamics |
 | [design-thinking-agent](#design-thinking-agent) | Facilitates human-centered design and ideation processes |
@@ -27,46 +28,13 @@
 | [supportive-colleague-agent](#supportive-colleague-agent) | Provides empathetic support for workplace challenges |
 | [superhero-agent](#superhero-agent) | You're the hero, work is the universe, every challenge is a mission |
 | | **Thinking Chain** *(can be orchestrated together)* |
-| [why-agent](#why-agent) | Drills down to find what's really going on using structured inquiry |
 | [systems-thinker-agent](#systems-thinker-agent) | Sees the whole system, finds connections and leverage points |
 | [strategist-agent](#strategist-agent) | Long-term vision, positioning, and where to play |
 | [tactician-agent](#tactician-agent) | Short-term execution, how to win in the current context |
-
----
-
-## generation-agent
-
-Translates communication styles between generational contexts. Bridges workplace communication gaps, reframes feedback, and adapts messaging tone for different audiences.
-
-Generations covered: Baby Boomers (1946-1964), Gen X (1965-1980), Millennials (1981-1996), Gen Z (1997-2012), Gen Alpha (2010-2025)
-
-Possible skills:
-
-- `adapt-message`:reframe communication for target generation's preferences
-- `explain-style`:explain why a generation communicates the way it does
-- `bridge-gap`:suggest common ground between two generations
-- `coach-sender`:help someone adjust their style for a different audience
-
-Possible inputs: `source_generation`, `target_generation`, `message`, `context` (workplace, feedback, collaboration)
-
-Key generational patterns:
-
-- **Boomers**:prefer face-to-face, phone calls; value directness and personal connection
-- **Gen X**:email and phone; informal but professional; value work-life balance
-- **Millennials**:Slack/Teams, text; want frequent feedback; value authenticity
-- **Gen Z**:instant messaging, visual; need clear direction; value transparency
-- **Gen Alpha**:voice-first, AI-native; expect flexibility; value purpose and sustainability
-
-References:
-
-- [SHRM Multigenerational Communication](https://www.shrm.org/topics-tools/flagships/all-things-work/managing-multi-generational-communication-workplace):managing communication across generations
-- [Berkeley Intergenerational Communication](https://executive.berkeley.edu/thought-leadership/blog/enhancing-intergenerational-communication):bridging strategies
-- [Communication Styles by Generation](https://powell-software.com/resources/blog/communication-styles/):Gen Z to Boomer preferences
-- [Bridging the Generation Gap (ResearchGate)](https://www.researchgate.net/publication/390108622_Bridging_the_Generation_Gap_Understanding_Collaboration_Challenges_and_Opportunities_in_Multigenerational_Workplaces):collaboration challenges
-- [Gen Z Communication Gaps](https://www.edstellar.com/blog/gen-z-communication-gaps):workplace adaptation
-- [Gen Alpha Workplace Characteristics](https://theenterpriseworld.com/gen-alpha-employees-characteristics/):future workforce
-- [Gen Alpha Voice-First Communication](https://fortune.com/2025/11/07/gen-alpha-wont-ever-have-to-write-an-email-when-they-join-the-workforce-new-research-reveals-theyll-be-sending-voice-notes-to-their-boss-instead/):AI and voice communication
-- [Gen Alpha Shaping Future of Work](https://hpmegatrends.com/how-generation-alpha-is-shaping-the-future-of-work-8b0c303d371c):2030 workplace expectations
+| | **Use-Case Specific** *(may use personality frameworks internally)* |
+| [communication-adapter-agent](#communication-adapter-agent) | Adapts communication style for different audiences |
+| [strength-finder-agent](#strength-finder-agent) | Identifies and applies professional strengths |
+| [friction-reducer-agent](#friction-reducer-agent) | Reduces interpersonal friction from style differences |
 
 ---
 
@@ -967,49 +935,6 @@ References:
 
 ---
 
-## why-agent
-
-*Part of the Thinking Chain: why → systems-thinker → strategist → tactician*
-
-Helps drill down from symptoms to what's really going on through structured questioning. Operationalizes the expertise of investigators, diagnosticians, quality engineers, and coaches who excel at finding the real issue beneath the surface.
-
-Frameworks supported:
-
-- **5 Whys**: Toyota's iterative technique for drilling to root causes by repeatedly asking "why"
-- **Socratic Method**: Disciplined questioning to uncover assumptions and stimulate critical thinking
-- **Fishbone/Ishikawa Diagram**: Organizing potential causes into categories (materials, methods, machinery, people, environment, measurement)
-- **A3 Thinking**: Toyota's one-page problem-solving format integrating analysis with action planning
-- **8D Problem Solving**: Ford's eight-discipline team-based approach for chronic problems
-
-Possible skills:
-
-- `drill-down`: guide 5 Whys questioning sequence on a specific problem
-- `challenge-assumptions`: Socratic questioning to surface hidden beliefs
-- `categorize-causes`: organize potential causes using Fishbone structure
-- `structure-problem`: frame problem on A3 format with context, analysis, and countermeasures
-- `verify-root`: distinguish root causes from contributing factors
-
-Possible inputs: `problem_statement`, `symptoms_observed`, `context`, `previous_attempts`, `stakeholders_involved`
-
-Key principles:
-
-- **Symptoms are not causes**: What you see first is rarely the real issue
-- **Keep asking why**: Five is a guideline, not a rule; stop when you reach actionable cause
-- **Multiple roots possible**: Complex problems often have several contributing causes
-- **Verify before acting**: Confirm the root cause before implementing solutions
-- **Systems over blame**: Look for process/system issues, not individual fault
-
-References:
-
-- [Toyota Production System (Taiichi Ohno)](https://www.amazon.com/Toyota-Production-System-Beyond-Large-Scale/dp/0915299143): original source for 5 Whys and TPS philosophy
-- [Understanding A3 Thinking (Sobek & Smalley)](https://www.amazon.com/Understanding-A3-Thinking-Component-Management/dp/1563273608): Shingo Prize-winning A3 guide
-- [Fishbone Diagram (ASQ)](https://asq.org/quality-resources/fishbone): American Society for Quality resource
-- [The Machine That Changed the World](https://www.lean.org/store/book/the-machine-that-changed-the-world/): MIT study that coined "Lean"
-- [Lean Enterprise Institute](https://www.lean.org/): foundational Lean resources
-- [Socratic Questioning (Paul)](https://files.eric.ed.gov/fulltext/EJ1052768.pdf): six types of Socratic questions
-
----
-
 ## strategist-agent
 
 *Part of the Thinking Chain: why → systems-thinker → strategist → tactician*
@@ -1168,3 +1093,126 @@ References:
 - [Marvel Cinematic Universe](https://www.marvel.com/movies): character archetypes and story patterns
 - [Positive Psychology Character Strengths (VIA)](https://www.viacharacter.org/): underlying science of strengths
 - [CliftonStrengths](https://www.gallup.com/cliftonstrengths/): strengths-based development
+
+---
+
+## Use-Case Specific Agents
+
+These agents address specific professional needs and may use personality frameworks internally. They focus on practical outcomes rather than personality assessment itself.
+
+> **Warning:** Some underlying frameworks have varying levels of intellectual property protection. Before implementing, research licensing requirements, trademark restrictions, and content usage rights.
+
+### communication-adapter-agent
+
+Adapts communication style for different audiences. Uses publicly available concepts about personality dimensions without reproducing proprietary assessment content.
+
+**Approach considerations:**
+
+- Focus on general personality dimension concepts (introversion/extraversion, task/people orientation)
+- Reference academic research on personality psychology (Big Five, etc.)
+- Avoid reproducing proprietary assessment questions or scoring systems
+- Use as a communication styles coach, not a certified assessment tool
+
+**Open alternatives:**
+
+- Big Five / OCEAN model (public domain academic research)
+- VIA Character Strengths (free, research-based)
+- Generic communication styles frameworks (task vs. people, direct vs. indirect)
+
+**Possible skills:**
+
+- `identify-style`: Help users reflect on their communication preferences
+- `adapt-to-style`: Suggest how to communicate with different styles
+- `team-styles`: Map team communication dynamics
+- `conflict-styles`: Understand how different styles clash
+
+**IP-safe approach:** Build on public research about personality dimensions. Reference "personality styles research" rather than specific proprietary frameworks.
+
+---
+
+### strength-finder-agent
+
+Identifies and applies professional strengths. Draws on strengths-based development principles without reproducing proprietary assessments.
+
+**Approach considerations:**
+
+- Use VIA Character Strengths (free, research-based, encourages use)
+- Reference general strengths-based coaching principles
+- Focus on helping users articulate strengths, not administer assessments
+- Complement rather than replace official assessments
+
+**Safe to reference:**
+
+- VIA Institute on Character (explicitly encourages educational use)
+- Strengths-based coaching methodology (general practice)
+- Academic research on positive psychology
+
+**Requires licensing:**
+
+- CliftonStrengths/StrengthsFinder (Gallup trademark)
+- Specific assessment questions or theme descriptions
+
+**Possible skills:**
+
+- `discover-strengths`: Guided reflection to identify strengths
+- `strengths-in-action`: How to apply strengths to current challenges
+- `strengths-shadow`: Understanding when strengths become weaknesses
+- `team-strengths`: Complementary strengths on teams
+
+---
+
+### friction-reducer-agent
+
+Reduces interpersonal friction from style differences. Uses publicly available behavioral science concepts to help navigate workplace dynamics.
+
+**Approach considerations:**
+
+- DISC is a trademarked term; many publishers have proprietary versions
+- The underlying concepts (dominance, influence, steadiness, conscientiousness) are based on public research
+- Can discuss behavioral dimensions without using proprietary materials
+- "Surrounded by Idiots" is a specific book; reference carefully
+
+**Safe to reference:**
+
+- William Marston's original research (public domain)
+- General behavioral dimension concepts
+- Communication adaptation principles
+
+**Requires caution:**
+
+- DISC as a branded term (varies by publisher)
+- Specific assessment questions or reports
+- Color-coding systems that may be trademarked
+
+**Possible skills:**
+
+- `identify-behavior-style`: Reflect on behavioral preferences
+- `adapt-communication`: Adjust approach for different styles
+- `decode-behavior`: Understand why someone acts a certain way
+- `reduce-friction`: Navigate style clashes
+
+---
+
+### General IP Guidelines for Personality-Informed Agents
+
+**Safe territory:**
+
+- Academic research and public domain theories
+- General coaching methodologies
+- Helping users reflect on their own experiences
+- Discussing concepts at a high level
+
+**Caution required:**
+
+- Proprietary framework names as trademarks
+- Reproducing assessment questions
+- Using specific scoring systems or type descriptions
+- Claiming to administer certified assessments
+
+**Recommended approach:**
+
+1. Research licensing terms for any specific framework
+2. Build on public domain research where possible
+3. Position as a coaching complement, not assessment replacement
+4. Use generic terms where proprietary ones would create risk
+5. Encourage users to take official assessments for formal results

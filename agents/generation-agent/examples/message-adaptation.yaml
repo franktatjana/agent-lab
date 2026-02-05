@@ -1,0 +1,82 @@
+# Example: Message Adaptation
+# Adapting a casual Gen Z message for a Boomer executive
+
+description: |
+  A junior employee needs to request a meeting with a senior executive.
+  Their natural communication style is casual, but the recipient expects
+  more formal professional communication.
+
+skill: adapt-message
+personality: translator
+
+# Input
+input:
+  message: "Hey! Quick q - can we grab 15 min this week to chat about the Q4 projections? LMK what works for you"
+  source_generation: gen-z
+  target_generation: boomer
+  context: meeting request
+  relationship: junior to senior executive
+  output_format: markdown
+
+# Expected Output
+output: |
+  # Message Adaptation: Meeting Request
+
+  ## Analysis
+
+  **Source style:** Casual, abbreviation-heavy, open-ended scheduling
+  **Target preferences:** Formal greeting, complete sentences, specific proposals
+
+  ### Potential Friction Points
+  - "Hey!" is too casual for executive communication
+  - "Quick q" and "LMK" require decoding
+  - "grab 15 min" is informal for professional meeting request
+  - Open-ended availability puts scheduling burden on executive
+
+  ### Context Factors
+  - Junior to senior relationship requires more formal approach
+  - Executive time is valuable; specific proposals show respect
+  - Q4 projections is business-critical topic requiring professional framing
+
+  ## Adapted Message
+
+  Dear [Name],
+
+  I hope this message finds you well. I would like to request a brief meeting to discuss the Q4 projections. I have some questions about [specific topic] that I believe would benefit from your guidance.
+
+  Would you have 15 minutes available on Thursday or Friday afternoon? I'm happy to work around your schedule.
+
+  Thank you for your time.
+
+  Best regards,
+  [Your name]
+
+  ## What Changed
+
+  | Original Element | Adapted Element | Why |
+  |-----------------|-----------------|-----|
+  | "Hey!" | "Dear [Name]," | Professional greeting for senior executive |
+  | "Quick q" | "I would like to request a brief meeting" | Formal request language |
+  | "chat about" | "discuss" | Professional vocabulary |
+  | "LMK what works" | Specific days + flexibility | Shows initiative while respecting their time |
+  | (no closing) | "Thank you... Best regards" | Professional sign-off expected at this level |
+
+  ## Alternatives
+
+  1. **Email with calendar link**: Include Calendly or calendar link for easy scheduling
+     - *Tradeoff:* Some executives prefer to handle scheduling through assistants
+
+  2. **Go through assistant**: If executive has EA, route through them
+     - *Tradeoff:* May be more appropriate for very senior executives
+
+  ## Recommendations
+
+  - Consider whether this request should go through the executive's assistant
+  - Be prepared with specific agenda items when meeting is scheduled
+  - Send calendar invite with clear purpose after time is confirmed
+
+# Notes for testing
+notes:
+  - Formality increase is appropriate for junior→senior dynamic
+  - Specific time proposals show respect without being presumptuous
+  - Maintains core request while adjusting delivery

@@ -1,10 +1,39 @@
 # Market Entry Analysis for Healthcare Startup
 
+*This case study is fictional. Names, characters, companies, and scenarios are hypothetical. Any resemblance to actual persons or organizations is purely coincidental.*
+
 ## Situation
 
 Lena was a strategy consultant working with a digital health startup considering expansion into three European markets: Germany, Netherlands, and Sweden. The founders had strong intuitions but limited data. They needed a structured analysis within one week to present to their board. Lena had access to various databases but lacked deep healthcare regulatory knowledge for each market.
 
 The challenge was scope management. The founders kept adding questions: "What about reimbursement models? What about data privacy differences? What about telehealth adoption rates?" Each question was valid, but Lena needed to deliver something actionable, not a 200-page report no one would read.
+
+## How the Agent Was Triggered
+
+Lena accessed the research-agent through her consulting firm's knowledge management platform. The platform integrates with multiple data sources and provides a unified research interface.
+
+**Trigger method:** Web interface, "New Research Project" workflow
+
+**Data sources available to the agent:**
+
+- Statista market research database (company subscription)
+- PubMed/academic databases via institutional access
+- EU regulatory document repositories (EUR-Lex, national health ministry sites)
+- Industry reports from CB Insights and Rock Health (healthcare-specific)
+- News aggregation (filtered to healthcare technology, last 24 months)
+
+**Data sources provided by Lena:**
+
+- Client briefing document with company description and target markets
+- Previous analysis on US market (for context on product capabilities)
+- Specific questions from founders (accumulated in Slack thread)
+- Budget/timeline constraints: one week, focused deliverable
+
+**What the agent could NOT access:**
+
+- Proprietary competitive intelligence
+- Non-public procurement documents
+- Expert network interviews (flagged for manual follow-up)
 
 ## Agent Configuration
 
