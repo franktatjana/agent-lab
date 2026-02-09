@@ -6,9 +6,8 @@ Prepare a party for a cross-cultural meeting or negotiation.
 
 Load these knowledge base files into context before executing:
 
-- `references/hofstede-dimensions.md`: Cultural dimension scores and friction points
-- `references/culture-map-scales.md`: Erin Meyer's 8 business context scales
-- `references/communication-checklist.md`: Actionable items for cross-cultural communication
+- `references/frameworks.md`: Cultural dimension scores, Meyer's 8 scales, Hall, Coyle
+- `references/communication-playbook.md`: Meeting preparation process and checklists
 
 ## Workflow
 

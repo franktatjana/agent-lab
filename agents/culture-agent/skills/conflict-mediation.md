@@ -6,9 +6,8 @@ Help resolve a cultural misunderstanding that has already occurred.
 
 Load these knowledge base files into context before executing:
 
-- `references/hofstede-dimensions.md`: For diagnosing which cultural dimensions are at play
-- `references/culture-map-scales.md`: For understanding communication and feedback styles
-- `references/communication-checklist.md`: For crafting appropriate responses for each party
+- `references/frameworks.md`: For diagnosing which cultural dimensions and communication styles are at play
+- `references/communication-playbook.md`: Conflict diagnosis process and response checklists
 
 ## Workflow
 

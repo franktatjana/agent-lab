@@ -1,12 +1,46 @@
-# Cross-Cultural Communication Checklist
+# Communication Playbook
 
-Actionable items for bridging cultural gaps in professional contexts.
+How to apply the frameworks in practice. Three workflows for the agent's core skills (bridging, meeting prep, conflict resolution), plus checklists for message construction and meetings.
 
 ## When to Load
 
-- Preparing communications for cross-cultural audiences
-- Reviewing messages before sending to different cultures
-- Diagnosing why a message was misunderstood
+Load when executing `bridge-message`, `meeting-prep`, or `resolve-misunderstanding` skills, or when preparing communications for cross-cultural audiences.
+
+---
+
+## Workflows
+
+### Cultural Bridging
+
+Used when translating a message from one cultural context to another.
+
+1. **Identify dimensions:** Map source and target cultures to frameworks (Hofstede, Meyer)
+2. **Detect friction points:** Find where dimensions clash (e.g., direct vs. indirect feedback)
+3. **Understand intent:** What does the sender actually mean? Separate content from cultural packaging
+4. **Reframe for target:** Adapt delivery while preserving intent. The message stays, the wrapping changes
+5. **Add caveats:** Note limitations and individual variation. Culture is a tendency, not a rule
+
+### Meeting Preparation
+
+Used when preparing someone for a cross-cultural meeting or negotiation.
+
+1. **Profile counterpart culture:** Key dimensions and communication patterns
+2. **Identify your blind spots:** Where your own cultural defaults may cause friction
+3. **Anticipate dynamics:** How the meeting will likely flow (who speaks first, how decisions surface, what silence means)
+4. **Prepare adaptations:** Specific behaviors to adjust (pacing, directness, formality)
+5. **Plan recovery:** How to handle unexpected friction without derailing the meeting
+
+### Conflict Diagnosis
+
+Used when a misunderstanding has already occurred and needs resolution.
+
+1. **Gather perspectives:** What each party experienced. Same event, different cultural lenses
+2. **Identify cultural root:** Which dimension caused the clash (usually communication style or power distance)
+3. **Explain both sides:** Help each party understand the other's cultural logic. Neither side is "wrong"
+4. **Find common ground:** Shared goals despite different approaches
+5. **Suggest resolution:** Path forward that honors both cultures without requiring either to abandon their values
+
+---
 
 ## Pre-Communication Checklist
 
@@ -24,7 +58,9 @@ Actionable items for bridging cultural gaps in professional contexts.
 - [ ] Considered timing (their timezone, their workday, cultural calendar)
 - [ ] Determined if relationship-building is needed first
 
-## Message Construction Checklist
+---
+
+## Message Construction
 
 ### For High-Context Cultures
 
@@ -72,6 +108,8 @@ Actionable items for bridging cultural gaps in professional contexts.
 - [ ] Invited input and questions
 - [ ] Avoided excessive formality that creates distance
 
+---
+
 ## Meeting Checklist
 
 ### Before the Meeting
@@ -97,7 +135,9 @@ Actionable items for bridging cultural gaps in professional contexts.
 - [ ] Allowed time for internal alignment before expecting response
 - [ ] Maintained relationship through appropriate follow-up
 
-## Red Flags to Watch For
+---
+
+## Red Flags
 
 ### Potential Misunderstandings
 
@@ -114,6 +154,8 @@ Actionable items for bridging cultural gaps in professional contexts.
 - [ ] Power imbalance makes direct conversation difficult
 - [ ] Cultural clash involves protected characteristics
 - [ ] Human mediator/translator may be more appropriate
+
+---
 
 ## Quick Reference: Common Pairings
 

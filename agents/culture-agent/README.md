@@ -1,21 +1,10 @@
-# Culture Agent: Brief
+# Culture Agent
+
+Cross-cultural communication bridge. Translates messages between cultural contexts, prepares parties for international meetings, and resolves misunderstandings that have already occurred.
 
 ## The Human Analogy
 
-Think of the Culture Agent as a seasoned international consultant who has lived in multiple countries. Like a human cultural advisor, it:
-
-- **Reads between the lines**:Understands that "interesting idea" means different things in London vs. New York
-- **Anticipates friction**:Knows where misunderstandings will happen before they do
-- **Translates intent**:Preserves what someone means while adapting how they say it
-- **Explains the why**:Helps people understand the logic behind unfamiliar behaviors
-- **Builds bridges**:Finds common ground between different cultural approaches
-
-Unlike a human cultural consultant, it:
-
-- Accesses multiple cultural frameworks instantly
-- Never forgets regional nuances or historical context
-- Doesn't carry its own cultural biases (but acknowledges framework limitations)
-- Can simulate both perspectives simultaneously
+Think of the Culture Agent as a seasoned international consultant who has lived in multiple countries. It reads between the lines, anticipates friction, translates intent, explains the why behind unfamiliar behaviors, and finds common ground. Unlike a human consultant, it accesses multiple cultural frameworks instantly and simulates both perspectives simultaneously.
 
 The agent is your cultural translator, not your negotiator. It helps you understand and communicate; you make the decisions.
 
@@ -41,8 +30,6 @@ cultures:
 context: "business partnership"
 ```
 
-Returns dimension-by-dimension comparison with practical implications.
-
 ### Bridge a specific message
 
 ```yaml
@@ -53,8 +40,6 @@ message: "We need to move faster on this project."
 context: "email to partner"
 ```
 
-Returns cultural analysis and reframed message.
-
 ### Prepare for a meeting
 
 ```yaml
@@ -64,8 +49,6 @@ counterpart_culture: "Chinese"
 meeting_type: "first negotiation"
 ```
 
-Returns briefing with do's, don'ts, and what to expect.
-
 ### Resolve a misunderstanding
 
 ```yaml
@@ -74,8 +57,6 @@ party_a: "French manager"
 party_b: "US direct report"
 situation: "French manager's feedback perceived as harsh"
 ```
-
-Returns diagnosis and resolution path.
 
 ## What's Possible
 
@@ -90,40 +71,23 @@ Returns diagnosis and resolution path.
 
 ## Multi-Agent Combinations
 
-### Culture → Writing
+**Culture → Writing:** Culture Agent provides cultural guidelines; Writing Agent creates content that follows them.
 
-```text
-Culture Agent → Writing Agent
-"Cultural adaptation"  "Draft content"
-```
+**Research → Culture → Communication:** Research provides facts; Culture adapts for audience; Communication delivers.
 
-Culture Agent provides cultural guidelines; Writing Agent creates content that follows them.
+**Culture → Strategy:** Culture Agent provides cultural context; Strategy Agent plans negotiation approach.
 
-### Research → Culture → Communication
+## Case Study
 
-```text
-Research Agent → Culture Agent → Communication Agent
-"Find info"      "Adapt culturally"  "Deliver message"
-```
+**German-US Product Launch:** A Munich product manager used meeting-prep to bridge a failing partnership with Detroit counterparts. The agent identified that "we're aligned" meant different things to each side. After cultural preparation, the third meeting succeeded where two had failed. Both teams adopted each other's strengths. Shipped on time.
 
-Research provides facts; Culture adapts for audience; Communication delivers.
-
-### Culture → Negotiation Support
-
-```text
-Culture Agent → Strategy Agent
-"Cultural briefing"  "Negotiation tactics"
-```
-
-Culture Agent provides cultural context; Strategy Agent plans approach.
+[Full case study](case-studies/german-us-product-launch.md)
 
 ---
 
 ## Problem
 
-Cross-cultural communication failures cost global businesses billions annually. Misunderstandings aren't usually about language, they're about unspoken cultural codes. A direct message that works in Israel may offend in Japan. Silence that shows respect in Finland may signal disagreement in Brazil.
-
-Most people aren't aware of their own cultural programming until it clashes with someone else's.
+Cross-cultural communication failures cost global businesses billions annually. Misunderstandings aren't usually about language, they're about unspoken cultural codes. Most people aren't aware of their own cultural programming until it clashes with someone else's.
 
 ## Goals
 
@@ -146,131 +110,6 @@ Most people aren't aware of their own cultural programming until it clashes with
 - Onboarding team members from different cultures
 - Resolving cross-cultural workplace conflicts
 - Training leaders in cultural intelligence
-
----
-
-## Glossary
-
-- **High-context culture**:Communication relies heavily on implicit meaning, shared understanding, and non-verbal cues (Japan, China, Arab countries)
-- **Low-context culture**:Communication is explicit, direct, and relies on words rather than context (Germany, US, Scandinavia)
-- **Power distance**:Degree to which less powerful members accept unequal power distribution (high: Malaysia, low: Denmark)
-- **Uncertainty avoidance**:Degree to which a culture tolerates ambiguity and uncertainty (high: Greece, low: Singapore)
-- **Individualism vs. collectivism**:Priority of individual vs. group interests (individualist: US, collectivist: Japan)
-- **Chutzpah**:Israeli cultural concept of audacity, directness, and willingness to challenge authority
-- **Face**:East Asian concept of social standing and dignity that must be preserved in interactions
-- **Nemawashi**:Japanese practice of building consensus informally before formal meetings
-
-## Frameworks
-
-### Hofstede's Cultural Dimensions
-
-Six dimensions for comparing national cultures:
-
-1. **Power Distance Index (PDI)**:Acceptance of hierarchical power distribution
-2. **Individualism vs. Collectivism (IDV)**:Individual vs. group orientation
-3. **Masculinity vs. Femininity (MAS)**:Competition vs. cooperation orientation
-4. **Uncertainty Avoidance Index (UAI)**:Tolerance for ambiguity
-5. **Long-Term vs. Short-Term Orientation (LTO)**:Future vs. present/past focus
-6. **Indulgence vs. Restraint (IVR)**:Gratification vs. suppression of desires
-
-### Erin Meyer's Culture Map
-
-Eight scales for mapping cultures in business contexts:
-
-1. **Communicating**:Low-context (explicit) vs. high-context (implicit)
-2. **Evaluating**:Direct negative feedback vs. indirect negative feedback
-3. **Persuading**:Principles-first vs. applications-first
-4. **Leading**:Egalitarian vs. hierarchical
-5. **Deciding**:Consensual vs. top-down
-6. **Trusting**:Task-based vs. relationship-based
-7. **Disagreeing**:Confrontational vs. avoids confrontation
-8. **Scheduling**:Linear time vs. flexible time
-
-### Edward Hall's Context Model
-
-- **High-context**:Meaning embedded in context, relationships, non-verbal cues
-- **Low-context**:Meaning in explicit words, contracts, direct statements
-
-### Daniel Coyle's Culture Code
-
-Three key skills of highly successful groups:
-
-1. **Build Safety**:Signals of connection that generate belonging
-2. **Share Vulnerability**:Habits of mutual risk that drive cooperation
-3. **Establish Purpose**:Narratives that create shared goals and values
-
-## Processes
-
-### Cultural Bridging Workflow
-
-1. **Identify dimensions**:Map source and target cultures to frameworks
-2. **Detect friction points**:Find where dimensions clash
-3. **Understand intent**:What does the sender actually mean?
-4. **Reframe for target**:Adapt while preserving intent
-5. **Add caveats**:Note limitations and individual variation
-
-### Meeting Preparation Process
-
-1. **Profile counterpart culture**:Key dimensions and patterns
-2. **Identify your blind spots**:Where your culture may cause friction
-3. **Anticipate dynamics**:How the meeting will likely flow
-4. **Prepare adaptations**:Specific behaviors to adjust
-5. **Plan recovery**:How to handle unexpected friction
-
-### Conflict Diagnosis Process
-
-1. **Gather perspectives**:What each party experienced
-2. **Identify cultural root**:Which dimension caused the clash
-3. **Explain both sides**:Help each party understand the other
-4. **Find common ground**:Shared goals despite different approaches
-5. **Suggest resolution**:Path forward that honors both cultures
-
-## Resources
-
-- [Hofstede Country Comparison](https://www.theculturefactor.com/country-comparison-tool):Compare countries across 6 dimensions
-- [The Culture Map](https://erinmeyer.com/books/the-culture-map/):Erin Meyer's framework for global business
-- [The Culture Code](https://danielcoyle.com/the-culture-code/):Daniel Coyle on successful group cultures
-- [GlobeSmart](https://www.aperianglobal.com/globesmart/):Cultural intelligence platform
-- [Commisceo Global](https://www.commisceo-global.com/resources/country-guides):Country-by-country cultural guides
-
-### Key Culture Profiles (Quick Reference)
-
-**Germany:**
-- Low-context, direct communication
-- High uncertainty avoidance (loves planning)
-- Moderate power distance (respects expertise)
-- Punctuality is respect; lateness is rude
-- Separates work and personal life
-
-**Israel:**
-- Low-context but informal (chutzpah)
-- Very low power distance (flat hierarchies)
-- High uncertainty avoidance (but expressed through action)
-- Interruptions show engagement
-- Direct disagreement is normal and expected
-
-**Japan:**
-- High-context, indirect communication
-- High uncertainty avoidance (detailed processes)
-- Moderate power distance (respects hierarchy)
-- Silence is communication; "yes" may mean "I hear you"
-- Face-saving is critical; avoid public criticism
-
-**US:**
-- Very low-context, explicit communication
-- Low uncertainty avoidance (comfortable with ambiguity)
-- Low power distance (informal with authority)
-- Time is money; get to the point
-- Individual achievement celebrated
-
-**China:**
-- High-context, relationship-driven
-- High power distance (hierarchy matters)
-- Long-term orientation (patience valued)
-- Guanxi (relationships) before business
-- Face (mianzi) must be preserved
-
----
 
 ## Ideas
 

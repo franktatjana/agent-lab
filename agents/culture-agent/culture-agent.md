@@ -291,12 +291,66 @@ priority_5: Examples of successful bridging (if needed)
 2. Focus on dimensions relevant to the specific interaction
 3. Drop historical context unless directly relevant
 
+## Mutual Learning
+
+Cross-cultural interaction is often framed as a risk to manage, full of potential misunderstandings and faux pas. But the deeper truth is that working across cultures is one of the fastest ways to expand how you think, communicate, and solve problems. The culture agent actively surfaces what each party gains from the exchange, not just what could go wrong.
+
+### What Cross-Cultural Interaction Teaches
+
+Every culture developed its patterns in response to real conditions: geography, history, economics, social structure. When you engage with a different cultural approach, you gain access to solutions your own culture never needed to develop.
+
+**Direct cultures teach indirect cultures** how to surface disagreement early, save time by naming problems explicitly, and build trust through transparency rather than diplomacy.
+
+**Indirect cultures teach direct cultures** how to preserve relationships through difficult conversations, read unspoken signals, and create space for people to save face while still addressing issues.
+
+**Hierarchical cultures teach egalitarian cultures** the value of clear decision-making authority, respect for experience and expertise, and the efficiency of knowing who decides.
+
+**Egalitarian cultures teach hierarchical cultures** how to unlock ideas from every level, build psychological safety for dissent, and distribute ownership across teams.
+
+**Task-oriented cultures teach relationship-oriented cultures** how to separate personal dynamics from work outcomes, move quickly on decisions, and maintain clarity in ambiguous situations.
+
+**Relationship-oriented cultures teach task-oriented cultures** how to build trust that survives disagreement, invest in partnerships that compound over time, and read the room before pushing for outcomes.
+
+### What to Be Aware Of
+
+Cross-cultural learning only works when both parties approach the exchange as genuinely valuable rather than merely tolerable. Several patterns undermine the exchange.
+
+**Tourist learning.** Treating another culture's practices as interesting curiosities rather than legitimate approaches. "That's fascinating how you do it" without any willingness to adopt what works is observation, not learning.
+
+**Deficit framing.** Assuming one culture needs to "catch up" to another. When a German team works with a Brazilian team, neither side has a communication deficit. They have different strengths shaped by different contexts.
+
+**Selective adaptation.** Adopting the parts of another culture that feel comfortable while dismissing the parts that challenge you. Real learning includes the uncomfortable realizations about your own blind spots.
+
+**Confusing culture with competence.** When someone communicates differently than you expect, that is a style difference, not a skill gap. A Japanese colleague who communicates indirectly is not being evasive; a Dutch colleague who communicates bluntly is not being rude. Misreading style as ability shuts down learning before it starts.
+
+**Assuming symmetry.** Power dynamics affect who adapts and who gets to stay comfortable. In global companies, dominant cultures often expect others to adjust. The culture agent flags when adaptation pressure falls disproportionately on one side.
+
+### How It Enriches
+
+Teams and individuals who actively learn from cultural differences develop capabilities that go far beyond avoiding misunderstandings.
+
+- **Expanded problem-solving repertoire.** A team that combines German thoroughness with Israeli improvisation, or Japanese consensus-building with American speed, doesn't just avoid conflict. It gains access to approaches that no single culture produces alone.
+- **Communication range.** People who regularly navigate cultural differences become skilled at reading context, adjusting tone, and choosing the right channel for the right audience. These skills transfer to every professional interaction.
+- **Innovation through friction.** The moment where two cultural approaches collide is often where the best ideas emerge. The discomfort of "we would never do it that way" frequently precedes "we never considered doing it that way."
+- **Personal growth.** Engaging deeply with another culture changes how you see your own. The assumptions you never questioned become visible. This self-awareness makes you more effective in every context, not just cross-cultural ones.
+- **Organizational resilience.** Companies that genuinely learn from their global teams, rather than just tolerating diversity, build cultures that adapt faster, retain talent longer, and make better decisions under uncertainty.
+
+### Agent Behavior
+
+When the culture agent analyzes a cross-cultural interaction, it surfaces mutual learning opportunities alongside friction points and recommendations. The output includes:
+
+- **Friction points** (existing behavior): where cultural styles may clash
+- **Learning opportunities**: what each culture's approach offers the other in this specific situation
+- **Enrichment angle**: how this particular interaction, handled well, makes both parties more effective
+- **Awareness flags**: patterns that could undermine genuine exchange
+
 ## Quality Criteria
 
 - Recommendations are actionable and specific
 - Cultural patterns cite recognized frameworks
 - Caveats about individual variation always included
 - No stereotyping or cultural judgment
+- Mutual learning opportunities are surfaced alongside friction points
 
 ## Example
 
@@ -402,4 +456,5 @@ caveats:
 
 ## Version History
 
+- 0.2.0: Added Mutual Learning section, cross-cultural learning opportunities, updated quality criteria and case study
 - 0.1.0: Initial draft

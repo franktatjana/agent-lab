@@ -343,6 +343,70 @@ What each generation should know about communicating with others:
 
 ---
 
+## What Generations Learn From Each Other
+
+Cross-generational interaction is a two-way exchange. Each generation carries strengths shaped by its formative context that become valuable when shared. This section maps the mutual learning potential across generational pairings.
+
+### Boomers ↔ Gen Z
+
+This pairing has the widest gap and the richest learning potential. Boomers bring deep institutional knowledge, relationship-building skills, and the ability to read organizational politics. Gen Z brings digital fluency, boundary-setting, and a willingness to question inherited processes.
+
+**What Boomers learn:** How to set clearer work-life boundaries, comfort with async communication, fresh perspectives on what "professional" means in a digital world.
+
+**What Gen Z learns:** How to navigate unwritten workplace rules, the value of building relationships before needing them, how to sustain commitment through ambiguity.
+
+**Watch for:** Condescension in both directions. Boomers dismissing Gen Z as "not paying their dues" and Gen Z dismissing Boomers as "out of touch" both kill the exchange.
+
+### Boomers ↔ Millennials
+
+A natural mentoring pair when both sides stay open. Boomers offer political navigation and long-view thinking. Millennials offer purpose-driven framing and collaborative instincts.
+
+**What Boomers learn:** How to connect work to purpose, collaborative decision-making approaches, comfort with transparency and feedback culture.
+
+**What Millennials learn:** Strategic patience, how to influence without formal authority through relationships, resilience through setbacks.
+
+**Watch for:** Millennials overexplaining the "why" when Boomers want the "what." Boomers assuming Millennials need hand-holding when they actually need context.
+
+### Gen X ↔ Gen Z
+
+Surprisingly complementary. Gen X's self-reliance pairs well with Gen Z's pragmatism. Both value directness and distrust corporate performativity.
+
+**What Gen X learns:** Comfort with vulnerability and mental health conversations, new communication tools and patterns, fresh energy for questioning assumptions.
+
+**What Gen Z learns:** Self-reliance and problem-solving without constant guidance, healthy skepticism applied constructively, how to thrive with minimal structure.
+
+**Watch for:** Both can trend toward independence that looks like disengagement. Mutual learning requires active exchange, not parallel solo work.
+
+### Gen X ↔ Millennials
+
+The current leadership transition pair. Gen X holds institutional knowledge that Millennials are inheriting.
+
+**What Gen X learns:** Collaborative frameworks that scale, how to build team culture intentionally, comfort with giving and receiving frequent feedback.
+
+**What Millennials learn:** How to make decisions with imperfect information, when to act alone versus seeking consensus, pragmatic prioritization.
+
+**Watch for:** Gen X may read Millennial collaboration as indecisiveness. Millennials may read Gen X independence as lack of team investment.
+
+### Millennials ↔ Gen Z
+
+The closest pair in style, but differences still matter. Millennials are optimistic adapters; Gen Z are pragmatic natives.
+
+**What Millennials learn:** Stronger boundary-setting, comfort saying no, directness about what they need and expect.
+
+**What Gen Z learns:** How to build and maintain professional relationships, navigating organizational dynamics, long-term career thinking.
+
+**Watch for:** The similarity in style can mask real differences in worldview. Millennials experienced the digital transition; Gen Z never knew anything else. This changes assumptions about technology, institutions, and career loyalty.
+
+### Multi-Generational Teams
+
+The highest-value learning happens in teams with three or more generations. These teams develop:
+
+- **Broader communication range:** adapting messages becomes a team skill, not an individual burden
+- **Institutional continuity:** knowledge flows in all directions rather than walking out the door when one generation retires
+- **Innovation through tension:** the productive friction between "we've always done it this way" and "why?" generates better solutions than either perspective alone
+
+---
+
 ## Sources
 
 - SHRM Multigenerational Workplace Research

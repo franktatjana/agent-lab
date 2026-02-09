@@ -220,4 +220,79 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 
 ---
 
+## Agent Documentation
+
+**Do:**
+
+- Keep one source of truth per agent: the spec file (`{agent-name}.md`)
+- Keep the README as a landing page (~100-150 lines): what, how, vision
+- Put domain knowledge (glossary, frameworks, processes) in `references/`
+- If content appears in two files, delete one
+- When removing content from a README, always relocate to `references/`, never delete
+
+**Don't:**
+
+- Create separate "factsheet" or "summary" documents that duplicate the spec
+- Put domain knowledge in the README: it duplicates `references/` and the spec
+- Let READMEs grow past 150 lines: if it's that long, content belongs elsewhere
+
+*Why it matters: Documentation that duplicates across files creates maintenance burden. Every spec change requires updating 2-3 places, and they inevitably drift. One source of truth, linked from everywhere else.*
+
+---
+
+## References Folder Organization
+
+**Do:**
+
+- Always include `glossary-and-resources.md` as the first file: domain terms + external links in one place
+- Name files by concept, not content type: `frameworks.md`, `villain-archetypes.md`, `country-profiles.md`
+- Aim for 3-5 files per agent: enough to cover the domain, few enough to stay navigable
+- Merge files that cover related concepts: glossary + resources, processes + checklists
+- Include a `## When to Load` section in every file for just-in-time context loading
+
+**Don't:**
+
+- Use generic names: `additional-content.md`, `data.md`, `misc.md` tell you nothing
+- Let files drop below ~30 lines: they probably belong in another file
+- Let the folder grow past 6 files without consolidating: signals fragmentation
+- Split one framework across multiple files: keep Hofstede + Meyer + Hall together, not in 3 separate files
+
+*Why it matters: References set the theoretical landing scope for the agent. Someone browsing the folder should immediately understand the agent's knowledge foundation without opening any files. Self-explaining names and deliberate consolidation make this possible.*
+
+---
+
+## Visual Factsheets
+
+**Do:**
+
+- Use Figma AI for the polished visual: it produces the best layout and typography
+- Keep a single-file TSX as the maintainable reference (inline styles, no build step, one data object)
+- Store the design prompt in `visual/design-prompt.md`, render instructions in the TSX header comment
+- Extract all content into a data object at the top of the TSX: one place to edit when the spec changes
+- Use Figma for the canonical PNG, TSX for the portable fallback
+- Prefer graphs, decision trees, and flow diagrams over bullet lists in the design prompt
+
+**Don't:**
+
+- Use the Figma-generated code directly for maintenance: it splits into 7+ component files with Tailwind, too complex to update
+- Create a separate FACTSHEET.md to hold data for the visual: the spec is the data source
+- Store visual render instructions in the spec file: they belong with the visual itself
+
+*Why it matters: Visual factsheets are valuable for scanning and sharing agent capabilities at a glance. But the visual is a view of the spec, not a separate document. Keeping the rendering concern in `visual/` and the data in the spec prevents documentation sprawl.*
+
+### Recommended workflow
+
+1. Spec changes → update `AGENT` data object in TSX (2 minutes)
+2. Paste TSX into v0.dev or StackBlitz → screenshot at render width → save PNG
+3. For a polished version, update content in Figma → export PNG
+4. Commit TSX + PNG together
+
+### Tool comparison
+
+- **Figma AI:** Best visual quality. Generates multi-file React/Tailwind code (complex but beautiful). Use for the canonical PNG.
+- **v0.dev / Claude artifacts:** Good for quick renders from TSX. Slightly less polished.
+- **Single-file TSX with inline styles:** Best for maintenance. One data object, no build step, portable to any React playground.
+
+---
+
 *Sources: Anthropic docs on [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), [building agents](https://www.anthropic.com/research/building-effective-agents), [long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), [agent skills](https://claude.com/blog/equipping-agents-for-the-real-world-with-agent-skills), [demystifying evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)*

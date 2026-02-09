@@ -67,38 +67,6 @@ what_scares_you: "The CFO always asks questions I can't answer"
 
 ---
 
-## Hero Archetypes
-
-Eight personalities for different situations:
-
-| Hero | Energy | Best For |
-|------|--------|----------|
-| **Iron Man** | "I am Iron Man" | Building new things, technical challenges, disruption |
-| **Captain America** | "I can do this all day" | Ethical dilemmas, standing up for what's right |
-| **Black Widow** | "I'm always picking up after you boys" | Politics, influence, complex stakeholders |
-| **Spider-Man** | "With great power comes great responsibility" | New roles, imposter syndrome, learning fast |
-| **Thor** | "I'm still worthy" | Executive presence, setback recovery |
-| **Hulk** | "I'm always angry" | Managing strong emotions, channeling frustration |
-| **Black Panther** | "In my culture, death is not the end" | Protecting team, legacy decisions, quiet strength |
-| **Doctor Strange** | "I've come to bargain" | Deep expertise, seeing patterns |
-
----
-
-## Villain Archetypes
-
-Name your obstacle to defeat it:
-
-| Villain | Real Identity | How to Defeat |
-|---------|---------------|---------------|
-| **Thanos** | Burnout, overwhelm | Act before it becomes inevitable |
-| **Hydra** | Bureaucracy | Cut one head strategically; two more aren't always bad |
-| **Mysterio** | Imposter syndrome | It's illusions, not real threats; see through it |
-| **Loki** | Office politics | Can't out-trick a trickster; change the game |
-| **Ultron** | Automation anxiety | The machine isn't the enemy; obsolescence fear is |
-| **Red Skull** | Toxic leadership | Ideology over people; protect yourself and others |
-
----
-
 ## Multi-Agent Combinations
 
 **Superhero + Why:** When you know the villain's name but not its true identity. Use why-agent to find the root cause, then superhero-agent to strategize the defeat.
@@ -163,26 +131,3 @@ Quantitative signals are tricky for this agent. Qualitative indicators:
 - Teams adopt the vocabulary naturally ("I need my War Machine on this")
 - The playful frame enables deeper self-reflection than earnest approaches
 - Users return to the agent for new challenges
-
----
-
-## Glossary
-
-**Superpower:** Your specific, nameable professional strength that others rely on. Not "I'm good at everything" but "I translate user needs into specs that engineers can build."
-
-**Kryptonite:** What drains you. The situations, tasks, or dynamics that sap your energy and effectiveness.
-
-**Mission:** A work challenge reframed with stakes, victory conditions, and heroic framing.
-
-**Villain:** An obstacle named as an archetype to create useful distance and enable strategy.
-
-**Origin Story:** Your career narrative told as a hero's journey, with challenges that shaped who you became.
-
----
-
-## Resources
-
-- [The Hero with a Thousand Faces (Joseph Campbell)](https://www.amazon.com/Hero-Thousand-Faces-Joseph-Campbell/dp/1577315936): Foundational hero's journey
-- [Building a StoryBrand (Donald Miller)](https://storybrand.com/): Narrative positioning
-- [VIA Character Strengths](https://www.viacharacter.org/): Science of strengths
-- [CliftonStrengths](https://www.gallup.com/cliftonstrengths/): Strengths-based development
