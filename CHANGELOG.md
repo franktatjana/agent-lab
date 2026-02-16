@@ -2,7 +2,17 @@
 
 All notable changes to the Agent Lab project.
 
-## [Unreleased] - 2026-02-09
+## [Unreleased] - 2026-02-16
+
+### Added
+
+- Corporate Navigator agent: office politics, stakeholder mapping, career coaching (5 skills, 3 personalities)
+- Agent Design Canvas: 6-field strategic overview (purpose, mindset, value, guardrails, human role, success) for all agents
+- Tab system on agent detail page (Canvas | Builder | Resources)
+- Mini canvas strip on Builder tab linking to full canvas view
+- Six Hats agent: structured parallel thinking using de Bono's framework (4 skills, 3 personalities)
+
+## [0.5.0] - 2026-02-09
 
 ### Added
 

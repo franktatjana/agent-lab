@@ -66,9 +66,66 @@ Reframes work challenges through superhero storytelling. You're the hero, work i
 
 ---
 
+### [storytelling-agent](agents/storytelling-agent/)
+
+Crafts compelling narratives for professional contexts. Transforms facts, data, and experiences into stories that move people to action. *5 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** craft-narrative, pitch-story, data-storytelling, origin-story
+- **Personalities:** narrator, business, inspirational
+- **Frameworks:** Hero's Journey, Pixar Story Spine, STAR Stories, Data Storytelling, Brand Narrative
+
+**When to use:** Board presentations, pitch decks, quarterly reviews, personal branding, turning data into narratives, any situation where facts alone aren't enough.
+
+---
+
+### [question-decoder-agent](agents/question-decoder-agent/)
+
+Decodes questions before answering them. Analyzes who is asking, why they're asking, and what they need to hear, then architects the right response. *5 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** decode-question, architect-answer, reframe-for-audience, anticipate-follow-ups
+- **Personalities:** strategic, empathetic, coach
+- **Frameworks:** Audience Analysis Matrix, Question Behind the Question, Answer Architecture, Pyramid Principle
+
+**When to use:** Preparing for board Q&A, answering executive questions, reframing technical answers for non-technical audiences, any situation where the right answer depends on who's asking.
+
+---
+
+### [six-hats-agent](agents/six-hats-agent/)
+
+Structured thinking facilitator. Walks through six distinct perspectives (facts, emotions, risks, benefits, creativity, process) on any decision or problem. *8 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** full-hat-session, decision-analysis, idea-exploration, risk-assessment
+- **Personalities:** facilitator, executive, coach
+- **Frameworks:** Six Thinking Hats (de Bono), Parallel Thinking, Lateral Thinking
+
+**When to use:** Making decisions, evaluating ideas, resolving disagreements, exploring problems from multiple angles, team workshops.
+
+---
+
+### [corporate-navigator-agent](agents/corporate-navigator-agent/)
+
+Corporate politics and stakeholder navigator. Maps power dynamics, analyzes political landscapes, plans influence strategies, and coaches career advancement. *5 prompts · 5 skills · 3 personalities.*
+
+- **Skills:** map-stakeholders, analyze-dynamics, plan-influence, coach-career, navigate-situation
+- **Personalities:** executive, coach, tactical
+- **Frameworks:** Stakeholder Mapping, GROW Model, Organizational Politics
+
+**When to use:** Navigating office politics, mapping stakeholders before a proposal, preparing for organizational change, career advancement strategy, understanding why decisions really get made.
+
+---
+
+## Prompt Design Patterns
+
+All agents in this repository follow two prompt quality patterns. See the [handbook](docs/handbook.md) for the full rationale.
+
+**Input Validation Gates.** Each agent defines required input dimensions (e.g., source culture, target culture, context). When the user's input is incomplete, the agent states what's missing, gives a short preliminary analysis, and asks for clarification instead of generating a full response from insufficient context.
+
+**Output Constraints.** Each agent defines field-level word limits and a total word cap (typically 250-400 words). This forces the agent to prioritize and distill rather than dump context. Fields are structured for consistency across runs: same input produces comparable output shape every time.
+
+---
+
 ## Agent Ideas
 
 Future agents under consideration. See [agents/agent-ideas.md](agents/agent-ideas.md) for details and references.
 
-- **decision-facilitator-agent**:Guides structured decision-making processes and frameworks
-- **corporate-navigator-agent**:Navigates office politics, stakeholder dynamics, career advancement
+- **decision-facilitator-agent**: Guides structured decision-making processes and frameworks
