@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Flyout } from "@/components/flyout";
 import { agents } from "@/data/agents";
 import { agentIdeas, ideaCategories, buildIdeaFlyoutContent } from "@/data/agent-ideas";
+import { stories } from "@/data/stories";
 import Link from "next/link";
 import {
   Globe,
@@ -179,6 +180,49 @@ export default function Home() {
             </Link>
           );
         })}
+      </div>
+
+      {/* Featured Stories */}
+      <div id="stories" className="mt-16 scroll-mt-20">
+        <div className="flex items-center gap-2 mb-2">
+          <Play size={20} className="text-stone-400" />
+          <h2 className="text-xl font-bold text-stone-900">Stories</h2>
+        </div>
+        <p className="text-stone-500 mb-6 text-sm">
+          Pain point narratives that show why structured thinking matters, from problem to resolution.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {stories.map((story) => {
+            const agent = agents.find((a) => a.id === story.agentId);
+            const colors = colorMap[agent?.color ?? "blue"] ?? colorMap.blue;
+            return (
+              <Link key={story.id} href={`/agent/${story.agentId}/stories/${story.id}`}>
+                <div className="group bg-white rounded-xl border border-stone-200 p-5 h-full transition-all hover:shadow-md hover:-translate-y-0.5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className={`p-1 rounded-md ${colors.bg}`}>
+                      <Play size={12} className={colors.icon} fill="currentColor" />
+                    </div>
+                    {agent && (
+                      <span className="text-[10px] font-medium text-stone-400 bg-stone-100 rounded-full px-2 py-0.5">
+                        {agent.name}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-sm font-semibold text-stone-900 mb-1 group-hover:text-stone-700">
+                    {story.name}
+                  </h3>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    {story.tagline}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs text-stone-400 mt-3 group-hover:text-stone-600 transition-colors">
+                    Read story
+                    <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
 
       {/* Handbook */}

@@ -33,6 +33,9 @@ export default function RootLayout({
               Agent Lab
             </a>
             <div className="flex items-center gap-4">
+              <a href="/#stories" className="text-sm text-stone-400 hover:text-stone-600 transition-colors">
+                Stories
+              </a>
               <a href="/#handbook" className="text-sm text-stone-400 hover:text-stone-600 transition-colors">
                 Handbook
               </a>

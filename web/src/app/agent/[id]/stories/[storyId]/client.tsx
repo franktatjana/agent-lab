@@ -6,7 +6,7 @@ import { getStory } from "@/data/stories";
 import type { StorySection, StorySectionType } from "@/data/stories";
 import { StoryOverlay } from "@/components/story";
 import Link from "next/link";
-import { ArrowLeft, AlertTriangle, Zap, TrendingDown, RotateCcw, Lightbulb, Trophy, ArrowLeftRight, Play, type LucideIcon } from "lucide-react";
+import { ArrowLeft, AlertTriangle, Zap, TrendingDown, RotateCcw, Lightbulb, Trophy, ArrowLeftRight, Play, MessageSquareQuote, Flag, type LucideIcon } from "lucide-react";
 
 const sectionConfig: Record<StorySectionType, { icon: LucideIcon; accent: string; bg: string; border: string; iconBg: string; dot: string }> = {
   hook:            { icon: Zap,              accent: "text-stone-900",   bg: "bg-stone-50",    border: "border-stone-200",   iconBg: "bg-stone-100",    dot: "bg-stone-400" },
@@ -18,6 +18,8 @@ const sectionConfig: Record<StorySectionType, { icon: LucideIcon; accent: string
   contrast:        { icon: ArrowLeftRight,   accent: "text-violet-700",  bg: "bg-violet-50",   border: "border-violet-200",  iconBg: "bg-violet-100",   dot: "bg-violet-400" },
   cards:           { icon: AlertTriangle,    accent: "text-red-700",     bg: "bg-red-50",      border: "border-red-200",     iconBg: "bg-red-100",      dot: "bg-red-400" },
   steps:           { icon: Lightbulb,        accent: "text-emerald-700", bg: "bg-emerald-50",  border: "border-emerald-200", iconBg: "bg-emerald-100",  dot: "bg-emerald-400" },
+  quote:           { icon: MessageSquareQuote, accent: "text-stone-700",  bg: "bg-stone-50",    border: "border-stone-200",   iconBg: "bg-stone-100",    dot: "bg-stone-400" },
+  summary:         { icon: Flag,             accent: "text-stone-700",   bg: "bg-stone-50",    border: "border-stone-200",   iconBg: "bg-stone-100",    dot: "bg-stone-900" },
 };
 
 function renderContent(text: string) {

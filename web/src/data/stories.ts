@@ -7,7 +7,9 @@ export type StorySectionType =
   | "outcome"
   | "contrast"
   | "cards"
-  | "steps";
+  | "steps"
+  | "quote"
+  | "summary";
 
 export interface StoryMetric {
   label: string;
@@ -65,6 +67,9 @@ export interface StorySection {
   steps?: StoryStep[];
   callout?: { label: string; text: string };
   framework?: FrameworkInfo;
+  quote?: string;
+  attribution?: string;
+  agentCta?: { agentId: string; label: string };
 }
 
 export interface AgentStory {
@@ -165,6 +170,26 @@ export const stories: AgentStory[] = [
           { dimension: "Outcome", before: "Still declining", after: "Accepted in 6 weeks" },
         ],
       },
+      {
+        id: "quote",
+        type: "quote",
+        title: "",
+        content: "I'd been trying to tell them for months. Nobody asked the right question until someone changed how they asked.",
+        quote: "I'd been trying to tell them for months. Nobody asked the right question until someone changed how they asked.",
+        attribution: "The engineer, 6 weeks later",
+      },
+      {
+        id: "summary",
+        type: "summary",
+        title: "One structured conversation changed everything.",
+        content: "The Five Whys turned 3 weeks of guessing into 1 session with a root cause.",
+        metrics: [
+          { label: "Time to root cause", value: "1 session" },
+          { label: "Outcome", value: "Accepted" },
+          { label: "Team", value: "Stable" },
+        ],
+        agentCta: { agentId: "why-agent", label: "Try the Why Agent" },
+      },
     ],
   },
 
@@ -254,6 +279,26 @@ export const stories: AgentStory[] = [
           { dimension: "Response", before: "\"Send the deck\"", after: "\"You had me at slide 8\"" },
           { dimension: "Decision", before: "Deferred", after: "Same day" },
         ],
+      },
+      {
+        id: "quote",
+        type: "quote",
+        title: "",
+        content: "Same numbers, same team. We just stopped presenting data and started telling the story behind it.",
+        quote: "Same numbers, same team. We just stopped presenting data and started telling the story behind it.",
+        attribution: "Product lead, after the meeting",
+      },
+      {
+        id: "summary",
+        type: "summary",
+        title: "The data was never the problem.",
+        content: "Context-Conflict-Resolution turned 47 slides into 12 and a deferred decision into same-day approval.",
+        metrics: [
+          { label: "Slides", value: "47 → 12" },
+          { label: "Decision", value: "Same day" },
+          { label: "Engagement", value: "Active" },
+        ],
+        agentCta: { agentId: "storytelling-agent", label: "Try the Storytelling Agent" },
       },
     ],
   },
@@ -346,6 +391,26 @@ export const stories: AgentStory[] = [
           { dimension: "Risks", before: "Weaponized", after: "Catalogued together" },
           { dimension: "Alignment", before: "Fractured", after: "Unanimous" },
         ],
+      },
+      {
+        id: "quote",
+        type: "quote",
+        title: "",
+        content: "We'd been arguing about the same thing for 12 weeks. Turns out the answer wasn't in anyone's position. It was between them.",
+        quote: "We'd been arguing about the same thing for 12 weeks. Turns out the answer wasn't in anyone's position. It was between them.",
+        attribution: "Head of Product, after the session",
+      },
+      {
+        id: "summary",
+        type: "summary",
+        title: "12 weeks of deadlock, resolved in 90 minutes.",
+        content: "Parallel thinking replaced positional arguing and surfaced a third option nobody had proposed alone.",
+        metrics: [
+          { label: "Deadlock", value: "12 weeks" },
+          { label: "Resolution", value: "90 min" },
+          { label: "Alignment", value: "Unanimous" },
+        ],
+        agentCta: { agentId: "six-hats-agent", label: "Try the Six Hats Agent" },
       },
     ],
   },

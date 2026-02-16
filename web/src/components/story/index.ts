@@ -8,3 +8,5 @@ export { ComparisonScene } from "./scenes/comparison-scene";
 export { CardsScene } from "./scenes/cards-scene";
 export { StepsScene } from "./scenes/steps-scene";
 export { FrameworkScene } from "./scenes/framework-scene";
+export { QuoteScene } from "./scenes/quote-scene";
+export { SummaryScene } from "./scenes/summary-scene";

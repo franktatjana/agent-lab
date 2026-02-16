@@ -15,6 +15,7 @@ export interface AgentPersonality {
 export interface AgentExample {
   id: string;
   name: string;
+  summary?: string;
   content: string;
 }
 

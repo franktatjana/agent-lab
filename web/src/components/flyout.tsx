@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { X } from "lucide-react";
 
 export function formatInlineText(text: string): React.ReactNode {
-  const regex = /(\*\*(.+?)\*\*)|(\*(.+?)\*)|(\[([^\]]+)\]\(([^)]+)\))/g;
+  const regex = /(\*\*(.+?)\*\*)|(\*(.+?)\*)|(\[([^\]]+)\]\(([^)]+)\))|("([^"]{20,})")/g;
   const parts: React.ReactNode[] = [];
   let lastIndex = 0;
   let match;
@@ -19,6 +19,8 @@ export function formatInlineText(text: string): React.ReactNode {
       parts.push(<em key={key++} className="italic text-stone-600">{match[4]}</em>);
     } else if (match[6] && match[7]) {
       parts.push(<a key={key++} href={match[7]} target="_blank" rel="noopener noreferrer" className="text-amber-700 underline hover:text-amber-900">{match[6]}</a>);
+    } else if (match[9]) {
+      parts.push(<span key={key++} className="text-stone-800 italic">&ldquo;{match[9]}&rdquo;</span>);
     }
     lastIndex = regex.lastIndex;
   }
@@ -57,7 +59,7 @@ export function renderReadableContent(raw: string) {
 
     if (trimmed.startsWith("### ")) {
       elements.push(
-        <h4 key={i} className="text-sm font-bold text-stone-800 mt-6 mb-1 border-b border-stone-100 pb-1">
+        <h4 key={i} className="text-sm font-semibold text-stone-800 mt-8 mb-2 uppercase tracking-wide">
           {formatInlineText(trimmed.slice(4))}
         </h4>,
       );
@@ -66,7 +68,7 @@ export function renderReadableContent(raw: string) {
     }
     if (trimmed.startsWith("## ")) {
       elements.push(
-        <h3 key={i} className="text-base font-bold text-stone-900 mt-8 mb-2 border-b border-stone-200 pb-2">
+        <h3 key={i} className="text-lg font-bold text-stone-900 mt-10 mb-3 border-b border-stone-200 pb-2">
           {formatInlineText(trimmed.slice(3))}
         </h3>,
       );
@@ -75,7 +77,7 @@ export function renderReadableContent(raw: string) {
     }
     if (trimmed.startsWith("# ")) {
       elements.push(
-        <h2 key={i} className="text-lg font-bold text-stone-900 mt-8 mb-3 border-b border-stone-200 pb-2">
+        <h2 key={i} className="text-xl font-bold text-stone-900 mt-10 mb-4 border-b border-stone-200 pb-2">
           {formatInlineText(trimmed.slice(2))}
         </h2>,
       );
@@ -118,12 +120,78 @@ export function renderReadableContent(raw: string) {
         continue;
       }
 
-      elements.push(
-        <div key={i} className="mt-6 mb-2 border-b border-stone-200 pb-1">
-          <h3 className="text-base font-bold text-stone-900">{label}</h3>
-        </div>,
-      );
+      const cardChildren: React.ReactNode[] = [];
+      const cardStart = i;
       i++;
+      while (i < lines.length) {
+        const cl = lines[i];
+        const ct = cl.trimStart();
+        const ci = cl.length - ct.length;
+        if (!ct) { i++; continue; }
+        if (ci === 0) break;
+
+        const nkv = ct.match(/^([a-z_A-Z][\w_-]*)\s*:\s*["']?(.+?)["']?\s*$/);
+        if (nkv) {
+          cardChildren.push(
+            <div key={i} className="mt-3">
+              <span className="text-xs font-semibold text-stone-400 uppercase tracking-wide">{nkv[1].replace(/[_-]/g, " ")}</span>
+              <p className="text-[15px] text-stone-600 leading-7 mt-0.5">{formatInlineText(nkv[2].replace(/^["']|["']$/g, ""))}</p>
+            </div>,
+          );
+          i++;
+          continue;
+        }
+
+        const nko = ct.match(/^([a-z_A-Z][\w_-]*)\s*:\s*$/);
+        if (nko) {
+          cardChildren.push(
+            <div key={i} className="mt-4 pt-3 border-t border-stone-200 first:mt-0 first:pt-0 first:border-t-0">
+              <span className="text-xs font-semibold text-stone-500 uppercase tracking-wide">{nko[1].replace(/[_-]/g, " ")}</span>
+            </div>,
+          );
+          i++;
+          continue;
+        }
+
+        if (ct.startsWith("- ")) {
+          const cardListItems: string[] = [];
+          while (i < lines.length && lines[i].trimStart().startsWith("- ") && indent(lines[i]) >= ci) {
+            cardListItems.push(lines[i].trimStart().slice(2).replace(/^["']|["']$/g, ""));
+            i++;
+          }
+          cardChildren.push(
+            <ul key={`cl-${i}`} className="space-y-1.5 mt-2">
+              {cardListItems.map((item, idx) => (
+                <li key={idx} className="flex gap-2 text-[15px] text-stone-600">
+                  <span className="text-stone-400 shrink-0 leading-7">&#8226;</span>
+                  <span className="leading-7">{formatInlineText(item)}</span>
+                </li>
+              ))}
+            </ul>,
+          );
+          continue;
+        }
+
+        cardChildren.push(
+          <p key={i} className="text-[15px] text-stone-600 leading-7 mt-2">{formatInlineText(ct)}</p>,
+        );
+        i++;
+      }
+
+      if (cardChildren.length > 0) {
+        elements.push(
+          <div key={`card-${cardStart}`} className="mt-6 rounded-xl bg-stone-50 border border-stone-100 px-5 py-4">
+            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-stone-500 bg-white border border-stone-200 px-2.5 py-1 rounded-md mb-2">{label}</span>
+            {cardChildren}
+          </div>,
+        );
+      } else {
+        elements.push(
+          <div key={cardStart} className="mt-8 mb-2">
+            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-stone-500 bg-stone-100 px-2.5 py-1 rounded-md">{label}</span>
+          </div>,
+        );
+      }
       continue;
     }
 
@@ -157,11 +225,11 @@ export function renderReadableContent(raw: string) {
         }
       }
       elements.push(
-        <ul key={`list-${i}`} className="space-y-2 mt-1.5 mb-3 ml-1">
+        <ul key={`list-${i}`} className="space-y-2.5 mt-3 mb-4 ml-1">
           {listItems.map((item, idx) => (
-            <li key={idx} className="flex gap-2.5 text-sm text-stone-700">
-              <span className="text-stone-400 shrink-0 leading-relaxed">&#8226;</span>
-              <span className="leading-relaxed">{formatInlineText(item)}</span>
+            <li key={idx} className="flex gap-2.5 text-[15px] text-stone-600">
+              <span className="text-stone-400 shrink-0 leading-7">&#8226;</span>
+              <span className="leading-7">{formatInlineText(item)}</span>
             </li>
           ))}
         </ul>,
@@ -174,9 +242,9 @@ export function renderReadableContent(raw: string) {
       const label = nestedMatch[1].replace(/[_-]/g, " ");
       const value = nestedMatch[2];
       elements.push(
-        <div key={i} className="flex gap-2 text-sm mt-1.5 ml-1">
+        <div key={i} className="flex gap-2 text-[15px] mt-2 ml-1">
           <span className="text-stone-500 font-semibold shrink-0">{label}:</span>
-          <span className="text-stone-700 leading-relaxed">{formatInlineText(value)}</span>
+          <span className="text-stone-600 leading-7">{formatInlineText(value)}</span>
         </div>,
       );
       i++;
@@ -236,8 +304,31 @@ export function renderReadableContent(raw: string) {
       continue;
     }
 
+    const standaloneBold = trimmed.match(/^\*\*(.+?)\*\*$/);
+    if (standaloneBold) {
+      elements.push(
+        <p key={i} className="text-[15px] font-semibold text-stone-900 mt-8 mb-1">
+          {standaloneBold[1]}
+        </p>,
+      );
+      i++;
+      continue;
+    }
+
+    const boldLeadMatch = trimmed.match(/^\*\*(.+?)\*\*\s+(.+)$/);
+    if (boldLeadMatch) {
+      elements.push(
+        <p key={i} className="text-[15px] text-stone-600 leading-7 mt-4">
+          <strong className="font-semibold text-stone-900">{boldLeadMatch[1]}</strong>{" "}
+          <span>{formatInlineText(boldLeadMatch[2])}</span>
+        </p>,
+      );
+      i++;
+      continue;
+    }
+
     elements.push(
-      <p key={i} className="text-sm text-stone-700 leading-relaxed mt-2">
+      <p key={i} className="text-[15px] text-stone-600 leading-7 mt-4">
         {formatInlineText(trimmed)}
       </p>,
     );
@@ -286,8 +377,10 @@ export function Flyout({
             <X size={18} />
           </button>
         </div>
-        <div className="flex-1 overflow-y-auto px-6 py-5">
-          {renderReadableContent(content)}
+        <div className="flex-1 overflow-y-auto px-8 py-6">
+          <div className="max-w-[60ch]">
+            {renderReadableContent(content)}
+          </div>
         </div>
       </div>
     </div>

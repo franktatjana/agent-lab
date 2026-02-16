@@ -31,17 +31,17 @@ export function MetricScene({ section }: { section: StorySection }) {
         )}
 
         {section.metrics && section.metrics.length > 0 && (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-5">
             {section.metrics.map((m, i) => (
               <div
                 key={m.label}
-                className={`text-center py-6 ${typeConfig.metricBg} rounded-xl border ${typeConfig.metricBorder} ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
+                className={`text-center py-8 ${typeConfig.metricBg} rounded-xl border ${typeConfig.metricBorder} ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
                 style={{ animationDelay: `${(i + 1) * 150}ms` }}
               >
-                <div className={`text-3xl md:text-4xl font-bold ${typeConfig.metricColor} tracking-tight`}>
+                <div className={`text-4xl md:text-5xl font-bold ${typeConfig.metricColor} tracking-tight`}>
                   {m.value}
                 </div>
-                <div className="text-xs text-stone-500 mt-1">{m.label}</div>
+                <div className="text-sm text-stone-500 mt-2">{m.label}</div>
               </div>
             ))}
           </div>

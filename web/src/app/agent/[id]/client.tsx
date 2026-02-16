@@ -503,18 +503,29 @@ export default function AgentPageClient({
                 Sample inputs and outputs showing what this agent produces.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {agent.examples.map((example) => (
-                  <button
-                    key={example.id}
-                    type="button"
-                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all"
-                    onClick={() => setFlyout({ title: example.name, content: example.content })}
-                  >
-                    <span className="text-sm font-medium text-stone-700">
-                      {example.name}
-                    </span>
-                  </button>
-                ))}
+                {agent.examples.map((example) => {
+                  const lines = example.content.split("\n");
+                  const commentLine = lines.find((l, idx) => idx > 0 && l.trim().startsWith("# ") && !l.trim().startsWith("# Basic") && !l.trim().startsWith("# Example:"));
+                  const descLine = lines.find((l) => /^description:\s*\|?\s*$/.test(l.trim()));
+                  const descIdx = descLine ? lines.indexOf(descLine) : -1;
+                  const descText = descIdx >= 0 && descIdx + 1 < lines.length ? lines[descIdx + 1].trim() : "";
+                  const preview = example.summary || (commentLine ? commentLine.trim().slice(2) : descText || "");
+                  return (
+                    <button
+                      key={example.id}
+                      type="button"
+                      className={`text-left rounded-lg border ${colors.border} hover:shadow-sm px-4 py-3 transition-all group`}
+                      onClick={() => setFlyout({ title: example.name, content: example.content })}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <FileText size={14} className={`${colors.icon} shrink-0`} />
+                        <h3 className="text-sm font-medium text-stone-800 group-hover:text-stone-600 truncate flex-1">{example.name}</h3>
+                        <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
+                      </div>
+                      {preview && <p className="text-xs text-stone-500 leading-relaxed line-clamp-1 mt-1 ml-[22px]">{preview}</p>}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -533,12 +544,13 @@ export default function AgentPageClient({
                     href={`/agent/${agent.id}/stories/${story.id}`}
                     className="group text-left rounded-xl border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-5 transition-all"
                   >
-                    <h3 className="text-sm font-semibold text-stone-900 mb-1 group-hover:text-stone-700">{story.name}</h3>
-                    <p className="text-xs text-stone-500 leading-relaxed">{story.tagline}</p>
-                    <span className="inline-flex items-center gap-1 text-xs text-stone-400 mt-3 group-hover:text-stone-600 transition-colors">
-                      Read story
-                      <span className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
-                    </span>
+                    <div className="flex items-start gap-2">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold text-stone-900 mb-1 group-hover:text-stone-700">{story.name}</h3>
+                        <p className="text-xs text-stone-500 leading-relaxed">{story.tagline}</p>
+                      </div>
+                      <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0 mt-0.5">&rarr;</span>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -554,16 +566,24 @@ export default function AgentPageClient({
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {agent.caseStudies.map((cs) => (
-                  <button
-                    key={cs.id}
-                    type="button"
-                    className="text-left rounded-xl border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-5 transition-all"
-                    onClick={() => setFlyout({ title: cs.name, content: cs.content })}
-                  >
-                    <h3 className="text-sm font-semibold text-stone-900 mb-1">{cs.name}</h3>
-                    <p className="text-xs text-stone-500 leading-relaxed">{cs.summary}</p>
-                  </button>
-                ))}
+                    <button
+                      key={cs.id}
+                      type="button"
+                      className={`text-left rounded-xl border ${colors.border} hover:shadow-md p-5 transition-all group`}
+                      onClick={() => setFlyout({ title: cs.name, content: cs.content })}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className={`p-1.5 rounded-lg ${colors.light} mt-0.5 shrink-0`}>
+                          <BookOpen size={14} className={colors.icon} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-semibold text-stone-900 mb-1 group-hover:text-stone-700">{cs.name}</h3>
+                          <p className="text-xs text-stone-500 leading-relaxed">{cs.summary}</p>
+                        </div>
+                        <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0 mt-0.5">&rarr;</span>
+                      </div>
+                    </button>
+                  ))}
               </div>
             </div>
           )}
@@ -580,16 +600,17 @@ export default function AgentPageClient({
                   <button
                     key={idea.id}
                     type="button"
-                    className="text-left rounded-lg border border-dashed border-stone-300 bg-white hover:border-stone-400 hover:shadow-sm p-4 transition-all"
+                    className="text-left rounded-lg border border-dashed border-stone-300 bg-white hover:border-stone-400 hover:shadow-sm p-4 transition-all group"
                     onClick={() => setFlyout({ title: idea.title, content: buildCsIdeaFlyoutContent(idea) })}
                   >
                     <div className="flex items-center gap-2">
-                      <h3 className="text-sm font-semibold text-stone-900">{idea.title}</h3>
+                      <h3 className="text-sm font-semibold text-stone-900 flex-1">{idea.title}</h3>
                       {idea.category && (
                         <span className="text-[10px] font-medium text-stone-400 bg-stone-100 rounded-full px-1.5 py-0.5 shrink-0">
                           {idea.category}
                         </span>
                       )}
+                      <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
                     </div>
                     <p className="text-xs text-stone-500 mt-1 leading-relaxed">{idea.surface}</p>
                   </button>
@@ -610,7 +631,7 @@ export default function AgentPageClient({
                   <button
                     key={file}
                     type="button"
-                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all flex items-center gap-2.5"
+                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all flex items-center gap-2.5 group"
                     onClick={async () => {
                       try {
                         const res = await fetch("/references.json");
@@ -624,15 +645,16 @@ export default function AgentPageClient({
                     }}
                   >
                     <FileText size={14} className="text-stone-400 shrink-0" />
-                    <span className="text-sm font-medium text-stone-700">
+                    <span className="text-sm font-medium text-stone-700 flex-1">
                       {file.replace(".md", "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
                     </span>
+                    <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
                   </button>
                 ))}
                 {agentResources[agent.id].visualImage && (
                   <button
                     type="button"
-                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all flex items-center gap-2.5"
+                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all flex items-center gap-2.5 group"
                     onClick={() => {
                       setFlyout({
                         title: "Visual Factsheet",
@@ -641,7 +663,8 @@ export default function AgentPageClient({
                     }}
                   >
                     <ImageIcon size={14} className="text-stone-400 shrink-0" />
-                    <span className="text-sm font-medium text-stone-700">Visual Factsheet</span>
+                    <span className="text-sm font-medium text-stone-700 flex-1">Visual Factsheet</span>
+                    <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
                   </button>
                 )}
               </div>
