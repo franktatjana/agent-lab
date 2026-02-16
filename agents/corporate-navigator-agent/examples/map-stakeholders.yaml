@@ -1,0 +1,59 @@
+# map-stakeholders
+# Full stakeholder mapping for a cross-functional initiative
+
+input:
+  organization_context: "Enterprise SaaS, 2000+ employees, matrix organization"
+  your_role: "Director of Engineering, Platform team, 3 years tenure"
+  situation: "Proposing a platform consolidation that affects 4 product teams"
+  key_stakeholders: "4 product team leads, VP Product, VP Engineering, CTO"
+
+output:
+  stakeholder_map:
+    - name: "CTO"
+      formal_authority: "high"
+      informal_influence: "high"
+      interest: "Reduce technical debt and platform complexity"
+      stance: "supportive"
+      relationship: "Skip-level, positive"
+      engagement_priority: 2
+    - name: "VP Engineering"
+      formal_authority: "high"
+      informal_influence: "high"
+      interest: "Delivery velocity and team stability"
+      stance: "neutral"
+      relationship: "Direct manager, good"
+      engagement_priority: 1
+    - name: "VP Product"
+      formal_authority: "high"
+      informal_influence: "medium"
+      interest: "Feature velocity for their teams"
+      stance: "skeptical"
+      relationship: "Cross-functional peer, limited"
+      engagement_priority: 3
+    - name: "Product Team Lead A"
+      formal_authority: "medium"
+      informal_influence: "high"
+      interest: "Autonomy over their stack"
+      stance: "opposed"
+      relationship: "Peer, some tension"
+      engagement_priority: 4
+    - name: "Product Team Lead B"
+      formal_authority: "medium"
+      informal_influence: "medium"
+      interest: "Reduce maintenance burden"
+      stance: "supportive"
+      relationship: "Peer, collaborative"
+      engagement_priority: 5
+
+  landscape_summary: >
+    Territory protection from product teams who fear losing stack autonomy,
+    counterbalanced by CTO sponsorship for consolidation. VP Engineering
+    is the swing vote: will support if you can prove no delivery disruption.
+
+  blind_spots:
+    - "Team Lead C and D not mentioned. If either is vocal, they could form a blocking coalition with Lead A."
+    - "Finance stakeholders not mapped. If consolidation requires significant investment, CFO engagement needed."
+
+  confidence: "medium"
+  caveats:
+    - "Matrix organizations create dual-reporting dynamics. Check if product leads have dotted-line influence through VP Product."

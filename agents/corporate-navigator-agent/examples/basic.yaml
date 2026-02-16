@@ -1,0 +1,39 @@
+# basic
+# Simplest valid input demonstrating core stakeholder navigation
+
+input:
+  organization_context: "Mid-size tech company, 500 people, flat culture"
+  your_role: "Senior Product Manager, 2 years tenure"
+  situation: "Proposing a new product line to leadership"
+  key_stakeholders: "VP Engineering (skeptical), CTO (supportive), CFO (cost-focused)"
+
+output:
+  landscape: >
+    Classic sponsorship dynamic. You have a senior champion (CTO) but face
+    a gatekeeper (VP Engineering) whose skepticism could stall the proposal.
+    The CFO will follow whoever builds the stronger business case.
+  key_players:
+    - name: "VP Engineering"
+      interest: "Protect team bandwidth"
+      influence: "high"
+      stance: "opposed"
+    - name: "CTO"
+      interest: "Strategic product expansion"
+      influence: "highest"
+      stance: "supportive"
+    - name: "CFO"
+      interest: "ROI clarity"
+      influence: "moderate"
+      stance: "undecided"
+  recommendations:
+    - "Pre-wire the VP Engineering: 1-on-1 to address bandwidth concerns before the formal pitch"
+    - "Arm your sponsor: give the CTO a one-page brief for informal advocacy"
+    - "Lead with numbers for the CFO: frame as revenue opportunity with phased investment"
+  risk: >
+    If VP Engineering raises concerns publicly before private resolution,
+    the CFO will side with caution. Pre-wire first.
+
+  confidence: "high"
+  caveats:
+    - "Flat culture means informal conversations carry more weight than formal proposals"
+    - "VP Engineering's skepticism may be about bandwidth, not the idea itself"

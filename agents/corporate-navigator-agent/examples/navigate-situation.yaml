@@ -1,0 +1,36 @@
+# navigate-situation
+# Tactical navigation during organizational change
+
+input:
+  organization_context: "Enterprise SaaS, post-acquisition, merging two product teams"
+  your_role: "Engineering Lead, acquired company, 6 months since acquisition"
+  situation: "Reorg announced, unclear who leads merged team"
+  key_stakeholders: "Acquiring VP (decision maker), my director (may be eliminated), their engineering lead (counterpart)"
+  urgency: "high"
+
+output:
+  landscape: >
+    Territory consolidation. The acquiring VP holds all the power and is
+    evaluating both leads. Your director is a lame duck with no influence
+    over the outcome. This is a 2-week window before decisions lock in.
+  dynamics:
+    - "Home-field advantage: counterpart has existing relationships with the VP"
+    - "Information asymmetry: acquiring side knows the political landscape, you don't"
+  immediate_actions:
+    - "This week: Request 30-minute 'integration alignment' meeting with acquiring VP. Frame as helping, not auditioning."
+    - "Prepare: 2-3 specific capabilities your team brings that theirs doesn't. Make yourself hard to replace."
+    - "Build bridges: Coffee with 2-3 engineers on acquiring side. Allies reduce 'us vs them' framing."
+  medium_term:
+    - "Next 2 weeks: Create a shared document showing how both teams' strengths combine. Position yourself as the integrator."
+    - "Identify the VP's biggest concern about the merge. Proactively address it."
+  risk: >
+    If you wait for someone to invite you to the table, the decision
+    will be made without your input. Move this week.
+  contingency: >
+    If the VP declines a meeting, go through a peer on the acquiring side
+    who can introduce you. Warm introductions beat cold requests.
+
+  confidence: "medium"
+  caveats:
+    - "Reorg dynamics shift rapidly. Reassess after your meeting with the VP."
+    - "Your director may have information about the decision timeline. Ask directly."
