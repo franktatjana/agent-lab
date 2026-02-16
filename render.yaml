@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: agent-lab
+    runtime: static
+    buildCommand: cd web && npm install && npm run build
+    staticPublishPath: web/out
+    pullRequestPreviewsEnabled: true
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
