@@ -181,7 +181,6 @@ Capture all causes first, then prioritize by likelihood and evidence.
 
 ## Visual Representation
 
-```
                     People      Process
                        \          /
                         \        /
@@ -195,7 +194,6 @@ Problem Statement ←←←←←←←←[HEAD]
                  Technology    Environment
                       |            |
                   Materials    Measurement
-```
 
 ## Integration
 

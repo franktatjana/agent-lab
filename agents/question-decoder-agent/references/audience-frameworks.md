@@ -182,7 +182,6 @@ Every communication should have one governing thought (the answer) supported by 
 
 ### Structure
 
-```
 Answer (one sentence)
 ├── Key Point 1 (supporting argument)
 │   ├── Detail 1a
@@ -193,7 +192,6 @@ Answer (one sentence)
 └── Key Point 3 (supporting argument)
     ├── Detail 3a
     └── Detail 3b
-```
 
 ### Logical Ordering Within Groups
 

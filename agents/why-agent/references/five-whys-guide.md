@@ -63,12 +63,10 @@ You've likely reached root cause when:
 
 Sometimes one "why" has several valid answers:
 
-```
 Why did the deployment fail?
 ├── Database migration had a bug
 ├── Config wasn't updated for production
 └── Monitoring didn't catch the error
-```
 
 Options:
 1. Pursue all branches if resources allow
@@ -78,36 +76,32 @@ Options:
 ## Common Anti-Patterns
 
 ### The Blame Loop
-```
+
 Why did it fail? → Developer made a mistake
 Why did they make a mistake? → They weren't careful
 Why weren't they careful? → They didn't care enough
-```
 
 **Fix**: Ask "Why was it possible to make this mistake?" instead.
 
 ### The Circular Loop
-```
+
 Why did A happen? → Because of B
 Why did B happen? → Because of C
 Why did C happen? → Because of A
-```
 
 **Fix**: Identify the reinforcing loop and ask what could break it.
 
 ### The Premature Stop
-```
+
 Why did it fail? → We didn't test it
 [Stops here]
-```
 
 **Fix**: Ask "Why didn't we test it?" to find the systemic issue.
 
 ### The External Blame
-```
+
 Why did it fail? → The vendor's system is bad
 [Stops here]
-```
 
 **Fix**: Ask "Why are we dependent on this vendor?" or "Why don't we have a workaround?"
 

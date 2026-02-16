@@ -153,7 +153,6 @@ Compilations and overviews.
 
 When citing sources, note:
 
-```yaml
 source:
   url: "https://..."
   title: "..."
@@ -163,7 +162,6 @@ source:
   credibility: high | medium | low | uncertain
   limitations: "..."
   verified_via: "..." # How was this cross-checked
-```
 
 ## Cross-Verification Protocol
 

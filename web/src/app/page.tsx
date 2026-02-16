@@ -17,6 +17,11 @@ import {
   Brain,
   ArrowRight,
   Lightbulb,
+  Info,
+  MousePointerClick,
+  FolderOpen,
+  Play,
+  ChevronDown,
   type LucideIcon,
 } from "lucide-react";
 
@@ -58,6 +63,7 @@ const handbookPrinciples = [
 
 export default function Home() {
   const [flyout, setFlyout] = useState<{ title: string; content: string } | null>(null);
+  const [guideOpen, setGuideOpen] = useState(true);
   const closeFlyout = useCallback(() => setFlyout(null), []);
 
   return (
@@ -70,6 +76,59 @@ export default function Home() {
           Each agent is a curated prompt design with personality variants and skill workflows.
           Paste the generated prompt into ChatGPT, Claude, or any LLM.
         </p>
+      </div>
+
+      {/* Instructions Guide */}
+      <div className="mb-8">
+        <button
+          type="button"
+          onClick={() => setGuideOpen(!guideOpen)}
+          className="flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors mb-3"
+        >
+          <Info size={15} />
+          <span className="font-medium">How it works</span>
+          <ChevronDown
+            size={14}
+            className={`transition-transform ${guideOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+        {guideOpen && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex items-start gap-3 bg-white rounded-lg border border-stone-200 px-4 py-3.5">
+              <div className="p-1.5 rounded-md bg-stone-100 shrink-0">
+                <MousePointerClick size={16} className="text-stone-500" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-stone-800">Pick an Agent</h3>
+                <p className="text-xs text-stone-500 leading-relaxed mt-0.5">
+                  Click any agent card below to open its detail page. The <strong className="text-stone-600">Canvas</strong> tab shows what the agent does and how it thinks. The <strong className="text-stone-600">Builder</strong> tab lets you configure personality, skill, and situation to generate a ready-to-paste prompt.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 bg-white rounded-lg border border-stone-200 px-4 py-3.5">
+              <div className="p-1.5 rounded-md bg-stone-100 shrink-0">
+                <FolderOpen size={16} className="text-stone-500" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-stone-800">Explore Resources</h3>
+                <p className="text-xs text-stone-500 leading-relaxed mt-0.5">
+                  Each agent has a <strong className="text-stone-600">Resources</strong> tab with case studies (fictional scenarios showing the agent in action), reference files (frameworks and knowledge bases), and examples (sample inputs and outputs).
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 bg-white rounded-lg border border-stone-200 px-4 py-3.5">
+              <div className="p-1.5 rounded-md bg-stone-100 shrink-0">
+                <Play size={16} className="text-stone-500" />
+              </div>
+              <div>
+                <h3 className="text-sm font-medium text-stone-800">Visual Stories</h3>
+                <p className="text-xs text-stone-500 leading-relaxed mt-0.5">
+                  Some agents have visual stories: full-screen, slide-based narratives that walk through a pain point from problem to resolution. Find them in the Resources tab, click &quot;Read story&quot;, then hit &quot;Visual story&quot; to launch.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -123,7 +182,7 @@ export default function Home() {
       </div>
 
       {/* Handbook */}
-      <div className="mt-16">
+      <div id="handbook" className="mt-16 scroll-mt-20">
         <div className="flex items-center gap-2 mb-5">
           <BookOpen size={20} className="text-stone-400" />
           <h2 className="text-xl font-bold text-stone-900">Design Handbook</h2>
@@ -167,7 +226,7 @@ export default function Home() {
       </div>
 
       {/* Agent Ideas */}
-      <div className="mt-16">
+      <div id="agent-ideas" className="mt-16 scroll-mt-20">
         <div className="flex items-center gap-2 mb-2">
           <Lightbulb size={20} className="text-stone-400" />
           <h2 className="text-xl font-bold text-stone-900">Agent Ideas</h2>

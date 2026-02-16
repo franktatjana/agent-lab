@@ -4,6 +4,7 @@ import { use, useState, useMemo, useCallback } from "react";
 import { agents } from "@/data/agents";
 import type { AgentCanvas } from "@/data/agents";
 import { getStoriesForAgent } from "@/data/stories";
+import { getIdeasForAgent, buildIdeaFlyoutContent as buildCsIdeaFlyoutContent } from "@/data/case-study-ideas";
 import { buildPrompt } from "@/lib/prompt-builder";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -150,7 +151,8 @@ export default function AgentPageClient({
   const colors = colorMap[agent.color] ?? colorMap.blue;
   const Icon = iconMap[agent.icon] ?? Globe;
   const agentStories = getStoriesForAgent(agent.id);
-  const hasResources = agentResources[agent.id] || (agent.examples && agent.examples.length > 0) || (agent.caseStudies && agent.caseStudies.length > 0) || agentStories.length > 0;
+  const agentCsIdeas = getIdeasForAgent(agent.id);
+  const hasResources = agentResources[agent.id] || (agent.examples && agent.examples.length > 0) || (agent.caseStudies && agent.caseStudies.length > 0) || agentStories.length > 0 || agentCsIdeas.length > 0;
 
   function handleGenerate() {
     if (!agent || !situation.trim()) return;
@@ -560,6 +562,36 @@ export default function AgentPageClient({
                   >
                     <h3 className="text-sm font-semibold text-stone-900 mb-1">{cs.name}</h3>
                     <p className="text-xs text-stone-500 leading-relaxed">{cs.summary}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Case Study Ideas */}
+          {agentCsIdeas.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-stone-900 mb-2">Case Study Ideas</h2>
+              <p className="text-sm text-stone-500 mb-4">
+                Brainstorming notes for future case studies. Not yet developed into full scenarios.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {agentCsIdeas.map((idea) => (
+                  <button
+                    key={idea.id}
+                    type="button"
+                    className="text-left rounded-lg border border-dashed border-stone-300 bg-white hover:border-stone-400 hover:shadow-sm p-4 transition-all"
+                    onClick={() => setFlyout({ title: idea.title, content: buildCsIdeaFlyoutContent(idea) })}
+                  >
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-sm font-semibold text-stone-900">{idea.title}</h3>
+                      {idea.category && (
+                        <span className="text-[10px] font-medium text-stone-400 bg-stone-100 rounded-full px-1.5 py-0.5 shrink-0">
+                          {idea.category}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-stone-500 mt-1 leading-relaxed">{idea.surface}</p>
                   </button>
                 ))}
               </div>

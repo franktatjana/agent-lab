@@ -82,7 +82,6 @@ A compressed narrative framework developed at Pixar Animation Studios. Six beats
 
 ### Professional Application
 
-```
 Once upon a time, our team relied on a single vendor for our core infrastructure.
 Every day, we processed 10,000 orders through their system without thinking about it.
 One day, they announced a 300% price increase effective in 90 days.
@@ -90,7 +89,6 @@ Because of that, we had to decide: pay the increase, or build our own system fro
 Because of that, our engineering team spent 60 days building what no one thought was possible.
 Until finally, we launched our own platform, processing 15,000 orders on day one.
 And ever since that day, we've owned our infrastructure and reduced costs by 40%.
-```
 
 ### When to Use Pixar Story Spine
 

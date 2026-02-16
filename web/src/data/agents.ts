@@ -521,7 +521,6 @@ Maria chose the **business personality** because this was a formal corporate con
 
 Her input:
 
-\\\`\\\`\\\`yaml
 my_culture: German
 their_culture: US
 context: "Joint product launch timeline meeting, third attempt after two failed meetings"
@@ -535,7 +534,6 @@ participants:
     relationship: "New contact"
 personality: business
 output_format: yaml
-\\\`\\\`\\\`
 
 ## Interaction
 
@@ -547,7 +545,6 @@ Maria asked the agent to reframe a specific message. She wanted to say: "We cann
 
 For the meeting itself, the agent provided:
 
-\\\`\\\`\\\`yaml
 pre_meeting:
   relationship_building: "5-10 minutes of small talk expected; prepare questions about their recent product wins"
   materials: "Send agenda 48 hours ahead; Americans appreciate seeing topics but not as rigidly bound to them"
@@ -560,7 +557,6 @@ during_meeting:
 commitments:
   interpretation: "Write down specific action items; Americans may interpret verbal agreement differently"
   follow_up: "Send written summary within 24 hours to confirm understanding"
-\\\`\\\`\\\`
 
 ## Outcome
 
@@ -954,7 +950,6 @@ Lena started with the **executive personality** because the board wanted bottom-
 
 Her initial input:
 
-\\\`\\\`\\\`yaml
 query: "Market entry analysis for B2B digital health platform targeting hospital systems in Germany, Netherlands, and Sweden"
 scope: "focused"
 source_preferences:
@@ -964,7 +959,6 @@ source_preferences:
 output_format: markdown
 personality: executive
 export_assets: true
-\\\`\\\`\\\`
 
 ## Interaction
 
@@ -974,21 +968,17 @@ For the regulatory pathway, the agent found that Germany required medical device
 
 The agent hit an uncertainty. For hospital procurement processes in Sweden, publicly available data was limited. The agent stated this explicitly:
 
-\\\`\\\`\\\`
 uncertainty: Limited public data on Swedish hospital IT procurement processes. Recommend expert interview with Swedish healthcare IT consultant. Sources available provide general frameworks but not current practice.
-\\\`\\\`\\\`
 
 Lena appreciated this. Previous research tools had either hallucinated answers or silently skipped the gap. The explicit uncertainty let her plan accordingly: she scheduled a call with a Stockholm-based consultant.
 
 When the founders asked about reimbursement models mid-project, Lena returned to the agent with a narrower query. Instead of a full analysis, she used the educational personality to get an explanation suitable for non-experts:
 
-\\\`\\\`\\\`yaml
 query: "How do hospital reimbursement models for digital health tools differ between Germany, Netherlands, and Sweden?"
 scope: "overview"
 depth: "surface"
 personality: educational
 output_format: markdown
-\\\`\\\`\\\`
 
 The agent provided a comparison that the founders could actually understand: no regulatory jargon, clear examples, explicit gaps.
 
@@ -1519,7 +1509,6 @@ Priya accessed the why-agent through the company's people analytics platform, wh
 
 Priya chose the **coach personality** because she wanted the agent to help her think through the problem, not just deliver an answer. She suspected the issue was more complex than "burnout" and needed a thinking partner.
 
-\\\`\\\`\\\`yaml
 problem: "High performer suddenly disengaged after 3 years of excellence"
 context: |
   Product team, 12 people
@@ -1534,7 +1523,6 @@ previous_attempts:
 personality: coach
 output_format: markdown
 max_depth: 7
-\\\`\\\`\\\`
 
 ## Interaction
 
@@ -1578,7 +1566,6 @@ She thought about the two other high performers who'd started job searching. The
 
 The agent synthesized:
 
-\\\`\\\`\\\`yaml
 root_causes:
   - cause: "John doesn't understand why he wasn't promoted"
     level: individual
@@ -1599,7 +1586,6 @@ verification:
     expected: "Yes, employees could self-assess and see path forward"
   - test: "Is this pattern affecting other high performers?"
     expected: "Yes, two others showing similar signs"
-\\\`\\\`\\\`
 
 ## Outcome
 
@@ -1664,7 +1650,6 @@ Elena invoked the why-agent through her team's incident management Slack bot. Th
 
 Elena chose the **investigator personality** because this was a technical problem requiring systematic evidence-based analysis. She wanted the agent to challenge assumptions rather than accept the team's initial hypothesis.
 
-\\\`\\\`\\\`yaml
 problem: "Checkout failures resuming 20-30 minutes after each fix"
 context: |
   E-commerce platform, peak Friday traffic
@@ -1679,7 +1664,6 @@ previous_attempts:
 personality: investigator
 output_format: markdown
 max_depth: 7
-\\\`\\\`\\\`
 
 ## Interaction
 
@@ -1713,7 +1697,6 @@ The catalog expansion was a marketing initiative. The engineering team wasn't in
 
 The agent verified: "If we fix Redis capacity AND the catalog-engineering communication gap, will this prevent recurrence?" Elena confirmed both were actionable.
 
-\\\`\\\`\\\`yaml
 root_causes:
   - cause: "Redis connection pool saturated by oversized cache warming job"
     confidence: high
@@ -1727,7 +1710,6 @@ verification:
     result: "Would eliminate resource contention"
   - test: "Capacity review process for catalog changes"
     result: "Would prevent future surprises"
-\\\`\\\`\\\`
 
 ## Outcome
 
@@ -2297,7 +2279,6 @@ James accessed the generation-agent through his company's internal AI assistant 
 
 James initially wanted to use the agent to fix Zara's communication style. The agent recommended starting with **educator personality** to help James understand the dynamic before jumping to solutions.
 
-\\\`\\\`\\\`yaml
 sender_generation: boomer
 target_generations:
   - gen-z
@@ -2310,7 +2291,6 @@ relationship: manager/report
 context: remote-first company, data analytics team
 personality: educator
 output_format: markdown
-\\\`\\\`\\\`
 
 ## Interaction
 
@@ -2356,7 +2336,6 @@ After the educator session, James asked: "Okay, I understand it better. But how 
 
 The agent switched to **coach personality** and provided a bridge-building plan:
 
-\\\`\\\`\\\`yaml
 for_james:
   - "Ask Zara directly: 'What's the best way for us to stay in sync?'"
   - "Try Slack for routine questions; reserve calls for complex discussions"
@@ -2372,7 +2351,6 @@ meeting_in_the_middle:
   - "Weekly 1:1: verbal discussion + she sends written summary after"
   - "Async by default: Slack for questions, calls when either requests"
   - "Explicit signals: 'This is urgent, call me' vs 'When you have a minute'"
-\\\`\\\`\\\`
 
 ## Outcome
 
@@ -2764,7 +2742,6 @@ Raj accessed the superhero-agent through his company's AI assistant platform, wh
 
 Raj chose the **captain-america personality** because the situation required standing up for what was right (users) against powerful internal forces. He requested the **frame-mission** skill first, then **suit-up** for the morning of the presentation.
 
-\\\`\\\`\\\`yaml
 challenge: "Present recommendation to kill flagship feature that powerful stakeholders love"
 context: |
   Fintech company, board presentation
@@ -2776,7 +2753,6 @@ your_strengths: "Data analysis, user research, direct communication"
 what_feels_hard: "Powerful stakeholders will push back hard"
 personality: "captain-america"
 output_format: markdown
-\\\`\\\`\\\`
 
 ## Interaction
 
@@ -2790,14 +2766,12 @@ It reframed the presentation as "Operation Truth to Power" and identified the re
 
 The agent helped Raj see his strengths differently:
 
-\\\`\\\`\\\`yaml
 your_powers:
   primary: "Data-backed conviction. You don't just think you're right; you can prove it."
   secondary:
     - "Direct communication: you won't dance around the point"
     - "User empathy: you can make executives feel what users feel"
   watch_out_for: "Your directness might dismiss Sales concerns. The shield deflects; it doesn't win hearts."
-\\\`\\\`\\\`
 
 **Mapping the villain:**
 
@@ -2811,7 +2785,6 @@ The strategy: "Shift the battlefield. Don't argue about revenue projections. Mak
 
 The agent asked who would be in the room. Raj realized he'd been planning to walk in alone.
 
-\\\`\\\`\\\`yaml
 your_team:
   - role: "Nick Fury (air cover)"
     need: "Someone senior bought in before you enter the room"
@@ -2824,13 +2797,11 @@ your_team:
   - role: "Pepper Potts (translator)"
     need: "Someone who speaks Sales language"
     action: "Find someone in Sales who's frustrated with support burden. They exist."
-\\\`\\\`\\\`
 
 **Suit-up ritual:**
 
 The morning of the presentation, Raj returned for the **suit-up** skill:
 
-\\\`\\\`\\\`yaml
 power_check: |
   You built this case from data they've never seen assembled this way.
   You've talked to users they've never met.
@@ -2850,7 +2821,6 @@ breathing_cue: |
 
 mantra: |
   "I can do this all day."
-\\\`\\\`\\\`
 
 ## Outcome
 
@@ -2925,7 +2895,6 @@ Amara accessed the superhero-agent through a coaching app her company provided f
 
 The agent suggested **spider-man personality** before Amara even asked. "You're new to powers you didn't ask for, balancing worlds that feel incompatible, and wondering if you're worthy. That's Peter Parker's entire arc."
 
-\\\`\\\`\\\`yaml
 challenge: "Three weeks into first management role, feeling like a fraud"
 context: |
   Promoted from IC to manager
@@ -2937,7 +2906,6 @@ your_strengths: "Technical credibility, relationships with team, problem-solving
 what_feels_hard: "Everything feels unfamiliar, everyone expects me to know what I'm doing"
 personality: "spider-man"
 output_format: markdown
-\\\`\\\`\\\`
 
 ## Interaction
 
@@ -2951,7 +2919,6 @@ The agent didn't start with solutions. It started with validation:
 
 The agent ran the **identify-power** skill:
 
-\\\`\\\`\\\`yaml
 your_powers:
   primary: "Technical credibility. You've done the work your team does. They can't dismiss you as someone who doesn't understand."
   secondary:
@@ -2963,7 +2930,6 @@ kryptonite:
   name: "The comparison trap"
   description: "Comparing your Week 3 to someone else's Year 3"
   management: "Your only benchmark is Week 2 you. Are you slightly better than then?"
-\\\`\\\`\\\`
 
 **Mapping the villain:**
 
@@ -2979,7 +2945,6 @@ Amara couldn't name any. Her team hadn't complained. Her skip-level hadn't expre
 
 The agent reframed each of her concerns through the Spider-Man lens:
 
-\\\`\\\`\\\`yaml
 reframes:
   - concern: "My former peers report to me now"
     spider_man_lens: "Peter's friends don't know he's Spider-Man. The identity shift is awkward. But he's still Peter to them. You're still Amara. The title changed; you didn't."
@@ -2992,13 +2957,11 @@ reframes:
   - concern: "Skip-level expects me to hit the ground running"
     spider_man_lens: "Nick Fury expected a lot from Peter immediately too. But Fury also gave him room to learn. Have you asked your skip-level what 'success at 90 days' looks like?"
     action: "Clarifying expectations isn't weakness. It's professionalism."
-\\\`\\\`\\\`
 
 **Suit-up for the week:**
 
 Rather than preparing for a single event, the agent provided a weekly reset ritual:
 
-\\\`\\\`\\\`yaml
 weekly_mantra: |
   "With great power comes great responsibility."
   But responsibility doesn't mean perfection.
@@ -3015,7 +2978,6 @@ permission_slip: |
   - Make mistakes that don't involve people's livelihoods
   - Feel uncomfortable while doing hard things
   - Get better slowly instead of overnight
-\\\`\\\`\\\`
 
 ## Outcome
 
@@ -3700,7 +3662,6 @@ David chose the **business personality** because this was a boardroom context wh
 
 His input:
 
-\\\`\\\`\\\`yaml
 topic: "Q3 feature launch results for executive quarterly review"
 audience: "C-suite executive team, 5 people, quarterly business review"
 data: |
@@ -3716,7 +3677,6 @@ context: "Quarterly business review, 15-minute slot, executive team is aware of 
 personality: "business"
 output_format: "markdown"
 desired_action: "Secure continued investment in the feature's Phase 2"
-\\\`\\\`\\\`
 
 ## Interaction
 
@@ -4392,19 +4352,16 @@ James had used the **strategic personality** because board interactions require 
 
 His pre-meeting input:
 
-\\\`\\\`\\\`yaml
 question: "What's your confidence level in hitting the Q3 launch date?"
 who_is_asking: "Board member, former competitor board observer, joined 6 weeks ago, investment background"
 context: "Board Q&A, 10-minute window, 8 board members present, CEO and CFO in the room"
 personality: "strategic"
 output_format: "yaml"
-\\\`\\\`\\\`
 
 ## Interaction
 
 The agent's pre-meeting decode identified three possible intents behind a launch confidence question from this particular board member:
 
-\\\`\\\`\\\`yaml
 decoded_intent:
   literal_question: "What's your confidence level in hitting the Q3 launch date?"
   real_question: "Should I be worried about our competitive position?"
@@ -4414,13 +4371,11 @@ decoded_intent:
   alternative_intents:
     - "Testing whether the VP of Engineering is candid or a spin doctor (new board member evaluating leadership)"
     - "Genuinely assessing execution risk for a portfolio decision"
-\\\`\\\`\\\`
 
 The agent flagged that Catherine's background was the critical context. A board member from a competitor's ecosystem asking about launch confidence is almost never asking about Gantt charts. They're asking about market timing and competitive positioning.
 
 The answer architecture the agent recommended:
 
-\\\`\\\`\\\`yaml
 answer_architecture:
   format: "pyramid"
   depth: "summary"
@@ -4435,11 +4390,9 @@ answer_architecture:
     - "Do not open the Gantt chart; it signals you're thinking about execution when they're thinking about strategy"
     - "Do not say 'we're on track' without proof; it's the most overused phrase in board rooms"
     - "Do not list all risks; pick the one that matters and show it's handled"
-\\\`\\\`\\\`
 
 The agent also prepared three follow-up questions:
 
-\\\`\\\`\\\`yaml
 anticipated_follow_ups:
   - question: "What if [competitor] launches first?"
     prepared_response: "Our value proposition doesn't depend on being first. It depends on being better at [specific differentiator]. That said, we're tracking to launch within the same quarter."
@@ -4450,7 +4403,6 @@ anticipated_follow_ups:
   - question: "How does the team feel about the timeline?"
     prepared_response: "Confident. We've hit every milestone this quarter. The team knows what's left and believes the buffer is adequate. I check morale and confidence weekly."
     likelihood: "possible"
-\\\`\\\`\\\`
 
 ## Outcome
 
@@ -5310,12 +5262,10 @@ Mei Lin believed the VP of Risk wasn't against the idea itself but was protectin
 
 Mei Lin described her situation in the prompt builder:
 
-\`\`\`yaml
 organization_context: "Fintech, 800 people, committee-driven decisions, risk-averse culture"
 your_role: "Product Director, 3 years tenure, reporting to CPO"
 situation: "B2B payments proposal blocked twice by VP Risk. CEO interested but won't override committee."
 key_stakeholders: "VP Risk (blocker), CEO (interested but passive), CPO (my boss, supportive)"
-\`\`\`
 
 Personality: **Tactical** | Skill: **Plan Influence**
 

@@ -74,7 +74,6 @@ Organize findings by:
 
 Organize by themes that emerge from the data.
 
-```
 Theme 1: [Finding]
   - Evidence from Source A
   - Evidence from Source B
@@ -82,7 +81,6 @@ Theme 1: [Finding]
 
 Theme 2: [Finding]
   ...
-```
 
 Best for: Exploratory research, complex topics
 
@@ -90,12 +88,10 @@ Best for: Exploratory research, complex topics
 
 Organize by comparing elements.
 
-```
 Factor 1: Option A vs. Option B vs. Option C
 Factor 2: Option A vs. Option B vs. Option C
 ...
 Recommendation: Based on factors, X is preferred
-```
 
 Best for: Decision support, evaluations
 
@@ -103,11 +99,9 @@ Best for: Decision support, evaluations
 
 Organize by how understanding evolved.
 
-```
 Historical context: How we got here
 Current state: What we know now
 Emerging trends: Where it's going
-```
 
 Best for: Evolving topics, trend analysis
 
@@ -115,7 +109,6 @@ Best for: Evolving topics, trend analysis
 
 Organize around issues and responses.
 
-```
 Problem 1: [Issue]
   - Contributing factors
   - Attempted solutions
@@ -123,7 +116,6 @@ Problem 1: [Issue]
 
 Problem 2: [Issue]
   ...
-```
 
 Best for: Applied research, recommendations
 

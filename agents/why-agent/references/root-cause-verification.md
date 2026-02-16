@@ -128,7 +128,6 @@ Before accepting a root cause, confirm:
 
 Complex problems often have multiple contributing root causes:
 
-```
 Problem: Service outage
 
 Root Cause 1: No automated rollback procedure
@@ -139,7 +138,6 @@ Root Cause 2: Change wasn't tested against production-like data
 
 Root Cause 3: Monitoring didn't alert on early warning signs
 (Delayed detection)
-```
 
 All three may need addressing for complete prevention.
 
