@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="arc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#bg)"/>
+  <!-- head -->
+  <circle cx="16" cy="12" r="4.8" fill="white"/>
+  <!-- shoulders -->
+  <path d="M8 26c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="white"/>
+  <!-- neural arc -->
+  <path d="M7.5 7.5c2.8-2.5 5.3-3.5 8.5-3.5s5.7 1 8.5 3.5" fill="none" stroke="url(#arc)" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- neural dots -->
+  <circle cx="7.5" cy="7.5" r="1.5" fill="#f59e0b"/>
+  <circle cx="16" cy="4" r="1.5" fill="#10b981"/>
+  <circle cx="24.5" cy="7.5" r="1.5" fill="#3b82f6"/>
+</svg>
