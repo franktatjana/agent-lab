@@ -1,0 +1,53 @@
+# Architect Answer Example
+# Skill: Structuring an answer for a board presentation Q&A
+
+input:
+  question: "What's our biggest technology risk right now?"
+  who_is_asking: "Board member, former CTO, now investor"
+  context: "Q&A portion of quarterly board meeting, 15 people in the room"
+  facts: |
+    Three main risks: vendor dependency on AWS for AI features (medium),
+    technical debt in the billing system (high internal impact, low customer impact),
+    and a single point of failure in the authentication service (high severity, being addressed).
+    Auth service fix ships in 2 weeks. Billing refactor planned for Q4.
+    AWS dependency is strategic and accepted.
+
+output:
+  audience_profile:
+    role: "Board member, fiduciary responsibility, shapes strategic direction"
+    expertise_level: "High, former CTO, understands technology deeply"
+    preferred_format: "Structured with specifics, doesn't want things dumbed down"
+    communication_style: "Analytical, respects precision, detects hand-waving"
+    primary_concern: "Whether the technology can support the business plan; wants to see risk management, not risk absence"
+
+  answer_architecture:
+    format: "pyramid"
+    depth: "summary"
+    framing: "risk"
+    lead: "Our biggest active risk is a single point of failure in authentication, and we're two weeks from resolving it."
+    supporting_points:
+      - "Name the top risk clearly (shows awareness and honesty)"
+      - "State the mitigation and timeline (shows management)"
+      - "Briefly acknowledge secondary risks to show comprehensive view"
+      - "Close with the strategic risk posture (accepted trade-offs vs. active mitigations)"
+
+  drafted_response: |
+    Our biggest active risk is a single point of failure in our
+    authentication service. If it goes down, users can't log in. We've
+    built the fix and it ships in two weeks, after which we'll have
+    full redundancy.
+
+    Beyond that, we have planned technical debt in the billing system
+    that we're addressing in Q4, and a strategic dependency on AWS for
+    our AI features that we've accepted given the build-vs-buy
+    trade-off.
+
+    None of these threaten our ability to hit the targets we presented
+    today.
+
+  adaptation_notes: |
+    This board member is a former CTO, so technical specifics are
+    appropriate and expected. Don't over-simplify. The framing
+    acknowledges risk honestly (builds trust) while showing each risk
+    has a plan (builds confidence). The closing line ties back to
+    business outcomes, which is what the board ultimately cares about.

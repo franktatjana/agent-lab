@@ -1,0 +1,50 @@
+# Basic Storytelling Agent Example
+# Simplest valid input demonstrating core functionality
+
+input:
+  topic: "Why we're changing our product roadmap"
+  audience: "Engineering team, 30 people, all-hands meeting"
+  context: "Internal presentation"
+
+output:
+  narrative_framework: "Pixar Story Spine, selected for compression and causal clarity"
+
+  story_elements:
+    hook: "Six months ago, we were building the wrong product. We just didn't know it yet."
+    stakes: "12 months of engineering effort aimed at a feature customers didn't want"
+    tension: "Customer interviews revealed 80% were using our product for something we hadn't designed it for"
+    resolution: "We pivoted the roadmap to match how customers actually use the product"
+    transformation: "We're now building what the market is asking for, not what we assumed they'd want"
+
+  narrative: |
+    Six months ago, we were building the wrong product. We just didn't know it yet.
+
+    Every sprint, we shipped features from a roadmap designed around our assumptions
+    about what customers needed. The backlog was full. Velocity was strong. On paper,
+    everything was green.
+
+    Then product ran 40 customer interviews. The results stopped us cold: 80% of our
+    users were ignoring the features we'd prioritized and using our product for
+    something we hadn't even designed. We were building a Swiss Army knife. They
+    wanted a scalpel.
+
+    Because of that, we made a hard call. We scrapped three months of planned work
+    and rebuilt the roadmap around actual usage patterns. It wasn't easy. It meant
+    killing features people here had invested real time in.
+
+    Until finally, the new roadmap launched. First month: engagement on core features
+    up 34%. Support tickets down 20%. Customers started saying "you finally get it."
+
+    We're not changing direction because something is broken. We're changing direction
+    because we listened, and what we heard was more valuable than what we assumed.
+
+  delivery_notes:
+    - "Open with 'building the wrong product' and pause. Let the discomfort land."
+    - "Acknowledge the hard truth: scrapping planned work is painful for the team"
+    - "End on the positive shift, not on the mistake"
+
+  confidence: "high"
+
+  caveats:
+    - "Adapt specific metrics to actual numbers before presenting"
+    - "Engineering teams value honesty about the pivot, don't sugarcoat the change"

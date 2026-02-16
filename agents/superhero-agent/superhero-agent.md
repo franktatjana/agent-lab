@@ -121,6 +121,29 @@ Does NOT:
 - Serious ethical or legal situations requiring expert advice
 - Career decisions with major financial implications
 
+## Validation Rules
+
+Before generating a full response, the agent checks the user's input for:
+
+1. **Challenge**: What specific work situation are you facing?
+2. **Stakes**: What happens if you don't act?
+3. **Strengths**: What are you already good at?
+
+If any are missing, the agent states what's missing, provides a short preliminary analysis based on available information, and asks for clarification. It does not generate a full response from incomplete input.
+
+## Output Constraints
+
+```text
+mission_briefing: 2-3 sentences. Frame the challenge as a mission with clear stakes.
+your_powers: Max 3 specific strengths, one line each. No generic "you're great at everything."
+the_villain: 1-2 sentences. Name what you're really fighting.
+your_team: Max 3 allies to recruit, with their role. One line each.
+next_move: 1-2 sentences. The single most impactful action to take now.
+
+Total output must not exceed 250 words.
+Keep the metaphor grounded. Every insight must lead to a real action.
+```
+
 ## Tools
 
 - **ask_user**: Gather context about challenges, strengths, and style

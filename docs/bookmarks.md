@@ -87,17 +87,50 @@ Frameworks, SDKs, and platforms for building agents.
 
 ---
 
+## Interfaces and Protocols
+
+Standards, protocols, and patterns for agent boundaries and communication.
+
+- [Building Effective Agents: ACI Design](https://www.anthropic.com/research/building-effective-agents) - Anthropic's Agent-Computer Interface principles: tool design, poka-yoke, iterative testing
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/specification/2025-11-25) - Anthropic's standard for agent-to-tool integration (Nov 2025 spec)
+- [MCP's Impact on 2025](https://www.thoughtworks.com/en-us/insights/blog/generative-ai/model-context-protocol-mcp-impact-2025) - ThoughtWorks analysis of MCP adoption and implications
+- [Agent2Agent Protocol (A2A)](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/) - Google's protocol for agent-to-agent discovery and communication via Agent Cards
+- [A2A Protocol Specification](https://a2a-protocol.org/latest/specification/) - Full protocol specification with Agent Card schema
+- [AG-UI: Agent-User Interaction Protocol](https://docs.ag-ui.com/) - Bidirectional agent-to-frontend communication (streaming, events, interrupts)
+- [A Survey of Agent Interoperability Protocols](https://arxiv.org/html/2505.02279v1) - Academic survey comparing MCP, ACP, A2A, and ANP
+- [Agent Communication Protocols Landscape](https://generativeprogrammer.com/p/agent-communication-protocols-landscape) - Visual comparison of protocol layers and overlaps
+- [What Are AI Agent Protocols?](https://www.ibm.com/think/topics/ai-agent-protocols) - IBM overview of protocol standards and interoperability
+- [Agent Contracts: Formal Framework](https://arxiv.org/html/2601.08815) - Academic framework for resource-bounded agent contracts with conservation laws
+
+---
+
 ## Orchestration and Composition
 
-Multi-agent systems, pipelines, coordination patterns.
+Multi-agent systems, pipelines, routing, coordination patterns.
 
-- [Choosing the Right Multi-Agent Architecture](https://www.blog.langchain.com/choosing-the-right-multi-agent-architecture/) - LangChain's four patterns (subagents, skills, handoffs, routers)
+- [Choosing the Right Multi-Agent Architecture](https://www.blog.langchain.com/choosing-the-right-multi-agent-architecture/) - LangChain's four patterns (subagents, skills, handoffs, routers) with benchmarking data
+- [Benchmarking Multi-Agent Architectures](https://blog.langchain.com/benchmarking-multi-agent-architectures/) - Single Agent vs. Swarm vs. Supervisor on tau-bench: token costs, scalability, domain isolation
+- [How and When to Build Multi-Agent Systems](https://blog.langchain.com/how-and-when-to-build-multi-agent-systems/) - LangChain guidance: "multi-agent systems work mainly because they help spend enough tokens"
+- [LangGraph Multi-Agent Workflows](https://blog.langchain.com/langgraph-multi-agent-workflows/) - Supervisor and swarm patterns with `Command(goto=...)` routing
 - [Building LangGraph from first principles](https://www.blog.langchain.com/building-langgraph/) - Runtime design decisions
 - [Deep Agents](https://www.blog.langchain.com/deep-agents/) - Advanced agent patterns
+- [Build a Supervisor Agent](https://docs.langchain.com/oss/python/langchain/supervisor) - LangGraph supervisor docs: structured output routing, tool-calling routing, three-layer architecture
+- [LangGraph Router Pattern](https://docs.langchain.com/oss/python/langchain/multi-agent/router) - Router vs. supervisor distinction, `Command` for single-agent and `Send` for parallel fan-out
+- [langgraph-supervisor-py](https://github.com/langchain-ai/langgraph-supervisor-py) - LangGraph supervisor reference implementation
+- [langgraph-swarm-py](https://github.com/langchain-ai/langgraph-swarm-py) - LangGraph swarm (peer-to-peer handoff) reference implementation
 - [Orchestrator-Worker Agents Comparison](https://arize.com/blog/orchestrator-worker-agents-a-practical-comparison-of-common-agent-frameworks/) - Arize AI comparison of CrewAI, AutoGen, and other frameworks
 - [CrewAI](https://github.com/crewAIInc/crewAI) - Framework for orchestrating role-playing, autonomous AI agents
+- [CrewAI Hierarchical Process](https://docs.crewai.com/en/learn/hierarchical-process) - Manager agent delegation via tool calls, result validation
+- [CrewAI Collaboration](https://docs.crewai.com/en/concepts/collaboration) - Delegation tools: `Delegate work to coworker` and `Ask question to coworker`
+- [CrewAI Planning](https://docs.crewai.com/en/concepts/planning) - AgentPlanner generates step-by-step plans before execution
 - [Hierarchical AI Agents with CrewAI](https://activewizards.com/blog/hierarchical-ai-agents-a-guide-to-crewai-delegation) - Guide to manager-worker delegation patterns
+- [OpenAI Agents SDK Handoffs](https://openai.github.io/openai-agents-python/handoffs/) - Handoff-as-tool-call pattern: `transfer_to_<agent_name>`, input types, context filtering
+- [OpenAI Cookbook: Orchestrating Agents](https://developers.openai.com/cookbook/examples/orchestrating_agents) - Handoff implementation from experimental Swarm to production SDK
+- [AutoGen SelectorGroupChat](https://microsoft.github.io/autogen/stable//user-guide/agentchat-user-guide/selector-group-chat.html) - LLM-based speaker selection: selector prompts, candidate_func, selector_func
+- [How We Built Our Multi-Agent Research System](https://www.anthropic.com/engineering/multi-agent-research-system) - Anthropic's production orchestrator-workers with dynamic effort scaling
 - [Multi-Agent AI Systems Enterprise Guide](https://neomanex.com/posts/multi-agent-ai-systems-orchestration) - Coordinator-specialist patterns for enterprise
+- [AI Agent Routing: Tutorial & Best Practices](https://www.patronus.ai/ai-agent-development/ai-agent-routing) - Patronus AI guide to static vs. dynamic routing, semantic routing
+- [AWS: Routing Dynamic Dispatch Patterns](https://docs.aws.amazon.com/prescriptive-guidance/latest/agentic-ai-patterns/routing-dynamic-dispatch-patterns.html) - Agentic routing as "dynamic cognitive dispatching" replacing rigid rules
 
 ---
 

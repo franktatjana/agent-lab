@@ -1,0 +1,67 @@
+# Pitch Story Example
+# Skill: Craft a persuasive narrative for pitches and proposals
+
+input:
+  topic: "Series A fundraising for developer productivity tool"
+  audience: "Venture capital partners at a growth-stage fund"
+  ask: "Invest $8M in our Series A to scale go-to-market"
+  context: "30-minute in-person pitch meeting"
+  raw_material: |
+    Founded 18 months ago by two ex-Stripe engineers who spent 3 hours/day on
+    deployment tooling instead of product work. Built an internal tool, colleagues
+    asked for it, launched publicly 10 months ago. 2,400 teams now use it. $1.2M
+    ARR growing 25% month-over-month. NPS of 72. Average team saves 11 hours/week.
+    Zero paid marketing, all word-of-mouth. Competing against tools built 10 years
+    ago that require dedicated DevOps teams.
+  time_limit: "3 minutes for the narrative portion"
+
+output:
+  narrative_framework: "Brand Narrative + Pixar Story Spine, combined for origin credibility and causal momentum"
+
+  story_elements:
+    hook: "Every developer we've talked to spends a third of their day not writing code. We know because we were those developers."
+    problem: "Engineering teams lose 11+ hours per week to deployment complexity. That's $150K per engineer per year spent on infrastructure busywork."
+    solution: "A deployment tool built by engineers who hated the problem enough to solve it, and simple enough that you don't need a DevOps team to use it."
+    proof: "2,400 teams. $1.2M ARR. 25% monthly growth. NPS of 72. Zero dollars in marketing."
+    transformation: "A world where every engineer ships code, not fights infrastructure."
+
+  call_to_action: "We're raising $8M to turn word-of-mouth traction into a go-to-market engine. We'd like you to be part of that."
+
+  narrative: |
+    Two years ago, we were engineers at Stripe. Good engineers, working on important
+    problems. And every day, we spent three hours not solving those problems. Instead,
+    we were fighting deployment tooling that was built a decade ago for a different
+    world.
+
+    So we built something for ourselves. A deployment tool that actually worked the
+    way engineers think. No dedicated DevOps team required. No week-long setup. Push
+    code, it ships.
+
+    Our colleagues asked for it. Then their friends at other companies asked for it.
+    We launched publicly ten months ago with zero marketing budget.
+
+    Today, 2,400 teams use our tool. We're at $1.2M in annual recurring revenue,
+    growing 25% month over month. Our NPS is 72. Every one of those customers found
+    us through word of mouth. Because when you save an engineering team 11 hours a
+    week, they tell people.
+
+    The market we're in is dominated by tools built ten years ago. They're powerful,
+    and they require a dedicated team just to operate them. We're building the
+    alternative: the tool that doesn't need its own team.
+
+    We're raising $8M to do what our customers have been doing for us: tell the
+    story at scale. Sales, marketing, and customer success to match the product
+    traction we've already proven.
+
+  delivery_notes:
+    - "Open with the personal experience. Investors fund founders who felt the problem."
+    - "Hit the traction numbers in sequence: teams, revenue, growth, NPS. Let each one land."
+    - "'Zero dollars in marketing' is a punchline. Pause after it."
+    - "The ask should feel like an invitation, not a request. 'We'd like you to be part of that.'"
+    - "Keep it under 3 minutes. Let the conversation do the rest."
+
+  confidence: "high"
+
+  caveats:
+    - "Adjust financial specifics to current numbers before the meeting"
+    - "Different funds care about different metrics; emphasize growth for growth-stage, unit economics for later-stage"

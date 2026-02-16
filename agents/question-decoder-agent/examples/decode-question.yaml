@@ -1,0 +1,52 @@
+# Decode Question Example
+# Skill: Full decode of an ambiguous question with multiple possible intents
+
+input:
+  question: "What do you think about the new hire?"
+  who_is_asking: "Engineering Director, hired the person, your skip-level manager"
+  context: "Casual mention during a team lunch, the new hire started 3 weeks ago"
+  relationship: "Quarterly interaction, professional but not close"
+
+output:
+  audience_profile:
+    role: "Engineering Director, made the hiring decision, accountable for team performance"
+    expertise_level: "High on engineering, high on people management"
+    preferred_format: "Balanced assessment, not just positive"
+    communication_style: "Values candor, reads between lines"
+    primary_concern: "Validating their hiring decision; may have heard something"
+
+  decoded_intent:
+    literal_question: "What do you think about the new hire?"
+    real_question: "Is my hiring decision working out? Should I be concerned about anything?"
+    trigger: "Three weeks is the point where initial impressions form; director may be doing informal pulse checks"
+    seeking: "validation with willingness to hear honest feedback"
+    confidence: "medium"
+    alternative_intents:
+      - "May have received negative feedback from someone else and is cross-referencing"
+      - "May be genuinely curious with no hidden agenda (lower probability given skip-level relationship)"
+
+  answer_architecture:
+    format: "balanced"
+    depth: "summary"
+    framing: "balanced"
+    lead: "Strong start. They've already contributed to the code review process and the team seems to like working with them."
+    supporting_points:
+      - "Lead with a genuine positive (validates their decision without being sycophantic)"
+      - "Add one specific observation (shows you're paying attention)"
+      - "Include one growth area framed constructively (shows honesty without being negative)"
+      - "Keep it conversational since it's a lunch setting"
+
+  drafted_response: |
+    Strong start. They've already contributed to the code review process
+    and caught a subtle bug in the payment module last week. The team
+    seems to like working with them. They're still getting up to speed
+    on our deployment pipeline, but that's normal for week three.
+    Good hire.
+
+  anticipated_follow_ups:
+    - question: "Any concerns?"
+      prepared_response: "Nothing unusual for someone three weeks in. The learning curve on our codebase is steep for everyone. I'd check in with them around the six-week mark."
+    - question: "How are they getting along with the team?"
+      prepared_response: "Well. They pair-programmed with Sarah on the API refactor and it went smoothly. They ask good questions in standup."
+    - question: "Would you have hired them?"
+      prepared_response: "Based on what I've seen so far, yes. They're technically solid and collaborative. Ask me again at the three-month mark for a fuller picture."

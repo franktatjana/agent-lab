@@ -1,0 +1,79 @@
+# Craft Narrative Example
+# Skill: Build a complete narrative arc from raw material
+
+input:
+  topic: "How our customer support team saved a $500K account"
+  audience: "Company all-hands, 150 people"
+  context: "Quarterly recognition presentation"
+  raw_material: |
+    Our largest enterprise customer, Meridian Corp, opened 47 support tickets in
+    one week after a platform update broke their integration. Their CTO emailed
+    our CEO directly saying "we're evaluating alternatives." Support lead Priya
+    noticed the pattern on Monday morning. By Tuesday she had assembled a
+    dedicated 3-person team. They resolved 40 of 47 tickets by Thursday. On
+    Friday, Priya flew to Meridian's office with the engineering lead. By the
+    following Monday, all issues were resolved and Meridian signed a 2-year
+    renewal at 20% higher contract value. The CTO sent a note saying "your
+    response was the reason we stayed."
+  framework: "Hero's Journey"
+
+output:
+  narrative_framework: "Hero's Journey, selected because the story has a clear protagonist (Priya), a genuine crisis, and a transformation"
+
+  story_elements:
+    hook: "47 support tickets in one week. One email from a CTO that said three words: 'evaluating alternatives.' That's how close we came to losing our largest customer."
+    stakes: "$500K annual contract, our largest enterprise account, and the credibility of our support organization"
+    tension: "Every day that passed with unresolved tickets pushed Meridian closer to the exit. The clock was running."
+    resolution: "40 of 47 tickets resolved by Thursday. A Friday flight to Meridian's office. All issues closed by Monday."
+    transformation: "Meridian didn't just stay. They renewed for two years at 20% higher value. The CTO wrote: 'Your response was the reason we stayed.'"
+
+  narrative: |
+    On Monday morning, Priya opened her dashboard and saw something she'd never
+    seen before: 47 open tickets from a single customer. Not a trickle of issues.
+    A flood. She pulled up the account. Meridian Corp. Our largest enterprise
+    customer.
+
+    Then she saw the email thread. Meridian's CTO had written directly to our CEO
+    the night before. Three words that changed the week: "evaluating alternatives."
+
+    Priya had a choice. Route the tickets through normal process, estimated
+    resolution time: two weeks. Or treat this as what it was, an emergency that
+    could cost us $500K and our reputation in enterprise.
+
+    By Tuesday morning, she had pulled two of her best engineers off other work
+    and built a dedicated Meridian response team. They triaged all 47 tickets,
+    identified the root cause, a platform update that broke Meridian's custom
+    integration, and started fixing.
+
+    By Thursday night, 40 of 47 tickets were resolved. But Priya knew that
+    closing tickets wasn't enough. Trust doesn't rebuild through a ticketing
+    system.
+
+    Friday morning, she and our engineering lead flew to Meridian's office.
+    They sat with Meridian's team, walked through every remaining issue
+    face-to-face, and committed to a prevention plan so it wouldn't happen again.
+
+    By Monday, all 47 tickets were closed. But here's what happened next: Meridian
+    didn't just stay. They signed a two-year renewal at 20% higher contract value.
+    Their CTO sent a note that said, "Your response was the reason we stayed."
+
+    Priya didn't save an account. She proved what kind of company we are when it
+    matters most.
+
+  alternative_angles:
+    - "Tell it from Meridian's CTO perspective: what they expected vs. what they got"
+    - "Tell it as a systems story: what broke, why it broke, what we built to prevent it"
+    - "Tell it as a team story: the three engineers who dropped everything"
+
+  delivery_notes:
+    - "Name Priya early. Heroes need names."
+    - "Read the CTO's 'evaluating alternatives' slowly. Let the room feel what that means."
+    - "The flight to Meridian's office is the emotional peak. Emphasize the choice to go in person."
+    - "End on 'what kind of company we are,' not on the dollar amount."
+    - "Keep total presentation under 4 minutes. The story is tight enough."
+
+  confidence: "high"
+
+  caveats:
+    - "Confirm with Priya that she's comfortable being named publicly"
+    - "Verify Meridian is comfortable with the story being told internally"

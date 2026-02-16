@@ -1,0 +1,90 @@
+# Data Storytelling Example
+# Skill: Turn data and metrics into compelling narratives
+
+input:
+  topic: "Q2 customer churn analysis"
+  audience: "Board of directors, quarterly review"
+  data: |
+    Overall churn: 14% (up from 9% last quarter)
+    Enterprise churn: 3% (unchanged)
+    Mid-market churn: 18% (up from 11%)
+    SMB churn: 22% (up from 14%)
+    NPS among retained customers: 61 (up from 54)
+    Top churn reason (exit surveys): "Outgrew the product" (43%)
+    Second reason: "Pricing" (28%)
+    Third reason: "Switched to competitor" (17%)
+    New feature adoption among retained customers: 78%
+    Customer lifetime value (retained): up 23% YoY
+  context: "Board is concerned about the headline churn number. CEO wants to present a clear picture, not a defensive one."
+
+output:
+  narrative_framework: "Data Storytelling (context, conflict, resolution)"
+
+  story_elements:
+    context: "Q2 churn hit 14%, the highest in two years. That headline number is real, and it deserves a serious look."
+    conflict: "But the story inside the number is more specific than the number itself. Our enterprise customers, the segment that drives 70% of revenue, churn at 3%, unchanged. The churn is concentrated in SMB and mid-market, and the top reason isn't dissatisfaction. It's 'outgrew the product.'"
+    resolution: "We have a retention problem in one segment for one reason: customers who succeed with us eventually need more than we offer. The fix is a growth tier, not a rescue plan."
+    supporting_data:
+      - "14% overall churn (up from 9%)"
+      - "3% enterprise churn (stable)"
+      - "43% of churned customers left because they 'outgrew the product'"
+      - "NPS among retained customers: 61 (up from 54)"
+      - "Customer lifetime value (retained): up 23% YoY"
+
+  data_integration:
+    - data_point: "14% overall churn"
+      narrative_role: "hook"
+      framing: "Open with the headline number. Don't hide from it."
+    - data_point: "3% enterprise churn, unchanged"
+      narrative_role: "tension (reframe)"
+      framing: "Contrast with overall number to show the problem is segment-specific"
+    - data_point: "43% churned because they 'outgrew the product'"
+      narrative_role: "tension (insight)"
+      framing: "The most important data point. Reframes churn as a product gap, not a quality problem."
+    - data_point: "NPS 61, up from 54"
+      narrative_role: "proof"
+      framing: "Customers who stay are happier than ever. The product isn't failing."
+    - data_point: "CLV up 23% YoY"
+      narrative_role: "resolution"
+      framing: "Retained customers are worth more. We're losing the wrong segment, not losing quality."
+
+  narrative: |
+    Let me start with the number you're all looking at. Q2 churn hit 14%, up
+    from 9% last quarter. That's the highest in two years, and it's worth
+    understanding, not explaining away.
+
+    Here's what's inside that number. Our enterprise segment, which drives 70%
+    of revenue, churns at 3%. Unchanged from last quarter. Unchanged from last
+    year. Enterprise customers stay, and they spend more: lifetime value is up
+    23% year over year.
+
+    The churn is concentrated in mid-market and SMB. And when we look at why
+    they leave, the exit surveys tell a surprising story. The top reason, at
+    43%, isn't "bad product" or "poor service." It's "outgrew the product."
+
+    Read that again. Our most common churn reason is that customers succeed
+    with us, grow, and then need capabilities we don't offer yet. They're not
+    leaving because we failed. They're leaving because they graduated.
+
+    Meanwhile, the customers who stay are happier than ever. NPS rose from 54
+    to 61. Feature adoption among retained customers hit 78%.
+
+    So here's the picture: we have a product that delights customers and then
+    loses them when they scale. That's not a retention crisis. That's a product
+    tier gap. The recommendation is to build a growth tier that captures these
+    customers at the moment they're most convinced we're valuable, not after
+    they've started looking elsewhere.
+
+  delivery_notes:
+    - "Start with 14% and own it. Boards respect honesty more than spin."
+    - "The 43% 'outgrew' stat is the turning point. Pause and let the reframe land."
+    - "NPS and CLV are your credibility anchors. Present them side by side."
+    - "End with the recommendation, not with the problem. Boards want to know what's next."
+    - "Prepare a one-slide visual: churn by segment with reasons, not just the topline number."
+
+  confidence: "high"
+
+  caveats:
+    - "Verify that 'outgrew the product' interpretation matches the actual exit survey wording"
+    - "Board may challenge whether the growth tier will retain or just delay churn"
+    - "Competitor churn (17%) deserves its own follow-up analysis"

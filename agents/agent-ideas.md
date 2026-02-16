@@ -2,6 +2,11 @@
 
 *These are exploratory concepts, not validated designs. Ideas may require additional research, IP review, or proof-of-concept work before implementation.*
 
+**When building any agent from this list, include these prompt quality patterns:**
+
+- **Input Validation Gates**: Define 3-5 required dimensions the agent checks before generating a full response. On incomplete input: state what's missing, provide a short preliminary analysis, ask for clarification.
+- **Output Constraints**: Set field-level word limits and a total word cap (250-400 words). Forces the agent to prioritize and distill rather than dump context. See [handbook](../docs/handbook.md) for full rationale.
+
 | Name | Description |
 |------|-------------|
 | [decision-facilitator-agent](#decision-facilitator-agent) | Guides structured decision-making using proven frameworks |
@@ -30,11 +35,13 @@
 | | **Thinking Chain** *(can be orchestrated together)* |
 | [systems-thinker-agent](#systems-thinker-agent) | Sees the whole system, finds connections and leverage points |
 | [strategist-agent](#strategist-agent) | Long-term vision, positioning, and where to play |
+| [okr-agent](#okr-agent) | Writes, scores, and aligns OKRs across teams and levels |
 | [tactician-agent](#tactician-agent) | Short-term execution, how to win in the current context |
 | | **Use-Case Specific** *(may use personality frameworks internally)* |
 | [communication-adapter-agent](#communication-adapter-agent) | Adapts communication style for different audiences |
 | [strength-finder-agent](#strength-finder-agent) | Identifies and applies professional strengths |
 | [friction-reducer-agent](#friction-reducer-agent) | Reduces interpersonal friction from style differences |
+| [question-decoder-agent](#question-decoder-agent) | Decodes questions before answering: who is asking, why, what they need to hear |
 
 ---
 
@@ -61,6 +68,24 @@ Possible skills:
 - `document-decision`: capture rationale, context, and expected outcomes
 
 Possible inputs: `decision_context`, `options`, `stakeholders`, `constraints`, `timeline`, `reversibility`
+
+Validation rules (check before generating):
+
+1. Decision context (what is being decided and why now?)
+2. Options available (what alternatives exist?)
+3. Stakeholders (who decides, who is affected?)
+4. Constraints (timeline, budget, reversibility)
+
+Output constraints:
+
+```text
+decision_frame: 2-3 sentences. Name the decision type and recommended framework.
+options_analysis: Max 3 options, 2 sentences each (pros/cons).
+recommendation: 1-2 sentences. Rank by impact.
+next_step: One concrete action to move forward.
+
+Total output must not exceed 300 words.
+```
 
 Key principles:
 
@@ -93,6 +118,24 @@ Possible skills:
 - `navigate-situation`:tactical advice for specific scenarios (promotion, conflict, change)
 
 Possible inputs: `organization_context`, `your_role`, `stakeholders`, `situation`, `constraints`
+
+Validation rules (check before generating):
+
+1. Organization context (company type, culture, size)
+2. Your role (position, tenure, reporting structure)
+3. Specific situation (what is happening, what's at stake?)
+4. Key stakeholders (who matters in this scenario?)
+
+Output constraints:
+
+```text
+landscape: 2-3 sentences. Name the political dynamic at play.
+key_players: Max 3 stakeholders, one sentence each (interest, influence, stance).
+recommendations: Top 3 actions, ranked by impact. One sentence each.
+risk: One sentence on what to watch out for.
+
+Total output must not exceed 300 words.
+```
 
 Boundaries: Does NOT make decisions, provide legal/HR advice, or guarantee outcomes. Focuses on navigation, not manipulation.
 
@@ -943,7 +986,7 @@ Helps think long-term about where to play and how to win. Operationalizes the ex
 
 Frameworks supported:
 
-- **OKRs (Objectives & Key Results)**: Goal-setting framework connecting ambitious objectives to measurable outcomes
+- **OKRs (strategic alignment)**: Connecting strategy to objectives at the highest level (detailed OKR writing → okr-agent)
 - **Porter's Five Forces**: Industry analysis (suppliers, buyers, substitutes, new entrants, rivalry)
 - **SWOT Analysis**: Strengths, Weaknesses, Opportunities, Threats assessment
 - **Blue Ocean Strategy**: Creating uncontested market space vs. competing in existing markets
@@ -974,8 +1017,48 @@ References:
 - [Playing to Win (Lafley & Martin)](https://www.amazon.com/Playing-Win-Strategy-Really-Works/dp/142218739X): strategic choice cascade
 - [Good Strategy Bad Strategy (Rumelt)](https://www.amazon.com/Good-Strategy-Bad-Difference-Matters/dp/0307886239): diagnosis, guiding policy, coherent action
 - [Blue Ocean Strategy (Kim & Mauborgne)](https://www.blueoceanstrategy.com/): creating uncontested market space
-- [Measure What Matters (Doerr)](https://www.whatmatters.com/): OKRs guide
+- [Measure What Matters (Doerr)](https://www.whatmatters.com/): OKRs strategic context (detailed OKR work → okr-agent)
 - [The Art of the Long View (Schwartz)](https://www.amazon.com/Art-Long-View-Planning-Uncertain/dp/0385267320): scenario planning
+
+---
+
+## okr-agent
+
+Helps individuals, teams, and organizations write effective OKRs, score progress, align objectives across levels, and run OKR cycles. Operationalizes the expertise of OKR coaches who help companies move from vague goals to measurable outcomes. Complements the Strategist (which sets direction) by translating strategic intent into concrete, measurable objectives.
+
+Frameworks supported:
+
+- **OKRs (Objectives & Key Results)**: Ambitious qualitative objectives paired with 3-5 measurable key results
+- **CFRs (Conversations, Feedback, Recognition)**: Continuous performance management complement to OKRs
+- **Alignment & Cascading**: Connecting company, team, and individual OKRs vertically and horizontally
+- **Scoring & Grading**: 0.0-1.0 scoring with 0.6-0.7 as the sweet spot for stretch goals
+
+Possible skills:
+
+- `write-okrs`: Draft OKRs from a goal description, ensuring objectives are qualitative and key results are measurable
+- `score-okrs`: Evaluate OKR progress at mid-cycle or end-of-cycle with honest scoring
+- `align-okrs`: Check vertical and horizontal alignment across company, team, and individual OKRs
+- `critique-okrs`: Review existing OKRs for common anti-patterns (too many, not measurable, sandbagged, activity-based)
+- `run-checkin`: Facilitate a weekly/biweekly OKR check-in with status updates and blockers
+
+Possible inputs: `goal_or_initiative`, `level`, `time_period`, `existing_okrs`, `company_objectives`, `team_context`
+
+Key principles:
+
+- **Objectives inspire, Key Results measure**: Objectives are qualitative and motivating; Key Results are quantitative and verifiable
+- **Less is more**: 3-5 objectives max per level, 3-5 key results per objective
+- **Stretch, don't sandbag**: 0.6-0.7 completion is healthy; 1.0 means the goal wasn't ambitious enough
+- **Outcomes over outputs**: "Launch feature X" is an output; "Increase user retention by 15%" is an outcome
+- **Alignment is not cascade**: Teams should align to company OKRs, not copy them down verbatim
+- **Separation from compensation**: OKRs work best when decoupled from performance reviews
+
+References:
+
+- [Measure What Matters (John Doerr)](https://www.whatmatters.com/): the definitive OKR guide
+- [Radical Focus (Christina Wodtke)](https://www.amazon.com/Radical-Focus-Achieving-Important-Objectives/dp/0996006028): OKRs for startups, narrative approach
+- [WhatMatters.com](https://www.whatmatters.com/faqs/okr-examples-and-how-to-write-them): OKR examples and how-to guides
+- [re:Work by Google](https://rework.withgoogle.com/intl/en/guides/set-goals-with-okrs): Google's OKR implementation guide
+- [Objectives and Key Results (Niven & Lamorte)](https://www.amazon.com/Objectives-Key-Results-Driving-Organization/dp/1119252393): comprehensive OKR methodology
 
 ---
 
@@ -1216,3 +1299,52 @@ Reduces interpersonal friction from style differences. Uses publicly available b
 3. Position as a coaching complement, not assessment replacement
 4. Use generic terms where proprietary ones would create risk
 5. Encourage users to take official assessments for formal results
+
+---
+
+## question-decoder-agent
+
+Helps answer questions strategically by first decoding the question itself. Most answers fail not because they're wrong, but because they don't match what the person actually needs. This agent forces a pause before answering to analyze three dimensions: who is asking, why they're asking, and what they need to hear.
+
+The core insight: a CEO asking "How's the project going?" and a team lead asking the same question need completely different answers, even if the facts are identical.
+
+**Three-lens framework:**
+
+- **Who is asking?** Role, expertise level, decision-making power, what they care about, their relationship to you, their communication style preferences
+- **Why are they asking?** The trigger behind the question, the real concern underneath, whether they're seeking information or reassurance or ammunition, what problem they're trying to solve
+- **What do they want to hear?** The format (number, story, recommendation), the depth (headline vs. detail), the framing (risk vs. opportunity), the tone (formal vs. casual), the action they need to take next
+
+Frameworks supported:
+
+- **Audience Analysis Matrix**: Map stakeholder type to information needs, preferred format, and decision context
+- **Question Behind the Question**: Techniques for identifying the unstated concern driving the surface question
+- **Answer Architecture**: Structure responses by matching depth, format, and framing to audience needs
+- **Curse of Knowledge Inversion**: Adjust expertise level, strip jargon, rebuild from the listener's starting point
+- **Pyramid Principle (Minto)**: Lead with the answer, then support with evidence, structured top-down
+
+Possible skills:
+
+- `decode-question`: Analyze who is asking, why, and what they need before crafting an answer
+- `profile-audience`: Build a quick profile of the questioner's context and needs
+- `architect-answer`: Structure the response to match the decoded needs
+- `reframe-for-audience`: Take a technical or complex answer and reshape it for a specific audience
+- `anticipate-follow-ups`: Predict what they'll ask next based on their role and intent
+
+Possible inputs: `question`, `who_is_asking` (role, context), `relationship`, `setting` (meeting, email, 1:1, presentation), `stakes`
+
+Key principles:
+
+- **The question is never just the question**: Surface questions carry hidden concerns, and the best answers address both
+- **Match the altitude**: Executives want the "so what," engineers want the "how," managers want the "when"
+- **Answer the emotion first**: If someone is anxious, reassure before informing. If they're skeptical, acknowledge before persuading
+- **Less is more for senior audiences**: The higher the seniority, the shorter the answer should be
+- **Format is content**: How you answer shapes what they understand. A number, a story, and a recommendation all carry different weight
+
+References:
+
+- [Pyramid Principle (Barbara Minto)](https://www.amazon.com/Pyramid-Principle-Logic-Writing-Thinking/dp/0273710516): top-down communication structure
+- [Made to Stick (Heath Brothers)](https://heathbrothers.com/books/made-to-stick/): why some messages land and others don't
+- [Crucial Conversations](https://cruciallearning.com/crucial-conversations-book/): reading the room before speaking
+- [The Coaching Habit (Michael Bungay Stanier)](https://boxofcrayons.com/the-coaching-habit/): asking better questions before giving answers
+- [Thanks for the Feedback (Stone & Heen)](https://www.stoneandheen.com/thanks-feedback): understanding what people need from communication
+- [HBR on Executive Communication](https://hbr.org/topic/subject/communication): audience-adapted communication research

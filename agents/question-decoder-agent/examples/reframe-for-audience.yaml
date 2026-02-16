@@ -1,0 +1,138 @@
+# Reframe for Audience Example
+# Skill: Same answer reframed for 3 different audiences
+
+original_answer: |
+  We discovered a race condition in the payment processing pipeline that caused
+  duplicate charges for approximately 0.3% of transactions over the past 48 hours.
+  The root cause was a missing idempotency key in the async message handler.
+  We've deployed a hotfix with proper deduplication logic and are processing
+  refunds for all affected customers. Total financial exposure is $47,000.
+
+---
+
+# Reframe 1: For the CEO
+
+input:
+  answer: "(original answer above)"
+  target_audience: "CEO, non-technical, presenting to investors next week"
+  context: "Slack message, CEO needs the headline"
+
+output:
+  audience_profile:
+    role: "CEO, external-facing, reputation-sensitive"
+    expertise_level: "Low on technical, high on business impact"
+    preferred_format: "Headline with impact and resolution"
+    communication_style: "Big-picture, wants to know: is this handled?"
+    primary_concern: "Customer trust, financial exposure, will this happen again"
+
+  reframed_answer: |
+    A billing error caused duplicate charges for a small number of
+    customers (0.3%) over two days. Total exposure: $47K. It's fixed,
+    refunds are processing, and we've added safeguards to prevent
+    recurrence. No customer complaints have escalated. If this comes
+    up with investors, the headline is: we caught it fast, fixed it
+    same day, and all customers are being made whole.
+
+  adaptation_notes:
+    what_changed:
+      - "Removed all technical terms (race condition, idempotency key, async handler)"
+      - "Added investor-ready framing since that's the CEO's upcoming context"
+      - "Led with impact and resolution, not root cause"
+    what_was_omitted:
+      - "Technical root cause details"
+      - "Implementation specifics of the fix"
+    what_was_added:
+      - "Customer complaint status (relevant to CEO's concern)"
+      - "Investor conversation framing"
+
+---
+
+# Reframe 2: For the VP of Engineering
+
+input:
+  answer: "(original answer above)"
+  target_audience: "VP of Engineering, technical background, owns platform reliability"
+  context: "Incident review meeting"
+
+output:
+  audience_profile:
+    role: "VP of Engineering, accountable for platform reliability"
+    expertise_level: "High, wants technical precision"
+    preferred_format: "Data-led with root cause and prevention"
+    communication_style: "Analytical, wants to see systemic thinking"
+    primary_concern: "Is this a one-off or a pattern? What's the prevention plan?"
+
+  reframed_answer: |
+    Root cause: missing idempotency key in the async payment message
+    handler allowed duplicate processing under high concurrency. Impact:
+    0.3% of transactions over 48 hours, $47K total exposure.
+
+    Fix deployed: added deduplication logic with idempotency keys at
+    the handler level. Refunds processing automatically.
+
+    Prevention: I'm proposing we add idempotency checks as a standard
+    requirement for all async handlers. We should also add a monitoring
+    alert for duplicate transaction patterns, which would have caught
+    this in under an hour instead of 48. I'll bring the proposal to
+    the architecture review Thursday.
+
+  adaptation_notes:
+    what_changed:
+      - "Led with root cause instead of impact (this audience wants the why first)"
+      - "Added systemic prevention proposal (shows engineering maturity)"
+      - "Included specific next step with timeline"
+    what_was_omitted:
+      - "Business framing (this audience thinks in systems, not revenue)"
+    what_was_added:
+      - "Monitoring gap analysis"
+      - "Architecture review proposal with date"
+
+---
+
+# Reframe 3: For the Customer Success Team
+
+input:
+  answer: "(original answer above)"
+  target_audience: "Customer Success team, will handle inbound questions"
+  context: "Internal briefing to prepare for customer inquiries"
+
+output:
+  audience_profile:
+    role: "Customer Success, front-line with affected customers"
+    expertise_level: "Non-technical, needs talking points not root cause"
+    preferred_format: "Script-ready language with Q&A"
+    communication_style: "Empathetic, customer-first"
+    primary_concern: "What do I tell the customer? How do I keep their trust?"
+
+  reframed_answer: |
+    What happened: A small number of customers (about 0.3%) were
+    charged twice for a single transaction over the past two days.
+
+    What we're doing: Every affected customer is receiving an automatic
+    refund. No action needed on their part. The technical issue has
+    been fixed.
+
+    If a customer contacts you:
+    - Acknowledge the error and apologize
+    - Confirm their refund is being processed (2-3 business days)
+    - If they want specifics: "A technical error caused duplicate
+      processing. It's been resolved and safeguards are in place."
+    - Do NOT promise it will never happen again; say "We've added
+      additional safeguards to prevent this type of issue."
+
+    Escalate to engineering if: a customer reports charges beyond
+    the 48-hour window, or if the refund doesn't appear within
+    5 business days.
+
+  adaptation_notes:
+    what_changed:
+      - "Converted to script-ready format with specific phrases to use"
+      - "Removed all technical terminology"
+      - "Added escalation criteria"
+    what_was_omitted:
+      - "Root cause details (not helpful for customer conversations)"
+      - "Financial exposure number (internal only)"
+    what_was_added:
+      - "Exact phrases to use with customers"
+      - "Refund timeline for customer-facing communication"
+      - "Clear escalation path"

@@ -1,0 +1,60 @@
+# Anticipate Follow-ups Example
+# Skill: Predicting follow-up questions from a skeptical stakeholder
+
+input:
+  question: "Why did the last release take three sprints instead of one?"
+  who_is_asking: "VP of Product, skeptical, has been pushing for faster delivery"
+  context: "Sprint retrospective, full team present, VP joined unexpectedly"
+  answer: |
+    The scope expanded after we discovered integration issues with the
+    legacy API during development. We chose to fix the underlying problem
+    rather than ship a workaround that would have created more work later.
+
+output:
+  audience_profile:
+    role: "VP of Product, owns roadmap, accountable for delivery speed"
+    expertise_level: "Medium-technical, understands enough to challenge"
+    preferred_format: "Direct with data"
+    communication_style: "Skeptical, results-oriented, impatient with excuses"
+    primary_concern: "Engineering is too slow; other teams are waiting on this"
+
+  follow_ups:
+    - question: "Why wasn't the integration issue caught during planning?"
+      why_likely: "VP of Product expects engineering to scope accurately; this sounds like a planning failure"
+      prepared_response: |
+        Fair question. The legacy API documentation was outdated, and
+        the actual behavior differed from the spec. We've since added
+        integration testing to our spike process so we catch these
+        discrepancies before committing to a timeline. This specific
+        scenario won't repeat.
+      likelihood: "very likely"
+
+    - question: "How do we prevent this from happening again?"
+      why_likely: "Skeptical stakeholders want systemic fixes, not one-time explanations"
+      prepared_response: |
+        Two changes: first, we're adding a technical spike before
+        any feature that touches the legacy system, which adds two
+        days upfront but saves weeks of surprises. Second, we're
+        documenting the actual API behavior as we go, so the next
+        team doesn't hit the same gap. Both are already in our
+        process as of this sprint.
+      likelihood: "very likely"
+
+    - question: "What's the impact on the roadmap? Are other features delayed?"
+      why_likely: "VP of Product is thinking about downstream effects on commitments they've made to stakeholders"
+      prepared_response: |
+        The auth feature shipped on time because it doesn't touch
+        legacy systems. The reporting dashboard is pushed by one
+        sprint, and I've already flagged that to the stakeholders.
+        Nothing else on the Q2 roadmap is affected.
+      likelihood: "likely"
+
+  worst_case_question:
+    question: "Is this a team capability issue? Do we have the right people on this?"
+    prepared_response: |
+      The team executed well once the scope was clear. The issue was
+      information quality, not team quality. The engineer who found
+      the integration problem saved us from shipping a fragile
+      workaround. I'd rather have a team that catches problems than
+      one that ships them. That said, I'm open to discussing whether
+      we need more legacy system expertise on the team.

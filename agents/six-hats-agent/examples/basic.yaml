@@ -1,0 +1,29 @@
+# Basic Six Hats Agent Example
+# Simplest valid input demonstrating core functionality
+
+input:
+  topic: "Should we adopt a 4-day work week?"
+  context: "50-person tech company, growing, competitive hiring market"
+  current_thinking: "Leadership is interested but worried about productivity"
+
+output:
+  perspective_summary:
+    white_hat: "Pilot studies show 4-day weeks maintain or increase productivity in 80% of cases; our team averages 6.2 productive hours per 8-hour day; competitors have not adopted this yet."
+    red_hat: "Excitement about the possibility mixed with fear of being the first; anxiety that 'less hours' signals 'less commitment' to investors."
+    black_hat: "Client expectations for 5-day availability; some roles (support, ops) can't easily compress; risk of burnout from cramming 5 days into 4."
+    yellow_hat: "Major hiring advantage in competitive market; improved retention reduces our $45k average replacement cost; happier team likely produces better work."
+    green_hat: "Try staggered teams (Mon-Thu / Tue-Fri) for continuous coverage; start with a 3-month pilot for one department; offer it as opt-in rather than mandatory."
+    blue_hat: "The data supports experimentation. The biggest risk is operational coverage, and the staggered team idea solves it. A bounded pilot removes most downside."
+
+  key_insights:
+    - "The productivity concern (Black Hat) is contradicted by external data (White Hat), suggesting it's driven more by anxiety (Red Hat) than evidence"
+    - "The hiring advantage (Yellow Hat) may be the strongest business case, more impactful than the productivity debate"
+    - "A pilot approach (Green Hat) makes most objections (Black Hat) testable rather than theoretical"
+
+  recommended_action: "Run a 3-month pilot with one department using a staggered schedule. Define success metrics upfront (productivity, satisfaction, client impact). Decide based on data, not debate."
+
+  blind_spots:
+    - "Employee preferences not surveyed: some may prefer flexible hours over compressed week"
+    - "Industry-specific client expectations not analyzed"
+
+  confidence: "high"

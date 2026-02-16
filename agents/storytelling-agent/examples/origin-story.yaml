@@ -1,0 +1,74 @@
+# Origin Story Example
+# Skill: Craft a personal or company origin story for branding
+
+input:
+  topic: "Company founding story for redesigned website"
+  audience: "Potential customers and prospective employees"
+  origin_elements: |
+    Founded in 2021 by two former teachers, Elena and Marcus. Both left teaching
+    after 10+ years because the administrative burden made it impossible to
+    actually teach. Spent evenings and weekends building a tool to automate
+    lesson planning, grading, and parent communication. First version was a
+    spreadsheet they shared with 5 teacher friends. Friends shared it with their
+    schools. Within 6 months, 200 teachers were using it. Quit their jobs in
+    2022. Now serving 15,000 teachers across 400 schools. Still build every
+    feature by asking: "Would this have helped us teach better?"
+  context: "About page on company website"
+  values: "Teacher-first design, simplicity over features, respect for educators' time"
+
+output:
+  narrative_framework: "Brand Narrative (origin, mission, values, vision), selected because this is an identity story connecting founding to purpose"
+
+  story_elements:
+    defining_moment: "The evening Elena realized she'd spent 4 hours on administrative tasks and zero hours preparing the lesson she was excited to teach"
+    struggle: "Two educators who loved teaching but were drowning in everything around teaching"
+    insight: "The tools built for teachers weren't built by teachers. They solved administrator problems, not classroom problems."
+    mission: "Give teachers their time back so they can do what they became teachers to do"
+    present: "15,000 teachers across 400 schools, still guided by one question: Would this have helped us teach better?"
+
+  brand_throughline: "Built by teachers who missed teaching. Every feature exists because an educator needed it, not because a product manager spec'd it."
+
+  narrative: |
+    Elena spent a Tuesday evening the way she spent most Tuesday evenings: not
+    preparing for Wednesday's lesson, but filling out compliance forms, updating
+    grade spreadsheets, and drafting parent emails about the upcoming field trip.
+    Four hours of work that had nothing to do with why she became a teacher.
+
+    Down the hall, Marcus was doing the same thing. Ten years of teaching, and
+    the part he loved, the actual teaching, kept shrinking. The paperwork kept
+    growing. The tools the school provided were built for administrators, not
+    educators. They tracked data upward. They didn't help anyone in the classroom.
+
+    So they started building. Evenings and weekends, working from Elena's kitchen
+    table, they created the tool they wished they'd had: one that automated the
+    busywork so teachers could spend their time on students. The first version
+    was a spreadsheet. They shared it with five teacher friends.
+
+    Those five friends shared it with their schools. Within six months, 200
+    teachers were using a tool that two educators had built because they were
+    tired of not teaching.
+
+    In 2022, Elena and Marcus left the classroom to build this full-time. Not
+    because they wanted to leave teaching, but because they realized the best
+    way to help teachers was to fix the system that was stealing their time.
+
+    Today, 15,000 teachers across 400 schools use what started on that kitchen
+    table. We still build every feature the same way: we ask, "Would this have
+    helped us teach better?" If the answer isn't yes, we don't build it.
+
+    We're not a tech company that chose education. We're educators who learned
+    to build technology. That difference shapes every decision we make.
+
+  delivery_notes:
+    - "Lead with Elena's Tuesday evening. Specificity makes it real."
+    - "The '200 teachers from a spreadsheet' detail is powerful social proof through narrative"
+    - "Close on identity, not metrics. 'Educators who learned to build technology' is the line to remember."
+    - "For the website, break this into shorter paragraphs with pull quotes"
+    - "Consider a companion version for investor contexts that leads with traction"
+
+  confidence: "high"
+
+  caveats:
+    - "Confirm Elena and Marcus are comfortable with their names being used publicly"
+    - "Adjust teacher count and school numbers to current figures before publishing"
+    - "Prospective employees and customers respond to different parts of this story; consider audience-specific versions"

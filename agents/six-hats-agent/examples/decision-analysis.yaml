@@ -1,0 +1,29 @@
+# Decision Analysis Example
+# Skill: Evaluate a specific decision from key perspectives
+
+input:
+  topic: "Should we build or buy our analytics platform?"
+  context: "Series B startup, 30 engineers, current analytics is a patchwork of tools"
+  options: "Build custom platform in-house vs. adopt Mixpanel/Amplitude"
+  current_thinking: "CTO wants to build, CFO wants to buy"
+
+output:
+  perspective_summary:
+    white_hat: "Current analytics costs $8k/month across 4 tools; custom build estimated at 3 engineers for 6 months; off-the-shelf covers 70% of current needs out of the box."
+    yellow_hat: "Building gives full control and competitive differentiation; buying saves 18 engineer-months and ships analytics improvements this quarter, not next year."
+    black_hat: "Building diverts 10% of engineering capacity from core product during critical growth phase; the 6-month estimate will likely become 12; buying creates vendor dependency and may not scale with unique data needs."
+    red_hat: "CTO's desire to build feels like engineering pride more than business need; the team is frustrated with current tool fragmentation and wants any solution fast."
+    blue_hat: "Buy now, build later. The opportunity cost of building (18 engineer-months during Series B growth) outweighs the long-term control benefit. Buy a platform that covers 70%, build custom integrations for the remaining 30%."
+
+  key_insights:
+    - "The build vs. buy framing is false: a hybrid approach (buy platform + build integrations) captures most benefits of both"
+    - "The CTO's preference (Red Hat) may be driven by engineering culture rather than business analysis (White Hat)"
+    - "Time-to-value matters more than perfection at Series B stage: buying ships improvements 6+ months sooner"
+
+  recommended_action: "Adopt an off-the-shelf analytics platform this quarter. Allocate one engineer to build custom integrations for the 30% gap. Revisit the build decision in 18 months when the team is larger and needs are clearer."
+
+  blind_spots:
+    - "Data privacy and compliance requirements not assessed: may favor building"
+    - "Team morale impact of overriding CTO's preference not considered"
+
+  confidence: "high"

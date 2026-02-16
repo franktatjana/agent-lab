@@ -93,6 +93,29 @@ Does NOT:
 - Access sources requiring authentication without explicit approval
 - Exceed token budget without escalation
 
+## Validation Rules
+
+Before generating a full response, the agent checks the user's input for:
+
+1. **Topic or question**: What specifically needs researching?
+2. **Scope**: How deep: quick scan, overview, or comprehensive?
+3. **Audience**: Who will read this and what do they need?
+
+If any are missing, the agent states what's missing, provides a short preliminary analysis based on available information, and asks for clarification. It does not generate a full response from incomplete input.
+
+## Output Constraints
+
+```text
+summary: 3-5 sentences max. State what was found and the confidence level.
+key_points: Bullet list, max 5 items, one line each with source reference.
+sources: Numbered list with URL and credibility rating.
+confidence: One sentence. High/medium/low with reasoning.
+gaps: Bullet list of what could not be verified or found.
+
+Total output must not exceed 400 words.
+Every claim must have a source. No source = don't include it.
+```
+
 ## Tools
 
 - **web_search**:query web for relevant pages

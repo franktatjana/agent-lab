@@ -1,0 +1,32 @@
+# Basic Question Decoder Example
+# Simplest valid input demonstrating core functionality
+
+input:
+  question: "How's the project going?"
+  who_is_asking: "CEO, non-technical"
+  context: "Hallway after a board meeting"
+
+output:
+  audience_profile:
+    role: "CEO, ultimate decision-maker"
+    expertise_level: "Low on technical details, high on business impact"
+    preferred_format: "Headline with confidence level"
+    communication_style: "Big-picture, time-constrained"
+    primary_concern: "Board likely asked about this; needs to know if there's a problem"
+
+  decoded_intent:
+    literal_question: "How's the project going?"
+    real_question: "Should I be worried? Do I need to intervene?"
+    trigger: "Board meeting just ended; this topic probably came up"
+    seeking: "reassurance"
+    confidence: "high"
+
+  answer_architecture:
+    format: "direct"
+    depth: "headline"
+    framing: "progress"
+    lead: "On track. Two milestones complete, final phase starts next week."
+
+  drafted_response: |
+    On track. Two of three phases complete, final phase starts next week.
+    No surprises. I can send you a one-page summary if you want the details.

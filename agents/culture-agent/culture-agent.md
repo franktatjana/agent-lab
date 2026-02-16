@@ -81,6 +81,29 @@ Does NOT:
 - Guarantee cultural patterns apply to individuals
 - Replace human cultural consultants for high-stakes situations
 
+## Validation Rules
+
+Before generating a full response, the agent checks the user's input for:
+
+1. **Source culture**: Which country or region is the team/person from?
+2. **Target culture**: Who are they communicating with?
+3. **Specific behavior**: What exactly is happening or needs to happen?
+4. **Context**: Business relationship, reporting structure, history
+
+If any are missing, the agent states what's missing, provides a short preliminary analysis based on available information, and asks for clarification. It does not generate a full response from incomplete input.
+
+## Output Constraints
+
+```text
+cultural_context: 2-3 sentences max. Name the cultural dimension at play.
+potential_friction: Bullet list, max 3 items, one line each.
+recommendations: Top 3 actions only, ranked by impact. One sentence each.
+reframed_message: Max 5 sentences. Ready to send.
+
+Total output must not exceed 300 words.
+Hard rule: If you cannot say it in one sentence, restructure your thinking.
+```
+
 ## Tools
 
 - **web_search**:research cultural norms and current events
@@ -456,5 +479,6 @@ caveats:
 
 ## Version History
 
+- 0.3.0: Added Validation Rules and Output Constraints sections, enforcing input checking and concise output
 - 0.2.0: Added Mutual Learning section, cross-cultural learning opportunities, updated quality criteria and case study
 - 0.1.0: Initial draft

@@ -56,6 +56,28 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 
 ---
 
+## Prompt Quality
+
+**Do:**
+
+- Add input validation gates: define required dimensions the user must provide before generating a full response
+- Set field-level output constraints: word limits per field, total word cap (250-400 words typical)
+- When input is incomplete: state what's missing, give a short preliminary analysis, ask for clarification
+- Force structured output: named fields with explicit limits make the agent prioritize and distill
+- Test both paths: complete input (full structured output) and incomplete input (validation fires correctly)
+
+**Don't:**
+
+- Generate full responses from vague input, the output will be generic and low-value
+- Let agents produce 800+ word walls of text, humans stop reading after 200
+- Skip the preliminary analysis on incomplete input, giving nothing feels like rejection
+- Set constraints so tight the agent can't be useful (under 150 words kills nuance)
+- Rely on the LLM's judgment about "enough context," define the required dimensions explicitly
+
+*Why it matters: Validation gates prevent garbage-in-garbage-out. Output constraints force the agent to prioritize rather than dump everything it knows. Together they produce responses that are both relevant and readable.*
+
+---
+
 ## Output Format
 
 **Do:**
@@ -205,6 +227,54 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 - Skip isolation: trials need clean state between runs
 
 *Why it matters: Without evals, debugging is reactive and improvement is unmeasurable. Evals force explicit success criteria and enable rapid model adoption.*
+
+---
+
+## Routing and Orchestration
+
+**Do:**
+
+- Start with static routing (classification into known categories) before reaching for dynamic orchestration
+- Use tool-call routing over free-text extraction, it leverages native LLM capabilities and is more reliable
+- Write clear agent descriptions: in every framework, the routing LLM reads descriptions to decide who handles what
+- Match topology to task: supervisor for centralized control, handoffs for sequential conversations, router for stateless fan-out
+- Specify handoff contracts: what context transfers, what format the receiver expects, whether control returns to the sender
+- Scale effort dynamically: simple fact-finding needs one agent, complex research needs many, let the orchestrator judge
+- Use planning before execution: CrewAI's planning mode and similar patterns reduce coordination failures by giving every agent the full picture upfront
+
+**Don't:**
+
+- Use dynamic orchestration for tasks where categories are known and fixed, static routing is faster, cheaper, and more predictable
+- Assume agents will discover each other at runtime, pre-wire handoff paths and make them explicit
+- Let the orchestrator become a bottleneck, if every message passes through one coordinator, that coordinator limits throughput and becomes a single point of failure
+- Skip context filtering on handoffs, passing full conversation history to every agent wastes tokens and dilutes attention
+- Mix control flow models (peer-to-peer and hierarchical) without clear conventions, decide upfront whether delegated agents return results or take over completely
+- Forget to handle routing failures: what happens when the LLM picks the wrong agent, or no agent matches?
+
+*Why it matters: Routing is where multi-agent systems succeed or fail. Static routing gives predictability, dynamic routing gives flexibility. The wrong choice in either direction costs latency, tokens, or reliability. Handoff design determines whether agents coordinate or talk past each other.*
+
+---
+
+## Interfaces
+
+**Do:**
+
+- Design agent-computer interfaces (ACI) with the same rigor as human-computer interfaces: usage examples, input requirements, edge cases, clear boundaries
+- Define typed data contracts (input shape, output shape) even in specification-only repos, they make specs integration-ready
+- Apply poka-yoke (mistake-proofing) to tool interfaces: require absolute paths, validate at boundaries, make errors structurally impossible
+- Know the four interface layers: agent-to-tool (ACI/MCP), agent-to-agent (A2A), agent-to-user (AG-UI), and typed data contracts
+- Start simple: direct tool definitions before protocol layers, add complexity only when it demonstrably improves outcomes
+- Test tool interfaces iteratively: run many example inputs through the model to discover mistakes, then refine
+
+**Don't:**
+
+- Treat tool documentation as less important than prompts, agents read tool definitions to decide how and when to invoke them
+- Rely on free-text communication between agents when structured contracts are possible, loose contracts cause integration failures
+- Assume agents will figure out tool boundaries on their own, explicitly document what each tool does and does not handle
+- Add protocol layers (MCP, A2A, AG-UI) before you have working agent-to-tool interfaces, get the basics right first
+- Skip interface testing, Anthropic's SWE-bench finding was that more time was spent optimizing tool definitions than overall prompts
+
+*Why it matters: Agents interact with the world through interfaces. A well-defined tool interface eliminates entire categories of errors. A missing or vague one causes cascading failures that look like agent bugs but are actually contract violations.*
 
 ---
 

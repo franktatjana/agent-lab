@@ -126,6 +126,75 @@ Agents often receive incomplete requests. Instead of guessing or failing, they s
 
 > "What format do you want?" Too vague
 
+### Input Validation Gates
+
+Agents that generate full responses from incomplete input produce low-quality, generic output. A validation gate checks the user's input for required dimensions before the agent commits to a full response. This is different from discovery questions: discovery questions are asked before execution, validation gates are built into the prompt itself.
+
+Every agent should define what it needs to produce quality output. When input is incomplete, the agent should:
+
+1. State what is missing
+2. Provide a short preliminary analysis based on what it has
+3. Ask the user to clarify the missing items
+4. Not generate a full response until the input is sufficient
+
+**Validation rules are agent-specific.** A culture agent needs source culture, target culture, specific behavior, and context. A research agent needs topic, scope, and audience. Define these as a checklist the agent runs before producing output.
+
+**Example validation section in a prompt:**
+
+```text
+Before generating output, check the user situation for:
+1. Source culture (which country/region?)
+2. Target culture (who are they communicating with?)
+3. Specific behavior (what exactly is happening?)
+4. Context (business relationship, reporting structure)
+
+If any are missing:
+→ State what is missing
+→ Provide a SHORT preliminary analysis based on what you have
+→ End with: "To sharpen this analysis, please clarify: [list]"
+
+Do NOT generate a full response from incomplete input.
+```
+
+**Key principle:** Validation prevents the agent from guessing its way to a confident-sounding but wrong answer. It's better to ask than to hallucinate context.
+
+### Output Constraints
+
+Agents default to verbose output. Without explicit constraints, an LLM will produce 500-800 words when 150-200 would deliver the same value. Output constraints define field-by-field structure with word limits, forcing the agent to distill rather than expand.
+
+Output constraints are distinct from output format (YAML, markdown, text). Format defines shape; constraints define density.
+
+**A good output constraint block includes:**
+
+- Named fields with sentence/word limits per field
+- A total word cap for the entire response
+- A distillation rule (e.g., "if you can't say it in one sentence, restructure")
+
+**Example:**
+
+```text
+cultural_context: 2-3 sentences max. Name the cultural dimension at play.
+potential_friction: Bullet list, max 3 items, one line each.
+recommendations: Top 3 actions only, ranked by impact. One sentence each.
+reframed_message: Max 5 sentences. Ready to send.
+
+Total output must not exceed 300 words.
+Hard rule: If you cannot say it in one sentence, restructure your thinking.
+```
+
+**Why this matters:**
+
+- Concise output → higher read rate → more value delivered
+- Forced ranking → agent must prioritize, not list everything
+- Word caps → prevents context dumping disguised as thoroughness
+- Field structure → consistent, parseable, comparable across runs
+
+**Anti-patterns:**
+
+- "Be concise" without numbers (ignored by the model)
+- Word limits without field structure (agent front-loads one section)
+- No total cap (individual field limits still produce long output)
+
 ### Knowledge Bases
 
 A system prompt tells an agent what to *be*. A knowledge base tells it what to *know*.
@@ -335,14 +404,77 @@ Agents operate independently, share signals. Works for monitoring, parallel proc
 
 Most real systems use hybrid patterns.
 
+### Routing: Static vs. Dynamic
+
+Routing determines which agent handles a given input. This is one of the most consequential design decisions in a multi-agent system, and the industry distinguishes two fundamentally different approaches based on whether the set of possible routes is known in advance.
+
+**Static routing (classification-based)** classifies input into one of N predefined categories using either an LLM or a traditional classifier, then directs it to a specialized handler. Anthropic explicitly categorizes this as a workflow pattern, not an agent pattern: the categories are fixed, and the system picks one. It works well when distinct categories exist, classification accuracy is high, and each category maps to a handler with its own prompt and tools. Common examples include directing customer service queries (general, refund, technical) to specialized processes, or routing easy questions to cheaper models and hard questions to more capable ones.
+
+**Dynamic routing (LLM-reasoning-based)** uses an LLM to decompose tasks, assess which specialist is best suited, and decide what to delegate, all at runtime with no predetermined categories. Anthropic's orchestrator-workers pattern is the canonical example: "a central LLM dynamically breaks down tasks, delegates them to worker LLMs, and synthesizes their results." The critical difference from static routing is flexibility: subtasks are not pre-defined but determined by the orchestrator based on the specific input. This matters for open-ended problems where you cannot predict what subtasks will be needed, such as coding across unknown files or research requiring multiple parallel investigations.
+
+**When to use which:** Static routing suits well-defined categories with predictable handling, offering lower cost and higher consistency. Dynamic routing suits open-ended tasks where the number of subtasks, their nature, and which specialists should handle them all vary per input. Start with static routing; move to dynamic only when the task variation demonstrably requires it.
+
+### Dynamic Routing Mechanisms
+
+Across frameworks, the LLM signals routing decisions through three mechanisms, each with different tradeoffs for reliability, flexibility, and cost.
+
+**Tool-call routing** is the most common approach. The LLM generates a function call (e.g., `transfer_to_refund_agent` or `Delegate work to coworker`) that the framework intercepts and routes accordingly. Both the OpenAI Agents SDK and CrewAI use this pattern. The advantage is that it leverages the LLM's native function-calling capability, and the routing decision happens in the same inference call as the conversational reasoning. The disadvantage is that all available tools and handoffs must fit in the context window, and routing quality depends entirely on tool descriptions and system prompt engineering.
+
+**Structured output routing** constrains the LLM to return a typed object specifying the next agent. LangGraph uses this extensively: the supervisor LLM returns a schema like `Route(step="research_agent")` and the `Command(goto=...)` primitive directs graph execution to that node. This produces reliable, parseable decisions but adds schema overhead and cannot express nuance beyond the predefined fields.
+
+**Free-text extraction** prompts the LLM to output an agent name in natural language, then parses it with regex. AutoGen's `SelectorGroupChat` uses this approach: it prompts the model with agent descriptions and conversation history, then extracts the selected name from the response. This is the simplest to implement but the most fragile, requiring retry logic for ambiguous or invalid responses.
+
+### Routing Topologies
+
+The choice of who makes routing decisions and how control flows defines five distinct multi-agent topologies. Each has emerged as a first-class pattern in at least one major framework.
+
+**Supervisor (centralized orchestration):** A dedicated LLM-powered agent sits above a pool of specialists, deciding which to invoke, what input to provide, and how to synthesize results. The supervisor maintains conversation context while subagents remain stateless, providing strong context isolation. In the Claude Agent SDK, subagents are invoked via the Task tool, and Claude automatically decides when to delegate based on each subagent's description. In LangGraph, `create_supervisor` builds this topology with configurable parallel tool calls and pre/post model hooks. Best for applications with multiple distinct domains where centralized workflow control and context isolation matter. Primary challenge: the orchestrator becomes a bottleneck and single point of failure.
+
+**Router (classify, fan-out, synthesize):** A routing step classifies input and dispatches to agents, potentially executing queries in parallel and synthesizing results. Unlike a supervisor, a router typically does not maintain conversation history across turns. LangGraph implements this with `Command` for single-agent routing and `Send` for parallel fan-out to multiple agents simultaneously. Best for stateless classification with parallel execution across knowledge domains.
+
+**Handoffs / Swarm (peer-to-peer):** Agents hand off control directly to each other based on their specializations, with no central coordinator. The active agent changes dynamically based on conversation context. In the OpenAI Agents SDK, handoffs are represented as tool calls (`transfer_to_<agent_name>`), and the receiving agent gets full conversation history with optional filtering. In LangGraph's Swarm, each agent knows ahead of time which agents it can hand off to; the dynamism is in when the agent decides to hand off, not in discovering new agents at runtime. Best for sequential conversational flows where capabilities unlock in stages, or when direct user interaction is critical.
+
+**Hierarchical manager (multi-level orchestration):** A manager agent delegates via tool calls and validates results before proceeding. In CrewAI's hierarchical process mode, the manager LLM receives task descriptions and agent roles, then generates `Delegate work to coworker` tool calls. CrewAI also supports a planning mode where an `AgentPlanner` generates a step-by-step plan before execution, injected into each task so every agent understands the overall workflow. Supervisors can manage other supervisors, creating hierarchical structures for complex organizations.
+
+**Group chat with speaker selection:** Multiple agents participate in a shared conversation, and a separate LLM call selects which agent speaks next based on the conversation history. AutoGen's `SelectorGroupChat` implements this with configurable selection: pure LLM selection (default), a `candidate_func` that filters eligible agents, or a `selector_func` that can override with deterministic logic and fall back to LLM selection when it returns None. Best for collaborative, multi-turn scenarios where agents need to build on each other's contributions.
+
+### Handoff Design
+
+The mechanics of what gets passed during a handoff, how the receiving agent picks up context, and whether control returns to the sender are where most coordination failures originate. Frameworks differ significantly in their defaults and overrides.
+
+**Context transfer** varies across frameworks. The OpenAI Agents SDK passes full message history by default, with `input_filter` functions available to strip tool calls, summarize, or transform the history before the receiving agent sees it. A `nest_handoff_history` option collapses prior transcript into a single assistant summary. CrewAI passes explicit task and context strings, scoping what the delegated agent sees. AutoGen's group chat broadcasts full conversation to all agents with no per-agent filtering.
+
+**Control flow** splits into two models. In peer-to-peer handoffs (OpenAI Agents SDK, LangGraph Swarm), control transfer is complete: the original agent does not retain control or receive results back. The receiving agent becomes the active agent for subsequent turns. In hierarchical delegation (CrewAI, Claude Agent SDK subagents), results flow back to the coordinator, which maintains oversight and can re-delegate or synthesize.
+
+**What to specify in a handoff contract:** what transfers (context, state, remaining work), what format the receiving agent expects, how acknowledgment works, whether the sender gets results back, and what happens on failure. Without detailed task descriptions, agents duplicate work, leave gaps, or fail to find necessary information. This applies across all topologies.
+
 ### Multi-Agent Coordination
 
 Coordination failures are the most common source of bugs in multi-agent systems. Agents that work fine in isolation break when composed, usually because expectations don't match. Explicit contracts prevent integration surprises.
 
-- **Handoffs**: what transfers (context, state, remaining work), format, acknowledgment
-- **Contracts**: explicit input/output expectations
+- **Handoffs**: what transfers (context, state, remaining work), format, acknowledgment, control flow (returns vs. full transfer)
+- **Contracts**: explicit input/output expectations, typed where possible
 - **Conflict resolution**: handling contradictory outputs or resource competition
 - **Shared context**: shared memory, coordinator agent, explicit passing
+- **Effort scaling**: dynamic resource allocation based on task complexity, from single-agent simple lookups to multi-agent parallel investigations
+
+### Interface Layers
+
+The word "interface" carries multiple meanings in agentic systems, and agents typically need several simultaneously. Anthropic's guidance on building effective agents found that more time was spent optimizing tool definitions than overall prompts, and that well-designed interfaces eliminated entire categories of agent errors. The same rigor applied to human-computer interfaces should be applied to agent-computer interfaces.
+
+Four distinct interface layers exist, each solving a different boundary problem.
+
+**Agent-to-Tool (ACI):** The contract between an agent and the tools or functions it can invoke. This covers tool names, parameter schemas, return types, documentation, and error handling. The Model Context Protocol (MCP), introduced by Anthropic in November 2024 and now governed by the Linux Foundation, is the emerging standard for this layer. Design tool interfaces like API docs for a junior developer: include usage examples, input format requirements, edge cases, and clear boundaries separating one tool from another. Apply poka-yoke (mistake-proofing) so that errors are structurally impossible, for example requiring absolute file paths rather than allowing relative ones.
+
+**Agent-to-Agent (A2A):** The protocol enabling communication between independent, potentially opaque agent systems built on different frameworks. Google's Agent2Agent Protocol (April 2025) introduced Agent Cards, machine-readable JSON metadata advertising an agent's identity, capabilities, supported modalities, authentication requirements, and service endpoint. The protocol defines Tasks as the atomic unit of work delegation with explicit input parameters and contextual metadata. When agents need to discover and delegate to other agents they have not been pre-wired to work with, this layer becomes essential.
+
+**Agent-to-User (AG-UI):** The bidirectional communication layer between an agentic backend and a user-facing frontend. Traditional REST or GraphQL architectures fail for agents because agents are long-running, nondeterministic, and mix structured and unstructured I/O simultaneously. The AG-UI protocol defines event types across five categories: streaming text, tool calls, state patches, lifecycle signals, and interrupts. This layer makes agent reasoning transparent, surfacing what was inferred, why a decision was made, and how confident the system is.
+
+**Typed Data Contracts:** The data schemas that define what an agent accepts and produces. Every major framework now supports Pydantic models, JSON schemas, or equivalent typed output definitions. These function as contracts between agents, between agents and tools, and between agents and consuming applications. Structured output has shifted decisively from free-text communication toward schema-defined contracts with required and optional fields, data types, constraints, and validation rules.
+
+**How the layers compose:** The emerging architecture stacks three complementary protocols: MCP at the tool layer, A2A at the coordination layer, and AG-UI at the presentation layer. Each operates independently but composes into a full-stack agent communication architecture. Typed data contracts (Pydantic, JSON Schema) apply at every boundary across all three layers.
+
+**For specification repositories:** Even without runtime code, interface definitions serve as portable contracts. Defining input shapes, output shapes, handoff protocols, and tool requirements in agent specs makes them significantly more useful when someone wires them to any framework. The specs become integration-ready rather than requiring the implementer to reverse-engineer the contract from prose descriptions.
 
 ---
 
@@ -530,6 +662,9 @@ Unresolved design questions for future exploration:
 - When does an agent need memory versus fresh context?
 - What's the right granularity for skills versus prompts?
 - How should graceful handoffs between agents work?
+- At what point should a specification repository formalize typed interfaces (JSON Schema, Pydantic) versus keeping them as prose?
+- How should Agent Cards be structured for agents that exist as specs but not running services?
+- What is the minimum viable interface definition that makes a spec integration-ready?
 
 ---
 
@@ -539,19 +674,35 @@ Reference definitions for terms used throughout this handbook. When frameworks u
 
 | Term | Definition |
 |------|------------|
+| A2A (Agent2Agent) | Google's protocol for agent-to-agent discovery and communication via Agent Cards |
+| ACI (Agent-Computer Interface) | The contract between an agent and tools it invokes: names, schemas, docs, error handling |
 | Agent | Software built on an LLM that pursues a goal by reasoning, using tools, and adapting |
+| Agent Card | Machine-readable JSON metadata advertising an agent's identity, capabilities, and endpoint |
+| AG-UI | Protocol for bidirectional agent-to-user frontend communication (streaming, events, interrupts) |
 | Capability | Abstract category of what an agent can do (retrieval, analysis, generation) |
 | Checkpoint | Saved state allowing resumption after interruption |
 | Context window | Token limit of what an LLM can process in one call |
 | Contract | Explicit input/output expectations between agents |
+| Data contract | Typed schema (Pydantic, JSON Schema) defining what an agent accepts and produces |
 | Guardrail | Runtime-enforced constraint (vs. documented rule) |
+| Dynamic routing | LLM-reasoning-based task decomposition and delegation where subtasks are determined at runtime |
+| Effort scaling | Dynamically adjusting agent count and resource allocation based on task complexity |
 | Handoff | Transfer of control and context between agents or agent and human |
+| Interface layer | A boundary type in agentic systems: agent-to-tool, agent-to-agent, agent-to-user, or data contract |
 | Knowledge base | Reference materials encoding expertise loaded into context |
+| MCP (Model Context Protocol) | Anthropic's standard for agent-to-tool integration, now governed by Linux Foundation |
 | Micro-agent | Single-purpose autonomous function node |
+| Orchestrator | Agent that coordinates specialists by decomposing tasks, delegating, and synthesizing results |
 | Prompt | Specific instructions sent to the LLM |
+| Router | Component that classifies input and directs it to specialized handlers (static or LLM-based) |
 | Skill | Composed behavior using multiple steps, tools, or prompts |
+| Speaker selection | LLM-based or rule-based choice of which agent speaks next in a group chat (AutoGen pattern) |
+| Static routing | Classification-based routing into predefined categories using LLM or traditional classifier |
 | Subagent | Specialized agent orchestrated by a parent agent |
+| Supervisor | Centralized LLM agent that routes to and coordinates specialized worker agents |
+| Swarm | Peer-to-peer topology where agents hand off directly to each other without a central coordinator |
 | Tool | External service or API an agent invokes |
+| Tool-call routing | Routing mechanism where the LLM signals delegation via a function/tool call |
 
 ---
 
@@ -567,9 +718,18 @@ Every framework invents its own vocabulary. This table maps handbook terms to th
 | Skills | Agent skills | Tools | Tools / Chains | Tasks |
 | Tools | Tools | Function calling | Tools | Tools |
 | Escalation triggers | Human-in-the-loop | - | Human tools | Human input |
-| Subagent | - | - | Agent executor | Agent |
-| Orchestrator | - | - | Agent supervisor | Manager |
-| Handoff | - | Handoffs | - | Delegation |
+| Subagent | Task tool (subagents) | - | Agent executor | Agent |
+| Orchestrator | Lead agent | - | Agent supervisor | Manager |
+| Handoff | - | Handoffs (`transfer_to_<name>`) | `Command(goto=...)` | `Delegate work to coworker` |
+| Static routing | Routing workflow | - | Conditional edges | - |
+| Dynamic routing | Orchestrator-workers | Handoff-as-tool-call | Supervisor (structured output) | Hierarchical process |
+| Supervisor | - | - | `create_supervisor` | Manager agent |
+| Swarm | - | - | `create_swarm` | - |
+| Speaker selection | - | - | - | - |
+| Tool interface | MCP servers | Function schemas | Tool definitions | Tool configs |
+| Data contract | Structured output | output_type (Pydantic) | Output parsers | output_pydantic / output_json |
+| Agent discovery | - | - | - | - |
+| Guardrails | Permission management | Guardrails (input/output) | - | - |
 
 **Key insight:** Most "new" concepts are renamed existing ideas. Understanding the pattern matters more than memorizing each framework's vocabulary.
 
