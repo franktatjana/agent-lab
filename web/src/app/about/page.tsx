@@ -36,18 +36,20 @@ export default function AboutPage() {
         <h2 className="text-xl font-bold text-stone-900 pt-4">Why this exists</h2>
 
         <p>
-          Most agent implementations start with code. Pick a framework, wire up some
-          tools, write a prompt, ship it. The result usually works for the demo and
-          breaks in production. The prompt is too vague, the output is too verbose,
-          and the agent hallucinates when it doesn&apos;t have enough context.
+          This is my sandbox for exploring how to describe real-world situations
+          in a way that any AI can understand, regardless of which LLM or
+          framework runs behind it. The focus is on the problem, not the tooling.
         </p>
 
         <p>
-          Agent Lab starts with design. What should the agent be responsible for?
-          What inputs does it need before it can produce quality output? How should
-          it behave when context is missing? What word limits keep the response
-          useful? These questions matter more than which framework you pick, and
-          answering them before writing code saves weeks of debugging later.
+          Most agent work starts with a specific model or framework and bakes
+          assumptions into the design. The result is tightly coupled: switch the
+          LLM and the prompts break, change the orchestrator and the workflows
+          fall apart. Agent Lab takes the opposite approach. Situations are
+          described as they exist in real life, with the context a human would
+          actually provide, not shaped around what a particular API expects. That
+          makes the output portable: the same prompt works in ChatGPT, Claude,
+          Gemini, or whatever comes next.
         </p>
 
         <h2 className="text-xl font-bold text-stone-900 pt-4">What you get</h2>

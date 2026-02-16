@@ -83,7 +83,7 @@ export default function Home() {
         <button
           type="button"
           onClick={() => setGuideOpen(!guideOpen)}
-          className="flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors mb-3"
+          className="flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors mb-3 cursor-pointer"
         >
           <Info size={15} />
           <span className="font-medium">How it works</span>
