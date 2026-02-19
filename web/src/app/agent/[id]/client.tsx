@@ -4,7 +4,7 @@ import { use, useState, useMemo, useCallback } from "react";
 import { agents } from "@/data/agents";
 import type { AgentCanvas } from "@/data/agents";
 import { getStoriesForAgent } from "@/data/stories";
-import { getIdeasForAgent, buildIdeaFlyoutContent as buildCsIdeaFlyoutContent } from "@/data/case-study-ideas";
+import { getIdeasForAgent } from "@/data/case-study-ideas";
 import { buildPrompt } from "@/lib/prompt-builder";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -26,12 +26,13 @@ import {
   BookOpen,
   MessageCircleQuestion,
   Brain,
+  Lightbulb,
+  HeartHandshake,
   ArrowLeft,
   Copy,
   Check,
   FileText,
   Image as ImageIcon,
-  HelpCircle as HelpIcon,
   Target,
   Compass,
   Gem,
@@ -71,6 +72,15 @@ const agentResources: Record<string, { references: string[]; visualImage?: strin
   "corporate-navigator-agent": {
     references: ["glossary-and-resources.md", "stakeholder-mapping-frameworks.md", "career-coaching-frameworks.md"],
   },
+  "design-thinking-agent": {
+    references: ["design-thinking-frameworks.md", "glossary-and-resources.md"],
+  },
+  "leadership-coach-agent": {
+    references: ["leadership-frameworks.md", "leadership-archetypes.md", "glossary-and-resources.md"],
+  },
+  "networking-agent": {
+    references: ["networking-frameworks.md", "glossary-and-resources.md"],
+  },
 };
 
 const iconMap: Record<string, LucideIcon> = {
@@ -83,6 +93,9 @@ const iconMap: Record<string, LucideIcon> = {
   MessageCircleQuestion,
   Brain,
   Compass,
+  Lightbulb,
+  HeartHandshake,
+  Users,
 };
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; light: string }> = {
@@ -95,6 +108,9 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   teal:    { bg: "bg-teal-50",    border: "border-teal-200",    icon: "text-teal-500",    light: "bg-teal-100" },
   indigo:  { bg: "bg-indigo-50",  border: "border-indigo-200",  icon: "text-indigo-500",  light: "bg-indigo-100" },
   slate:   { bg: "bg-slate-50",   border: "border-slate-300",   icon: "text-slate-500",   light: "bg-slate-200" },
+  cyan:    { bg: "bg-cyan-50",    border: "border-cyan-200",    icon: "text-cyan-500",    light: "bg-cyan-100" },
+  sky:     { bg: "bg-sky-50",     border: "border-sky-200",     icon: "text-sky-500",     light: "bg-sky-100" },
+  purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  light: "bg-purple-100" },
 };
 
 type Tab = "canvas" | "builder" | "resources";
@@ -273,144 +289,114 @@ export default function AgentPageClient({
       {/* ── Builder Tab ── */}
       {activeTab === "builder" && (
         <>
-          {/* Mini canvas strip */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-            {[canvasCards[0], canvasCards[2], canvasCards[4]].map((card) => {
-              const CardIcon = card.icon;
-              const value = agent.canvas[card.key];
-              return (
-                <button
-                  key={card.key}
-                  type="button"
-                  onClick={() => setActiveTab("canvas")}
-                  className={`text-left rounded-lg border ${colors.border} ${colors.bg} px-4 py-3 transition-all hover:shadow-sm`}
-                >
-                  <div className="flex items-center gap-2 mb-1">
-                    <CardIcon size={13} className={colors.icon} />
-                    <span className="text-xs font-semibold text-stone-500 uppercase tracking-wide">{card.label}</span>
-                  </div>
-                  <p className="text-xs text-stone-600 leading-relaxed line-clamp-2">
-                    {typeof value === "string" ? value : (value as string[])[0]}
-                  </p>
-                </button>
-              );
-            })}
+          {/* Config cards strip */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white rounded-xl border border-stone-200 p-4">
+              <label className="text-xs font-semibold text-stone-500 uppercase tracking-wide block mb-1">Personality</label>
+              <p className="text-xs text-stone-400 leading-relaxed mb-3">
+                Changes the agent&apos;s tone and style. Pick one that fits your audience.
+              </p>
+              <Select value={personalityId} onValueChange={setPersonalityId}>
+                <SelectTrigger className="w-full h-9 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="default">Default</SelectItem>
+                  {agent.personalities.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>
+                      {p.name}
+                      <span className="text-stone-400 ml-2 text-xs">
+                        {p.whenToUse}
+                      </span>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="bg-white rounded-xl border border-stone-200 p-4">
+              <label className="text-xs font-semibold text-stone-500 uppercase tracking-wide block mb-1">Skill</label>
+              <p className="text-xs text-stone-400 leading-relaxed mb-3">
+                Activates a specific workflow the agent follows. &quot;General&quot; uses the agent without a fixed process.
+              </p>
+              <Select value={skillId} onValueChange={setSkillId}>
+                <SelectTrigger className="w-full h-9 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">General</SelectItem>
+                  {agent.skills.map((s) => (
+                    <SelectItem key={s.id} value={s.id}>
+                      {s.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="bg-white rounded-xl border border-stone-200 p-4">
+              <label className="text-xs font-semibold text-stone-500 uppercase tracking-wide block mb-1">Format</label>
+              <p className="text-xs text-stone-400 leading-relaxed mb-3">
+                How the LLM should structure its response. Plain text for conversations, structured for data.
+              </p>
+              <Select value={outputFormat} onValueChange={setOutputFormat}>
+                <SelectTrigger className="w-full h-9 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="text">Plain text</SelectItem>
+                  <SelectItem value="markdown">Markdown</SelectItem>
+                  <SelectItem value="yaml">YAML</SelectItem>
+                  <SelectItem value="json">JSON</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
+          {selectedSkill && (
+            <p className="text-xs text-stone-400 -mt-4 mb-4 px-1">
+              <span className="font-medium text-stone-500">{selectedSkill.name}:</span>{" "}
+              {selectedSkill.description}
+            </p>
+          )}
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Left: Configuration */}
+            {/* Left: Situation input */}
             <div>
               <div className="bg-white rounded-xl border border-stone-200 p-6">
-                <div className="grid grid-cols-3 gap-3 mb-4">
-                  <div>
-                    <div className="flex items-center gap-1 mb-1 group/tip relative">
-                      <label className="text-xs font-medium text-stone-500">Personality</label>
-                      <HelpIcon size={12} className="text-stone-300 cursor-help" />
-                      <div className="absolute left-0 top-full mt-1 z-10 w-52 rounded-lg bg-stone-800 text-white text-xs leading-relaxed p-2.5 shadow-lg opacity-0 pointer-events-none group-hover/tip:opacity-100 transition-opacity">
-                        Changes the agent&apos;s tone and style. Pick one that fits your audience.
+                <label className="text-sm font-medium text-stone-700 mb-3 block">
+                  Your situation
+                </label>
+                {agent.guidingQuestions.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+                    {agent.guidingQuestions.map((q) => (
+                      <div
+                        key={q}
+                        className={`rounded-lg border ${colors.border} ${colors.bg} px-3 py-2.5 text-xs text-stone-600 leading-relaxed`}
+                      >
+                        {q}
                       </div>
-                    </div>
-                    <Select value={personalityId} onValueChange={setPersonalityId}>
-                      <SelectTrigger className="w-full h-9 text-sm">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="default">Default</SelectItem>
-                        {agent.personalities.map((p) => (
-                          <SelectItem key={p.id} value={p.id}>
-                            {p.name}
-                            <span className="text-stone-400 ml-2 text-xs">
-                              {p.whenToUse}
-                            </span>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    ))}
                   </div>
-                  <div>
-                    <div className="flex items-center gap-1 mb-1 group/tip relative">
-                      <label className="text-xs font-medium text-stone-500">Skill</label>
-                      <HelpIcon size={12} className="text-stone-300 cursor-help" />
-                      <div className="absolute left-0 top-full mt-1 z-10 w-52 rounded-lg bg-stone-800 text-white text-xs leading-relaxed p-2.5 shadow-lg opacity-0 pointer-events-none group-hover/tip:opacity-100 transition-opacity">
-                        Activates a specific workflow the agent follows. &quot;General&quot; uses the agent without a fixed process.
-                      </div>
-                    </div>
-                    <Select value={skillId} onValueChange={setSkillId}>
-                      <SelectTrigger className="w-full h-9 text-sm">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="none">General</SelectItem>
-                        {agent.skills.map((s) => (
-                          <SelectItem key={s.id} value={s.id}>
-                            {s.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1 mb-1 group/tip relative">
-                      <label className="text-xs font-medium text-stone-500">Format</label>
-                      <HelpIcon size={12} className="text-stone-300 cursor-help" />
-                      <div className="absolute right-0 top-full mt-1 z-10 w-52 rounded-lg bg-stone-800 text-white text-xs leading-relaxed p-2.5 shadow-lg opacity-0 pointer-events-none group-hover/tip:opacity-100 transition-opacity">
-                        How the LLM should structure its response. Plain text for conversations, structured formats for data.
-                      </div>
-                    </div>
-                    <Select value={outputFormat} onValueChange={setOutputFormat}>
-                      <SelectTrigger className="w-full h-9 text-sm">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="text">Plain text</SelectItem>
-                        <SelectItem value="markdown">Markdown</SelectItem>
-                        <SelectItem value="yaml">YAML</SelectItem>
-                        <SelectItem value="json">JSON</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                {selectedSkill && (
-                  <p className="text-xs text-stone-400 mb-3 -mt-1">
-                    {selectedSkill.description}
-                  </p>
                 )}
-
-                <div className="border-t border-stone-100 pt-4">
-                  <label className="text-sm font-medium text-stone-700 mb-1.5 block">
-                    Your situation
-                  </label>
-                  {agent.guidingQuestions.length > 0 && (
-                    <ul className="text-xs text-stone-400 mb-3 space-y-1">
-                      {agent.guidingQuestions.map((q) => (
-                        <li key={q} className="flex gap-1.5">
-                          <span className="text-stone-300 shrink-0">?</span>
-                          {q}
+                {agent.validationRules && agent.validationRules.length > 0 && (
+                  <div className="text-xs text-stone-500 mb-4 bg-stone-50 border border-stone-200 rounded-lg px-4 py-3">
+                    <span className="font-semibold text-stone-600 block mb-1.5">The agent checks for:</span>
+                    <ul className="space-y-1">
+                      {agent.validationRules.map((rule) => (
+                        <li key={rule} className="flex gap-2 items-start">
+                          <span className="text-stone-400 shrink-0 mt-px">&#10003;</span>
+                          <span>{rule}</span>
                         </li>
                       ))}
                     </ul>
-                  )}
-                  {agent.validationRules && agent.validationRules.length > 0 && (
-                    <div className="text-xs text-stone-400 mb-3 border border-stone-100 rounded-lg px-3 py-2">
-                      <span className="font-medium text-stone-500 block mb-1">The agent checks for:</span>
-                      <ul className="space-y-0.5">
-                        {agent.validationRules.map((rule) => (
-                          <li key={rule} className="flex gap-1.5">
-                            <span className="text-stone-300 shrink-0">&#10003;</span>
-                            {rule}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  <Textarea
-                    placeholder="Describe your situation here..."
-                    value={situation}
-                    onChange={(e) => setSituation(e.target.value)}
-                    rows={10}
-                    className="resize-y"
-                  />
-                </div>
+                  </div>
+                )}
+                <Textarea
+                  placeholder="Describe your situation here..."
+                  value={situation}
+                  onChange={(e) => setSituation(e.target.value)}
+                  rows={10}
+                  className="resize-y"
+                />
 
                 <Button
                   onClick={handleGenerate}
@@ -479,7 +465,7 @@ export default function AgentPageClient({
                   <p className="text-xs text-stone-400 mt-4">Click Generate to build the full prompt</p>
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center h-64 text-center border border-dashed border-stone-300 rounded-xl bg-white px-8">
+                <div className="flex flex-col items-center justify-center h-full min-h-64 text-center border border-dashed border-stone-300 rounded-xl bg-white px-8">
                   <p className="text-stone-500 text-sm font-medium mb-1">Your prompt will appear here</p>
                   <p className="text-stone-400 text-xs leading-relaxed max-w-xs">
                     Fill in your situation on the left, then click Generate.
@@ -488,6 +474,30 @@ export default function AgentPageClient({
                 </div>
               )}
             </div>
+          </div>
+
+          {/* Canvas context strip */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6">
+            {[canvasCards[0], canvasCards[2], canvasCards[4]].map((card) => {
+              const CardIcon = card.icon;
+              const value = agent.canvas[card.key];
+              return (
+                <button
+                  key={card.key}
+                  type="button"
+                  onClick={() => setActiveTab("canvas")}
+                  className={`text-left rounded-lg border ${colors.border} ${colors.bg} px-4 py-3 transition-all hover:shadow-sm`}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <CardIcon size={13} className={colors.icon} />
+                    <span className="text-xs font-semibold text-stone-500 uppercase tracking-wide">{card.label}</span>
+                  </div>
+                  <p className="text-xs text-stone-600 leading-relaxed line-clamp-2">
+                    {typeof value === "string" ? value : (value as string[])[0]}
+                  </p>
+                </button>
+              );
+            })}
           </div>
         </>
       )}
@@ -597,23 +607,26 @@ export default function AgentPageClient({
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {agentCsIdeas.map((idea) => (
-                  <button
+                  <div
                     key={idea.id}
-                    type="button"
-                    className="text-left rounded-lg border border-dashed border-stone-300 bg-white hover:border-stone-400 hover:shadow-sm p-4 transition-all group"
-                    onClick={() => setFlyout({ title: idea.title, content: buildCsIdeaFlyoutContent(idea) })}
+                    className="rounded-lg border border-dashed border-stone-300 bg-white p-4"
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mb-1.5">
                       <h3 className="text-sm font-semibold text-stone-900 flex-1">{idea.title}</h3>
                       {idea.category && (
                         <span className="text-[10px] font-medium text-stone-400 bg-stone-100 rounded-full px-1.5 py-0.5 shrink-0">
                           {idea.category}
                         </span>
                       )}
-                      <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
                     </div>
-                    <p className="text-xs text-stone-500 mt-1 leading-relaxed">{idea.surface}</p>
-                  </button>
+                    <p className="text-xs text-stone-500 leading-relaxed">{idea.surface}</p>
+                    {idea.rootCause && (
+                      <div className="mt-2.5 pt-2.5 border-t border-stone-100">
+                        <span className="text-[10px] font-semibold text-stone-400 uppercase tracking-wide block mb-1">Root cause chain</span>
+                        <p className="text-xs text-stone-600 leading-relaxed">{idea.rootCause}</p>
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>

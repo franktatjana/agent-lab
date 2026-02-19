@@ -92,10 +92,188 @@ function SixHatsVisual({ isVisible }: { isVisible: boolean }) {
   );
 }
 
+function DoubleDiamondVisual({ isVisible }: { isVisible: boolean }) {
+  const phases = [
+    { label: "Discover", sub: "Diverge", diamond: 1, color: "bg-cyan-50 border-cyan-200 text-cyan-700" },
+    { label: "Define", sub: "Converge", diamond: 1, color: "bg-cyan-100 border-cyan-300 text-cyan-800" },
+    { label: "Develop", sub: "Diverge", diamond: 2, color: "bg-cyan-50 border-cyan-200 text-cyan-700" },
+    { label: "Deliver", sub: "Converge", diamond: 2, color: "bg-cyan-100 border-cyan-300 text-cyan-800" },
+  ];
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="grid grid-cols-2 gap-4">
+        <div className={`text-center text-[10px] font-medium text-stone-400 uppercase tracking-wide ${isVisible ? "scene-fade-up" : "scene-hidden"}`}>
+          Problem space
+        </div>
+        <div className={`text-center text-[10px] font-medium text-stone-400 uppercase tracking-wide ${isVisible ? "scene-fade-up" : "scene-hidden"}`}>
+          Solution space
+        </div>
+      </div>
+      <div className="grid grid-cols-4 gap-1.5 md:gap-2">
+        {phases.map((phase, i) => (
+          <div
+            key={phase.label}
+            className={`rounded-xl border px-3 py-2.5 text-center ${phase.color} ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
+            style={{ animationDelay: `${(i + 1) * 120}ms` }}
+          >
+            <div className="text-[11px] font-bold">{phase.label}</div>
+            <div className="text-[9px] mt-0.5 opacity-70">{phase.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function GrowVisual({ isVisible }: { isVisible: boolean }) {
+  const phases = [
+    { label: "Goal", sub: "What do you want?", color: "bg-sky-50 border-sky-200 text-sky-700" },
+    { label: "Reality", sub: "What's happening?", color: "bg-sky-100 border-sky-300 text-sky-800" },
+    { label: "Options", sub: "What could you do?", color: "bg-sky-50 border-sky-200 text-sky-700" },
+    { label: "Will", sub: "What will you do?", color: "bg-sky-100 border-sky-300 text-sky-800" },
+  ];
+  return (
+    <div className="grid grid-cols-4 gap-1.5 md:gap-2">
+      {phases.map((phase, i) => (
+        <div
+          key={phase.label}
+          className={`rounded-xl border px-3 py-2.5 text-center ${phase.color} ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
+          style={{ animationDelay: `${(i + 1) * 120}ms` }}
+        >
+          <div className="text-[11px] font-bold">{phase.label}</div>
+          <div className="text-[9px] mt-0.5 opacity-70">{phase.sub}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ArchetypesVisual({ isVisible }: { isVisible: boolean }) {
+  const types = [
+    { label: "Believer", sub: "Care + belief", color: "bg-amber-50 border-amber-200 text-amber-700" },
+    { label: "Commander", sub: "Intent + trust", color: "bg-stone-100 border-stone-300 text-stone-700" },
+    { label: "Servant", sub: "Serve + enable", color: "bg-sky-50 border-sky-200 text-sky-700" },
+    { label: "Accountable", sub: "Standards + self", color: "bg-red-50 border-red-200 text-red-700" },
+    { label: "Transform", sub: "Purpose + change", color: "bg-violet-50 border-violet-200 text-violet-700" },
+  ];
+  return (
+    <div className="grid grid-cols-5 gap-1 md:gap-1.5">
+      {types.map((t, i) => (
+        <div
+          key={t.label}
+          className={`rounded-xl border px-2 py-2.5 text-center ${t.color} ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
+          style={{ animationDelay: `${(i + 1) * 100}ms` }}
+        >
+          <div className="text-[10px] md:text-[11px] font-bold">{t.label}</div>
+          <div className="text-[8px] md:text-[9px] mt-0.5 opacity-70">{t.sub}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function NetworkTiersVisual({ isVisible }: { isVisible: boolean }) {
+  const tiers = [
+    { label: "5", sub: "Inner circle", color: "bg-purple-200 border-purple-300 text-purple-800" },
+    { label: "15", sub: "Close allies", color: "bg-purple-100 border-purple-200 text-purple-700" },
+    { label: "50", sub: "Active network", color: "bg-purple-50 border-purple-200 text-purple-600" },
+    { label: "150", sub: "Meaningful ties", color: "bg-stone-50 border-stone-200 text-stone-600" },
+  ];
+  return (
+    <div className="flex items-end justify-center gap-2 md:gap-3">
+      {tiers.map((tier, i) => (
+        <div
+          key={tier.label}
+          className={`rounded-xl border text-center ${tier.color} ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
+          style={{
+            animationDelay: `${(i + 1) * 120}ms`,
+            width: `${60 + i * 30}px`,
+            paddingTop: `${12 + i * 6}px`,
+            paddingBottom: `${12 + i * 6}px`,
+          }}
+        >
+          <div className="text-lg font-bold">{tier.label}</div>
+          <div className="text-[9px] mt-0.5 opacity-70">{tier.sub}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CultureDimensionsVisual({ isVisible }: { isVisible: boolean }) {
+  const dimensions = [
+    { label: "Communicating", low: "Direct", high: "Indirect", lowColor: "bg-orange-100 border-orange-200 text-orange-700", highColor: "bg-blue-100 border-blue-200 text-blue-700" },
+    { label: "Trusting", low: "Task-based", high: "Relationship", lowColor: "bg-orange-100 border-orange-200 text-orange-700", highColor: "bg-blue-100 border-blue-200 text-blue-700" },
+    { label: "Disagreeing", low: "Confrontational", high: "Avoids", lowColor: "bg-orange-100 border-orange-200 text-orange-700", highColor: "bg-blue-100 border-blue-200 text-blue-700" },
+  ];
+  return (
+    <div className="space-y-2">
+      <div className="flex justify-between text-[10px] font-medium text-stone-400 uppercase tracking-wide px-1">
+        <span>Dutch</span>
+        <span>Japanese</span>
+      </div>
+      {dimensions.map((d, i) => (
+        <div
+          key={d.label}
+          className={`flex items-center gap-2 ${isVisible ? "scene-fade-up" : "scene-hidden"}`}
+          style={{ animationDelay: `${(i + 1) * 120}ms` }}
+        >
+          <div className={`rounded-lg border px-2.5 py-1.5 text-center flex-1 ${d.lowColor}`}>
+            <div className="text-[10px] font-bold">{d.low}</div>
+          </div>
+          <div className="text-[10px] font-medium text-stone-400 shrink-0 w-20 text-center">{d.label}</div>
+          <div className={`rounded-lg border px-2.5 py-1.5 text-center flex-1 ${d.highColor}`}>
+            <div className="text-[10px] font-bold">{d.high}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function QuestionLayersVisual({ isVisible }: { isVisible: boolean }) {
+  const layers = [
+    { label: "Surface", q: "\"How's the project going?\"", color: "bg-teal-50 border-teal-200 text-teal-700" },
+    { label: "Intent", q: "\"Should I be worried?\"", color: "bg-teal-100 border-teal-300 text-teal-800" },
+    { label: "Need", q: "\"Can I stake my credibility on this?\"", color: "bg-teal-200 border-teal-400 text-teal-900" },
+  ];
+  return (
+    <div className="space-y-0">
+      {layers.map((layer, i) => {
+        const isLast = i === layers.length - 1;
+        return (
+          <div key={layer.label}>
+            <div
+              className={`rounded-lg border px-4 py-2.5 ${layer.color} ${isVisible ? "scene-fade-up" : "scene-hidden"}`}
+              style={{ animationDelay: `${(i + 1) * 150}ms` }}
+            >
+              <span className="text-xs font-bold shrink-0">{layer.label}: </span>
+              <span className="text-xs">{layer.q}</span>
+            </div>
+            {!isLast && (
+              <div className="pl-6 py-0.5">
+                <svg width="12" height="16" viewBox="0 0 12 16" fill="none" className="text-teal-300">
+                  <path d="M6 2v8M3 7l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 const visuals: Record<string, React.ComponentType<{ isVisible: boolean }>> = {
   "five-whys": FiveWhysVisual,
   "ccr-arc": CCRArcVisual,
   "six-hats": SixHatsVisual,
+  "double-diamond": DoubleDiamondVisual,
+  "grow": GrowVisual,
+  "archetypes": ArchetypesVisual,
+  "network-tiers": NetworkTiersVisual,
+  "culture-dimensions": CultureDimensionsVisual,
+  "question-layers": QuestionLayersVisual,
 };
 
 export function FrameworkScene({ section }: { section: StorySection }) {

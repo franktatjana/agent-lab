@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Badge } from "@/components/ui/badge";
 import { Flyout } from "@/components/flyout";
 import { agents } from "@/data/agents";
 import { agentIdeas, ideaCategories, buildIdeaFlyoutContent } from "@/data/agent-ideas";
@@ -16,13 +15,12 @@ import {
   BookOpen,
   MessageCircleQuestion,
   Brain,
+  Compass,
   ArrowRight,
   Lightbulb,
-  Info,
-  MousePointerClick,
-  FolderOpen,
+  HeartHandshake,
+  Users,
   Play,
-  ChevronDown,
   type LucideIcon,
 } from "lucide-react";
 
@@ -35,6 +33,10 @@ const iconMap: Record<string, LucideIcon> = {
   BookOpen,
   MessageCircleQuestion,
   Brain,
+  Compass,
+  Lightbulb,
+  HeartHandshake,
+  Users,
 };
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
@@ -46,6 +48,10 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
   amber:   { bg: "bg-amber-50",   border: "border-amber-200",   icon: "text-amber-500",   badge: "bg-amber-100 text-amber-700" },
   teal:    { bg: "bg-teal-50",    border: "border-teal-200",    icon: "text-teal-500",    badge: "bg-teal-100 text-teal-700" },
   indigo:  { bg: "bg-indigo-50",  border: "border-indigo-200",  icon: "text-indigo-500",  badge: "bg-indigo-100 text-indigo-700" },
+  slate:   { bg: "bg-slate-50",   border: "border-slate-300",   icon: "text-slate-500",   badge: "bg-slate-200 text-slate-700" },
+  cyan:    { bg: "bg-cyan-50",    border: "border-cyan-200",    icon: "text-cyan-500",    badge: "bg-cyan-100 text-cyan-700" },
+  sky:     { bg: "bg-sky-50",     border: "border-sky-200",     icon: "text-sky-500",     badge: "bg-sky-100 text-sky-700" },
+  purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  badge: "bg-purple-100 text-purple-700" },
 };
 
 const handbookPrinciples = [
@@ -64,7 +70,7 @@ const handbookPrinciples = [
 
 export default function Home() {
   const [flyout, setFlyout] = useState<{ title: string; content: string } | null>(null);
-  const [guideOpen, setGuideOpen] = useState(true);
+
   const closeFlyout = useCallback(() => setFlyout(null), []);
 
   return (
@@ -79,61 +85,23 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Instructions Guide */}
-      <div className="mb-8">
-        <button
-          type="button"
-          onClick={() => setGuideOpen(!guideOpen)}
-          className="flex items-center gap-2 text-sm text-stone-400 hover:text-stone-600 transition-colors mb-3 cursor-pointer"
-        >
-          <Info size={15} />
-          <span className="font-medium">How it works</span>
-          <ChevronDown
-            size={14}
-            className={`transition-transform ${guideOpen ? "rotate-180" : ""}`}
-          />
-        </button>
-        {guideOpen && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="flex items-start gap-3 bg-white rounded-lg border border-stone-200 px-4 py-3.5">
-              <div className="p-1.5 rounded-md bg-stone-100 shrink-0">
-                <MousePointerClick size={16} className="text-stone-500" />
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-stone-800">Pick an Agent</h3>
-                <p className="text-xs text-stone-500 leading-relaxed mt-0.5">
-                  Click any agent card below to open its detail page. The <strong className="text-stone-600">Canvas</strong> tab shows what the agent does and how it thinks. The <strong className="text-stone-600">Builder</strong> tab lets you configure personality, skill, and situation to generate a ready-to-paste prompt.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 bg-white rounded-lg border border-stone-200 px-4 py-3.5">
-              <div className="p-1.5 rounded-md bg-stone-100 shrink-0">
-                <FolderOpen size={16} className="text-stone-500" />
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-stone-800">Explore Resources</h3>
-                <p className="text-xs text-stone-500 leading-relaxed mt-0.5">
-                  Each agent has a <strong className="text-stone-600">Resources</strong> tab with case studies (fictional scenarios showing the agent in action), reference files (frameworks and knowledge bases), and examples (sample inputs and outputs).
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 bg-white rounded-lg border border-stone-200 px-4 py-3.5">
-              <div className="p-1.5 rounded-md bg-stone-100 shrink-0">
-                <Play size={16} className="text-stone-500" />
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-stone-800">Visual Stories</h3>
-                <p className="text-xs text-stone-500 leading-relaxed mt-0.5">
-                  Some agents have visual stories: full-screen, slide-based narratives that walk through a pain point from problem to resolution. Find them in the Resources tab, click &quot;Read story&quot;, then hit &quot;Visual story&quot; to launch.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {agents.map((agent) => {
+        {[
+          "superhero-agent",
+          "generation-agent",
+          "question-decoder-agent",
+          "why-agent",
+          "six-hats-agent",
+          "storytelling-agent",
+          "design-thinking-agent",
+          "leadership-coach-agent",
+          "culture-agent",
+          "corporate-navigator-agent",
+          "networking-agent",
+          "research-agent",
+        ].map((id) => agents.find((a) => a.id === id)!).filter(Boolean).map((agent) => {
           const colors = colorMap[agent.color] ?? colorMap.blue;
           const Icon = iconMap[agent.icon] ?? Globe;
 
@@ -142,39 +110,33 @@ export default function Home() {
               <div
                 className={`group relative rounded-xl border ${colors.bg} ${colors.border} p-5 h-full transition-all hover:shadow-md hover:-translate-y-0.5`}
               >
-                <div className="flex items-start justify-between mb-3">
-                  <div className={`p-2 rounded-lg bg-white/80 ${colors.icon}`}>
-                    <Icon size={20} />
+                <div className="flex items-center gap-2.5 mb-1.5">
+                  <div className={`p-1.5 rounded-lg bg-white/80 ${colors.icon}`}>
+                    <Icon size={18} />
                   </div>
-                  <Badge
-                    variant="secondary"
-                    className={`text-xs font-medium ${colors.badge} border-0`}
-                  >
-                    {agent.skills.length} skills
-                  </Badge>
+                  <h2 className="text-base font-semibold text-stone-900">
+                    {agent.name}
+                  </h2>
                 </div>
-
-                <h2 className="text-base font-semibold text-stone-900 mb-1.5">
-                  {agent.name}
-                </h2>
 
                 <p className="text-sm text-stone-600 leading-relaxed mb-3">
                   {agent.identity}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5">
-                  {agent.personalities.map((p) => (
+                <div className="flex flex-nowrap gap-1.5 overflow-hidden">
+                  {agent.personalities.slice(0, 3).map((p) => (
                     <span
                       key={p.id}
-                      className="text-xs text-stone-500 bg-white/60 border border-stone-200 rounded-full px-2 py-0.5"
+                      className="text-xs text-stone-500 bg-white/60 border border-stone-200 rounded-full px-2 py-0.5 shrink-0"
                     >
                       {p.name}
                     </span>
                   ))}
-                </div>
-
-                <div className="absolute bottom-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowRight size={16} className="text-stone-400" />
+                  {agent.personalities.length > 3 && (
+                    <span className="text-xs text-stone-400 bg-white/60 border border-stone-200 rounded-full px-2 py-0.5 shrink-0">
+                      +{agent.personalities.length - 3}
+                    </span>
+                  )}
                 </div>
               </div>
             </Link>
@@ -259,9 +221,9 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <h4 className="text-sm font-medium text-stone-800 mb-1">Dos &amp; Don&apos;ts</h4>
+                <h4 className="text-sm font-medium text-stone-800 mb-1">Personality Modifiers</h4>
                 <p className="text-sm text-stone-500 leading-relaxed">
-                  Lessons learned from building agents: context engineering, memory design, prompt architecture, skills, evaluation, routing, and interface patterns.
+                  Same agent, different tone. A personality modifier adjusts voice and framing without changing the underlying logic. The facts stay identical, the delivery shifts to match the audience.
                 </p>
               </div>
             </div>
