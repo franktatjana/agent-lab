@@ -52,8 +52,8 @@ export function CardsScene({ section }: { section: StorySection }) {
                   style={{ animationDelay: `${(i + 1) * 100}ms` }}
                 >
                   <div className="flex items-start justify-between mb-1.5">
-                    <span className="text-[11px] font-medium uppercase tracking-wide text-stone-400">
-                      {card.label}
+                    <span className="text-[11px] font-medium uppercase tracking-wide text-stone-500">
+                      <span className="text-stone-500 font-bold mr-1.5">{i + 1}.</span>{card.label}
                     </span>
                     {card.status && (() => {
                       const style = statusStyles[card.status] ?? { color: "text-stone-500", icon: AlertTriangle };
@@ -66,7 +66,7 @@ export function CardsScene({ section }: { section: StorySection }) {
                       );
                     })()}
                   </div>
-                  <p className="text-stone-600 text-base leading-relaxed">{formatInlineText(card.detail)}</p>
+                  <p className="text-stone-800 text-base leading-relaxed">{formatInlineText(card.detail)}</p>
                 </div>
               ))}
             </div>

@@ -248,6 +248,7 @@ export default function AgentPageClient({
 
       {/* ── Canvas Tab ── */}
       {activeTab === "canvas" && (
+        <>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {canvasCards.map((card) => {
             const CardIcon = card.icon;
@@ -284,6 +285,45 @@ export default function AgentPageClient({
             );
           })}
         </div>
+
+        {/* Skills */}
+        <div className="mt-8">
+          <h2 className="text-lg font-semibold text-stone-900 mb-1">Skills</h2>
+          <p className="text-sm text-stone-500 mb-4">
+            Structured workflows this agent follows. Each skill composes multiple prompts into a repeatable process.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {agent.skills.map((skill) => (
+              <div
+                key={skill.id}
+                className="bg-white rounded-xl border border-stone-200 p-5 flex flex-col"
+              >
+                <div className="flex items-center gap-2.5 mb-2">
+                  <div className={`p-1.5 rounded-md ${colors.light}`}>
+                    <Zap size={16} className={colors.icon} />
+                  </div>
+                  <h3 className="text-sm font-semibold text-stone-900">
+                    {skill.name}
+                  </h3>
+                </div>
+                <p className="text-sm text-stone-600 leading-relaxed mb-3">
+                  {skill.description}
+                </p>
+                <ol className="space-y-1.5 mt-auto">
+                  {skill.workflow.map((step, idx) => (
+                    <li key={idx} className="flex gap-2 text-sm text-stone-500 leading-relaxed">
+                      <span className="text-stone-400 font-mono text-xs mt-0.5 shrink-0 w-4 text-right">
+                        {idx + 1}.
+                      </span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </div>
+        </>
       )}
 
       {/* ── Builder Tab ── */}

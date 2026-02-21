@@ -138,6 +138,22 @@ export default function Home() {
                     </span>
                   )}
                 </div>
+
+                <div className="flex flex-nowrap gap-1.5 overflow-hidden mt-1.5">
+                  {agent.skills.slice(0, 3).map((s) => (
+                    <span
+                      key={s.id}
+                      className={`text-xs ${colors.badge} rounded-full px-2 py-0.5 shrink-0`}
+                    >
+                      {s.name}
+                    </span>
+                  ))}
+                  {agent.skills.length > 3 && (
+                    <span className={`text-xs ${colors.badge} rounded-full px-2 py-0.5 shrink-0 opacity-60`}>
+                      +{agent.skills.length - 3}
+                    </span>
+                  )}
+                </div>
               </div>
             </Link>
           );
