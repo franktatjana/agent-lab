@@ -48,17 +48,18 @@ export default function AboutPage() {
           fall apart. Agent Lab takes the opposite approach. Situations are
           described as they exist in real life, with the context a human would
           actually provide, not shaped around what a particular API expects. That
-          makes the output portable: the same prompt works in ChatGPT, Claude,
-          Gemini, or whatever comes next.
+          makes the output portable: the same agent spec works whether you
+          generate a prompt, download a YAML definition, or wire it to any framework.
         </p>
 
         <h2 className="text-xl font-bold text-stone-900 pt-4">What you get</h2>
 
         <p>
-          Each agent is a curated prompt design: identity, personality variants,
-          skill workflows, validation rules, and output constraints. The web app
-          lets you configure an agent, describe your situation, and generate a
-          self-contained prompt you can paste into ChatGPT, Claude, or any LLM.
+          Each agent is a portable specification aligned with Oracle Agent Spec
+          26.1.0: identity, personality variants, skill workflows, validation
+          rules, and output constraints. The web app lets you explore agent
+          designs, generate prompts, download portable YAML definitions, and
+          validate agent specifications.
         </p>
 
         <p>
@@ -72,7 +73,7 @@ export default function AboutPage() {
         <p>
           <strong className="text-stone-900">Tatjana Frank</strong>, Solutions
           Architect. Agent Lab is one piece of a larger body of work on
-          AI agent design, prompt engineering, and knowledge architecture.
+          AI agent design, portable agent specifications, and knowledge architecture.
           © 2026
         </p>
 

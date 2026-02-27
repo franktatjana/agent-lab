@@ -8,6 +8,16 @@ Agent Lab is a specification library with a built-in testing tool. Each agent is
 
 The core insight: **define agents by responsibility, not capability**. A "triage agent" (accountable for routing) beats a "classifier agent" (just describes a tool). This distinction shapes every spec in this repo.
 
+## Vision: From Specs to Running Agents
+
+Agent Lab is moving toward **portable agent definitions**: specs that can be fed to any framework to instantiate a running agent.
+
+**Phase A (current): Spec → Code Generation.** The Prompt Builder already holds structured agent data (identity, prompts, skills, tools, guardrails, personalities). The next step is exporting these as machine-consumable definitions that a code generator transforms into framework-specific implementations (OpenAI Agents SDK, LangGraph, CrewAI, Claude Agent SDK).
+
+**Phase B (future): Runtime Interchange Format.** Once the export format is validated through Phase A, evolve toward a portable definition that frameworks consume directly at startup, aligning with emerging standards like Oracle's Open Agent Specification, A2A Agent Cards, and MCP tool definitions.
+
+The phases don't exclude each other. Phase A validates the schema through practical code generation. Phase B builds on that validated schema to create a protocol-level standard. See [handbook.md](docs/handbook.md) Part 5 (Portable Agent Definitions) and [bookmarks.md](docs/bookmarks.md) Interfaces and Protocols for the landscape.
+
 ## Complete Agents
 
 Fully documented agents with prompts, skills, references, and personality variants:

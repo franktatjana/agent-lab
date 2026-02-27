@@ -77,11 +77,11 @@ export default function Home() {
     <div>
       <div className="mb-12 pt-4">
         <h1 className="text-3xl font-bold tracking-tight text-stone-900 mb-3">
-          Pick an agent, describe your situation, get a prompt.
+          Portable agents that work across any LLM or framework.
         </h1>
         <p className="text-stone-500 max-w-2xl text-lg">
-          Each agent is a curated prompt design with personality variants and skill workflows.
-          Paste the generated prompt into ChatGPT, Claude, or any LLM.
+          Generate prompts for any LLM, download portable YAML specs, or validate agent specifications.
+          Each agent is a portable specification with identity, personality variants, guardrails, and structured workflows.
         </p>
       </div>
 
@@ -293,7 +293,7 @@ export default function Home() {
 
       <div className="mt-14 text-center text-sm text-stone-400">
         <p>
-          The generated prompt is self-contained: paste it into any LLM and it works.
+          Specs are framework-agnostic: download the YAML, generate a prompt, or validate the specification.
         </p>
       </div>
 

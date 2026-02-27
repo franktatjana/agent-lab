@@ -22,6 +22,18 @@ For quick dos/don'ts, see [lessons-learned.md](lessons-learned.md).
 
 ## Part 1: Foundation
 
+### When to Use Agents
+
+Not every workflow needs an agent. Before investing in agent design, validate that the problem actually requires LLM-driven autonomy. Many tasks are better served by deterministic automation, rule engines, or simple API integrations. Agents add value when traditional approaches hit a ceiling.
+
+Three conditions signal that an agent approach is warranted:
+
+- **Complex decision-making**: workflows involving nuanced judgment, exceptions, or context-sensitive decisions where hardcoding every branch is impractical
+- **Difficult-to-maintain rules**: systems that have become unwieldy due to extensive rulesets, making updates costly or error-prone
+- **Heavy reliance on unstructured data**: scenarios requiring natural language interpretation, document extraction, or conversational interaction
+
+If none of these apply, a deterministic solution likely suffices. If one or more apply, an agent can handle the ambiguity and variation that traditional automation cannot.
+
 ### Agent Identity
 
 The fundamental answer to "what is this agent for" in one sentence. A clear identity prevents scope creep, enables focused development, and makes it obvious when an agent is being asked to do something outside its purpose.
@@ -81,6 +93,19 @@ These terms get used interchangeably but mean different things. Tools are extern
 
 - Use skills when behavior involves multiple steps or needs naming for reuse
 - Skip skills when the prompt is self-contained: adding a skill layer just duplicates it
+
+### Model Selection
+
+Different tasks within a single agent workflow have different complexity profiles, and not every step requires the most capable model. A simple retrieval or intent classification task may be handled by a smaller, faster model, while harder tasks like deciding whether to approve a refund benefit from a more capable one.
+
+**Strategy: start high, optimize down.**
+
+1. Build the prototype with the most capable model for every task to establish a performance baseline
+2. Set up evals to measure that baseline objectively
+3. Swap in smaller models task-by-task to see where they still achieve acceptable results
+4. Optimize for cost and latency only after accuracy targets are met
+
+This avoids prematurely limiting the agent's abilities. When a smaller model fails on a specific task, you know exactly where the capability boundary is. When it succeeds, you save cost and latency without sacrificing quality.
 
 ### Composable Prompts
 
@@ -345,6 +370,10 @@ Documented rules get ignored. Guardrails are runtime-enforced constraints that a
 - **Behavioral guardrails**: limit what actions agent can take
 - **Resource guardrails**: cap tokens, API calls, time
 
+**Tool risk classification:** Every tool available to an agent carries a different risk profile. Assign a rating (low, medium, high) to each tool based on: read-only vs. write access, reversibility of the action, required account permissions, and financial impact. Use these ratings to trigger automated behavior: low-risk tools execute freely, medium-risk tools run guardrail checks before execution, high-risk tools pause for human approval. This turns abstract guardrail policy into concrete per-tool enforcement.
+
+**Execution strategy: optimistic by default.** Rather than blocking on every guardrail check before the agent can act, run guardrails concurrently with the agent's primary work. The agent proceeds optimistically while guardrails evaluate in parallel, intervening only when a constraint is breached. This preserves responsiveness for the common case (no violation) while still catching problems before they reach the user. Reserve blocking (synchronous) checks for high-risk tools where the cost of a violation outweighs the latency cost of waiting.
+
 ### Human-in-the-Loop
 
 Full automation is rarely the goal. Most systems need humans at key decision points: approving high-stakes actions, correcting mistakes, handling edge cases. Design these touchpoints explicitly.
@@ -385,6 +414,21 @@ Agent runs consume resources: tokens, API calls, compute time, money. Without bu
 - Graceful degradation (complete with reduced quality)
 - Escalation (request human approval)
 - Queuing (pause until next period)
+
+### Single-Agent Scaling
+
+Before splitting into multi-agent orchestration, maximize what a single agent can handle. More agents introduce coordination overhead, and often a single agent with well-designed tools is sufficient. Adding a tool is cheaper than adding an agent.
+
+**Prompt templates** are the primary scaling mechanism for single agents. Instead of maintaining separate prompts for each use case, use one flexible base prompt that accepts policy variables. As new use cases arise, update variables rather than rewriting workflows.
+
+```text
+You are a support agent for {{company_name}}.
+The customer {{customer_name}} has been a member for {{tenure}}.
+Their most common issues involve {{issue_categories}}.
+Follow the {{escalation_policy}} for unresolved complaints.
+```
+
+**When a single agent is no longer enough:** Two signals indicate it's time to split. First, complex logic: when the prompt accumulates many conditional branches (multiple if-then-else paths) and templates become difficult to maintain. Second, tool overload: not just the number of tools, but their similarity or overlap. Some agents handle 15+ distinct tools well; others struggle with fewer than 10 overlapping ones. If improving tool clarity through better names, parameters, and descriptions doesn't help, split into separate agents.
 
 ### Composition Patterns
 
@@ -475,6 +519,117 @@ Four distinct interface layers exist, each solving a different boundary problem.
 **How the layers compose:** The emerging architecture stacks three complementary protocols: MCP at the tool layer, A2A at the coordination layer, and AG-UI at the presentation layer. Each operates independently but composes into a full-stack agent communication architecture. Typed data contracts (Pydantic, JSON Schema) apply at every boundary across all three layers.
 
 **For specification repositories:** Even without runtime code, interface definitions serve as portable contracts. Defining input shapes, output shapes, handoff protocols, and tool requirements in agent specs makes them significantly more useful when someone wires them to any framework. The specs become integration-ready rather than requiring the implementer to reverse-engineer the contract from prose descriptions.
+
+### Portable Agent Definitions
+
+Agent specs gain real value when they can be consumed by any framework to instantiate a running agent. The goal is to define an agent once and deploy it across OpenAI Agents SDK, LangGraph, CrewAI, Claude Agent SDK, or any future framework. Agent Lab's portable definitions align with Oracle's Open Agent Specification (26.1.0) for standard fields and use the `x-agentlab` namespace for extensions that go beyond the current spec.
+
+**Alignment with Oracle Agent Spec 26.1.0.**
+
+Agent Lab definitions use Agent Spec's component model as the structural foundation. Standard fields follow the spec exactly, so anyone familiar with Agent Spec can read the definition without learning a custom format. Agent Lab-specific capabilities (guardrails, memory, context engineering, validation gates, output constraints) live under the `x-agentlab` namespace, following the same extension pattern OpenAPI uses with `x-` prefixes.
+
+The definition has two clear zones. The Agent Spec Standard Zone contains the envelope (`agentspec_version`, `component_type`), identity fields (`id`, `name`, `description`, `metadata`), the system prompt, model configuration (`llm_configuration`), typed I/O (`inputs`/`outputs` as JSON Schema Property lists), tools, specialized agents, flows, and A2A discovery. The Agent Lab Extensions Zone (`x-agentlab`) contains prompt registry, validation gates, output constraints, guardrails, boundaries, escalation triggers, memory taxonomy, context strategy, knowledge references, assets, and quality criteria.
+
+**Field mapping between Agent Lab and Agent Spec:**
+
+| Agent Lab | Agent Spec 26.1.0 | Change |
+|-----------|-------------------|--------|
+| `kind: Agent` | `component_type: Agent` | Rename to spec standard |
+| `identity.name` | `id` | Flatten, machine-readable identifier |
+| `identity.display_name` | `name` | Flatten, human-readable name |
+| `identity.description` | `description` | Flatten to top level |
+| `model.identifier` | `llm_configuration.model_id` | Restructure |
+| `model.temperature/max_tokens` | `llm_configuration.default_generation_parameters.*` | Nest under generation params |
+| `instructions.system_prompt` | `system_prompt` | Promote to top level |
+| `personalities` (dict) | `specialized_agents` (list of SpecializedAgent) | Each variant becomes a component with `$component_ref` |
+| `skills` (workflow dicts) | `flows` (Flow components) | Each skill becomes a Flow; workflow kept as `x-agentlab.workflow_shorthand` |
+| `inputs/outputs` (nested) | Top-level JSON Schema Property lists | Flatten to `[{title, type, description}]` |
+| `tools[].risk` | `tools[].requires_confirmation` + `x-agentlab.risk` | Standard boolean + extension detail |
+| `discovery` | `a2a` | Rename to spec standard |
+
+**Extensions in `x-agentlab` namespace (no Agent Spec equivalent):**
+
+- `prompt_registry`: Atomic prompt files with source paths, typed inputs/outputs
+- `validation`: Input completeness gates with `on_incomplete` behavior
+- `output_constraints`: Field-level word limits, sentence caps, hard rules
+- `guardrails`: Input/output/resource restrictions
+- `boundaries`, `escalation_triggers`, `human_in_the_loop_conditions`
+- `memory`: Conversation/working/persistent/shared taxonomy
+- `context`: Token budget, priority order, include/exclude lists
+- `knowledge`: References with conditional loading (`load_when`)
+- `assets`: Generated document templates
+- `quality`: Evaluation criteria checklist
+
+**Landscape of portable formats:**
+
+| Format | Scope | Maturity |
+|--------|-------|----------|
+| Oracle Agent Spec | Full agent + workflow definition, framework adapters | High, active development |
+| A2A Agent Cards | Discovery and capability advertisement | Production, Linux Foundation |
+| JSON Agents PAM | Manifest with governance and security | Early stage |
+| OASF (Agntcy) | Capability schemas and taxonomies | Early stage |
+| CrewAI YAML | Agent + task definition | Framework-specific, production |
+| Google ADK YAML | Agent + pipeline definition | Framework-specific, production |
+
+**Current gaps and contributions.** Agent Spec covers agent identity, workflows, tools, and I/O well but does not yet address guardrails, memory portability, personality variants, context engineering, or output constraints. Agent Lab's `x-agentlab` extensions validate what a complete definition actually requires beyond the standard fields. The sandbox in Agent Lab tests definitions by executing workflow steps against the LLM and validating outputs against the schema, serving as a practical test harness for portable definitions.
+
+### Spec Generation Engine
+
+Today the pipeline from concept to complete agent package is manual: hand-write the agent markdown, hand-write the definition YAML, hand-write the stories, then bundle and test. Only culture-agent has the full stack (definition + prompts + examples + stories + sandbox). The other 11+ agents have rich markdown but no portable definition. The Spec Generation Engine closes this gap by automating the translation from concept to complete agent package.
+
+The idea follows the same pattern as stories: agents as mirrors to theoretical concepts or real-life examples. Given a source description, the engine automatically generates use case scenarios, skills, stories, and the portable spec, all validated through the sandbox before acceptance.
+
+**Architecture: five components connected in a pipeline with a validation feedback loop.**
+
+**Sources (input).** Three input types, any starting point works. An existing agent markdown with full structure (`culture-agent.md`), a rough idea entry from `agent-ideas.md`, or a free-text scenario/prompt describing what the agent should do. The engine normalizes all three into a common intermediate representation before generation.
+
+**Context (constraints).** Two artifacts constrain generation to keep output consistent. The culture-agent definition serves as a few-shot template (the gold standard for structure, field naming, and extension usage). The Agent Spec 26.1.0 schema ensures structural compliance. This follows the `llms.txt` pattern Oracle validated in their February 2026 tutorial on generating Agent Spec configs from natural language requirements.
+
+**Spec Forge (LLM pipeline).** Three main stages plus parallel generators:
+
+1. **Parse & Extract**: Pull structure from the source material, identifying skills, personality traits, guardrails, I/O shapes, framework references, and domain vocabulary
+2. **Generate Spec**: Produce the Agent Spec-aligned YAML with `x-agentlab` extensions, including flows, specialized agents, prompt registry, tools, guardrails, memory, context strategy, and knowledge references
+3. **Generate Stories**: Create narrative use cases following the existing story arc pattern (hook, problem, turning point, solution, outcome), each story demonstrating the agent solving a real problem while surfacing the theoretical framework behind it
+
+Prompts (markdown files for each flow step) and examples (YAML input/output fixtures) are generated in parallel from the extracted structure.
+
+**Outputs.** A complete agent package ready for bundling:
+
+- `definition.yaml`: Agent Spec 26.1.0 standard zone + `x-agentlab` extensions
+- `stories.ts` entries: Use case narratives with section types, framework visualizations, and metrics
+- `prompts/*.md`: Reusable prompt templates for each flow step, referenced in the prompt registry
+- `examples/*.yaml`: Concrete input/output pairs for sandbox testing and documentation
+
+**Validation loop.** Four checks before output is accepted:
+
+- **Schema validation**: Valid YAML, correct types, required fields present
+- **Completeness lint**: All Agent Spec standard fields populated, all `x-agentlab` extensions filled
+- **Sandbox execution**: Run workflow steps against the LLM and validate output against the definition schema
+- **Story coherence**: Narrative arc complete, framework citations present, no stereotyping or judgment
+
+Failed validation feeds back to the forge for refinement. The engine iterates until all checks pass or flags items requiring human review.
+
+**Recursive property.** The forge itself can be defined as an agent with its own definition YAML, flows, and validation criteria, following the same pattern it generates.
+
+**Landscape of spec generation approaches:**
+
+| Approach | Method | Output | Maturity |
+|----------|--------|--------|----------|
+| Oracle Agent Spec + llms.txt | LLM with spec context injection | Agent Spec JSON/YAML (portable) | Production SDK, new generation tutorial (Feb 2026) |
+| Instructor + Pydantic | Constrained LLM output with validation/retries | Any schema-defined JSON/YAML | Production (3M+ monthly downloads) |
+| Swarms autoswarm CLI | CLI generates configs from task descriptions | Swarms YAML configs | Production framework |
+| CrewAI YAML generation | LLM API call with prompt template | CrewAI agents.yaml / tasks.yaml | Community pattern on production framework |
+| AutoAgent (HKUDS) | Natural language conversation | Full agent + workflow definitions | Research/early-stage |
+| SDD with Claude Code | Spec docs drive code generation | Any target format | Emerging standard |
+
+**Decision: build the forge as an internal LLM pipeline using the culture-agent definition as the few-shot template and Agent Spec 26.1.0 as the structural schema.** The Instructor + Pydantic pattern provides the most practical foundation for schema-valid output with automatic retries. The Oracle llms.txt pattern provides the context injection strategy. The existing sandbox provides the validation harness.
+
+**References:**
+
+- [Oracle: Create an Agent That Generates Agent Spec (Feb 2026)](https://medium.com/oracledevs/create-an-agent-that-generates-agent-spec-turning-business-requirements-into-open-agent-spec-7a94254df3bc)
+- [Oracle Agent Spec GitHub](https://github.com/oracle/agent-spec)
+- [Instructor library (structured LLM output)](https://python.useinstructor.com/)
+- [GitHub: Spec-Driven Development with AI](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/)
 
 ---
 

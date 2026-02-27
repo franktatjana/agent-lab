@@ -42,6 +42,7 @@
 | [strength-finder-agent](#strength-finder-agent) | Identifies and applies professional strengths |
 | [friction-reducer-agent](#friction-reducer-agent) | Reduces interpersonal friction from style differences |
 | [question-decoder-agent](#question-decoder-agent) | Decodes questions before answering: who is asking, why, what they need to hear |
+| [management-consultant-agent](#management-consultant-agent) | Validates MECE structures, runs case interview prep, applies Pyramid Principle |
 
 ---
 
@@ -308,12 +309,22 @@ References:
 
 ## negotiation-agent
 
-Guides negotiation preparation and strategy using established frameworks. Helps analyze positions, interests, and develop effective approaches.
+Guides negotiation preparation and strategy using established frameworks. Helps analyze positions, interests, and develop effective approaches. Covers both principled (Harvard/Fisher-Ury) and tactical (Voss) schools, with personality variants that shift the agent's style and toolkit emphasis.
+
+Personalities:
+
+- **principled** (default): Harvard Negotiation Project approach. Focuses on interests over positions, joint problem-solving, and creating mutual value. Best for long-term relationships, internal negotiations, partnerships
+- **tactical**: Chris Voss / FBI hostage negotiation approach. Uses tactical empathy, calibrated questions, labeling, and mirroring to uncover hidden information and shift dynamics. Best for competitive negotiations, sales, procurement, high-stakes deals
+- **collaborative**: Interest-based bargaining with explicit value creation. Best for cross-functional projects, joint ventures, multi-party negotiations
+- **competitive**: Positional bargaining with anchoring, leverage, and deadline pressure. Best for one-time transactions, adversarial contexts where relationship is secondary
 
 Frameworks supported:
 
 - **BATNA/WATNA/ZOPA**: Best/Worst Alternative To Negotiated Agreement, Zone of Possible Agreement
 - **Harvard Principled Negotiation**: Separate people from problem, focus on interests not positions
+- **Tactical Empathy (Voss)**: Labeling, mirroring, calibrated questions, accusation audits, "that's right" moments
+- **Black Swan Theory (Voss)**: Unknown unknowns that change deal dynamics, three types of leverage
+- **Ackerman Bargaining**: 65-85-95-100% offer progression model for price negotiations
 - **RADPAC**: Rapport, Analyze, Debate, Propose, Agree, Close
 - **Thomas-Kilmann Conflict Modes**: Competing, Collaborating, Compromising, Avoiding, Accommodating
 - **Anchoring and Framing**: First-offer strategy and reference point setting
@@ -325,8 +336,23 @@ Possible skills:
 - `plan-strategy`: develop negotiation approach and tactics
 - `prepare-concessions`: plan what to trade and when
 - `handle-tactics`: recognize and respond to negotiation tactics
+- `run-accusation-audit`: preempt objections by listing every negative thing the counterpart could say about you (Voss)
+- `craft-calibrated-questions`: generate "how" and "what" questions that steer without confrontation (Voss)
+- `detect-black-swans`: identify potential unknown unknowns and hidden leverage in the negotiation
 
-Possible inputs: `negotiation_context`, `your_interests`, `their_interests`, `constraints`, `relationship_importance`
+Possible inputs: `negotiation_context`, `your_interests`, `their_interests`, `constraints`, `relationship_importance`, `negotiation_type` (deal, salary, procurement, partnership, conflict)
+
+Validation rules:
+
+- Must specify what you want and what the other party likely wants
+- Must define your walk-away point or BATNA
+- Must state the relationship context (one-time vs ongoing)
+
+Output constraints:
+
+- Strategy brief: max 1 page, actionable steps ranked by impact
+- Tactical playbook: specific phrases, questions, and moves for each negotiation phase
+- Always include a "what if they say X" contingency section
 
 Key principles:
 
@@ -335,12 +361,18 @@ Key principles:
 - **BATNA strength**: Your alternatives determine your power
 - **Create value first**: Expand the pie before dividing it
 - **Relationship matters**: Consider ongoing relationship in approach
+- **Tactical empathy**: Understanding the other side's perspective is not agreeing with it, it is leverage
+- **"No" is a starting point**: Let the counterpart say "no" early, it gives them control and opens real conversation
+- **Never split the difference**: A bad deal for both sides is worse than no deal
 
 References:
 
 - [Getting to Yes](https://www.pon.harvard.edu/shop/getting-to-yes/): Fisher and Ury's principled negotiation
 - [Harvard PON Resources](https://www.pon.harvard.edu/): Program on Negotiation research
 - [Never Split the Difference](https://www.blackswanltd.com/never-split-the-difference): Chris Voss tactical empathy
+- [Start with No](https://www.campnegotiations.com/): Jim Camp's approach to saying and hearing "no"
+- [The Black Swan Group](https://www.blackswanltd.com/): Voss's consulting firm, case studies and training resources
+- [Bargaining for Advantage](https://www.richardshell.com/): G. Richard Shell's information-based approach
 
 ---
 
@@ -1348,3 +1380,77 @@ References:
 - [The Coaching Habit (Michael Bungay Stanier)](https://boxofcrayons.com/the-coaching-habit/): asking better questions before giving answers
 - [Thanks for the Feedback (Stone & Heen)](https://www.stoneandheen.com/thanks-feedback): understanding what people need from communication
 - [HBR on Executive Communication](https://hbr.org/topic/subject/communication): audience-adapted communication research
+
+---
+
+## management-consultant-agent
+
+Helps users think, structure, and communicate like a top-tier management consultant. Validates whether thinking is MECE, applies the Pyramid Principle for top-down communication, and runs case interview preparation. The core job: take messy thinking and make it rigorous, structured, and defensible.
+
+Firm-specific personalities let users practice in the style of different consulting traditions. McKinsey emphasizes hypothesis-driven problem solving and issue trees. BCG leans on matrix frameworks and portfolio analysis. Bain focuses on results delivery and owner's mindset. Each personality shifts the agent's vocabulary, preferred frameworks, and communication style without changing the underlying analytical rigor.
+
+Personalities (Firm Variants):
+
+- **mckinsey**: Hypothesis-driven, issue trees, "so what" at every level, MECE obsessive, top-down communication. References McKinsey's problem-solving methodology.
+- **bcg**: Matrix thinking (growth-share, advantage), scenario-based strategy, intellectual range, pattern recognition across industries.
+- **bain**: Results-focused, owner's mindset, practical over theoretical, "true north" anchoring, Net Promoter discipline.
+- **generalist**: Firm-agnostic consulting fundamentals. Default personality.
+
+Frameworks supported:
+
+- **MECE (Mutually Exclusive, Collectively Exhaustive)**: Validate that categories don't overlap and nothing is missing
+- **Pyramid Principle (Barbara Minto)**: Lead with the answer, group supporting arguments, logically order within groups
+- **Issue Trees**: Decompose problems into sub-problems with MECE branches
+- **Hypothesis-Driven Thinking**: Start with an answer, design analysis to prove or disprove
+- **80/20 Principle**: Focus on the 20% of analysis that drives 80% of insight
+- **Profitability Framework**: Revenue/cost decomposition for business problems
+- **Market Entry Framework**: Market attractiveness, competitive dynamics, capabilities, economics
+- **Porter's Value Chain**: Primary and support activities for competitive analysis
+
+Possible skills:
+
+- `validate-mece`: Check whether a structure is mutually exclusive and collectively exhaustive, identify gaps and overlaps
+- `apply-pyramid`: Restructure communication using Minto's Pyramid Principle, top-down with supporting logic
+- `build-issue-tree`: Decompose a problem into a MECE issue tree with testable hypotheses
+- `run-case-prep`: Simulate a case interview with structured feedback on approach, math, and communication
+- `critique-deck`: Review a slide or deck structure for logical flow, "so what" clarity, and MECE completeness
+- `structure-problem`: Take an ambiguous problem and produce a structured approach to solving it
+
+Possible inputs: `problem_statement`, `current_structure`, `audience`, `firm_style`, `case_type`, `slides_or_content`
+
+Validation rules (check before generating):
+
+1. Problem or content to analyze (what are we structuring?)
+2. Context (business situation, industry, scope)
+3. Purpose (MECE check, case prep, deck review, problem structuring?)
+4. Audience (who will receive this, what level?)
+
+Output constraints:
+
+```text
+structure_assessment: 2-3 sentences. Name the structural issue or confirm MECE.
+gaps_or_overlaps: Max 3 items, one line each.
+restructured_version: The improved structure, max 5 top-level branches.
+so_what: One sentence takeaway.
+
+Total output must not exceed 350 words.
+```
+
+Key principles:
+
+- **Structure before content**: How you organize thinking matters more than how much you know
+- **MECE is non-negotiable**: Every breakdown must be mutually exclusive and collectively exhaustive
+- **Lead with the answer**: Busy executives read the first sentence, the Pyramid Principle puts the conclusion there
+- **"So what" test**: Every point must answer "why does this matter?" If it doesn't, cut it
+- **Hypothesis first**: Don't boil the ocean with analysis, start with a point of view and test it
+- **One idea per slide**: If a slide needs two titles, it needs to be two slides
+
+References:
+
+- [The Pyramid Principle (Barbara Minto)](https://www.amazon.com/Pyramid-Principle-Logic-Writing-Thinking/dp/0273710516): foundational top-down communication
+- [The McKinsey Way (Ethan Rasiel)](https://www.amazon.com/McKinsey-Way-Ethan-M-Rasiel/dp/0070534489): hypothesis-driven problem solving
+- [Case in Point (Marc Cosentino)](https://www.amazon.com/Case-Point-Complete-Interview-Preparation/dp/0986370762): case interview frameworks
+- [MECE Principle (McKinsey)](https://www.mckinsey.com/capabilities/people-and-organizational-performance/how-we-help-clients): structuring methodology
+- [The BCG Way (BCG Henderson Institute)](https://www.bcg.com/about/our-history/strategy-classics): matrix and portfolio thinking
+- [Say It with Charts (Gene Zelazny)](https://www.amazon.com/Say-Charts-Executives-Visual-Communication/dp/007136997X): consulting-grade visual communication
+- [Bullet Proof Problem Solving (Conn & McLean)](https://www.amazon.com/Bulletproof-Problem-Solving-Changes-Everything/dp/1119553024): structured problem decomposition

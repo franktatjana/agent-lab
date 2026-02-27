@@ -42,6 +42,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Flyout } from "@/components/flyout";
+import { SandboxTab } from "@/components/sandbox/sandbox-tab";
 
 const agentResources: Record<string, { references: string[]; visualImage?: string }> = {
   "culture-agent": {
@@ -113,7 +114,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  light: "bg-purple-100" },
 };
 
-type Tab = "canvas" | "builder" | "resources";
+type Tab = "canvas" | "builder" | "resources" | "specification";
 
 const canvasCards: { key: keyof AgentCanvas; label: string; icon: LucideIcon; question: string }[] = [
   { key: "purpose", label: "Purpose", icon: Target, question: "Why does this agent exist?" },
@@ -227,6 +228,7 @@ export default function AgentPageClient({
           { id: "canvas" as Tab, label: "Canvas" },
           { id: "builder" as Tab, label: "Builder" },
           ...(hasResources ? [{ id: "resources" as Tab, label: "Resources" }] : []),
+          { id: "specification" as Tab, label: "Specification" },
         ]).map((tab) => (
           <button
             key={tab.id}
@@ -509,7 +511,7 @@ export default function AgentPageClient({
                   <p className="text-stone-500 text-sm font-medium mb-1">Your prompt will appear here</p>
                   <p className="text-stone-400 text-xs leading-relaxed max-w-xs">
                     Fill in your situation on the left, then click Generate.
-                    You&apos;ll get a complete, self-contained prompt ready to paste into ChatGPT, Claude, or any LLM.
+                    You&apos;ll get a self-contained prompt ready to use with any LLM.
                   </p>
                 </div>
               )}
@@ -724,6 +726,11 @@ export default function AgentPageClient({
             </div>
           )}
         </div>
+      )}
+
+      {/* ── Sandbox Tab ── */}
+      {activeTab === "specification" && (
+        <SandboxTab agentId={agent.id} colors={colors} />
       )}
 
       {/* Flyout panel */}

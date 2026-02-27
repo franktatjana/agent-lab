@@ -94,6 +94,24 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 
 ---
 
+## When to Use Agents
+
+**Do:**
+
+- Validate three conditions before building: complex decisions, unwieldy rule systems, or unstructured data
+- Check whether a deterministic solution (rule engine, API integration, simple automation) solves the problem first
+- Prove agent value on a single workflow before expanding scope
+
+**Don't:**
+
+- Build an agent when a rules engine or simple API call works, agents add latency, cost, and non-determinism
+- Assume every LLM integration needs agent autonomy, most don't
+- Skip the "does this need an agent?" question because agents are exciting
+
+*Why it matters: Agents are the right tool when traditional automation hits a ceiling. When it hasn't, a simpler solution is faster, cheaper, and more predictable.*
+
+---
+
 ## Workflows vs Agents
 
 **Do:**
@@ -110,6 +128,42 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 - Assume "agentic" is always better, it's often just slower with more ways to fail
 
 *Why it matters: Autonomous agents shine in open-ended, unpredictable work. For structured tasks, workflows win on cost, speed, and reliability.*
+
+---
+
+## Model Selection
+
+**Do:**
+
+- Prototype with the most capable model for every task, establish a performance baseline first
+- Set up evals before swapping models, measure what you're trading away
+- Assign different models to different tasks in the same workflow based on complexity
+
+**Don't:**
+
+- Prematurely optimize for cost by starting with cheap models, you'll confuse capability limits with design flaws
+- Use one model for everything when some tasks are simple classification and others require nuanced reasoning
+- Skip the baseline, without it you can't tell whether a smaller model is "good enough"
+
+*Why it matters: Model selection directly affects cost, latency, and quality. Starting high and optimizing down gives you data. Starting low and hoping for the best gives you guesswork.*
+
+---
+
+## Single-Agent Scaling
+
+**Do:**
+
+- Maximize a single agent's capabilities before splitting into multi-agent, adding a tool is cheaper than adding an agent
+- Use prompt templates with policy variables to scale one agent across use cases
+- Split when you see two signals: conditional logic getting unwieldy, or tool overlap causing confusion
+
+**Don't:**
+
+- Jump to multi-agent orchestration because the task feels complex, a single agent with 15 well-defined tools often outperforms 5 agents with 3 tools each
+- Confuse tool count with tool overload, the issue is similarity and overlap, not quantity
+- Skip improving tool names, parameters, and descriptions before splitting, better tool clarity often solves the problem
+
+*Why it matters: Multi-agent coordination introduces overhead, latency, and new failure modes. A single well-tooled agent is simpler to debug, test, and maintain. Split only when you have evidence that one agent can't handle it.*
 
 ---
 

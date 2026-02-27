@@ -41,6 +41,7 @@ Identity, responsibility, boundaries, and architecture patterns.
 - [Building agents with the Claude Agent SDK](https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk) - Anthropic's SDK design principles
 - [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) - Anthropic's loadable capability packages
 - [Equipping Agents with Agent Skills](https://claude.com/blog/equipping-agents-for-the-real-world-with-agent-skills) - Progressive disclosure, skill isolation, design best practices
+- [A Practical Guide to Building Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI's end-to-end guide: when to build agents, model selection, tool design, orchestration patterns, guardrails (2025)
 - [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) - OpenAI's lightweight multi-agent framework
 - [OpenAI Agents Guide](https://platform.openai.com/docs/guides/agents-sdk) - Official SDK documentation
 - [New tools for building agents](https://openai.com/index/new-tools-for-building-agents/) - OpenAI's agent tooling overview
@@ -84,6 +85,8 @@ Frameworks, SDKs, and platforms for building agents.
 - [LangChain Agents Complete Guide](https://www.leanware.co/insights/langchain-agents-complete-guide-in-2025) - Tutorial and overview
 - [openai-agents-python](https://github.com/openai/openai-agents-python) - OpenAI Agents SDK source
 - [Introducing AgentKit](https://openai.com/index/introducing-agentkit/) - OpenAI's visual workflow builder
+- [Google ADK Agent Configuration](https://google.github.io/adk-docs/agents/config/) - Declarative YAML agent definitions with sequential pipelines and parallel sub-agents
+- [Pydantic AI](https://ai.pydantic.dev/agent/) - Type-safe agent framework using Pydantic models for I/O schemas and validation
 
 ---
 
@@ -101,6 +104,16 @@ Standards, protocols, and patterns for agent boundaries and communication.
 - [Agent Communication Protocols Landscape](https://generativeprogrammer.com/p/agent-communication-protocols-landscape) - Visual comparison of protocol layers and overlaps
 - [What Are AI Agent Protocols?](https://www.ibm.com/think/topics/ai-agent-protocols) - IBM overview of protocol standards and interoperability
 - [Agent Contracts: Formal Framework](https://arxiv.org/html/2601.08815) - Academic framework for resource-bounded agent contracts with conservation laws
+- [Open Agent Specification (Agent Spec)](https://oracle.github.io/agent-spec/) - Oracle's declarative, framework-agnostic language for defining agents, workflows, and multi-agent systems (JSON/YAML, Python SDK, runtime adapters)
+- [Agent Spec Technical Report](https://arxiv.org/abs/2510.04173v3) - Formal specification: components (Agent, Flow, Tool, LLM, Property, Node), serialization, and adapter architecture (Oct 2025)
+- [Agent Spec GitHub](https://github.com/oracle/agent-spec) - Source, PyAgentSpec SDK, and framework adapters (LangGraph, CrewAI, WayFlow)
+- [AG-UI Integration for Agent Spec](https://blogs.oracle.com/ai-and-datascience/announcing-ag-ui-integration-for-agent-spec) - Connecting Agent Spec definitions to interactive frontends via AG-UI protocol (Feb 2026)
+- [Open Agentic Schema Framework (OASF)](https://docs.agntcy.org/oasf/open-agentic-schema-framework/) - Standardized schemas for agent capabilities, interactions, and metadata (Galileo + LangChain)
+- [JSON Agents / Portable Agent Manifest (PAM)](https://jsonagents.org/) - Universal JSON-native format for agent manifests: profiles, capabilities, runtime, security, governance
+- [ACP Agent Manifest](https://agentcommunicationprotocol.dev/core-concepts/agent-manifest) - IBM BeeAI's agent manifest for identity, capabilities, and runtime status
+- [AGENTS.md Standard](https://agents.md/) - Open standard for describing repos to coding agents, adopted by 20k+ GitHub repos (Google, OpenAI, Factory, Sourcegraph)
+- [How to Write a Great agents.md](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/) - GitHub's guide based on 2500+ repositories
+- [Create an Agent That Generates Agent Spec](https://medium.com/oracledevs/create-an-agent-that-generates-agent-spec-turning-business-requirements-into-open-agent-spec-7a94254df3bc) - Natural language → Agent Spec YAML/JSON code generation via LLM (Feb 2026)
 
 ---
 
@@ -171,6 +184,10 @@ Market analysis, emerging patterns, and the evolving landscape.
 ## Papers
 
 Academic and industry research on agents.
+
+- [IETF: Agentic AI Communications](https://www.ietf.org/blog/agentic-ai-standards/) - Identifying standards needed for agent identity, communication, and 6G integration
+- [Framework for AI Agent Protocols (IETF Draft)](https://www.ietf.org/archive/id/draft-rosenberg-ai-protocols-00.html) - Proposed framework for standardizing agent communication protocols
+- [Porting AutoGen Agents with Agent Spec](https://medium.com/oracledevs/never-fear-deprecation-porting-autogen-agents-with-agent-spec-f7d796818652) - "Define once, run anywhere" demonstrated across framework migrations (Nov 2025)
 
 ---
 
