@@ -1,64 +1,61 @@
 # Agent Lab
 
-The R&D department of an agent factory. Agent concepts get designed, documented, and refined here, then tested through a web-based Prompt Builder.
+The R&D department of an agent factory. Agent concepts get designed, documented, and refined here before they become production systems.
+
+**[Live Demo](https://agent-lab.onrender.com/)**
 
 ## What This Is
 
-Agent Lab is a specification library with a built-in testing tool. Each agent is a curated prompt design: identity, personality variants, skill workflows, validation rules, and output constraints. The Prompt Builder lets you configure an agent, describe your situation, and generate a self-contained prompt you can paste into ChatGPT, Claude, or any LLM.
+Agent Lab is an agent design studio. Each agent is a portable specification: identity, personality variants, skill workflows, guardrails, and output constraints. The web app lets you explore agent designs, generate prompts for any LLM, browse portable YAML definitions, and validate agent specifications.
 
-The core insight: **define agents by responsibility, not capability**. A "triage agent" (accountable for routing) beats a "classifier agent" (just describes a tool). This distinction shapes every spec in this repo.
+The core insight: **define agents by responsibility, not capability**. A "triage agent" accountable for routing beats a "classifier agent" that just describes a tool. This distinction shapes every agent spec in this repo.
 
-## Vision: From Specs to Running Agents
+## What You Can Do
 
-Agent Lab is moving toward **portable agent definitions**: specs that can be fed to any framework to instantiate a running agent.
+Each agent has four tabs in the web app:
 
-**Phase A (current): Spec → Code Generation.** The Prompt Builder already holds structured agent data (identity, prompts, skills, tools, guardrails, personalities). The next step is exporting these as machine-consumable definitions that a code generator transforms into framework-specific implementations (OpenAI Agents SDK, LangGraph, CrewAI, Claude Agent SDK).
+- **Canvas** shows the agent's purpose, mindset, value proposition, guardrails, human role, and success criteria
+- **Builder** lets you pick a personality variant and skill, describe your situation, and generate a prompt ready to paste into any LLM
+- **Resources** collects stories, case studies, examples, and reference materials
+- **Specification** is the portable agent definition aligned with Oracle Agent Spec 26.1.0, where you can browse flows, tools, variants, prompts, guardrails, validate the spec, and download the YAML
 
-**Phase B (future): Runtime Interchange Format.** Once the export format is validated through Phase A, evolve toward a portable definition that frameworks consume directly at startup, aligning with emerging standards like Oracle's Open Agent Specification, A2A Agent Cards, and MCP tool definitions.
+## Agents
 
-The phases don't exclude each other. Phase A validates the schema through practical code generation. Phase B builds on that validated schema to create a protocol-level standard. See [handbook.md](docs/handbook.md) Part 5 (Portable Agent Definitions) and [bookmarks.md](docs/bookmarks.md) Interfaces and Protocols for the landscape.
+12 fully documented agents with prompts, skills, references, and personality variants:
 
-## Complete Agents
-
-Fully documented agents with prompts, skills, references, and personality variants:
-
-| Agent | What It Does |
-|-------|-------------|
+| Agent | Responsibility |
+|-------|---------------|
 | [Culture Agent](agents/culture-agent/) | Cross-cultural communication bridging and meeting preparation |
 | [Research Agent](agents/research-agent/) | Multi-source research, synthesis, and fact-checking |
 | [Why Agent](agents/why-agent/) | Root cause analysis through structured questioning |
 | [Generation Agent](agents/generation-agent/) | Cross-generational workplace communication |
 | [Superhero Agent](agents/superhero-agent/) | Reframes work challenges through Marvel hero archetypes |
 | [Storytelling Agent](agents/storytelling-agent/) | Crafts compelling narratives for professional contexts |
-| [Question Decoder Agent](agents/question-decoder-agent/) | Decodes who is asking, why, and architects the right answer |
+| [Question Decoder](agents/question-decoder-agent/) | Decodes who is asking, why, and architects the right answer |
 | [Six Hats Agent](agents/six-hats-agent/) | Structured parallel thinking using de Bono's Six Thinking Hats |
 | [Corporate Navigator](agents/corporate-navigator-agent/) | Navigates office politics, stakeholder dynamics, and career strategy |
+| [Design Thinking Agent](agents/design-thinking-agent/) | Guides teams through the design thinking process |
+| [Leadership Coach](agents/leadership-coach-agent/) | Leadership style assessment and development coaching |
+| [Networking Agent](agents/networking-agent/) | Professional networking strategy and relationship building |
 
-## Agent Ideas
+26 more agent concepts with frameworks researched. See [agent-ideas.md](agents/agent-ideas.md).
 
-26 more agent concepts with frameworks researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for the full list.
+## Portable Agent Specifications
 
-| Category | Agents |
-|----------|--------|
-| **Thinking Chain** | why → systems-thinker → strategist → tactician |
-| **Communication** | feedback-coach, presentation-coach, difficult-conversations, pitch |
-| **Career** | interview-prep, resume, salary-negotiation, networking, mentorship, promotion, skill-gap, onboarding |
-| **Organization** | change-management, knowledge-transfer, team-dynamics, meeting-facilitator |
-| **Decision & Strategy** | decision-facilitator, design-thinking, negotiation |
+Agent Lab produces framework-agnostic definitions aligned with Oracle Agent Spec 26.1.0. Each spec defines the agent's identity, flows, tools, guardrails, and behavior in YAML that any agent runtime can consume: OpenAI Agents SDK, LangGraph, CrewAI, Claude Agent SDK, or Oracle Agent Runtime.
 
-## How to Navigate
+The `x-agentlab` namespace extends the standard with prompt registries, memory configuration, context strategy, knowledge references, quality criteria, and output constraints.
 
-**Try the Prompt Builder.** Run the web app to configure agents, generate prompts, and browse examples, case studies, and reference materials.
+See [handbook.md](docs/handbook.md) Part 5 (Portable Agent Definitions) for the full field mapping and design rationale.
 
-**Browse the catalogue.** The [Agent Catalogue](agent-catalogue.md) lists complete agents and ideas in one place.
+## Documentation
 
-**Read the handbook.** The [Handbook](docs/handbook.md) documents the patterns: identity, skills, validation gates, output constraints, context engineering.
+- **[Handbook](docs/handbook.md)** documents the design patterns: identity, skills, validation gates, output constraints, context engineering, portable definitions
+- **[Lessons Learned](docs/lessons-learned.md)** captures dos and don'ts from building these agents
+- **[Bookmarks](docs/bookmarks.md)** curates external resources on agent design, prompt engineering, and agent specifications
+- **[Agent Catalogue](agent-catalogue.md)** lists all agents and ideas in one place
 
-**Learn from mistakes.** [Lessons Learned](docs/lessons-learned.md) captures dos and don'ts from building these agents.
-
-**Find reading.** [Bookmarks](docs/bookmarks.md) curates external resources on agent design and prompt engineering.
-
-## Running the Prompt Builder
+## Running Locally
 
 ```bash
 cd web
@@ -70,7 +67,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Agent Folder Structure
 
-Each complete agent follows a consistent structure:
+Each agent follows a consistent structure:
 
 | Folder | Purpose |
 |--------|---------|
@@ -80,10 +77,10 @@ Each complete agent follows a consistent structure:
 | `personalities/` | Voice and tone variants for different situations |
 | `examples/` | Sample inputs and outputs for testing |
 
-## Prompt Quality Patterns
+## Evolving Landscape
 
-All agents follow two design patterns. See the [handbook](docs/handbook.md) for the full rationale.
+Agentic development is moving fast. New frameworks, specification standards, and design patterns emerge regularly, from Kiro's structured requirements to A2A protocol updates. The [handbook](docs/handbook.md) is a living document that continuously adopts relevant advances as they mature.
 
-**Input Validation Gates.** Each agent defines required input dimensions. On incomplete input, the agent states what's missing, gives a short preliminary analysis, and asks for clarification.
+## Author
 
-**Output Constraints.** Field-level word limits and a total word cap (250-400 words) force the agent to prioritize and distill rather than dump context.
+**Tatjana Frank**, Solutions Architect. Agent Lab is one piece of a larger body of work on AI agent design, portable agent specifications, and knowledge architecture. © 2026

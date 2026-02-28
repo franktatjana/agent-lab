@@ -43,6 +43,7 @@ import {
 } from "lucide-react";
 import { Flyout } from "@/components/flyout";
 import { SandboxTab } from "@/components/sandbox/sandbox-tab";
+import { FlowTab } from "@/components/flow/FlowTab";
 
 const agentResources: Record<string, { references: string[]; visualImage?: string }> = {
   "culture-agent": {
@@ -114,7 +115,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  light: "bg-purple-100" },
 };
 
-type Tab = "canvas" | "builder" | "resources" | "specification";
+type Tab = "canvas" | "builder" | "resources" | "flow" | "specification";
 
 const canvasCards: { key: keyof AgentCanvas; label: string; icon: LucideIcon; question: string }[] = [
   { key: "purpose", label: "Purpose", icon: Target, question: "Why does this agent exist?" },
@@ -228,6 +229,7 @@ export default function AgentPageClient({
           { id: "canvas" as Tab, label: "Canvas" },
           { id: "builder" as Tab, label: "Builder" },
           ...(hasResources ? [{ id: "resources" as Tab, label: "Resources" }] : []),
+          { id: "flow" as Tab, label: "Flow" },
           { id: "specification" as Tab, label: "Specification" },
         ]).map((tab) => (
           <button
@@ -547,6 +549,85 @@ export default function AgentPageClient({
       {/* ── Resources Tab ── */}
       {activeTab === "resources" && (
         <div className="space-y-10">
+          {/* Reference files */}
+          {agentResources[agent.id] && (
+            <div>
+              <h2 className="text-lg font-semibold text-stone-900 mb-2">References</h2>
+              <p className="text-sm text-stone-500 mb-4">
+                Knowledge bases and frameworks that inform this agent.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {agentResources[agent.id].references.map((file) => (
+                  <button
+                    key={file}
+                    type="button"
+                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all flex items-center gap-2.5 group"
+                    onClick={async () => {
+                      try {
+                        const res = await fetch("/references.json");
+                        const refs = await res.json();
+                        const key = `${agent.id}/${file}`;
+                        if (refs[key]) {
+                          const label = file.replace(".md", "").replace(/-/g, " ");
+                          setFlyout({ title: label.charAt(0).toUpperCase() + label.slice(1), content: refs[key] });
+                        }
+                      } catch { /* ignore */ }
+                    }}
+                  >
+                    <FileText size={14} className="text-stone-400 shrink-0" />
+                    <span className="text-sm font-medium text-stone-700 flex-1">
+                      {file.replace(".md", "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                    </span>
+                    <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
+                  </button>
+                ))}
+                {agentResources[agent.id].visualImage && (
+                  <button
+                    type="button"
+                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all flex items-center gap-2.5 group"
+                    onClick={() => {
+                      setFlyout({
+                        title: "Visual Factsheet",
+                        content: `![${agent.name} Factsheet](${agentResources[agent.id].visualImage})`,
+                      });
+                    }}
+                  >
+                    <ImageIcon size={14} className="text-stone-400 shrink-0" />
+                    <span className="text-sm font-medium text-stone-700 flex-1">Visual Factsheet</span>
+                    <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Stories */}
+          {agentStories.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-stone-900 mb-2">Stories</h2>
+              <p className="text-sm text-stone-500 mb-4">
+                Pain point narratives that show why this agent matters, from problem to resolution.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {agentStories.map((story) => (
+                  <Link
+                    key={story.id}
+                    href={`/agent/${agent.id}/stories/${story.id}`}
+                    className="group text-left rounded-xl border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-5 transition-all"
+                  >
+                    <div className="flex items-start gap-2">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold text-stone-900 mb-1 group-hover:text-stone-700">{story.name}</h3>
+                        <p className="text-xs text-stone-500 leading-relaxed">{story.tagline}</p>
+                      </div>
+                      <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0 mt-0.5">&rarr;</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Examples */}
           {agent.examples && agent.examples.length > 0 && (
             <div>
@@ -578,33 +659,6 @@ export default function AgentPageClient({
                     </button>
                   );
                 })}
-              </div>
-            </div>
-          )}
-
-          {/* Stories */}
-          {agentStories.length > 0 && (
-            <div>
-              <h2 className="text-lg font-semibold text-stone-900 mb-2">Stories</h2>
-              <p className="text-sm text-stone-500 mb-4">
-                Pain point narratives that show why this agent matters, from problem to resolution.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {agentStories.map((story) => (
-                  <Link
-                    key={story.id}
-                    href={`/agent/${agent.id}/stories/${story.id}`}
-                    className="group text-left rounded-xl border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-5 transition-all"
-                  >
-                    <div className="flex items-start gap-2">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-sm font-semibold text-stone-900 mb-1 group-hover:text-stone-700">{story.name}</h3>
-                        <p className="text-xs text-stone-500 leading-relaxed">{story.tagline}</p>
-                      </div>
-                      <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0 mt-0.5">&rarr;</span>
-                    </div>
-                  </Link>
-                ))}
               </div>
             </div>
           )}
@@ -674,58 +728,12 @@ export default function AgentPageClient({
             </div>
           )}
 
-          {/* Reference files */}
-          {agentResources[agent.id] && (
-            <div>
-              <h2 className="text-lg font-semibold text-stone-900 mb-2">References</h2>
-              <p className="text-sm text-stone-500 mb-4">
-                Knowledge bases and frameworks that inform this agent.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {agentResources[agent.id].references.map((file) => (
-                  <button
-                    key={file}
-                    type="button"
-                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all flex items-center gap-2.5 group"
-                    onClick={async () => {
-                      try {
-                        const res = await fetch("/references.json");
-                        const refs = await res.json();
-                        const key = `${agent.id}/${file}`;
-                        if (refs[key]) {
-                          const label = file.replace(".md", "").replace(/-/g, " ");
-                          setFlyout({ title: label.charAt(0).toUpperCase() + label.slice(1), content: refs[key] });
-                        }
-                      } catch { /* ignore */ }
-                    }}
-                  >
-                    <FileText size={14} className="text-stone-400 shrink-0" />
-                    <span className="text-sm font-medium text-stone-700 flex-1">
-                      {file.replace(".md", "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                    </span>
-                    <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
-                  </button>
-                ))}
-                {agentResources[agent.id].visualImage && (
-                  <button
-                    type="button"
-                    className="text-left rounded-lg border bg-white border-stone-200 hover:border-stone-300 hover:shadow-sm p-3 transition-all flex items-center gap-2.5 group"
-                    onClick={() => {
-                      setFlyout({
-                        title: "Visual Factsheet",
-                        content: `![${agent.name} Factsheet](${agentResources[agent.id].visualImage})`,
-                      });
-                    }}
-                  >
-                    <ImageIcon size={14} className="text-stone-400 shrink-0" />
-                    <span className="text-sm font-medium text-stone-700 flex-1">Visual Factsheet</span>
-                    <span className="text-stone-400 group-hover:text-stone-600 transition-colors shrink-0">&rarr;</span>
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
         </div>
+      )}
+
+      {/* ── Flow Tab ── */}
+      {activeTab === "flow" && (
+        <FlowTab agentId={agent.id} colors={colors} onOpenFlyout={setFlyout} />
       )}
 
       {/* ── Sandbox Tab ── */}

@@ -550,6 +550,13 @@ x-agentlab:
     - Does not guarantee cultural patterns apply to individuals
     - Does not replace human cultural consultants for high-stakes situations
 
+  permissions:
+    - Access cultural dimension databases and academic frameworks
+    - Reference Hofstede, Meyer, Trompenaars, and Hall models
+    - Suggest communication and negotiation strategies
+    - Generate cultural comparison analyses
+    - Recommend meeting formats and collaboration practices
+
   escalation_triggers:
     - Request involves legal or HR implications
     - High-stakes negotiation requiring human expert

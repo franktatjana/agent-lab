@@ -108,7 +108,9 @@ export interface AgentDefinition {
       resource: Array<Record<string, number>>;
     };
     boundaries: string[];
+    permissions: string[];
     escalation_triggers: string[];
+    unchanged_behavior?: string[];
     human_in_the_loop_conditions: string[];
     memory: {
       conversation: string;

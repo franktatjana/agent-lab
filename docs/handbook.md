@@ -315,9 +315,28 @@ How an agent talks shapes how users perceive it. A triage agent should be terse 
 - **Uncertainty handling**: false confidence erodes trust; endless hedging is useless. Design explicitly for "I don't know."
 - **Agent-to-agent**: consistent formats, clear metadata, explicit confidence signals. Loose contracts cause integration failures.
 
-### Boundaries and Constraints
+### Permissions and Boundaries
 
-Agents need hard limits on what they can and cannot do. Vague boundaries lead to scope creep; soft preferences get ignored under pressure. Distinguish between rules (process) and constraints (output).
+Every agent needs two complementary definitions: what it is allowed to do (permissions) and what it must not do (boundaries). Permissions define the positive scope of authority, the actions, data sources, and capabilities the agent can use. Boundaries define the hard limits, the domains and actions the agent is excluded from. Together they form a complete scope contract that prevents both overreach and underuse.
+
+**Permissions** answer "what can this agent do?":
+
+- Which data sources and tools the agent may access
+- Which types of analysis or recommendations it may produce
+- Which frameworks or models it may reference
+- Which actions it may take autonomously
+
+**Boundaries** answer "what must this agent never do?":
+
+- Which domains are off-limits (legal, HR, compliance)
+- Which decisions require human authority
+- Which guarantees the agent cannot make
+- Which roles it does not replace
+
+**Key principle:** Frame both as hard requirements, not preferences.
+
+- Bad: "The agent prefers not to make recommendations"
+- Good: "The agent must never make recommendations"
 
 **Rules vs Constraints:**
 
@@ -327,11 +346,6 @@ Agents need hard limits on what they can and cannot do. Vague boundaries lead to
 | "Always cite sources" | "Max 500 words" |
 | "Escalate when confidence is low" | "Never include PII" |
 | Verified by observing behavior | Checked on every response |
-
-**Key principle:** Frame as hard requirements, not preferences.
-
-- Bad: "The agent prefers not to make recommendations"
-- Good: "The agent must never make recommendations"
 
 **Scope boundaries:**
 
@@ -369,6 +383,35 @@ Documented rules get ignored. Guardrails are runtime-enforced constraints that a
 - **Output guardrails**: check/modify before delivery
 - **Behavioral guardrails**: limit what actions agent can take
 - **Resource guardrails**: cap tokens, API calls, time
+
+**Writing guardrails with EARS notation.** Vague guardrails like "avoid medical advice" get interpreted inconsistently. Structured notation borrowed from requirements engineering (EARS, Easy Approach to Requirements Syntax) makes guardrails testable and unambiguous. Each guardrail follows a `WHEN [condition] THE AGENT SHALL [behavior]` pattern that maps directly to a verifiable check.
+
+```text
+# Input guardrails
+WHEN user requests medical diagnosis THE AGENT SHALL refuse and suggest consulting a healthcare professional
+WHEN input lacks required dimensions THE AGENT SHALL state what is missing and request clarification
+
+# Output guardrails
+WHEN response exceeds output_constraints word limit THE AGENT SHALL compress to fit
+WHEN output contains personally identifiable information THE AGENT SHALL redact before delivery
+
+# Behavioral guardrails
+WHEN confidence score falls below threshold THE AGENT SHALL escalate to human review
+WHEN user requests action outside agent boundaries THE AGENT SHALL decline and explain scope
+```
+
+This notation has three advantages over free-text rules. Each guardrail is independently testable: feed the condition, check the behavior. Guardrails compose without ambiguity: multiple `WHEN` clauses don't conflict because each covers a distinct condition. And cross-version stability becomes explicit through `SHALL CONTINUE TO` clauses (see Unchanged Behavior below).
+
+**Unchanged behavior.** When updating an agent spec across versions, document what must not change alongside what should change. This pattern, adapted from Kiro's bugfix spec methodology, prevents regressions by making preservation explicit.
+
+```text
+# Unchanged behavior (regression prevention)
+WHEN user asks about Hofstede dimensions THE AGENT SHALL CONTINUE TO reference the 6-dimension framework
+WHEN input is in English THE AGENT SHALL CONTINUE TO respond in English
+WHEN user provides all required dimensions THE AGENT SHALL CONTINUE TO generate a full response
+```
+
+The `SHALL CONTINUE TO` clause serves as a regression test specification. During validation, these statements confirm that new versions of the agent definition preserve existing behavior while adding or modifying other capabilities.
 
 **Tool risk classification:** Every tool available to an agent carries a different risk profile. Assign a rating (low, medium, high) to each tool based on: read-only vs. write access, reversibility of the action, required account permissions, and financial impact. Use these ratings to trigger automated behavior: low-risk tools execute freely, medium-risk tools run guardrail checks before execution, high-risk tools pause for human approval. This turns abstract guardrail policy into concrete per-tool enforcement.
 
@@ -552,7 +595,9 @@ The definition has two clear zones. The Agent Spec Standard Zone contains the en
 - `prompt_registry`: Atomic prompt files with source paths, typed inputs/outputs
 - `validation`: Input completeness gates with `on_incomplete` behavior
 - `output_constraints`: Field-level word limits, sentence caps, hard rules
-- `guardrails`: Input/output/resource restrictions
+- `guardrails`: Input/output/resource restrictions using EARS notation (`WHEN [condition] THE AGENT SHALL [behavior]`)
+- `unchanged_behavior`: Regression prevention clauses using `SHALL CONTINUE TO` notation, documenting what must be preserved across spec versions
+- `permissions`: Explicit scope of authority, what the agent is allowed to do
 - `boundaries`, `escalation_triggers`, `human_in_the_loop_conditions`
 - `memory`: Conversation/working/persistent/shared taxonomy
 - `context`: Token budget, priority order, include/exclude lists
@@ -566,12 +611,17 @@ The definition has two clear zones. The Agent Spec Standard Zone contains the en
 |--------|-------|----------|
 | Oracle Agent Spec | Full agent + workflow definition, framework adapters | High, active development |
 | A2A Agent Cards | Discovery and capability advertisement | Production, Linux Foundation |
+| Kiro Specs | Structured requirements (EARS), design, and tasks for AI-assisted development | Production, AWS/Amazon |
 | JSON Agents PAM | Manifest with governance and security | Early stage |
 | OASF (Agntcy) | Capability schemas and taxonomies | Early stage |
 | CrewAI YAML | Agent + task definition | Framework-specific, production |
 | Google ADK YAML | Agent + pipeline definition | Framework-specific, production |
 
-**Current gaps and contributions.** Agent Spec covers agent identity, workflows, tools, and I/O well but does not yet address guardrails, memory portability, personality variants, context engineering, or output constraints. Agent Lab's `x-agentlab` extensions validate what a complete definition actually requires beyond the standard fields. The sandbox in Agent Lab tests definitions by executing workflow steps against the LLM and validating outputs against the schema, serving as a practical test harness for portable definitions.
+**Current gaps and contributions.** Agent Spec covers agent identity, workflows, tools, and I/O well but does not yet address guardrails, memory portability, personality variants, context engineering, or output constraints. Agent Lab's `x-agentlab` extensions validate what a complete definition actually requires beyond the standard fields. The Specification tab in Agent Lab validates definitions through schema checks, completeness checks, and cross-reference checks, serving as a practical test harness for portable definitions.
+
+**Validation philosophy.** The handbook and the spec validator serve different roles. The handbook is a design guide for humans: it teaches patterns, explains rationale, and builds judgment. The spec validator is a structural checker: it catches missing fields, broken references, and incomplete sections. These are complementary, not redundant. The handbook prescribes EARS notation, responsibility-driven identity, and validation gates, but these are design quality concerns that require human judgment, not automated enforcement. If recurring design mistakes emerge, specific handbook rules can be selectively promoted into the validator one at a time, without wholesale duplication.
+
+**Structured requirements for agent behavior.** Agent Lab adopts EARS notation (Easy Approach to Requirements Syntax) from requirements engineering, adapted from Kiro's spec methodology, for writing guardrails, boundaries, and behavioral constraints. Where Kiro uses three files (`requirements.md`, `design.md`, `tasks.md`) to formalize the development process for features and bugs, Agent Lab embeds structured requirements directly into the definition YAML. This keeps the definition as the single source of truth while gaining the precision of formal notation. Guardrails use `WHEN [condition] THE AGENT SHALL [behavior]`, and unchanged behavior clauses use `SHALL CONTINUE TO` for regression prevention across spec versions. See Part 4: Guardrails for notation details and examples.
 
 ### Spec Generation Engine
 
@@ -611,6 +661,22 @@ Failed validation feeds back to the forge for refinement. The engine iterates un
 
 **Recursive property.** The forge itself can be defined as an agent with its own definition YAML, flows, and validation criteria, following the same pattern it generates.
 
+**Implementation bridge: spec to running agent.** The gap between "spec exists" and "agent is built" benefits from a structured task format, adapted from Kiro's `tasks.md` pattern. For each agent that needs to go from definition to runtime implementation, a task list captures discrete, trackable implementation steps:
+
+```text
+# Implementation Tasks: culture-agent
+
+- [x] Write definition.yaml with all x-agentlab extensions
+- [x] Create prompts/*.md for each flow step
+- [x] Create examples/*.yaml with input/output fixtures
+- [ ] Wire to OpenAI Agents SDK (tool definitions, flow routing)
+- [ ] Wire to LangGraph (state graph, node functions)
+- [ ] Run validation: schema + completeness + cross-reference
+- [ ] Run workflow execution: test each flow with example inputs
+```
+
+This is a process pattern for the spec-to-implementation journey, not a per-agent file requirement. The task list lives alongside the implementation work, not in the agent's specification folder.
+
 **Landscape of spec generation approaches:**
 
 | Approach | Method | Output | Maturity |
@@ -621,6 +687,7 @@ Failed validation feeds back to the forge for refinement. The engine iterates un
 | CrewAI YAML generation | LLM API call with prompt template | CrewAI agents.yaml / tasks.yaml | Community pattern on production framework |
 | AutoAgent (HKUDS) | Natural language conversation | Full agent + workflow definitions | Research/early-stage |
 | SDD with Claude Code | Spec docs drive code generation | Any target format | Emerging standard |
+| Kiro Specs | Three-file structured specs (requirements, design, tasks) | Implementation artifacts | Production, AWS/Amazon |
 
 **Decision: build the forge as an internal LLM pipeline using the culture-agent definition as the few-shot template and Agent Spec 26.1.0 as the structural schema.** The Instructor + Pydantic pattern provides the most practical foundation for schema-valid output with automatic retries. The Oracle llms.txt pattern provides the context injection strategy. The existing sandbox provides the validation harness.
 
@@ -630,6 +697,173 @@ Failed validation feeds back to the forge for refinement. The engine iterates un
 - [Oracle Agent Spec GitHub](https://github.com/oracle/agent-spec)
 - [Instructor library (structured LLM output)](https://python.useinstructor.com/)
 - [GitHub: Spec-Driven Development with AI](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/)
+- [Kiro Specs (AWS/Amazon)](https://kiro.dev/docs/specs/): structured requirements, design, and tasks for AI-assisted development
+- [EARS Notation (Alistair Mavin)](https://ieeexplore.ieee.org/document/5328509): Easy Approach to Requirements Syntax
+
+### Export to Agent Runtime
+
+A portable definition only becomes useful when it runs somewhere. The export path transforms an Agent Lab YAML spec into starter artifacts for a specific agent framework. The generated output is a scaffold, not a production agent: tool implementations are stubs, memory wiring needs manual setup, and framework-specific patterns need adaptation. The value is saving the boilerplate work and ensuring structural alignment between the spec and the running agent.
+
+Agent Lab specs are behavioral specifications (what an agent knows and does). Agent runtimes need code and configuration (how to instantiate and call an agent). This distinction shapes what translates cleanly and what requires human judgment during the export.
+
+**What maps across most frameworks:**
+
+| Agent Lab YAML field | Runtime equivalent | Mapping quality |
+|---|---|---|
+| `name`, `description` | Agent identity | Direct |
+| `system_prompt` | Instructions / system message | Direct |
+| `tools[].name`, `inputs`, `outputs` | Tool / function definitions | Structural (stubs) |
+| `llm_configuration.model_id` | Model selection | Direct |
+| `temperature`, `max_tokens` | Generation parameters | Direct |
+| `flows[].workflow_shorthand` | Task / step sequences | Partial |
+| `specialized_agents` | Subagent delegation | Framework-dependent |
+
+**What doesn't translate (requires human wiring):**
+
+| Agent Lab YAML field | Gap |
+|---|---|
+| `x-agentlab.memory` | Every framework handles memory differently |
+| `x-agentlab.guardrails` | Some frameworks support guardrails, most don't |
+| `x-agentlab.context` | Token budgets, priority order: no standard |
+| `x-agentlab.knowledge.references` | RAG setup varies per framework |
+| Personality variants | No framework supports this natively |
+
+#### Claude Agent SDK
+
+The Claude Agent SDK defines agents as Markdown files with YAML frontmatter, placed in `.claude/agents/`. There is no YAML or JSON import mechanism, but the file format is straightforward enough that an exporter can generate it directly.
+
+**Export target**: a `.md` file per agent, ready to drop into `.claude/agents/`.
+
+**Field mapping:**
+
+| Agent Lab YAML | Claude Agent SDK | Notes |
+|---|---|---|
+| `name` | `name` in frontmatter | Direct |
+| `description` | `description` in frontmatter | Direct |
+| `system_prompt` | Markdown body (below frontmatter) | Direct |
+| `llm_configuration.model_id` | `model` (`sonnet`, `opus`, `haiku`) | Map to Claude model names |
+| `tools[].name` | `tools` list in frontmatter | Built-in tools by string name |
+| `tools[]` (custom) | MCP server definitions | Each custom tool needs an MCP server |
+| `specialized_agents` | Not supported in agent files | Parent-child delegation only via `Task` tool in SDK code |
+| `flows` | No declarative flow | Claude's reasoning handles orchestration |
+
+**Example generated output:**
+
+```markdown
+---
+name: culture-agent
+description: Cross-cultural communication bridging and meeting preparation
+tools: Read, Glob, Grep, WebSearch
+model: sonnet
+maxTurns: 20
+---
+
+You are a cross-cultural communication specialist...
+[system_prompt content here]
+```
+
+**Constraints**: Claude Agent SDK uses a parent-subagent delegation model. Subagents cannot spawn their own subagents. There is no declarative flow graph; Claude's reasoning decides step sequencing. Personality variants would need to become separate agent files, one per variant.
+
+#### CrewAI
+
+CrewAI uses a three-file structure: `agents.yaml` for agent definitions, `tasks.yaml` for task definitions, and `crew.py` for wiring agents to tools and tasks in Python. The YAML files are declarative, but tool implementations and crew orchestration require code.
+
+**Export target**: a project scaffold with `config/agents.yaml`, `config/tasks.yaml`, `crew.py`, and tool stubs.
+
+**Field mapping:**
+
+| Agent Lab YAML | CrewAI | Notes |
+|---|---|---|
+| `name` | YAML key name | Direct |
+| `system_prompt` | Split into `role`, `goal`, `backstory` | CrewAI decomposes the prompt into three fields. Export can place full prompt in `backstory` and synthesize `role`/`goal` |
+| `llm_configuration.model_id` | `llm` reference | Points to `@llm`-decorated method in `crew.py` |
+| `tools[].name` | `tools` list | References `@tool`-decorated methods in `crew.py` |
+| `flows` | `tasks.yaml` entries | Each flow becomes a task with `description`, `expected_output`, and `agent` reference |
+| `flows[].workflow_shorthand` steps | Task `context` chaining | Step 2's input = Step 1's output via task context |
+| `specialized_agents` | Additional agents in `agents.yaml` | CrewAI supports sequential and hierarchical process types |
+| `inputs`/`outputs` | `output_json` or `output_pydantic` on tasks | Structured output is task-level, not agent-level |
+
+**Example generated agents.yaml:**
+
+```yaml
+culture_agent:
+  role: >
+    Cross-cultural communication specialist
+  goal: >
+    Bridge cultural gaps in professional communication
+  backstory: >
+    You are a cross-cultural communication specialist...
+  tools:
+    - web_search
+  verbose: true
+  allow_delegation: false
+```
+
+**Constraints**: Method names in `crew.py` must match YAML key names exactly. Tool YAML references point to `@tool`-decorated methods, not class names. CrewAI does not support ZIP or bundle imports; the exporter generates the full project structure.
+
+#### A2A Agent Cards
+
+A2A agent cards are JSON documents published at `/.well-known/agent-card.json` that advertise an agent's identity, capabilities, and skills to other agents. Unlike Claude SDK and CrewAI exports which produce code artifacts, A2A card generation produces a discovery document for a running service.
+
+**The fundamental gap**: Agent Lab specs describe *behavior* (what an agent knows and does). A2A cards describe *services* (how to reach and interact with a running agent). Generating a card requires deployment metadata that does not exist in the behavioral spec: endpoint URL, authentication scheme, provider organization, protocol capabilities (streaming, push notifications).
+
+**What maps from the spec:**
+
+| Agent Lab YAML | A2A Agent Card | Notes |
+|---|---|---|
+| `name` | `name` | Direct |
+| `description` | `description` | Direct |
+| `metadata.definition_version` | `version` | Direct |
+| `flows[].id`, `flows[].name` | `skills[].id`, `skills[].name` | Each flow becomes a discoverable skill |
+| `flows[].description` | `skills[].description` | Direct |
+| `metadata.tags` | `skills[].tags` | Direct |
+| `a2a.agent_card.capabilities` | `skills[].id` list | Already defined in the spec |
+
+**What must be supplied at deployment time:**
+
+| A2A Field | Source |
+|---|---|
+| `url` | Deployment endpoint |
+| `provider.organization` | Organization name |
+| `securitySchemes` | Authentication configuration |
+| `capabilities.streaming` | Runtime capability |
+| `defaultInputModes` / `defaultOutputModes` | MIME types (typically `text/plain`, `application/json`) |
+
+**Approach**: generate a partial agent card from the spec with `TODO` markers for deployment-specific fields. The card becomes complete when paired with a deployment manifest.
+
+#### MCP Tool Definitions
+
+MCP (Model Context Protocol) does not use static card files. Tools are discovered at runtime via the `tools/list` handshake between client and server. However, generating MCP-compatible tool definitions from the spec is useful for building MCP servers that expose agent capabilities as callable tools.
+
+**What maps from the spec:**
+
+| Agent Lab YAML | MCP Tool | Notes |
+|---|---|---|
+| `tools[].name` | `name` | Direct |
+| `tools[].id` | `name` (slugified) | MCP uses flat string identifiers |
+| Tool description (from prompt registry) | `description` | Direct |
+| `inputs[]` | `inputSchema` (JSON Schema) | Agent Lab inputs are typed Property lists; MCP needs full JSON Schema objects with `properties`, `types`, and `required` |
+| `outputs[]` | `outputSchema` | Same schema conversion |
+
+**The hard part**: Agent Lab tool definitions describe *what a tool does* semantically. MCP tool definitions need *typed JSON Schema* for inputs and outputs with concrete property names, data types, and required fields. Where the spec says `input: "Cultural context description"`, MCP needs `{"type": "object", "properties": {"context": {"type": "string"}}, "required": ["context"]}`. This translation requires either manual schema authoring or LLM-assisted inference.
+
+**Approach**: generate MCP server scaffolds where each agent flow or tool becomes an MCP tool with a `description` from the spec and a `TODO` input schema. The typed schemas are filled in during implementation.
+
+#### Export Strategy
+
+Starting with two frameworks provides the most learning with the least maintenance burden. Claude Agent SDK and CrewAI cover different paradigms (reasoning-driven vs workflow-driven) and different output formats (Markdown vs YAML+Python).
+
+The export produces scaffolds, not running agents. Tool implementations are stubs, memory needs wiring, and framework-specific patterns need adaptation. The value is structural alignment: the generated code matches the spec's identity, tools, and flows, saving 30-60 minutes of boilerplate per agent.
+
+A2A agent cards and MCP tool definitions require a deployment metadata layer that sits between the behavioral spec and the runtime contract. This layer can be a separate deployment manifest or an extension to the YAML spec. Either way, the card generation is useful for agents that need to be discoverable by other agents or LLM hosts.
+
+**References:**
+
+- [Claude Agent SDK: Subagents](https://platform.claude.com/docs/en/agent-sdk/subagents)
+- [Claude Agent SDK: Skills](https://platform.claude.com/docs/en/agent-sdk/skills)
+- [CrewAI Documentation](https://docs.crewai.com/)
+- [A2A Protocol Specification](https://a2a-protocol.org/latest/specification/)
+- [MCP Specification: Tools](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
 
 ---
 
@@ -848,6 +1082,7 @@ Reference definitions for terms used throughout this handbook. When frameworks u
 | MCP (Model Context Protocol) | Anthropic's standard for agent-to-tool integration, now governed by Linux Foundation |
 | Micro-agent | Single-purpose autonomous function node |
 | Orchestrator | Agent that coordinates specialists by decomposing tasks, delegating, and synthesizing results |
+| Permissions | Explicit scope of authority defining what an agent is allowed to do: data sources, tools, action types |
 | Prompt | Specific instructions sent to the LLM |
 | Router | Component that classifies input and directs it to specialized handlers (static or LLM-based) |
 | Skill | Composed behavior using multiple steps, tools, or prompts |
@@ -872,6 +1107,7 @@ Every framework invents its own vocabulary. This table maps handbook terms to th
 | Knowledge base | - | - | Retriever content | - |
 | Skills | Agent skills | Tools | Tools / Chains | Tasks |
 | Tools | Tools | Function calling | Tools | Tools |
+| Permissions | Allowed tools | Allowed tools | Allowed tools | Tools |
 | Escalation triggers | Human-in-the-loop | - | Human tools | Human input |
 | Subagent | Task tool (subagents) | - | Agent executor | Agent |
 | Orchestrator | Lead agent | - | Agent supervisor | Manager |
