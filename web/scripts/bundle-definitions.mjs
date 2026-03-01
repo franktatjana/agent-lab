@@ -26,7 +26,8 @@ for (const agentFolder of readdirSync(agentsDir)) {
       if (!file.endsWith(".yaml") && !file.endsWith(".yml")) continue;
       const content = readFileSync(join(examplesDir, file), "utf-8");
       const name = file.replace(/\.(yaml|yml)$/, "");
-      examples[name] = yaml.load(content);
+      const docs = yaml.loadAll(content);
+      examples[name] = docs.length === 1 ? docs[0] : docs;
     }
   }
 
@@ -42,7 +43,19 @@ for (const agentFolder of readdirSync(agentsDir)) {
     }
   }
 
-  definitions[agentFolder] = { definition, rawYaml: defContent, filename: defFiles[0], examples, prompts };
+  // Collect design prompts from visual/
+  const designPrompts = {};
+  const visualDir = join(agentPath, "visual");
+  if (existsSync(visualDir)) {
+    for (const file of readdirSync(visualDir)) {
+      if (!file.endsWith(".md")) continue;
+      const content = readFileSync(join(visualDir, file), "utf-8");
+      const name = file.replace(/\.md$/, "");
+      designPrompts[name] = content;
+    }
+  }
+
+  definitions[agentFolder] = { definition, rawYaml: defContent, filename: defFiles[0], examples, prompts, designPrompts };
 }
 
 const outDir = resolve(import.meta.dirname, "..", "public");

@@ -11,16 +11,23 @@ const riskColor: Record<string, string> = {
 };
 
 function ToolNodeComponent({ data }: NodeProps) {
-  const { name, description, risk } = data as {
+  const { name, risk, isExpanded, isDimmed, colors } = data as {
     name: string;
-    description: string;
     risk: string;
+    isExpanded?: boolean;
+    isDimmed?: boolean;
     colors: { bg: string; border: string; icon: string; light: string };
   };
 
   return (
-    <div className="bg-white border border-stone-200 rounded-lg px-3 py-2 shadow-sm min-w-44 max-w-64" title={description}>
-      <Handle type="target" position={Position.Right} className="!bg-stone-400" />
+    <div
+      className={`bg-white border rounded-lg px-3 py-2 shadow-sm min-w-44 max-w-64 cursor-pointer transition-all
+        ${isExpanded ? `${colors.border} border-2 shadow-md` : "border-stone-200"}
+        ${isDimmed ? "opacity-40" : "opacity-100"}
+      `}
+    >
+      <Handle type="target" position={Position.Right} className="!w-0 !h-0 !min-w-0 !min-h-0 !border-0 !bg-transparent" />
+      <Handle type="source" position={Position.Left} id="detail" className="!w-0 !h-0 !min-w-0 !min-h-0 !border-0 !bg-transparent" />
 
       <div className="flex items-center gap-2">
         <Wrench className="w-3.5 h-3.5 text-stone-400 shrink-0" />

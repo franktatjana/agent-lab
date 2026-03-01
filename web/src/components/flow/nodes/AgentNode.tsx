@@ -4,6 +4,8 @@ import { memo } from "react";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { Bot, ShieldCheck } from "lucide-react";
 
+const hidden = "!w-0 !h-0 !min-w-0 !min-h-0 !border-0 !bg-transparent";
+
 function AgentNodeComponent({ data }: NodeProps) {
   const { name, description, modelId, humanInTheLoop, colors } = data as {
     name: string;
@@ -17,9 +19,9 @@ function AgentNodeComponent({ data }: NodeProps) {
     <div
       className={`${colors.bg} ${colors.border} border-2 rounded-xl px-5 py-4 shadow-md min-w-64 max-w-80 text-center`}
     >
-      <Handle type="source" position={Position.Bottom} className="!bg-stone-400" />
-      <Handle type="source" position={Position.Left} id="tools" className="!bg-stone-400" />
-      <Handle type="source" position={Position.Right} id="variants" className="!bg-stone-400" />
+      <Handle type="source" position={Position.Bottom} className={hidden} />
+      <Handle type="source" position={Position.Left} id="tools" className={hidden} />
+      <Handle type="source" position={Position.Right} id="variants" className={hidden} />
 
       <div className="flex items-center justify-center gap-2 mb-2">
         <Bot className={`w-5 h-5 ${colors.icon}`} />

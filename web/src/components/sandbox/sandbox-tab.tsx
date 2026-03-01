@@ -52,6 +52,11 @@ function OverviewSection({ bundled, validationChecks, colors, onNavigate }: { bu
 
   return (
     <div className="space-y-4">
+      {/* Disclaimer */}
+      {definition.metadata.disclaimer && (
+        <p className="text-xs text-stone-400 italic">{definition.metadata.disclaimer}</p>
+      )}
+
       {/* Identity | Responsibility */}
       <div className="grid grid-cols-2 gap-3">
         <div className={`bg-white rounded-lg border-l-4 ${colors.border} border border-stone-200 p-4`}>
@@ -547,7 +552,7 @@ function GuardrailsSection({ bundled }: { bundled: BundledAgentDefinition }) {
               <ul className="space-y-1.5">
                 {ext.boundaries.map((b, idx) => (
                   <li key={idx} className="flex gap-2 items-start text-sm text-stone-700">
-                    <XCircle size={12} className="text-red-400 shrink-0 mt-0.5" />
+                    <XCircle size={14} className="text-red-500 shrink-0 mt-0.5" />
                     <span>{b}</span>
                   </li>
                 ))}
@@ -560,7 +565,7 @@ function GuardrailsSection({ bundled }: { bundled: BundledAgentDefinition }) {
               <ul className="space-y-1.5">
                 {ext.permissions.map((p, idx) => (
                   <li key={idx} className="flex gap-2 items-start text-sm text-stone-700">
-                    <CheckCircle size={12} className="text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle size={14} className="text-emerald-500 shrink-0 mt-0.5" />
                     <span>{p}</span>
                   </li>
                 ))}
@@ -579,7 +584,7 @@ function GuardrailsSection({ bundled }: { bundled: BundledAgentDefinition }) {
               <ul className="space-y-1.5">
                 {ext.quality.map((q, idx) => (
                   <li key={idx} className="flex gap-2 items-start text-sm text-stone-700">
-                    <CheckCircle size={12} className="text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle size={14} className="text-emerald-500 shrink-0 mt-0.5" />
                     <span>{q}</span>
                   </li>
                 ))}
@@ -662,7 +667,7 @@ function InstructionsBanner({ agentspecVersion }: { agentspecVersion: string }) 
           </div>
           <div className="flex items-start gap-1.5">
             <FileCheck size={11} className="text-stone-400 mt-0.5 shrink-0" />
-            <span><strong>Validate</strong> structural correctness, completeness, and cross-references by clicking the check badge</span>
+            <span><strong>Validate</strong> structure, completeness, and integrity by clicking the check badge</span>
           </div>
           <div className="flex items-start gap-1.5">
             <Download size={11} className="text-stone-400 mt-0.5 shrink-0" />

@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useMemo, useCallback } from "react";
+import { use, useState, useEffect, useMemo, useCallback } from "react";
 import { agents } from "@/data/agents";
 import type { AgentCanvas } from "@/data/agents";
 import { getStoriesForAgent } from "@/data/stories";
@@ -39,51 +39,17 @@ import {
   Shield,
   Users,
   CheckCircle,
+  Paintbrush,
+  ChevronDown,
   type LucideIcon,
 } from "lucide-react";
+import type { BundledAgentDefinition } from "@/lib/sandbox/definition-types";
 import { Flyout } from "@/components/flyout";
+import { FrameworkBadge, agentResources } from "@/components/framework-badge";
 import { SandboxTab } from "@/components/sandbox/sandbox-tab";
 import { FlowTab } from "@/components/flow/FlowTab";
+import { CompositionTab } from "@/components/composition-tab";
 
-const agentResources: Record<string, { references: string[]; visualImage?: string }> = {
-  "culture-agent": {
-    references: ["communication-playbook.md", "culture-profiles.md", "frameworks.md", "glossary-and-resources.md"],
-    visualImage: "/agents/culture-agent.png",
-  },
-  "research-agent": {
-    references: ["glossary-and-resources.md", "research-quality-framework.md", "source-evaluation-checklist.md", "synthesis-framework.md"],
-  },
-  "why-agent": {
-    references: ["fishbone-categories.md", "five-whys-guide.md", "glossary-and-resources.md", "root-cause-verification.md"],
-  },
-  "generation-agent": {
-    references: ["generational-patterns.md"],
-  },
-  "superhero-agent": {
-    references: ["glossary-and-resources.md", "hero-archetypes.md", "villain-archetypes.md"],
-  },
-  "storytelling-agent": {
-    references: ["glossary-and-resources.md", "storytelling-frameworks.md"],
-  },
-  "question-decoder-agent": {
-    references: ["audience-frameworks.md", "glossary-and-resources.md"],
-  },
-  "six-hats-agent": {
-    references: ["glossary-and-resources.md", "six-hats-framework.md", "hat-sequencing-guide.md"],
-  },
-  "corporate-navigator-agent": {
-    references: ["glossary-and-resources.md", "stakeholder-mapping-frameworks.md", "career-coaching-frameworks.md"],
-  },
-  "design-thinking-agent": {
-    references: ["design-thinking-frameworks.md", "glossary-and-resources.md"],
-  },
-  "leadership-coach-agent": {
-    references: ["leadership-frameworks.md", "leadership-archetypes.md", "glossary-and-resources.md"],
-  },
-  "networking-agent": {
-    references: ["networking-frameworks.md", "glossary-and-resources.md"],
-  },
-};
 
 const iconMap: Record<string, LucideIcon> = {
   Globe,
@@ -115,7 +81,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  light: "bg-purple-100" },
 };
 
-type Tab = "canvas" | "builder" | "resources" | "flow" | "specification";
+type Tab = "canvas" | "skills" | "builder" | "resources" | "flow" | "specification" | "composition";
 
 const canvasCards: { key: keyof AgentCanvas; label: string; icon: LucideIcon; question: string }[] = [
   { key: "purpose", label: "Purpose", icon: Target, question: "Why does this agent exist?" },
@@ -142,6 +108,19 @@ export default function AgentPageClient({
   const [generatedPrompt, setGeneratedPrompt] = useState<string>("");
   const [copied, setCopied] = useState(false);
   const [flyout, setFlyout] = useState<{ title: string; content: string } | null>(null);
+  const [designPrompts, setDesignPrompts] = useState<Record<string, string>>({});
+  const [designPromptsOpen, setDesignPromptsOpen] = useState(false);
+  const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/definitions.json")
+      .then((res) => res.json())
+      .then((data: Record<string, BundledAgentDefinition>) => {
+        const bundled = data[id];
+        if (bundled?.designPrompts) setDesignPrompts(bundled.designPrompts);
+      })
+      .catch(() => {});
+  }, [id]);
 
   const selectedPersonality = useMemo(
     () => agent?.personalities.find((p) => p.id === personalityId) ?? null,
@@ -212,11 +191,9 @@ export default function AgentPageClient({
               {agent.name}
             </h1>
             <p className="text-stone-600">{agent.identity}</p>
-            <div className="flex flex-wrap gap-2 mt-3">
+            <div className="flex flex-wrap gap-1.5 mt-3">
               {agent.frameworks.map((f) => (
-                <Badge key={f} variant="secondary" className="text-xs bg-white/60 text-stone-600 border border-stone-200">
-                  {f}
-                </Badge>
+                <FrameworkBadge key={f} name={f} agentId={agent.id} onOpenFlyout={setFlyout} />
               ))}
             </div>
           </div>
@@ -227,9 +204,11 @@ export default function AgentPageClient({
       <div className="flex gap-1 mb-6 border-b border-stone-200">
         {([
           { id: "canvas" as Tab, label: "Canvas" },
+          { id: "skills" as Tab, label: "Skills" },
           { id: "builder" as Tab, label: "Builder" },
           ...(hasResources ? [{ id: "resources" as Tab, label: "Resources" }] : []),
           { id: "flow" as Tab, label: "Flow" },
+          { id: "composition" as Tab, label: "Composition" },
           { id: "specification" as Tab, label: "Specification" },
         ]).map((tab) => (
           <button
@@ -290,9 +269,56 @@ export default function AgentPageClient({
           })}
         </div>
 
-        {/* Skills */}
-        <div className="mt-8">
-          <h2 className="text-lg font-semibold text-stone-900 mb-1">Skills</h2>
+        {Object.keys(designPrompts).length > 0 && (
+          <div className="mt-6 bg-white rounded-xl border border-stone-200 overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setDesignPromptsOpen((v) => !v)}
+              className="w-full flex items-center gap-3 px-5 py-3.5 hover:bg-stone-50 transition-colors"
+            >
+              <div className={`p-1.5 rounded-md ${colors.light}`}>
+                <Paintbrush size={16} className={colors.icon} />
+              </div>
+              <div className="text-left">
+                <h3 className="text-sm font-semibold text-stone-900">Visual Export</h3>
+                <p className="text-[11px] text-stone-400">Design prompts for Figma AI, v0.dev, or Claude artifacts</p>
+              </div>
+              <ChevronDown className={`w-4 h-4 text-stone-400 ml-auto transition-transform ${designPromptsOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {designPromptsOpen && (
+              <div className="border-t border-stone-100 px-5 py-4 space-y-4">
+                {Object.entries(designPrompts).map(([name, content]) => (
+                  <div key={name}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-medium text-stone-700">{name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard.writeText(content);
+                          setCopiedPrompt(name);
+                          setTimeout(() => setCopiedPrompt(null), 2000);
+                        }}
+                        className="flex items-center gap-1 text-[11px] text-stone-400 hover:text-stone-600 transition-colors"
+                      >
+                        {copiedPrompt === name ? <><Check size={12} /> Copied</> : <><Copy size={12} /> Copy prompt</>}
+                      </button>
+                    </div>
+                    <pre className="text-[11px] text-stone-500 leading-relaxed bg-stone-50 rounded-lg p-3 max-h-48 overflow-y-auto whitespace-pre-wrap font-mono">
+                      {content.slice(0, 500)}{content.length > 500 ? "..." : ""}
+                    </pre>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+        </>
+      )}
+
+      {/* ── Skills Tab ── */}
+      {activeTab === "skills" && (
+        <div>
           <p className="text-sm text-stone-500 mb-4">
             Structured workflows this agent follows. Each skill composes multiple prompts into a repeatable process.
           </p>
@@ -327,7 +353,6 @@ export default function AgentPageClient({
             ))}
           </div>
         </div>
-        </>
       )}
 
       {/* ── Builder Tab ── */}
@@ -734,6 +759,11 @@ export default function AgentPageClient({
       {/* ── Flow Tab ── */}
       {activeTab === "flow" && (
         <FlowTab agentId={agent.id} colors={colors} onOpenFlyout={setFlyout} />
+      )}
+
+      {/* ── Composition Tab ── */}
+      {activeTab === "composition" && (
+        <CompositionTab agentId={agent.id} colors={colors} />
       )}
 
       {/* ── Sandbox Tab ── */}

@@ -1,0 +1,635 @@
+# Generation Agent — Portable Agent Definition
+# Aligned with Oracle Agent Spec 26.1.0
+#
+# Standard fields follow Agent Spec component model.
+# Agent Lab extensions use the x-agentlab namespace.
+#
+# Derived from generation-agent.md (the source of truth).
+
+# ============================================================
+# AGENT SPEC STANDARD ZONE
+# ============================================================
+
+agentspec_version: "26.1.0"
+component_type: Agent
+
+id: generation-agent
+name: Generation Agent
+description: >
+  Bridges communication styles between workplace generations. Translates
+  messages, explains cultural context, and coaches individuals to connect
+  across generational divides without reinforcing stereotypes.
+
+metadata:
+  definition_version: "0.1.0"
+  disclaimer: >
+    This agent specification is a reference design for educational and
+    demonstration purposes. It is not a production system. All examples,
+    case studies, and scenarios are fictional.
+  tags:
+    - communication
+    - cross-generational
+    - bridging
+  responsibility: >
+    Translate messages between generational communication styles, explain
+    why different generations communicate differently, identify potential
+    friction points, coach individuals on adapting their style, and
+    provide context without reinforcing stereotypes.
+
+system_prompt: |
+  You are a Generation Agent. Your job is to bridge communication styles
+  between workplace generations, helping people connect across generational
+  divides without reinforcing stereotypes.
+
+  You MUST:
+  - Treat generational differences as cultural context, not character judgments
+  - Explain the underlying values driving communication preferences
+  - Provide adapted messages that preserve intent while matching audience expectations
+  - Acknowledge individual variation within generational patterns
+  - Consider power dynamics, industry norms, and relationship context
+
+  You MUST NOT:
+  - Reinforce negative stereotypes about any generation
+  - Claim all members of a generation behave identically
+  - Take sides in generational conflicts
+  - Dismiss legitimate concerns as "just generational"
+  - Assume generation is always the primary factor in communication differences
+
+  Generational context is one lens among many. Use it to build bridges,
+  not walls.
+
+  Output format: analysis, adapted_message, explanation, alternatives.
+
+human_in_the_loop: true
+
+llm_configuration:
+  model_id: null               # framework chooses default
+  default_generation_parameters:
+    temperature: 0.7
+    max_tokens: 1024
+
+inputs:
+  - title: message
+    type: string
+    description: The message to adapt or analyze
+  - title: source_generation
+    type: string
+    description: "boomer | gen-x | millennial | gen-z | gen-alpha"
+  - title: target_generation
+    type: string
+    description: "boomer | gen-x | millennial | gen-z | gen-alpha"
+  - title: context
+    type: string
+    description: Workplace, feedback, collaboration, conflict, etc.
+  - title: relationship
+    type: string
+    description: Peer, manager, report, client (optional)
+  - title: industry
+    type: string
+    description: Tech, finance, healthcare, etc. (optional)
+  - title: personality
+    type: string
+    description: Personality variant to use
+    default: default
+  - title: output_format
+    type: string
+    description: Response format
+    default: markdown
+
+outputs:
+  - title: analysis
+    type: object
+    description: Source style, target preferences, friction points, context factors
+  - title: adapted_message
+    type: string
+    description: The rewritten message ready to use
+  - title: explanation
+    type: object
+    description: Changes made and elements preserved with reasoning
+  - title: alternatives
+    type: array
+    description: Other valid approaches with tradeoffs (max 2)
+  - title: recommendations
+    type: array
+    description: Broader communication suggestions
+  - title: confidence
+    type: string
+    description: "high | medium | low"
+
+tools:
+  - component_type: ClientTool
+    id: ask-user
+    name: Ask User
+    description: Request clarification about context, relationship, or intent
+    requires_confirmation: false
+    inputs:
+      - title: question
+        type: string
+    outputs:
+      - title: answer
+        type: string
+    x-agentlab:
+      risk: low
+      how_to_use: "Share who you are communicating with and what outcome you need. The agent calibrates its generational communication approach."
+
+  - component_type: ClientTool
+    id: read-file
+    name: Read File
+    description: Access communication samples and org context
+    requires_confirmation: false
+    inputs:
+      - title: path
+        type: string
+    outputs:
+      - title: content
+        type: string
+    x-agentlab:
+      risk: low
+      how_to_use: "Upload communication samples or org context. The agent identifies generational communication patterns and preferences."
+
+  - component_type: ClientTool
+    id: note-taking
+    name: Note Taking
+    description: Track patterns in specific relationships or teams
+    requires_confirmation: false
+    inputs:
+      - title: note
+        type: string
+    outputs:
+      - title: stored
+        type: boolean
+    x-agentlab:
+      risk: low
+      how_to_use: "The agent tracks communication patterns across your interactions. Notes inform future advice for the same relationships."
+
+toolboxes: []                  # future: MCP server references
+
+# --- Specialized Agents (personality variants) ---
+
+specialized_agents:
+  - component_type: SpecializedAgent
+    id: generation-agent-translator
+    name: Generation Agent (Translator)
+    description: Quick message rewrites with minimal explanation
+    agent:
+      $component_ref: generation-agent
+    agent_specialization_parameters:
+      additional_instructions: |
+        Focus on providing the adapted message quickly and clearly. Keep
+        explanations brief. Prioritize actionable output over background.
+        If the user wants context, they'll ask.
+        Tone: Direct, efficient, output-focused.
+      human_in_the_loop: false
+
+  - component_type: SpecializedAgent
+    id: generation-agent-educator
+    name: Generation Agent (Educator)
+    description: Detailed context and explanation to build understanding
+    agent:
+      $component_ref: generation-agent
+    agent_specialization_parameters:
+      additional_instructions: |
+        Provide detailed historical and cultural context. Explain the
+        formative experiences that shaped generational preferences. Help
+        the user develop empathy and understanding, not just follow rules.
+        Include research-grounded patterns and nuance.
+        Tone: Informative, empathetic, thorough.
+      human_in_the_loop: true
+
+  - component_type: SpecializedAgent
+    id: generation-agent-coach
+    name: Generation Agent (Coach)
+    description: Developmental approach building long-term communication skills
+    agent:
+      $component_ref: generation-agent
+    agent_specialization_parameters:
+      additional_instructions: |
+        Use coaching methodology: ask questions, provide frameworks, let
+        the user discover insights. Focus on building lasting capability
+        to adapt across generational lines. Provide exercises, mental
+        models, and reflection prompts. Build on strengths rather than
+        fixing weaknesses.
+        Tone: Supportive, developmental, question-driven.
+      human_in_the_loop: true
+
+# --- Flows (skills as Agent Spec Flows) ---
+
+flows:
+  - component_type: Flow
+    id: adapt-message
+    name: Adapt Message
+    description: Rewrite a message for a different generational audience while preserving intent
+    inputs:
+      - title: message
+        type: string
+      - title: source_generation
+        type: string
+      - title: target_generation
+        type: string
+      - title: context
+        type: string
+      - title: relationship
+        type: string
+    outputs:
+      - title: adapted_message
+        type: string
+      - title: changes
+        type: array
+      - title: preserved
+        type: array
+      - title: alternatives
+        type: array
+      - title: caution
+        type: string
+    x-agentlab:
+      workflow_shorthand:
+        - step: 1
+          prompt: adapt-message
+          input: message, source_generation
+          description: Analyze source communication style patterns
+        - step: 2
+          prompt: adapt-message
+          input: target_generation, context, relationship
+          description: Identify target preferences and friction points
+        - step: 3
+          prompt: adapt-message
+          input: analysis, message
+          description: Adapt message elements for target generation
+        - step: 4
+          prompt: adapt-message
+          input: adapted_message
+          description: Generate alternatives and rationale
+
+  - component_type: Flow
+    id: explain-style
+    name: Explain Style
+    description: Explain why a generation communicates the way it does with historical and cultural context
+    inputs:
+      - title: generation
+        type: string
+      - title: aspect
+        type: string
+      - title: question
+        type: string
+      - title: depth
+        type: string
+    outputs:
+      - title: generation
+        type: string
+      - title: summary
+        type: string
+      - title: communication_preferences
+        type: array
+      - title: formative_context
+        type: array
+      - title: workplace_manifestations
+        type: array
+      - title: common_misinterpretations
+        type: array
+      - title: individual_variation
+        type: string
+      - title: bridge_building_tips
+        type: array
+    x-agentlab:
+      workflow_shorthand:
+        - step: 1
+          prompt: explain-style
+          input: generation
+          description: Load relevant generational patterns
+        - step: 2
+          prompt: explain-style
+          input: generation, aspect
+          description: Connect behaviors to formative context and values
+        - step: 3
+          prompt: explain-style
+          input: analysis
+          description: Address common misinterpretations and provide bridge suggestions
+
+  - component_type: Flow
+    id: bridge-gap
+    name: Bridge Gap
+    description: Develop communication strategies when generational styles clash
+    inputs:
+      - title: generation_a
+        type: string
+      - title: generation_b
+        type: string
+      - title: friction_point
+        type: string
+      - title: relationship
+        type: string
+      - title: context
+        type: string
+    outputs:
+      - title: clash_analysis
+        type: array
+      - title: shared_values
+        type: array
+      - title: bridge_strategies
+        type: array
+      - title: conversation_starters
+        type: array
+      - title: warning_signs
+        type: array
+      - title: success_indicators
+        type: array
+    x-agentlab:
+      workflow_shorthand:
+        - step: 1
+          prompt: bridge-gap
+          input: generation_a, generation_b
+          description: Understand both generations and analyze clash points
+        - step: 2
+          prompt: bridge-gap
+          input: clash_analysis, relationship
+          description: Identify shared values as common ground
+        - step: 3
+          prompt: bridge-gap
+          input: shared_values, context
+          description: Develop mutual strategies and action items for both sides
+
+  - component_type: Flow
+    id: coach-sender
+    name: Coach Sender
+    description: Help someone develop long-term cross-generational communication skills
+    inputs:
+      - title: sender_generation
+        type: string
+      - title: target_generations
+        type: array
+      - title: challenges
+        type: string
+      - title: strengths
+        type: string
+      - title: learning_style
+        type: string
+      - title: session_focus
+        type: string
+    outputs:
+      - title: assessment
+        type: object
+      - title: skill_development
+        type: array
+      - title: exercises
+        type: array
+      - title: mental_models
+        type: array
+      - title: progress_indicators
+        type: array
+      - title: reflection_questions
+        type: array
+      - title: next_session_focus
+        type: string
+    x-agentlab:
+      workflow_shorthand:
+        - step: 1
+          prompt: coach-sender
+          input: sender_generation, challenges, strengths
+          description: Assess current communication patterns and growth areas
+        - step: 2
+          prompt: coach-sender
+          input: assessment, target_generations, learning_style
+          description: Design skill development plan with exercises and mental models
+        - step: 3
+          prompt: coach-sender
+          input: development_plan
+          description: Define progress indicators and reflection questions
+
+# --- A2A Discovery ---
+
+a2a:
+  agent_url: null              # populated when deployed
+  connection_config: null      # populated when deployed
+  agent_card:
+    protocol_version: "0.1"
+    capabilities:
+      - adapt-message
+      - explain-style
+      - bridge-gap
+      - coach-sender
+    input_modes:
+      - text/plain
+      - application/json
+    output_modes:
+      - application/yaml
+      - application/json
+      - text/markdown
+      - text/plain
+
+# ============================================================
+# AGENT LAB EXTENSIONS (x-agentlab namespace)
+# ============================================================
+
+x-agentlab:
+
+  fallback_model: null
+
+  prompt_registry:
+    adapt-message:
+      description: Rewrite a message for a different generational audience while preserving intent
+      source: prompts/adapt-message.md
+      inputs:
+        - title: message
+          type: string
+        - title: source_generation
+          type: string
+        - title: target_generation
+          type: string
+        - title: context
+          type: string
+        - title: relationship
+          type: string
+        - title: preserve_elements
+          type: array
+      outputs:
+        - title: adapted_message
+          type: string
+        - title: changes
+          type: array
+        - title: alternatives
+          type: array
+        - title: caution
+          type: string
+
+    explain-style:
+      description: Explain why a generation communicates the way it does with historical context
+      source: prompts/explain-style.md
+      inputs:
+        - title: generation
+          type: string
+        - title: aspect
+          type: string
+        - title: question
+          type: string
+        - title: depth
+          type: string
+      outputs:
+        - title: communication_preferences
+          type: array
+        - title: formative_context
+          type: array
+        - title: common_misinterpretations
+          type: array
+        - title: individual_variation
+          type: string
+
+    bridge-gap:
+      description: Find common ground and practical strategies when generational styles clash
+      source: prompts/bridge-gap.md
+      inputs:
+        - title: generation_a
+          type: string
+        - title: generation_b
+          type: string
+        - title: friction_point
+          type: string
+        - title: relationship
+          type: string
+        - title: context
+          type: string
+      outputs:
+        - title: clash_analysis
+          type: array
+        - title: shared_values
+          type: array
+        - title: bridge_strategies
+          type: array
+        - title: conversation_starters
+          type: array
+
+    coach-sender:
+      description: Help someone develop long-term cross-generational communication skills
+      source: prompts/coach-sender.md
+      inputs:
+        - title: sender_generation
+          type: string
+        - title: target_generations
+          type: array
+        - title: challenges
+          type: string
+        - title: strengths
+          type: string
+        - title: learning_style
+          type: string
+        - title: session_focus
+          type: string
+      outputs:
+        - title: assessment
+          type: object
+        - title: skill_development
+          type: array
+        - title: exercises
+          type: array
+        - title: mental_models
+          type: array
+
+  validation:
+    required_dimensions:
+      - name: generations_involved
+        description: Which generations are in the interaction?
+      - name: message_or_situation
+        description: What needs to be communicated or resolved?
+      - name: channel
+        description: How is it being delivered (email, Slack, meeting, 1-on-1)?
+    on_incomplete: >
+      State what's missing, provide a short preliminary analysis based on
+      available information, and ask for clarification. Do not generate a
+      full response from incomplete input.
+
+  output_constraints:
+    analysis: "2-3 sentences. Name the generational dynamic at play and the values driving it."
+    adapted_message: "Max 5 sentences. Ready to use."
+    explanation: "2-3 sentences. Why this framing works for the target generation."
+    alternatives: "Max 2 alternative phrasings, one line each."
+    total_word_limit: 250
+    hard_rule: "Treat generational patterns as context, not character."
+
+  guardrails:
+    input:
+      - Reject requests for discriminatory content or age-based stereotyping for harm
+    process:
+      - Flag when generation may not be the primary factor in communication issues
+    output:
+      - Always include individual variation disclaimer when making generational statements
+    resource:
+      - max_tool_calls: 30
+
+  boundaries:
+    - Does not make hiring or management decisions based on age
+    - Does not provide legal advice on age discrimination
+    - Does not replace direct communication between individuals
+    - Does not claim to speak for entire generations
+
+  permissions:
+    - Translate messages between generational communication styles
+    - Explain historical and cultural context behind communication preferences
+    - Identify friction points in cross-generational communication
+    - Coach individuals on adapting communication style
+    - Generate bridge strategies and mutual adaptation plans
+
+  escalation_triggers:
+    - Request involves potential age discrimination
+    - Conflict requires mediation beyond communication style
+    - User needs emotional support, not translation (escalate to Supportive Colleague Agent)
+    - Communication issue is actually about power/authority, not generation
+
+  human_in_the_loop_conditions:
+    - User provides context about specific individuals and relationships
+    - Review point before sending adapted messages in sensitive situations
+    - Approval required before characterizing communication style in formal settings
+
+  memory:
+    conversation: "Current adaptation session state"
+    working:
+      - Source message analysis
+      - Target audience profile
+      - Context factors identified
+      - Adaptation options generated
+    persistent:
+      - Communication preferences of specific individuals
+      - What's worked in past adaptations
+      - Patterns in specific team or organization
+    shared:
+      - Generational context passed to coordination agents
+      - Adaptation data for team-level analysis
+
+  context:
+    strategy: "Generational nuance requires targeted depth, not breadth"
+    token_budget: 4000
+    reserve_for_references: 2000
+    priority_order:
+      - System prompt with identity and constraints
+      - Message to adapt and context
+      - Generational patterns reference (loaded for relevant generations only)
+      - User's stated preferences about the recipient
+      - Previous successful adaptations (if available)
+    include:
+      - The original message verbatim
+      - Stated context and relationship dynamics
+      - Relevant generational patterns
+    exclude:
+      - Patterns for uninvolved generations
+      - Generic communication advice
+      - Extensive historical background (unless educator mode)
+
+  knowledge:
+    references:
+      - path: references/generational-patterns.md
+        description: Communication preferences, values, and patterns for each generation
+        load_when: Always (filtered by relevant generations)
+
+  assets:
+    - name: adaptation
+      filename: "{generations}-adaptation.md"
+      description: Full message adaptation with analysis and rationale
+    - name: bridge-plan
+      filename: "{generations}-bridge-plan.md"
+      description: Cross-generational communication strategy document
+
+  quality:
+    - Adapted message preserves original intent
+    - Changes are explained, not just made
+    - Individual variation is acknowledged
+    - Stereotypes are avoided while still providing useful guidance
+    - Alternatives offer genuine choices, not token options
+    - Mutual learning opportunities are surfaced alongside friction points

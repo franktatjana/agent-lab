@@ -22,6 +22,10 @@ description: >
 
 metadata:
   definition_version: "0.2.0"
+  disclaimer: >
+    This agent specification is a reference design for educational and
+    demonstration purposes. It is not a production system. All examples,
+    case studies, and scenarios are fictional.
   tags:
     - communication
     - cross-cultural
@@ -113,6 +117,7 @@ tools:
         type: array
     x-agentlab:
       risk: low
+      how_to_use: "Ask about cultural norms, business etiquette, or recent developments in a specific region. Adapt your communication approach based on findings."
 
   - component_type: ClientTool
     id: fetch-url
@@ -127,6 +132,7 @@ tools:
         type: string
     x-agentlab:
       risk: low
+      how_to_use: "Share a URL with cultural reference material. The agent extracts key cultural patterns relevant to your situation."
 
   - component_type: ClientTool
     id: read-file
@@ -141,6 +147,7 @@ tools:
         type: string
     x-agentlab:
       risk: low
+      how_to_use: "Upload documents with cultural context. The agent identifies communication norms and adaptation opportunities."
 
 toolboxes: []                  # future: MCP server references
 
@@ -549,6 +556,7 @@ x-agentlab:
     - Does not provide legal or HR guidance
     - Does not guarantee cultural patterns apply to individuals
     - Does not replace human cultural consultants for high-stakes situations
+    - Handoff to Generation Agent when generational dynamics are the primary communication factor
 
   permissions:
     - Access cultural dimension databases and academic frameworks

@@ -21,8 +21,8 @@ function FlowNodeComponent({ data }: NodeProps) {
         ${isDimmed ? "opacity-40" : "opacity-100"}
       `}
     >
-      <Handle type="target" position={Position.Top} className="!bg-stone-400" />
-      <Handle type="source" position={Position.Bottom} id="prompts" className="!bg-stone-400" />
+      <Handle type="target" position={Position.Top} className="!w-0 !h-0 !min-w-0 !min-h-0 !border-0 !bg-transparent" />
+      <Handle type="source" position={Position.Bottom} id="prompts" className="!w-0 !h-0 !min-w-0 !min-h-0 !border-0 !bg-transparent" />
 
       <div className="flex items-center gap-2 mb-1">
         <Workflow className={`w-4 h-4 ${colors.icon}`} />

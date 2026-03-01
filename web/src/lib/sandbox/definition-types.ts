@@ -43,6 +43,7 @@ export interface ToolDef {
   outputs: JSONSchemaProperty[];
   "x-agentlab"?: {
     risk: string;
+    how_to_use?: string;
   };
 }
 
@@ -66,6 +67,7 @@ export interface AgentDefinition {
   description: string;
   metadata: {
     definition_version: string;
+    disclaimer?: string;
     tags: string[];
     responsibility: string;
   };
@@ -153,4 +155,5 @@ export interface BundledAgentDefinition {
   filename: string;
   examples: Record<string, ExampleFixture>;
   prompts: Record<string, string>;
+  designPrompts: Record<string, string>;
 }

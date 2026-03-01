@@ -59,7 +59,7 @@ export function renderReadableContent(raw: string) {
 
     if (trimmed.startsWith("### ")) {
       elements.push(
-        <h4 key={i} className="text-sm font-semibold text-stone-800 mt-8 mb-2 uppercase tracking-wide">
+        <h4 key={i} className="text-sm font-semibold text-stone-800 mt-4 mb-1 uppercase tracking-wide">
           {formatInlineText(trimmed.slice(4))}
         </h4>,
       );
@@ -68,7 +68,7 @@ export function renderReadableContent(raw: string) {
     }
     if (trimmed.startsWith("## ")) {
       elements.push(
-        <h3 key={i} className="text-lg font-bold text-stone-900 mt-10 mb-3 border-b border-stone-200 pb-2">
+        <h3 key={i} className="text-lg font-bold text-stone-900 mt-6 mb-2 border-b border-stone-200 pb-1.5">
           {formatInlineText(trimmed.slice(3))}
         </h3>,
       );
@@ -77,7 +77,7 @@ export function renderReadableContent(raw: string) {
     }
     if (trimmed.startsWith("# ")) {
       elements.push(
-        <h2 key={i} className="text-xl font-bold text-stone-900 mt-10 mb-4 border-b border-stone-200 pb-2">
+        <h2 key={i} className="text-xl font-bold text-stone-900 mt-6 mb-2 border-b border-stone-200 pb-1.5">
           {formatInlineText(trimmed.slice(2))}
         </h2>,
       );
@@ -133,9 +133,9 @@ export function renderReadableContent(raw: string) {
         const nkv = ct.match(/^([a-z_A-Z][\w_-]*)\s*:\s*["']?(.+?)["']?\s*$/);
         if (nkv) {
           cardChildren.push(
-            <div key={i} className="mt-3">
+            <div key={i} className="mt-2">
               <span className="text-xs font-semibold text-stone-400 uppercase tracking-wide">{nkv[1].replace(/[_-]/g, " ")}</span>
-              <p className="text-[15px] text-stone-600 leading-7 mt-0.5">{formatInlineText(nkv[2].replace(/^["']|["']$/g, ""))}</p>
+              <p className="text-[15px] text-stone-600 leading-6 mt-0.5">{formatInlineText(nkv[2].replace(/^["']|["']$/g, ""))}</p>
             </div>,
           );
           i++;
@@ -160,11 +160,11 @@ export function renderReadableContent(raw: string) {
             i++;
           }
           cardChildren.push(
-            <ul key={`cl-${i}`} className="space-y-1.5 mt-2">
+            <ul key={`cl-${i}`} className="space-y-0.5 mt-1">
               {cardListItems.map((item, idx) => (
                 <li key={idx} className="flex gap-2 text-[15px] text-stone-600">
-                  <span className="text-stone-400 shrink-0 leading-7">&#8226;</span>
-                  <span className="leading-7">{formatInlineText(item)}</span>
+                  <span className="text-stone-400 shrink-0 leading-6">&#8226;</span>
+                  <span className="leading-6">{formatInlineText(item)}</span>
                 </li>
               ))}
             </ul>,
@@ -173,7 +173,7 @@ export function renderReadableContent(raw: string) {
         }
 
         cardChildren.push(
-          <p key={i} className="text-[15px] text-stone-600 leading-7 mt-2">{formatInlineText(ct)}</p>,
+          <p key={i} className="text-[15px] text-stone-600 leading-6 mt-1">{formatInlineText(ct)}</p>,
         );
         i++;
       }
@@ -225,11 +225,11 @@ export function renderReadableContent(raw: string) {
         }
       }
       elements.push(
-        <ul key={`list-${i}`} className="space-y-2.5 mt-3 mb-4 ml-1">
+        <ul key={`list-${i}`} className="space-y-1 mt-1.5 mb-2 ml-1">
           {listItems.map((item, idx) => (
-            <li key={idx} className="flex gap-2.5 text-[15px] text-stone-600">
-              <span className="text-stone-400 shrink-0 leading-7">&#8226;</span>
-              <span className="leading-7">{formatInlineText(item)}</span>
+            <li key={idx} className="flex gap-2 text-[15px] text-stone-600">
+              <span className="text-stone-400 shrink-0 leading-6">&#8226;</span>
+              <span className="leading-6">{formatInlineText(item)}</span>
             </li>
           ))}
         </ul>,
@@ -242,9 +242,9 @@ export function renderReadableContent(raw: string) {
       const label = nestedMatch[1].replace(/[_-]/g, " ");
       const value = nestedMatch[2];
       elements.push(
-        <div key={i} className="flex gap-2 text-[15px] mt-2 ml-1">
+        <div key={i} className="flex gap-2 text-[15px] mt-1 ml-1">
           <span className="text-stone-500 font-semibold shrink-0">{label}:</span>
-          <span className="text-stone-600 leading-7">{formatInlineText(value)}</span>
+          <span className="text-stone-600 leading-6">{formatInlineText(value)}</span>
         </div>,
       );
       i++;
@@ -307,7 +307,7 @@ export function renderReadableContent(raw: string) {
     const standaloneBold = trimmed.match(/^\*\*(.+?)\*\*$/);
     if (standaloneBold) {
       elements.push(
-        <p key={i} className="text-[15px] font-semibold text-stone-900 mt-8 mb-1">
+        <p key={i} className="text-[15px] font-semibold text-stone-900 mt-4 mb-0.5">
           {standaloneBold[1]}
         </p>,
       );
@@ -318,7 +318,7 @@ export function renderReadableContent(raw: string) {
     const boldLeadMatch = trimmed.match(/^\*\*(.+?)\*\*\s+(.+)$/);
     if (boldLeadMatch) {
       elements.push(
-        <p key={i} className="text-[15px] text-stone-600 leading-7 mt-4">
+        <p key={i} className="text-[15px] text-stone-600 leading-6 mt-2">
           <strong className="font-semibold text-stone-900">{boldLeadMatch[1]}</strong>{" "}
           <span>{formatInlineText(boldLeadMatch[2])}</span>
         </p>,
@@ -328,7 +328,7 @@ export function renderReadableContent(raw: string) {
     }
 
     elements.push(
-      <p key={i} className="text-[15px] text-stone-600 leading-7 mt-4">
+      <p key={i} className="text-[15px] text-stone-600 leading-6 mt-2">
         {formatInlineText(trimmed)}
       </p>,
     );

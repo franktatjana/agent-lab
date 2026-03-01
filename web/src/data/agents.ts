@@ -210,9 +210,10 @@ Tone: Lighter, friendly, focused on connection rather than outcomes`,
       },
     ],
     frameworks: [
-      "Hofstede Dimensions",
-      "Erin Meyer Culture Map",
-      "Edward Hall Context Model",
+      "Hofstede Cultural Dimensions",
+      "Erin Meyer's Culture Map",
+      "Edward Hall's Context Model",
+      "Daniel Coyle's Culture Code",
     ],
     whenToUse:
       "Cross-cultural meetings, international negotiations, resolving cultural misunderstandings, adapting messages for different audiences.",
@@ -772,9 +773,10 @@ Rules:
       },
     ],
     frameworks: [
-      "Source Quality Evaluation",
-      "Credibility Assessment",
-      "Synthesis Patterns",
+      "CRAAP Test",
+      "Source Type Hierarchy",
+      "Research Quality Dimensions",
+      "Synthesis Structures",
     ],
     whenToUse:
       "Deep multi-source research, quick orientation scans, claim verification, comparing conflicting sources.",
@@ -1191,10 +1193,10 @@ Group process:
       },
     ],
     frameworks: [
-      "5 Whys",
-      "Fishbone/Ishikawa",
+      "Five Whys",
+      "Fishbone (Ishikawa)",
+      "6M Framework",
       "A3 Thinking",
-      "Socratic Method",
     ],
     whenToUse:
       "Production incidents, quality issues, team problems, process breakdowns, any situation where you need to find the real cause before jumping to solutions.",
@@ -1895,8 +1897,11 @@ Focus on building lasting skills, not dependency on translation.`,
       },
     ],
     frameworks: [
-      "Generational Communication Patterns",
-      "Workplace Communication Research",
+      "Baby Boomers (1946-1964)",
+      "Generation X (1965-1980)",
+      "Millennials (1981-1996)",
+      "Generation Z (1997-2012)",
+      "Cross-Generational Communication",
     ],
     whenToUse:
       "Adapting messages for different age groups, understanding why generations communicate differently, resolving generational friction in teams.",
@@ -2620,9 +2625,8 @@ Question: "What pattern am I seeing that others are missing?"`,
       },
     ],
     frameworks: [
-      "Hero's Journey",
+      "Hero Archetypes",
       "Villain Archetypes",
-      "Team Assembly",
     ],
     whenToUse:
       "Facing difficult presentations, building confidence before high-stakes moments, finding your superpower, naming obstacles to create strategy.",
@@ -4635,9 +4639,9 @@ Tone: Patient, encouraging, curious. No judgment about thinking style. Growth-or
       },
     ],
     frameworks: [
-      "Six Thinking Hats (de Bono)",
-      "Parallel Thinking",
-      "Lateral Thinking",
+      "Six Hats (de Bono)",
+      "Hat Interaction Patterns",
+      "Sequencing Principles",
     ],
     whenToUse:
       "Making decisions, evaluating ideas, resolving disagreements, exploring problems from multiple angles, team workshops.",
@@ -5116,9 +5120,11 @@ Tone: Direct, practical, action-oriented, no fluff`,
       },
     ],
     frameworks: [
-      "Stakeholder Mapping",
+      "Influence Interest Matrix",
+      "Power Mapping",
       "GROW Model",
-      "Organizational Politics",
+      "Strengths-Based Development",
+      "Coalition Analysis",
     ],
     whenToUse:
       "Navigating office politics, mapping stakeholders before a proposal, preparing for organizational change, career advancement strategy, understanding why decisions really get made.",
@@ -6299,9 +6305,9 @@ Tone: Patient, encouraging, step-by-step. Like a coach who knows you can do this
 
     frameworks: [
       "Weak Ties Theory (Granovetter)",
-      "Give First / Give and Take (Adam Grant)",
-      "Dunbar's Numbers (5/15/50/150)",
-      "Network Mapping & Structural Holes",
+      "Give First Approach (Adam Grant)",
+      "Dunbar's Numbers (Robin Dunbar)",
+      "Network Mapping",
       "Personal CRM",
     ],
 

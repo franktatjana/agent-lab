@@ -12,12 +12,17 @@ The core insight: **define agents by responsibility, not capability**. A "triage
 
 ## What You Can Do
 
-Each agent has four tabs in the web app:
+Each agent has seven tabs in the web app:
 
-- **Canvas** shows the agent's purpose, mindset, value proposition, guardrails, human role, and success criteria
+- **Canvas** shows the agent's purpose, mindset, value proposition, guardrails, human role, success criteria, and visual export prompts for Figma AI / v0.dev
+- **Skills** lists the agent's skills with step-by-step workflow breakdowns
 - **Builder** lets you pick a personality variant and skill, describe your situation, and generate a prompt ready to paste into any LLM
 - **Resources** collects stories, case studies, examples, and reference materials
+- **Flow** visualizes the agent's architecture: tools on the left, personality variants on the right, skill workflows below, with expandable detail panels
+- **Composition** maps how this agent hands off to other agents: delegations, data sharing, and escalations to human experts, with clickable edges for handoff details
 - **Specification** is the portable agent definition aligned with Oracle Agent Spec 26.1.0, where you can browse flows, tools, variants, prompts, guardrails, validate the spec, and download the YAML
+
+The standalone [Composition page](/composition) shows the full multi-agent handoff graph across all 12 agents with draggable nodes and edge-click details.
 
 ## Agents
 
@@ -57,13 +62,15 @@ See [handbook.md](docs/handbook.md) Part 5 (Portable Agent Definitions) for the 
 
 ## Running Locally
 
+The [live demo](https://agent-lab.onrender.com/) is the fastest way to explore. Run locally if you want to modify agents, add new definitions, or use the generated prompts with a local LLM like [Ollama](https://ollama.com/) instead of cloud services.
+
 ```bash
 cd web
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). The Builder tab generates self-contained prompts that work with any LLM, whether cloud (ChatGPT, Claude, Gemini) or local (Ollama, LM Studio).
 
 ## Agent Folder Structure
 
@@ -80,6 +87,10 @@ Each agent follows a consistent structure:
 ## Evolving Landscape
 
 Agentic development is moving fast. New frameworks, specification standards, and design patterns emerge regularly, from Kiro's structured requirements to A2A protocol updates. The [handbook](docs/handbook.md) is a living document that continuously adopts relevant advances as they mature.
+
+## Disclaimer
+
+Agent Lab is a reference design for educational and demonstration purposes. It is not a production system. All examples, case studies, and scenarios are fictional. Names, characters, companies, and situations are hypothetical. Any resemblance to actual persons or organizations is coincidental.
 
 ## Author
 

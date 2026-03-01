@@ -11,7 +11,7 @@ import {
   ReactFlowProvider,
   type Node,
 } from "@xyflow/react";
-import { GitBranch, Workflow, Wrench, Users } from "lucide-react";
+import { GitBranch, Workflow, Wrench, Users, ChevronDown } from "lucide-react";
 
 import type { BundledAgentDefinition } from "@/lib/sandbox/definition-types";
 import { buildFlowGraph } from "@/lib/flow/transform-definition";
@@ -29,12 +29,14 @@ function FlowGraph({ bundled, colors, onOpenFlyout }: {
   onOpenFlyout?: FlowTabProps["onOpenFlyout"];
 }) {
   const [expandedFlowId, setExpandedFlowId] = useState<string | null>(null);
+  const [expandedToolId, setExpandedToolId] = useState<string | null>(null);
+  const [expandedVariantId, setExpandedVariantId] = useState<string | null>(null);
   const { fitView } = useReactFlow();
   const draggedPositions = useRef<Record<string, { x: number; y: number }>>({});
 
   const { nodes: initialNodes, edges: initialEdges } = useMemo(
-    () => buildFlowGraph(bundled, colors, expandedFlowId),
-    [bundled, colors, expandedFlowId],
+    () => buildFlowGraph(bundled, colors, expandedFlowId, expandedToolId, expandedVariantId),
+    [bundled, colors, expandedFlowId, expandedToolId, expandedVariantId],
   );
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -66,6 +68,12 @@ function FlowGraph({ bundled, colors, onOpenFlyout }: {
     (_: React.MouseEvent, node: Node) => {
       if (node.type === "flowNode") {
         setExpandedFlowId((prev) => (prev === node.id ? null : node.id));
+      } else if (node.type === "toolNode") {
+        setExpandedVariantId(null);
+        setExpandedToolId((prev) => (prev === node.id ? null : node.id));
+      } else if (node.type === "variantNode") {
+        setExpandedToolId(null);
+        setExpandedVariantId((prev) => (prev === node.id ? null : node.id));
       } else if (node.type === "promptNode" && onOpenFlyout) {
         const promptKey = (node.data as { promptKey: string }).promptKey;
         const content = bundled.prompts[promptKey];
@@ -105,6 +113,7 @@ function FlowGraph({ bundled, colors, onOpenFlyout }: {
 export function FlowTab({ agentId, colors, onOpenFlyout }: FlowTabProps) {
   const [bundled, setBundled] = useState<BundledAgentDefinition | null>(null);
   const [loading, setLoading] = useState(true);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   useEffect(() => {
     fetch("/definitions.json")
@@ -140,9 +149,9 @@ export function FlowTab({ agentId, colors, onOpenFlyout }: FlowTabProps) {
   }
 
   const def = bundled.definition;
-  const flowCount = def.flows?.length ?? 0;
-  const toolCount = def.tools?.length ?? 0;
-  const variantCount = def.specialized_agents?.length ?? 0;
+  const flows = def.flows ?? [];
+  const tools = def.tools ?? [];
+  const variants = def.specialized_agents ?? [];
 
   return (
     <div className="space-y-3">
@@ -150,15 +159,75 @@ export function FlowTab({ agentId, colors, onOpenFlyout }: FlowTabProps) {
         <div className="flex items-center gap-3">
           <h3 className="text-sm font-medium text-stone-700">Agent Architecture</h3>
           <div className="flex items-center gap-3 text-[11px] text-stone-400">
-            <span className="flex items-center gap-1"><Workflow size={11} /> {flowCount} {flowCount === 1 ? "flow" : "flows"}</span>
+            <span className="flex items-center gap-1"><Workflow size={11} /> {flows.length} {flows.length === 1 ? "flow" : "flows"}</span>
             <span>·</span>
-            <span className="flex items-center gap-1"><Wrench size={11} /> {toolCount} {toolCount === 1 ? "tool" : "tools"}</span>
+            <span className="flex items-center gap-1"><Wrench size={11} /> {tools.length} {tools.length === 1 ? "tool" : "tools"}</span>
             <span>·</span>
-            <span className="flex items-center gap-1"><Users size={11} /> {variantCount} {variantCount === 1 ? "variant" : "variants"}</span>
+            <span className="flex items-center gap-1"><Users size={11} /> {variants.length} {variants.length === 1 ? "variant" : "variants"}</span>
           </div>
         </div>
-        <span className="text-[11px] text-stone-400">Click a flow to expand its prompt chain</span>
+        <span className="text-[11px] text-stone-400">Click a flow, tool, or variant to expand details</span>
       </div>
+
+      <div className="rounded-lg border border-stone-200 bg-white">
+        <button
+          type="button"
+          onClick={() => setDetailsOpen((v) => !v)}
+          className="w-full flex items-center gap-4 px-4 py-2.5 hover:bg-stone-50 transition-colors rounded-lg"
+        >
+          <div className="flex items-center gap-6 text-[11px] text-stone-400">
+            <span><strong className="text-stone-700">{flows.length}</strong> flows</span>
+            <span><strong className="text-stone-700">{tools.length}</strong> tools</span>
+            <span><strong className="text-stone-700">{variants.length}</strong> variants</span>
+          </div>
+          <ChevronDown className={`w-3.5 h-3.5 text-stone-400 transition-transform ml-auto ${detailsOpen ? "rotate-180" : ""}`} />
+        </button>
+
+        {detailsOpen && (
+          <div className="px-4 pb-3 space-y-3 border-t border-stone-100">
+            {flows.length > 0 && (
+              <div className="space-y-1.5 pt-3">
+                <p className="text-[11px] font-medium text-stone-500 uppercase tracking-wide">Flows</p>
+                {flows.map((flow) => {
+                  const steps = flow["x-agentlab"]?.workflow_shorthand ?? [];
+                  return (
+                    <div key={flow.id} className="flex items-start gap-2 text-xs">
+                      <Workflow size={12} className="mt-0.5 text-stone-400 shrink-0" />
+                      <span className="font-medium text-stone-700">{flow.name}</span>
+                      <span className="text-stone-400">{flow.description ?? `${steps.length} ${steps.length === 1 ? "step" : "steps"}`}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            {tools.length > 0 && (
+              <div className="space-y-1.5 pt-3">
+                <p className="text-[11px] font-medium text-stone-500 uppercase tracking-wide">Tools</p>
+                {tools.map((tool) => (
+                  <div key={tool.id} className="flex items-start gap-2 text-xs">
+                    <Wrench size={12} className="mt-0.5 text-stone-400 shrink-0" />
+                    <span className="font-medium text-stone-700">{tool.name}</span>
+                    <span className="text-stone-400">{tool.description}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {variants.length > 0 && (
+              <div className="space-y-1.5 pt-3">
+                <p className="text-[11px] font-medium text-stone-500 uppercase tracking-wide">Variants</p>
+                {variants.map((v) => (
+                  <div key={v.id} className="flex items-start gap-2 text-xs">
+                    <Users size={12} className="mt-0.5 text-stone-400 shrink-0" />
+                    <span className="font-medium text-stone-700">{v.name}</span>
+                    <span className="text-stone-400">{v.description}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
       <div className="w-full h-[600px] rounded-xl border border-stone-200 bg-white overflow-hidden">
         <ReactFlowProvider>
           <FlowGraph bundled={bundled} colors={colors} onOpenFlyout={onOpenFlyout} />
