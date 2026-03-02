@@ -114,6 +114,42 @@ Corporate politics and stakeholder navigator. Maps power dynamics, analyzes poli
 
 ---
 
+### [design-thinking-agent](agents/design-thinking-agent/)
+
+Guides teams through the design thinking process. Facilitates empathy mapping, ideation, prototyping, and testing cycles. *6 prompts · 5 skills · 3 personalities.*
+
+- **Skills:** empathize, define-problem, ideate, prototype, test-iterate
+- **Personalities:** facilitator, coach, innovator
+- **Frameworks:** Stanford d.school Design Thinking, Double Diamond, Jobs to Be Done, How Might We
+
+**When to use:** Product development, service design, process improvement, innovation workshops, any situation where the problem needs reframing before solutions.
+
+---
+
+### [leadership-coach-agent](agents/leadership-coach-agent/)
+
+Leadership style assessment and development coaching. Helps leaders understand their natural style, adapt to situations, and develop new capabilities. *5 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** assess-style, situational-adapt, develop-capability, feedback-360, team-lead
+- **Personalities:** executive-coach, peer, mentor
+- **Frameworks:** Situational Leadership, Servant Leadership, Transformational Leadership, Leadership Pipeline
+
+**When to use:** New leadership roles, team performance issues, leadership development plans, preparing for executive conversations, understanding your leadership blind spots.
+
+---
+
+### [networking-agent](agents/networking-agent/)
+
+Professional networking strategy and relationship building. Helps plan, execute, and maintain professional networks with genuine value exchange. *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** network-plan, conversation-prep, follow-up, relationship-maintain
+- **Personalities:** connector, strategist, introvert-friendly
+- **Frameworks:** Dunbar Layers, Weak Ties Theory, Give-First Networking, Strategic Relationship Management
+
+**When to use:** Career transitions, building industry presence, conference preparation, maintaining professional relationships, turning contacts into genuine connections.
+
+---
+
 ## Prompt Design Patterns
 
 All agents in this repository follow two prompt quality patterns. See the [handbook](docs/handbook.md) for the full rationale.
@@ -126,6 +162,36 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 ## Agent Ideas
 
-Future agents under consideration. See [agents/agent-ideas.md](agents/agent-ideas.md) for details and references.
+49 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
 
-- **decision-facilitator-agent**: Guides structured decision-making processes and frameworks
+### Decision & Strategy (19 ideas)
+
+**Thinking Chain:** decision-facilitator, systems-thinker, strategist, okr-agent, tactician, devils-advocate, scenario-planning, bias-detective, prioritization, game-theory, mental-models, sensemaking
+
+**Analytical Frameworks:** investigation, intelligence
+
+**Engagement & Narrative:** superhero, gamification, discworld, alien, cat-pov
+
+**Philosophy & Wisdom:** rhetoric, stoic-adviser, personal-philosopher
+
+### Communication (8 ideas)
+
+**Persuasion:** negotiation, difficult-conversations, pitch
+
+**Interpersonal:** feedback-coach, supportive-colleague
+
+**Delivery & Adaptation:** presentation-coach, communication-adapter, friction-reducer
+
+### Career Development (11 ideas)
+
+**Job Search:** interview-prep, resume, salary-negotiation
+
+**Professional Growth:** mentorship, promotion, skill-gap, strength-finder, management-consultant, career-narrative, performance-review, midlife-crisis, empty-nest
+
+### Team & Organization (11 ideas)
+
+**Change & Transition:** change-management, onboarding, knowledge-transfer, organizational-debt
+
+**Team Health:** team-dynamics, meeting-facilitator, networking
+
+**Engagement & Narrative:** wargaming, alliance

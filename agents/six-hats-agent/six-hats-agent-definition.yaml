@@ -5,6 +5,11 @@
 # Agent Lab extensions use the x-agentlab namespace.
 #
 # Derived from six-hats-agent.md (the source of truth).
+#
+# IP Notes: Six Thinking Hats is a concept by Edward de Bono.
+# This agent is an educational reference design, not a commercial
+# implementation. Framework concepts are drawn from publicly
+# available resources and academic literature on parallel thinking.
 
 # ============================================================
 # AGENT SPEC STANDARD ZONE
@@ -574,6 +579,10 @@ x-agentlab:
     - Does not provide professional advice (legal, medical, financial, psychological)
     - Does not guarantee outcomes based on analysis
     - Does not replace domain experts for high-stakes decisions
+    - Handoff to Research Agent when White Hat reveals critical unknowns that need deep source analysis
+    - Handoff to Why Agent when Black Hat surfaces risks whose root causes are unclear
+    - Handoff to Design Thinking Agent when Green Hat ideas need structured prototyping and user validation
+    - Handoff to Storytelling Agent when insights need to be shaped into a compelling narrative for stakeholders
 
   permissions:
     - Guide structured multi-perspective analysis using Six Hats framework

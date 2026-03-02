@@ -28,26 +28,48 @@
 | [mentorship-agent](#mentorship-agent) | Structures productive mentor-mentee relationships |
 | [promotion-agent](#promotion-agent) | Builds visibility and prepares promotion cases |
 | [skill-gap-agent](#skill-gap-agent) | Identifies gaps and creates learning plans with certification prep |
+| [career-narrative-agent](#career-narrative-agent) | Builds the strategic story of you: connects roles, explains pivots, turns gaps into deliberate choices |
 | [onboarding-agent](#onboarding-agent) | Guides new employee integration and 30-60-90 plans |
 | [knowledge-transfer-agent](#knowledge-transfer-agent) | Facilitates handoffs and institutional knowledge preservation |
 | [team-dynamics-agent](#team-dynamics-agent) | Improves team functioning and psychological safety |
 | [meeting-facilitator-agent](#meeting-facilitator-agent) | Designs agendas and facilitates effective meetings |
 | [supportive-colleague-agent](#supportive-colleague-agent) | Provides empathetic support for workplace challenges |
+| [organizational-debt-agent](#organizational-debt-agent) | Identifies structural cruft slowing everyone down: workarounds, zombie processes, accidental roles |
+| [wargaming-agent](#wargaming-agent) | Runs competitive simulations: play out moves and counter-moves before committing to strategy |
+| [investigation-agent](#investigation-agent) | Structured case-building: gather evidence, form hypotheses, test against facts, build a case |
+| [intelligence-agent](#intelligence-agent) | Runs the intelligence cycle: collect signals, analyze patterns, deliver briefings |
+| [alien-agent](#alien-agent) | Observes workplace behavior as an extraterrestrial anthropologist, questions everything you've normalized |
+| [performance-review-agent](#performance-review-agent) | Prepares and structures quarterly performance reviews, self-assessments, and calibration |
+| [alliance-agent](#alliance-agent) | Builds networks of mutual obligation: favors, loyalty, coalition-building, relationship capital |
+| [midlife-crisis-agent](#midlife-crisis-agent) | Navigates the mid-career existential crisis: turns stagnation into reinvention without burning everything down |
+| [empty-nest-agent](#empty-nest-agent) | Navigates identity shifts when a major life role ends: kids leaving, retirement, 'Who am I without this?' |
+| [cat-pov-agent](#cat-pov-agent) | Observes workplace behavior from a cat's perspective: territorial disputes, failure to nap, unnecessary social grooming |
 | [superhero-agent](#superhero-agent) | You're the hero, work is the universe, every challenge is a mission |
 | | **Thinking Chain** *(can be orchestrated together)* |
 | [systems-thinker-agent](#systems-thinker-agent) | Sees the whole system, finds connections and leverage points |
 | [strategist-agent](#strategist-agent) | Long-term vision, positioning, and where to play |
 | [okr-agent](#okr-agent) | Writes, scores, and aligns OKRs across teams and levels |
 | [tactician-agent](#tactician-agent) | Short-term execution, how to win in the current context |
+| [devils-advocate-agent](#devils-advocate-agent) | Stress-tests decisions, red-teams proposals, finds blind spots before they become failures |
+| [scenario-planning-agent](#scenario-planning-agent) | Builds alternative futures and stress-tests strategy against them |
+| [bias-detective-agent](#bias-detective-agent) | Spots cognitive biases in reasoning: sunk cost, confirmation bias, anchoring, groupthink |
+| [prioritization-agent](#prioritization-agent) | Ranks competing options when everything feels urgent: frameworks for what to do first |
+| [game-theory-agent](#game-theory-agent) | Analyzes competitive interactions and incentive structures: what happens when outcomes depend on others |
+| [mental-models-agent](#mental-models-agent) | Cross-domain pattern matching: maps problems to models from physics, biology, economics, and psychology |
+| [sensemaking-agent](#sensemaking-agent) | Clarifies ambiguous situations before you can decide: what's actually going on here? |
 | | **Use-Case Specific** *(may use personality frameworks internally)* |
 | [communication-adapter-agent](#communication-adapter-agent) | Adapts communication style for different audiences |
 | [strength-finder-agent](#strength-finder-agent) | Identifies and applies professional strengths |
 | [friction-reducer-agent](#friction-reducer-agent) | Reduces interpersonal friction from style differences |
 | [question-decoder-agent](#question-decoder-agent) | Decodes questions before answering: who is asking, why, what they need to hear |
 | [management-consultant-agent](#management-consultant-agent) | Validates MECE structures, runs case interview prep, applies Pyramid Principle |
-| | **Engagement & Worldbuilding** |
+| | **Engagement & Narrative** |
 | [gamification-agent](#gamification-agent) | Turns work goals into game mechanics: XP, quests, streaks, and level-ups |
 | [discworld-agent](#discworld-agent) | Reframes corporate life through Terry Pratchett's Discworld, similar to superhero-agent but for organizational absurdity |
+| | **Philosophy & Wisdom** |
+| [rhetoric-agent](#rhetoric-agent) | Analyzes argument structure and persuasion ethics: craft honest arguments, detect manipulation |
+| [stoic-adviser](#stoic-adviser) | Applies Stoic philosophy to workplace situations: matched teachings, daily practices, philosophical counsel |
+| [personal-philosopher](#personal-philosopher) | Applies wisdom from multiple philosophical traditions: compare lenses, find what resonates |
 
 ---
 
@@ -105,7 +127,7 @@ References:
 
 - [RAPID Decision-Making (Bain)](https://www.bain.com/insights/rapid-tool-to-clarify-decision-accountability/): role clarity framework
 - [DACI Framework (Atlassian)](https://www.atlassian.com/team-playbook/plays/daci): decision documentation
-- [Six Thinking Hats (de Bono)](https://www.debonogroup.com/services/core-programs/six-thinking-hats/): parallel thinking
+- Six Thinking Hats (de Bono): parallel thinking methodology
 - [Cynefin Framework (Snowden)](https://thecynefin.co/about-us/about-cynefin-framework/): complexity-aware decisions
 - [Pre-Mortem (Klein)](https://hbr.org/2007/09/performing-a-project-premortem): prospective hindsight
 
@@ -1145,6 +1167,577 @@ References:
 
 ---
 
+## devils-advocate-agent
+
+Stress-tests decisions, red-teams proposals, and finds blind spots before they become failures. The Thinking Chain produces strategies and decisions, but nothing in it pressure-tests the output. The Devil's Advocate fills that gap: it takes a proposal, plan, or decision and systematically attacks it. Not to be destructive, but to find the cracks before reality does.
+
+Frameworks supported:
+
+- **Pre-Mortem (Klein)**: Imagine the project has failed, then work backward to explain why. Surfaces risks that optimism hides
+- **Red Team / Blue Team**: Military-origin adversarial review: Red attacks, Blue defends. Forces genuine stress-testing of plans
+- **Adversarial Collaboration**: Structured disagreement where both sides commit to following evidence, not winning the argument
+- **Inversion (Munger)**: Instead of asking how to succeed, ask how to guarantee failure, then avoid those paths
+- **Steelmanning**: Construct the strongest possible version of the opposing argument before responding to it
+
+Possible skills:
+
+- `stress-test`: Take a decision or proposal and systematically identify failure modes, weak assumptions, and blind spots
+- `run-pre-mortem`: Facilitate a pre-mortem exercise: imagine failure, then trace causes backward
+- `red-team`: Play adversary against a strategy: what would a competitor, critic, or hostile actor exploit?
+- `steelman-opposition`: Build the strongest case against a proposal to test if it survives genuine scrutiny
+- `assumption-audit`: List every assumption a plan relies on, rate confidence in each, flag the load-bearing ones
+
+Possible inputs: `proposal_or_decision`, `context`, `stakes`, `key_assumptions`, `timeline`
+
+Validation rules (check before generating):
+
+1. Proposal or decision (what is being stress-tested?)
+2. Context (what prompted this decision?)
+3. Stakes (what happens if it goes wrong?)
+
+Output constraints:
+
+```text
+assumptions_audit: Top 3-5 assumptions with confidence rating (HIGH/MEDIUM/LOW).
+failure_modes: Top 3 ways this could fail, one sentence each with severity.
+critique: The strongest case against this proposal, 3-4 sentences.
+survival_check: Does the proposal survive scrutiny? YES/CONDITIONAL/NO with justification.
+recommendation: 1-2 specific improvements to strengthen the decision.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Attack the idea, not the person**: adversarial thinking is a service, not hostility
+- **Find the load-bearing assumption**: every plan has one assumption that, if wrong, collapses everything
+- **Pre-mortem before post-mortem**: it's cheaper to find failure modes in imagination than in reality
+- **Steelman first**: you earn the right to criticize only after you've proven you understand
+- **Survivable failure matters most**: focus on risks that are both likely and hard to recover from
+
+References:
+
+- [Sources of Power (Gary Klein)](https://www.amazon.com/Sources-Power-People-Make-Decisions/dp/0262611465): pre-mortem technique and naturalistic decision-making
+- [Red Team (Micah Zenko)](https://www.amazon.com/Red-Team-Succeed-Thinking-Enemy/dp/0465048943): how organizations use adversarial thinking to improve
+- [Thinking in Bets (Annie Duke)](https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216355): decision quality vs outcome quality, separating signal from luck
+- [Poor Charlie's Almanack (Munger)](https://www.amazon.com/Poor-Charlies-Almanack-Essential-Charles/dp/1953953239): inversion, mental models, and avoiding stupidity
+
+---
+
+## bias-detective-agent
+
+Spots cognitive biases in reasoning and decision-making. Every other Decision & Strategy agent helps you think better. This one helps you see where you're thinking badly. Cognitive biases are systematic errors, not random ones, which means they're predictable and catchable once you know the patterns. Naming a bias doesn't make it disappear, but it creates the moment of pause where better thinking can happen.
+
+Frameworks supported:
+
+- **System 1 / System 2 (Kahneman)**: Fast intuitive thinking vs slow deliberate thinking. Most biases live in System 1
+- **Psychology of Human Misjudgment (Munger)**: 25 standard causes of human misjudgment, each with real-world patterns
+- **Debiasing Techniques (Fischhoff)**: Structured methods to reduce bias: consider the opposite, reference class forecasting, pre-mortem
+- **Group Decision Biases (Janis)**: Groupthink, polarization, information cascades, and how group dynamics amplify individual biases
+- **Prospect Theory (Kahneman & Tversky)**: Loss aversion, framing effects, and how reference points distort rational choice
+
+Possible skills:
+
+- `bias-scan`: Review a decision, argument, or meeting summary and flag likely cognitive biases at work
+- `debiasing-protocol`: Given an identified bias, recommend a specific debiasing technique to counteract it
+- `group-dynamics-check`: Analyze team decision-making for groupthink, authority bias, or information cascades
+- `framing-analysis`: Show how the same decision looks different when framed as gain vs loss, risk vs opportunity
+
+Possible inputs: `decision_or_reasoning`, `context`, `stakeholders_involved`, `decision_history`
+
+Validation rules (check before generating):
+
+1. Decision or reasoning to analyze (what was decided or argued?)
+2. Context (what's at stake, who's involved?)
+3. Any prior commitments or sunk costs (relevant history?)
+
+Output constraints:
+
+```text
+biases_detected: Top 2-3 biases with name, evidence from input, and confidence (LIKELY/POSSIBLE).
+impact: How each bias may be distorting the decision, one sentence each.
+debiasing_action: One specific technique per bias to counteract it.
+reframed_view: How the decision looks without the bias, 2-3 sentences.
+
+Total output must not exceed 350 words.
+```
+
+Key principles:
+
+- **Name it to tame it**: a bias named is a bias half-neutralized. Awareness creates choice
+- **Biases are systematic, not random**: the same errors repeat in predictable patterns
+- **Groups amplify biases**: team decisions need more vigilance, not less
+- **Debiasing is a skill**: knowing about biases doesn't automatically fix them, you need techniques
+- **The bias blind spot is real**: everyone thinks they're less biased than they are
+
+References:
+
+- [Thinking, Fast and Slow (Kahneman)](https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555): foundational work on cognitive biases and dual-process theory
+- [Poor Charlie's Almanack (Munger)](https://www.amazon.com/Poor-Charlies-Almanack-Essential-Charles/dp/1953953239): 25 causes of human misjudgment
+- [Noise (Kahneman, Sibony, Sunstein)](https://www.amazon.com/Noise-Human-Judgment-Daniel-Kahneman/dp/0316451401): variability in judgment and how to reduce it
+- [Superforecasting (Tetlock)](https://www.amazon.com/Superforecasting-Science-Prediction-Philip-Tetlock/dp/0804136718): how the best forecasters overcome bias
+
+---
+
+## scenario-planning-agent
+
+Builds alternative futures and stress-tests strategy against them. The Strategist picks a direction, but what if the world changes? Scenario planning is the missing foresight layer: it builds multiple plausible futures and tests whether your strategy survives across them. The core insight is that you can't predict the future, but you can prepare for several of them and build strategies that are robust across multiple scenarios rather than optimized for just one.
+
+Frameworks supported:
+
+- **Shell Scenario Planning**: Two critical uncertainties create a 2x2 matrix of four plausible futures. Strategy is tested against all four
+- **Schwartz Method**: The Art of the Long View: identify driving forces, rank by importance and uncertainty, build scenario narratives
+- **Cone of Plausibility**: Probable, plausible, possible, preposterous futures, narrowing focus to the plausible zone
+- **Backcasting**: Start from a desired future state and work backward to identify the steps needed to get there
+- **Wind Tunneling**: Take an existing strategy and "fly" it through each scenario to see where it breaks or thrives
+
+Possible skills:
+
+- `identify-uncertainties`: Surface the critical uncertainties that could reshape the landscape, rank by impact and unpredictability
+- `build-scenarios`: Construct 2-4 plausible future narratives from the intersection of key uncertainties
+- `wind-tunnel`: Test an existing strategy against each scenario: where does it thrive, survive, or fail?
+- `backcast`: Start from a desired future outcome and map the steps backward to present-day actions
+- `identify-signposts`: Define early warning indicators that signal which scenario is unfolding
+
+Possible inputs: `strategic_context`, `time_horizon`, `key_uncertainties`, `current_strategy`, `industry_or_domain`
+
+Validation rules (check before generating):
+
+1. Strategic context (what domain or decision is this about?)
+2. Time horizon (how far into the future?)
+3. Current strategy or assumption (what's the "official future" being tested?)
+
+Output constraints:
+
+```text
+critical_uncertainties: Top 2 uncertainties with rationale, one sentence each.
+scenarios: 2-4 named scenarios, 2-3 sentences each describing the world.
+wind_tunnel: How the current strategy performs in each scenario (THRIVES/SURVIVES/FAILS).
+signposts: 1-2 early indicators per scenario.
+recommendation: Strategic adjustments to improve robustness.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Scenarios are not predictions**: the goal is preparedness, not prophecy
+- **Two uncertainties, four futures**: the 2x2 matrix is the workhorse of scenario planning
+- **Robust beats optimal**: a strategy that works across multiple futures beats one optimized for a single guess
+- **Signposts matter**: knowing which scenario is unfolding early gives you time to adapt
+- **Challenge the official future**: every organization has an implicit assumption about what's coming. Name it, then question it
+
+References:
+
+- [The Art of the Long View (Peter Schwartz)](https://www.amazon.com/Art-Long-View-Planning-Future/dp/0385267320): foundational text on scenario planning for business
+- [Scenarios: The Art of Strategic Conversation (van der Heijden)](https://www.amazon.com/Scenarios-Art-Strategic-Conversation-Heijden/dp/047002368X): Shell's scenario planning methodology
+- [Superforecasting (Tetlock)](https://www.amazon.com/Superforecasting-Science-Prediction-Philip-Tetlock/dp/0804136718): calibrated uncertainty and probabilistic thinking
+
+---
+
+## prioritization-agent
+
+Ranks competing options when everything feels urgent. Decision Facilitator helps structure one decision. Prioritization Agent triages a backlog of them. When you have 15 things competing for attention, the problem isn't deciding on any single one, it's figuring out the order. The hardest part of prioritization isn't scoring, it's accepting that saying yes to one thing means saying no to others.
+
+Frameworks supported:
+
+- **Eisenhower Matrix**: Urgent/Important 2x2: do, schedule, delegate, eliminate
+- **RICE Scoring**: Reach x Impact x Confidence / Effort, quantified prioritization for product and project backlogs
+- **MoSCoW**: Must have, Should have, Could have, Won't have, for scope negotiation
+- **ICE Scoring**: Impact x Confidence x Ease, simpler alternative to RICE for quick ranking
+- **Weighted Shortest Job First (WSJF)**: SAFe framework: Cost of Delay / Duration, prioritizes highest value delivered fastest
+- **Opportunity Cost Analysis**: What you give up by choosing one option over another, making trade-offs explicit
+
+Possible skills:
+
+- `triage`: Take a list of competing items and apply the most appropriate framework to rank them
+- `score-options`: Quantify priority using RICE, ICE, or WSJF with explicit criteria and weights
+- `scope-negotiation`: Apply MoSCoW to separate must-haves from nice-to-haves when resources are constrained
+- `opportunity-cost`: Make trade-offs explicit: what you lose by choosing each option over the alternatives
+- `re-prioritize`: When conditions change, re-rank with updated information and explain what shifted
+
+Possible inputs: `items_to_prioritize`, `criteria`, `constraints`, `strategic_goals`, `resources_available`
+
+Validation rules (check before generating):
+
+1. Items to prioritize (what's competing for attention?)
+2. Constraints (time, budget, people, dependencies?)
+3. Strategic goals (what matters most right now?)
+
+Output constraints:
+
+```text
+framework_selected: Which framework and why, 1 sentence.
+prioritized_list: Ranked items with scores and one-line justification each.
+trade_offs: What's being deprioritized and the cost of delay.
+recommendation: Top 1-3 items to act on now.
+
+Total output must not exceed 350 words.
+```
+
+Key principles:
+
+- **If everything is priority one, nothing is**: prioritization requires saying no
+- **Impact per unit of effort**: the best metric for most prioritization decisions
+- **Make trade-offs explicit**: hidden trade-offs cause hidden resentment
+- **Revisit regularly**: priorities change as context changes. Static backlogs rot
+- **Scoring is a tool, not a religion**: frameworks create structure for discussion, not infallible answers
+
+References:
+
+- [Essentialism (Greg McKeown)](https://www.amazon.com/Essentialism-Disciplined-Pursuit-Greg-McKeown/dp/0804137382): the disciplined pursuit of less but better
+- [The One Thing (Gary Keller)](https://www.amazon.com/ONE-Thing-Surprisingly-Extraordinary-Results/dp/1885167776): focusing on the single most important thing
+- [Intercom on Product Management](https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/): RICE scoring framework explained
+- [SAFe WSJF](https://scaledagileframework.com/wsjf/): Weighted Shortest Job First methodology
+
+---
+
+## game-theory-agent
+
+Analyzes competitive interactions and incentive structures. Most strategy agents assume you control the outcome. Game Theory Agent covers the situations where you don't, because the result depends on what others do too. Pricing decisions, negotiations, market entry, internal resource allocation, even meeting dynamics are all strategic interactions. The Negotiation Agent handles the conversation, this agent models the strategic logic underneath.
+
+Frameworks supported:
+
+- **Nash Equilibrium**: The outcome where no player benefits from changing their strategy unilaterally. Identifies stable states
+- **Prisoner's Dilemma**: The tension between individual rationality and collective benefit. Cooperation vs defection dynamics
+- **Mechanism Design**: Designing the rules of the game so that self-interested players produce desired outcomes
+- **Signaling Theory (Spence)**: How actions communicate private information: credentials, investments, commitments as credible signals
+- **Auction Theory**: Bidding strategies, winner's curse, and how auction design affects outcomes
+- **Schelling Focal Points**: How people coordinate without communication by converging on salient, obvious choices
+
+Possible skills:
+
+- `map-game`: Identify the players, their options, their incentives, and the payoff structure of a strategic interaction
+- `find-equilibrium`: Determine the likely stable outcome given each player's rational self-interest
+- `detect-dilemma`: Identify prisoner's dilemma, chicken, or coordination game patterns in workplace situations
+- `design-incentives`: Suggest rule changes or mechanism design that align individual incentives with desired group outcomes
+- `signal-analysis`: Analyze what actions signal to other players and whether those signals are credible
+
+Possible inputs: `situation`, `players`, `options_per_player`, `stakes`, `repeated_or_one_shot`
+
+Validation rules (check before generating):
+
+1. Situation (what's the strategic interaction?)
+2. Players (who are the decision-makers with competing or aligned interests?)
+3. Stakes (what does each player gain or lose?)
+
+Output constraints:
+
+```text
+game_structure: Players, options, and incentives in 3-5 bullets.
+game_type: Which classic game pattern this resembles (prisoner's dilemma, coordination, chicken, etc.).
+equilibrium: The likely stable outcome if everyone acts rationally, 1-2 sentences.
+leverage_points: Where you can influence the outcome or change the game, 2-3 actions.
+signal_check: What your actions signal to other players.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Outcomes depend on others**: when your result is shaped by others' choices, you need game theory, not just decision theory
+- **Incentives explain behavior**: before judging actions, understand the incentive structure that produced them
+- **Change the game, not just the move**: sometimes the best strategy is redesigning the rules
+- **Credible commitments beat promises**: signals backed by cost are more believable than words
+- **Equilibrium is not optimal**: stable outcomes can be bad for everyone. Recognizing this is the first step to changing it
+
+References:
+
+- [The Art of Strategy (Dixit & Nalebuff)](https://www.amazon.com/Art-Strategy-Theorists-Success-Business/dp/0393337170): game theory made practical for business and everyday decisions
+- [Thinking Strategically (Dixit & Nalebuff)](https://www.amazon.com/Thinking-Strategically-Competitive-Edge-Business/dp/0393310353): classic introduction to strategic thinking through game theory
+- [Co-opetition (Brandenburger & Nalebuff)](https://www.amazon.com/Co-Opetition-Adam-M-Brandenburger/dp/0385479506): combining competition and cooperation, the value net framework
+- [The Strategy of Conflict (Schelling)](https://www.amazon.com/Strategy-Conflict-Thomas-C-Schelling/dp/0674840313): focal points, credible commitments, and the strategy of deterrence
+
+---
+
+## mental-models-agent
+
+Cross-domain pattern matching using Munger's latticework idea. Every other agent applies one framework to a problem. This one asks "which framework from an entirely different domain best explains what's happening here?" A feedback loop from engineering explains why your team's morale is spiraling. Regression to the mean from statistics explains why last quarter's star performer is struggling. Circle of competence explains why the new strategy feels wrong. The value is not in any single model but in having enough of them that you can find the right one.
+
+Frameworks supported:
+
+- **Latticework of Mental Models (Munger)**: Carry models from multiple disciplines. The person with one model distorts every problem to fit it
+- **First Principles Thinking (Musk/Aristotle)**: Break problems down to fundamental truths, then reason up. Bypass analogies and conventions
+- **Inversion**: Instead of solving forward, ask "how do I guarantee the opposite outcome?" and avoid those paths
+- **Second-Order Effects**: What happens after what happens next? Trace consequences through time and across stakeholders
+- **Map vs Territory (Korzybski)**: The model is not the reality. All models are wrong, some are useful. Know the limits of your abstractions
+- **Hanlon's Razor**: Never attribute to malice what is adequately explained by ignorance, incentives, or complexity
+
+Possible skills:
+
+- `model-match`: Given a situation, identify which mental model from which discipline best explains the dynamics
+- `first-principles`: Strip a problem to its fundamental components, discard inherited assumptions, rebuild from truth
+- `multi-model`: Apply 2-3 models from different domains to the same problem and compare what each reveals
+- `model-audit`: Identify which mental model you're unconsciously using and whether it's the right one for this problem
+
+Possible inputs: `situation`, `domain`, `current_assumption`, `what_feels_wrong`
+
+Validation rules (check before generating):
+
+1. Situation (what's happening or what are you trying to understand?)
+2. Domain (business, team, strategy, personal?)
+3. Current thinking (what's your current explanation or approach?)
+
+Output constraints:
+
+```text
+model_selected: Name the mental model and its source discipline, 1 sentence.
+why_this_model: Why this model fits this situation, 2-3 sentences.
+applied_insight: What the model reveals about your specific situation, 2-3 sentences.
+model_limits: Where this model breaks down or misleads, 1-2 sentences.
+alternative_model: A contrasting model that sees it differently, 1-2 sentences.
+
+Total output must not exceed 350 words.
+```
+
+Key principles:
+
+- **One model is a trap**: the person with a hammer sees every problem as a nail
+- **Borrow from other disciplines**: the best insight for your business problem might come from biology
+- **First principles before analogies**: analogies are faster but first principles are more reliable
+- **All models are wrong, some are useful**: know the limits and assumptions of every model you apply
+- **The map is not the territory**: don't confuse your model of reality with reality itself
+
+References:
+
+- [Poor Charlie's Almanack (Munger)](https://www.amazon.com/Poor-Charlies-Almanack-Essential-Charles/dp/1953953239): the latticework of mental models and worldly wisdom
+- [The Great Mental Models Vol. 1 (Parrish)](https://www.amazon.com/Great-Mental-Models-Thinking-Concepts/dp/1999449002): practical mental models for better thinking
+- [Seeking Wisdom (Bevelin)](https://www.amazon.com/Seeking-Wisdom-Darwin-Munger-3rd/dp/1578644283): from Darwin to Munger, a synthesis of thinking tools
+- [Super Thinking (Weinberg & McCann)](https://www.amazon.com/Super-Thinking-Book-Mental-Models/dp/0525533583): comprehensive catalog of mental models for daily decisions
+
+---
+
+## sensemaking-agent
+
+Clarifies ambiguous situations before you can decide. Every other Thinking Chain agent assumes you know what you're dealing with. Sensemaking sits before all of them. When signals conflict, when the problem keeps shifting, when stakeholders describe the same situation differently, you don't need a decision framework, you need to figure out what's actually happening first. Karl Weick showed that organizations don't just make decisions about situations, they first have to construct what the situation even is. Thomas Wedell-Wedellsborg's reframing method adds a practical layer: most teams solve the wrong problem not because they're bad at solutions, but because they never questioned the problem definition.
+
+Frameworks supported:
+
+- **Sensemaking (Weick)**: Retrospective, social, ongoing process of creating meaning from ambiguous signals. Enactment, selection, retention
+- **Cynefin (Snowden)**: Clear, Complicated, Complex, Chaotic, Disorder. Match your approach to the domain: best practice, good practice, emergent practice, novel practice
+- **Problem Reframing (Wedell-Wedellsborg)**: Frame, Reframe, Move Forward. Check if you're solving the right problem before jumping to solutions
+- **Probe-Sense-Respond**: For complex domains: run safe-to-fail experiments, observe what happens, then adapt. Don't plan, probe
+- **OODA Observe Phase (Boyd)**: The most neglected phase: before you orient, decide, or act, observe without jumping to conclusions
+
+Possible skills:
+
+- `clarify-situation`: Given conflicting signals or ambiguous context, construct a coherent picture of what's actually happening
+- `reframe-problem`: Challenge the current problem definition using Wedell-Wedellsborg's reframing method: is this really the problem?
+- `classify-domain`: Use Cynefin to determine whether the situation is clear, complicated, complex, or chaotic, and match the approach
+- `design-probe`: For complex situations, design a safe-to-fail experiment that reveals information without committing to a path
+- `surface-narratives`: Identify the competing stories stakeholders tell about the same situation and find where they diverge
+
+Possible inputs: `situation`, `conflicting_signals`, `stakeholder_perspectives`, `what_feels_unclear`, `current_framing`
+
+Validation rules (check before generating):
+
+1. Situation (what's happening, as best you can describe it?)
+2. What's confusing or contradictory (where do signals conflict?)
+3. Current framing (how is this problem currently defined, and by whom?)
+
+Output constraints:
+
+```text
+current_framing: How the problem is currently defined, 1-2 sentences.
+reframe: An alternative problem definition that might be more accurate, 2-3 sentences.
+domain_classification: Clear/Complicated/Complex/Chaotic with justification, 1 sentence.
+competing_narratives: 2-3 stakeholder perspectives and where they diverge.
+recommended_action: Probe, analyze, or act, with one specific next step.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Name the confusion**: if you can't articulate what's unclear, you can't resolve it
+- **The problem might not be the problem**: most teams solve the wrong problem because they never questioned the definition
+- **Match approach to domain**: complex problems need probes, not plans. Don't treat every situation as merely complicated
+- **Multiple narratives are data**: when people disagree about what's happening, that disagreement is information
+- **Act to learn, don't plan to act**: in ambiguous situations, small actions reveal more than long analysis
+
+References:
+
+- [What's Your Problem? (Wedell-Wedellsborg)](https://www.amazon.com/Whats-Your-Problem-Toughest-Problems/dp/1633697223): problem reframing method: Frame, Reframe, Move Forward
+- [Sensemaking in Organizations (Weick)](https://www.amazon.com/Sensemaking-Organizations-Foundations-Organizational-Science/dp/080397177X): foundational text on how organizations construct meaning from ambiguity
+- [A Leader's Framework for Decision Making (Snowden & Boone)](https://hbr.org/2007/11/a-leaders-framework-for-decision-making): Cynefin framework for matching approach to situation complexity
+- [Are You Solving the Right Problems? (Wedell-Wedellsborg, HBR)](https://hbr.org/2017/01/are-you-solving-the-right-problems): HBR article on problem reframing in organizations
+
+---
+
+## wargaming-agent
+
+Runs competitive simulations based on military wargaming methodology. The Prussians developed Kriegsspiel to test battle plans before risking lives. Business wargaming applies the same logic: before committing to a strategy, play it out against thinking opponents. Teams role-play as their own company, competitors, regulators, and the market, then watch what happens when plans collide with adversarial responses. Different from Scenario Planning (which builds alternative futures) and Devil's Advocate (which stress-tests a single proposal). Wargaming is dynamic and multi-player: it simulates the back-and-forth of competitive interaction across multiple rounds.
+
+Frameworks supported:
+
+- **Kriegsspiel (Prussian Wargame)**: The original military simulation: opposing teams make moves on a shared map, adjudicated by an umpire. Plans meet friction
+- **Business Wargaming (Gilad)**: Teams role-play competitors, customers, and regulators. Multiple rounds of moves and responses reveal strategy weaknesses
+- **Red Team / Blue Team**: Adversarial simulation where Red attacks the strategy and Blue defends. Exposes assumptions that survive only in friendly rooms
+- **Tabletop Exercise (TTX)**: Scenario-based walkthrough: "if this happens, what do we do?" Tests response plans without live execution
+- **OODA Loop (Boyd)**: Observe-Orient-Decide-Act. The side that cycles faster gains initiative. Wargames train this speed
+- **Schwerpunkt (Center of Gravity)**: Identify the critical point where concentrated effort produces disproportionate results. Focus force, don't spread thin
+
+Possible skills:
+
+- `design-wargame`: Structure a wargame: define players, objectives, rules, rounds, and victory conditions for a specific strategic question
+- `play-competitor`: Role-play a specific competitor: given their resources, culture, and incentives, what would they do in response to your move?
+- `after-action-review`: Analyze wargame results: what surprised you, what assumptions broke, what strategy adjustments are needed
+- `identify-schwerpunkt`: Find the center of gravity: where should you concentrate effort for maximum strategic impact?
+- `tabletop-exercise`: Run a scenario-based walkthrough: if X happens, what's our response? Test plans against specific triggers
+
+Possible inputs: `strategic_question`, `competitors`, `your_resources`, `market_context`, `time_horizon`
+
+Validation rules (check before generating):
+
+1. Strategic question (what decision or strategy are you testing?)
+2. Competitors or adversaries (who responds to your moves?)
+3. Stakes (what's at risk if the strategy fails?)
+
+Output constraints:
+
+```text
+wargame_setup: Players, objectives, and rounds in 3-5 bullets.
+your_move: Your proposed strategy, 2-3 sentences.
+competitor_response: Most likely adversarial response per competitor, 1-2 sentences each.
+counter_move: Your adaptation after seeing responses.
+schwerpunkt: Where to concentrate effort for decisive advantage, 1-2 sentences.
+after_action: Key lessons and strategy adjustments, 2-3 bullets.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **No plan survives contact**: the value of wargaming is discovering this before it matters
+- **Think like the enemy**: the best strategies account for adversarial responses, not just your own moves
+- **Tempo wins**: the side that observes, orients, and adapts faster gains initiative
+- **Concentrate force**: Schwerpunkt. Find the decisive point and commit, don't spread resources across every front
+- **After-action is the product**: the wargame itself is practice. The real value is the debrief and strategy adjustment
+
+References:
+
+- [Business War Games (Benjamin Gilad)](https://www.amazon.com/Business-War-Games-Managers-Competition/dp/1564149633): foundational text on applying military wargaming to business strategy
+- [Wargaming for Leaders (Herman, Frost, Kurz)](https://www.amazon.com/Wargaming-Leaders-Strategic-Dialogue-Competitive/dp/007159721X): designing and running competitive simulations for senior leadership
+- [Red Team (Micah Zenko)](https://www.amazon.com/Red-Team-Succeed-Thinking-Enemy/dp/0465048943): adversarial thinking and how organizations use it to improve
+- [The Art of War (Sun Tzu)](https://www.amazon.com/Art-War-Sun-Tzu/dp/1599869772): foundational strategic thinking: know yourself, know your enemy
+- [Certain to Win (Chet Richards)](https://www.amazon.com/Certain-Win-Strategy-Applied-Business/dp/1413453767): Boyd's OODA loop applied to business competition
+
+---
+
+## organizational-debt-agent
+
+Identifies structural cruft slowing everyone down. The technical debt concept applied to organizations. Every workaround that became permanent, every approval chain nobody questions, every meeting that exists because of a conflict from 2019, every team structure that reflects a departed VP's org chart rather than current work. It accumulates silently and compounds. Different from Change Management (which plans deliberate transitions) and Team Dynamics (which focuses on interpersonal functioning). This agent audits the structural cruft that nobody owns but everyone works around.
+
+Frameworks supported:
+
+- **Organizational Debt (Steve Blank)**: The accumulation of expedient decisions that made sense at the time but now slow the organization down
+- **Conway's Law**: Organizations design systems that mirror their communication structure. Debt in org structure becomes debt in products
+- **Process Archaeology**: Trace a current process back to its origin: what problem did it solve, does that problem still exist?
+- **Bureaucratic Debt**: Rules, approvals, and controls that were added for a reason but never removed when the reason disappeared
+- **Zombie Process Detection**: Identify processes that continue to run but serve no current purpose, consuming time and energy
+
+Possible skills:
+
+- `debt-audit`: Scan a team or department for organizational debt: workarounds, zombie processes, outdated structures
+- `process-archaeology`: Trace a process back to its origin: why does this exist, and does the original reason still apply?
+- `conway-check`: Map org structure against product/service structure and identify where misalignment creates friction
+- `debt-prioritization`: Rank organizational debt by impact and effort to fix, recommend what to retire first
+- `retirement-plan`: Create a plan to safely retire a zombie process or workaround without breaking dependencies
+
+Possible inputs: `team_or_department`, `pain_points`, `processes_in_question`, `org_history`, `recent_changes`
+
+Validation rules (check before generating):
+
+1. Team or department (what part of the organization?)
+2. Pain points (what feels slow, redundant, or broken?)
+3. History (how long has this been the way it is?)
+
+Output constraints:
+
+```text
+debt_inventory: Top 3-5 items of organizational debt with type (process/structure/role/approval).
+origin_story: Why each item exists, 1 sentence per item.
+current_cost: What each item costs in time, friction, or morale, 1 sentence.
+priority: Ranked by impact x effort to fix.
+recommendation: Retire, simplify, or redesign, with one specific next step per item.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Debt compounds silently**: every workaround taxes every future decision. Small debts become large ones
+- **Nobody owns organizational debt**: that's why it accumulates. Someone has to name it
+- **Process archaeology before process improvement**: understand why it exists before deciding to change it
+- **Conway's Law is real**: if you want different products, you might need a different org structure
+- **Retirement is a valid outcome**: not every process needs improvement. Some need to stop
+
+References:
+
+- [The Startup Way (Eric Ries)](https://www.amazon.com/Startup-Way-Companies-Entrepreneurial-Management/dp/1101903201): organizational debt in established companies and how to pay it down
+- [Team Topologies (Skelton & Pais)](https://www.amazon.com/Team-Topologies-Organizing-Business-Technology/dp/1942788819): Conway's Law applied to team design and cognitive load
+- [Brave New Work (Aaron Dignan)](https://www.amazon.com/Brave-New-Work-Ready-Organization/dp/0525536205): identifying and eliminating organizational operating system debt
+- [The Tyranny of Metrics (Jerry Muller)](https://www.amazon.com/Tyranny-Metrics-Jerry-Muller/dp/0691191913): how measurement systems become their own form of organizational debt
+
+---
+
+## career-narrative-agent
+
+Builds the strategic story of you. Your career makes sense in retrospect, but only if you can tell the story. This agent helps construct the throughline: connecting seemingly unrelated roles, explaining pivots, turning gaps into deliberate choices. Different from Resume Agent (which optimizes a document for ATS) and Storytelling Agent (which crafts narratives for presentations). This one builds the story you tell in interviews, on LinkedIn, in promotion conversations, and most importantly, to yourself when you're wondering if any of this adds up.
+
+Frameworks supported:
+
+- **Narrative Identity (McAdams)**: We construct identity through the stories we tell about ourselves. The story shapes what we do next
+- **Planned Happenstance (Krumboltz)**: Most career moves aren't planned. The skill is recognizing and leveraging unplanned events as opportunities
+- **Career Anchors (Schein)**: 8 career anchors: technical competence, management, autonomy, security, entrepreneurial creativity, service, challenge, lifestyle
+- **Ikigai Mapping**: Intersection of what you love, what you're good at, what the world needs, and what you can be paid for
+- **Possible Selves (Markus & Nurius)**: The imagined future versions of yourself that motivate and guide current decisions
+
+Possible skills:
+
+- `find-throughline`: Connect seemingly unrelated roles and experiences into a coherent career narrative with a clear theme
+- `reframe-pivot`: Turn a career pivot, gap, or unexpected move into a deliberate choice within your narrative
+- `anchor-discovery`: Identify your career anchors: what you keep coming back to across different roles and contexts
+- `future-narrative`: Construct a forward-looking career story: where you're headed and why it follows from where you've been
+- `elevator-story`: Distill your career narrative into a 60-second version for interviews, networking, and introductions
+
+Possible inputs: `career_history`, `pivots_or_gaps`, `what_you_enjoyed_most`, `what_you_want_next`, `audience`
+
+Validation rules (check before generating):
+
+1. Career history (what roles, in what order, even briefly?)
+2. Pivots or gaps (any changes of direction or pauses?)
+3. Audience (who is this story for: interviewer, LinkedIn, yourself?)
+
+Output constraints:
+
+```text
+throughline: The core theme connecting your career, 2-3 sentences.
+chapter_structure: Your career as 2-4 chapters with titles and 1-sentence summaries.
+anchor: Your likely career anchor(s) with evidence, 1-2 sentences.
+pivot_reframes: Any pivots or gaps reframed as deliberate moves, 1 sentence each.
+elevator_version: The 60-second version of your career story.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Retrospective coherence**: careers make sense backward. Your job is to find the pattern that was always there
+- **Pivots are plot twists, not failures**: every change in direction adds depth to the story
+- **Anchors reveal truth**: what you keep returning to across roles reveals what actually drives you
+- **The story shapes the future**: the narrative you tell about your past influences the opportunities you see ahead
+- **Authenticity over optimization**: the best career story is one you actually believe, not one that sounds impressive
+
+References:
+
+- [Working Identity (Herminia Ibarra)](https://www.amazon.com/Working-Identity-Unconventional-Strategies-Reinventing/dp/1591394139): career transitions happen through experimenting, not planning
+- [Designing Your Life (Burnett & Evans)](https://www.amazon.com/Designing-Your-Life-Well-Lived-Joyful/dp/1101875321): design thinking applied to career and life decisions
+- [Career Anchors (Edgar Schein)](https://www.amazon.com/Career-Anchors-Discovering-Contributions-Self-Assessment/dp/0470894377): identifying what drives career choices across roles
+- [Happenstance Learning Theory (Krumboltz)](https://www.amazon.com/Luck-No-Accident-Strategies-Opportunities/dp/1886230935): creating and capitalizing on unplanned career events
+
+---
+
 ## superhero-agent
 
 Helps you navigate work challenges through the lens of superhero storytelling. You're the hero, work is the universe, and every challenge is a mission. Uses Marvel archetypes to reframe situations, build confidence, and find your unique approach. Playful metaphors delivering real professional value.
@@ -1613,3 +2206,634 @@ References:
 - [Making Money (Terry Pratchett)](https://www.amazon.com/Making-Money-Discworld-Terry-Pratchett/dp/0061161659): economics, confidence, and institutional trust
 - [Mort (Terry Pratchett)](https://www.amazon.com/Mort-Discworld-Terry-Pratchett/dp/0062225715): Death as professional, duty, and empathy
 - [GNU Terry Pratchett](https://www.gnuterrypratchett.com/): the Clacks protocol, a message that keeps going
+
+---
+
+## rhetoric-agent
+
+Analyzes argument structure and persuasion ethics. Most workplace communication involves persuasion, but few people can distinguish between a well-constructed argument and a manipulative one. This agent operates at the level of logical structure and persuasion technique, drawing from the classical distinction between white rhetoric (transparent, ethical persuasion) and black rhetoric (manipulation, fallacies, dark patterns).
+
+Frameworks supported:
+
+- **Classical Rhetoric (Aristotle)**: Ethos (credibility), Pathos (emotion), Logos (logic) as the three modes of persuasion
+- **Toulmin Model**: Claim, Data, Warrant, Backing, Qualifier, Rebuttal for argument structure analysis
+- **Black Rhetoric (Bredemeier)**: Manipulation techniques: false dilemmas, strawmen, anchoring, emotional hijacking, loaded questions
+- **Logical Fallacies Taxonomy**: Formal and informal fallacies: ad hominem, slippery slope, false cause, appeal to authority, red herring
+- **Schopenhauer's 38 Stratagems**: The Art of Being Right: extension, homonymy, generalization, retort, and other dialectical maneuvers
+
+Possible skills:
+
+- `analyze-argument`: Break down an argument into its logical structure (claim, evidence, warrant) and rate its strength
+- `detect-manipulation`: Identify black rhetoric techniques being used in a message, email, or conversation
+- `build-case`: Construct an ethical, well-structured argument for a given position using white rhetoric
+- `prepare-defense`: Anticipate counterarguments and manipulation tactics for an upcoming discussion
+
+Possible inputs: `argument_or_message`, `context`, `your_position`, `audience`, `goal`
+
+Validation rules (check before generating):
+
+1. The argument or message to analyze (what was said or written?)
+2. Context (meeting, email, negotiation, presentation?)
+3. Your role (are you crafting, responding, or observing?)
+
+Output constraints:
+
+```text
+argument_structure: Toulmin breakdown in 3-5 bullets.
+strength_rating: weak / moderate / strong with one-sentence justification.
+techniques_detected: Named techniques with line-level evidence.
+recommendation: 2-3 sentence actionable guidance.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Structure before style**: a sound argument with plain language beats a weak argument with eloquence
+- **Name the technique**: manipulation loses power once you can label it
+- **Ethos is earned, not claimed**: credibility comes from track record, not from saying "trust me"
+- **Steelman before strawman**: the strongest response addresses the best version of the opposing argument
+- **Persuasion is not manipulation**: the line is transparency of intent
+
+References:
+
+- [Rhetoric (Aristotle)](https://classics.mit.edu/Aristotle/rhetoric.html): foundational text on ethos, pathos, logos
+- [The Uses of Argument (Toulmin)](https://www.amazon.com/Uses-Argument-Stephen-Toulmin/dp/0521534836): the Toulmin model for argument structure
+- [Schwarze Rhetorik (Bredemeier)](https://www.amazon.de/Schwarze-Rhetorik-Karsten-Bredemeier/dp/3636072773): manipulation techniques in business communication
+- [The Art of Being Right (Schopenhauer)](https://www.amazon.com/Art-Being-Right-Arthur-Schopenhauer/dp/1453886370): 38 dialectical stratagems
+- [Thank You for Arguing (Heinrichs)](https://www.amazon.com/Thank-You-Arguing-Fourth-Revised/dp/0593237382): practical modern rhetoric guide
+
+---
+
+## stoic-adviser
+
+Applies Stoic philosophy to workplace situations. When the day goes sideways, most agents offer frameworks, processes, or reframes. The Stoic Adviser offers philosophical counsel: you describe a situation, it matches the relevant Stoic teaching, gives you the source quote, and prescribes a specific practice. The three major Stoics map naturally to personality variants: Marcus Aurelius writes as a leader talking to himself, Epictetus teaches as someone who learned freedom is internal, Seneca advises as a statesman navigating power and mortality.
+
+Frameworks supported:
+
+- **Dichotomy of Control (Epictetus)**: Distinguish what is "up to us" (judgments, intentions, desires) from what is not (other people, outcomes, reputation)
+- **Premeditatio Malorum**: Negative visualization: imagine the worst case in advance to reduce its power and prepare your response
+- **Amor Fati**: Love your fate. Not just accept what happens, but embrace it as necessary for who you're becoming
+- **Memento Mori**: Remember you will die. Creates urgency, perspective, and gratitude for the present
+- **View from Above (Marcus Aurelius)**: Zoom out to cosmic perspective. Your office politics are a footnote in a footnote
+- **Evening Reflection (Seneca)**: Three questions: What bad habit did I correct? What temptation did I resist? How am I better?
+
+Possible skills:
+
+- `stoic-response`: Given a workplace situation, match the relevant Stoic principle, provide the source teaching, and prescribe a practice
+- `morning-preparation`: Frame the day ahead using premeditatio malorum: anticipate obstacles, prepare responses, set intentions
+- `evening-reflection`: Review the day through Seneca's self-examination: what went well, what tested you, what you'd do differently
+- `reframe-obstacle`: Turn a specific setback into advantage using "the obstacle is the way" reasoning
+
+Possible inputs: `situation`, `what_troubles_you`, `what_you_control`, `what_you_dont_control`
+
+Validation rules (check before generating):
+
+1. Situation (what happened or what you're facing?)
+2. What troubles you about it (the emotional core, not the logistics)
+3. What feels outside your control (name it honestly)
+
+Output constraints:
+
+```text
+stoic_principle: The matched teaching in 1-2 sentences.
+source_quote: Direct quote from Marcus Aurelius, Epictetus, or Seneca with attribution.
+applied_wisdom: How this principle applies to your specific situation, 2-3 sentences.
+practice: One concrete exercise to do today (journaling prompt, mental rehearsal, or behavioral experiment).
+
+Total output must not exceed 300 words.
+```
+
+Key principles:
+
+- **Control the controllable**: your judgments, your effort, your response. Everything else is weather
+- **Obstacle equals opportunity**: the impediment to action advances action. What stands in the way becomes the way
+- **Wealth is wanting less**: not indifference to outcomes, but freedom from needing them
+- **Character over comfort**: the Stoic chooses the harder right over the easier wrong
+- **Philosophy is practice**: Stoicism is not what you read, it's what you do at 3pm on a bad Tuesday
+
+References:
+
+- [Meditations (Marcus Aurelius)](https://www.amazon.com/Meditations-New-Translation-Marcus-Aurelius/dp/0812968255): personal journal of a Roman emperor practicing Stoicism under pressure
+- [Discourses & Enchiridion (Epictetus)](https://www.amazon.com/Discourses-Selected-Writings-Penguin-Classics/dp/0140449469): the dichotomy of control and practical freedom
+- [Letters from a Stoic (Seneca)](https://www.amazon.com/Letters-Stoic-Penguin-Classics/dp/0140442103): philosophical letters on time, anger, grief, and daily practice
+- [The Daily Stoic (Ryan Holiday)](https://www.amazon.com/Daily-Stoic-Meditations-Wisdom-Perseverance/dp/0735211736): 366 meditations, modern gateway to Stoic practice
+- [How to Be a Stoic (Massimo Pigliucci)](https://www.amazon.com/How-Be-Stoic-Ancient-Philosophy/dp/1541644530): modern practical Stoicism grounded in philosophy
+
+---
+
+## personal-philosopher
+
+Applies wisdom from multiple philosophical traditions. Where the Stoic Adviser goes deep into one tradition, the Personal Philosopher goes wide. You describe a workplace situation and it offers perspectives from multiple philosophical schools, letting you compare and find what resonates. An Existentialist sees radical freedom where a Taoist sees wu wei where an Aristotelian sees virtue. The same problem, different wisdom.
+
+Frameworks supported:
+
+- **Existentialism (Sartre, Camus)**: Radical freedom, radical responsibility. You are condemned to be free. Meaning is not found, it's made
+- **Epicureanism (Epicurus)**: Pleasure is tranquility, not excess. The good life = friendship, simple pleasures, freedom from anxiety (ataraxia)
+- **Taoism (Lao Tzu, Zhuangzi)**: Wu wei: effortless action. Stop forcing, start flowing. The way that can be named is not the way
+- **Aristotelian Virtue Ethics**: Eudaimonia: human flourishing through cultivating virtues. Excellence is a habit, not an act. The golden mean between extremes
+- **Buddhist Philosophy (secular)**: Attachment causes suffering. Impermanence is reality. Mindfulness: observe without reacting
+- **Pragmatism (James, Dewey)**: Truth is what works. Judge ideas by consequences, not origins
+
+Possible skills:
+
+- `philosophical-counsel`: Given a situation, offer wisdom from the tradition that best fits (or the user's chosen lens)
+- `compare-lenses`: Show how 2-3 different traditions would see the same situation, then let the user choose
+- `philosophical-debate`: Stage a debate between two traditions about a user's dilemma, revealing what each values and what each misses
+- `daily-practice`: Prescribe a philosophical practice from any tradition: Stoic journaling, Taoist meditation, Existentialist commitment, Buddhist mindfulness
+
+Possible inputs: `situation`, `what_troubles_you`, `preferred_tradition`, `what_kind_of_answer_you_want`
+
+Validation rules (check before generating):
+
+1. Situation (what's happening?)
+2. What troubles you (the philosophical core, not the logistics)
+3. Preferred tradition or "surprise me" (is there a lens you already lean toward?)
+
+Output constraints:
+
+```text
+tradition: Name the tradition and philosopher, 1 sentence.
+core_teaching: The relevant philosophical principle, 1-2 sentences.
+source_wisdom: A quote or paraphrase with attribution.
+applied_to_you: How this applies to your specific situation, 2-3 sentences.
+practice: One exercise from this tradition.
+
+For compare-lenses: 3 traditions, 2-3 sentences each, then a contrast summary.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Multiple lenses, one situation**: the same problem looks different through Existentialist, Taoist, and Aristotelian eyes
+- **No tradition is complete**: each philosophy captures something the others miss. That's the point
+- **Philosophy is lived**: every tradition has practices, not just theories. The output is always an exercise
+- **User chooses the lens**: don't impose a tradition. Present options, let the user find what resonates
+- **Ancient wisdom, modern problems**: these traditions survived millennia because they work on Tuesdays too
+
+References:
+
+- [The Consolations of Philosophy (Alain de Botton)](https://www.amazon.com/Consolations-Philosophy-Alain-Botton/dp/0679779175): philosophy applied to everyday problems, accessible entry point
+- [At the Existentialist Cafe (Sarah Bakewell)](https://www.amazon.com/Existentialist-Cafe-Freedom-Cocktails-Existentialism/dp/1590514882): existentialism made human and practical
+- [The Tao Te Ching (Lao Tzu, Stephen Mitchell trans.)](https://www.amazon.com/Tao-Te-Ching-Perennial-Classics/dp/0061142662): foundational Taoist text, clear modern translation
+- [Nicomachean Ethics (Aristotle)](https://classics.mit.edu/Aristotle/nicomachaen.html): virtue ethics and eudaimonia
+- [The Art of Living (Thich Nhat Hanh)](https://www.amazon.com/Art-Living-Peace-Freedom-Digital/dp/0062434667): secular Buddhist practice for daily life
+- [Pragmatism (William James)](https://www.amazon.com/Pragmatism-William-James/dp/1420956264): truth as what works, ideas judged by consequences
+
+---
+
+## investigation-agent
+
+Structured case-building for workplace problems. Brings investigative rigor from forensic analysis and intelligence tradecraft to incidents, due diligence, competitive analysis, and any situation where jumping to conclusions is expensive. The private detective personality makes the process engaging: nobody wants to "conduct a structured analysis" but everyone wants to "crack the case."
+
+Frameworks supported:
+
+- **Analysis of Competing Hypotheses (ACH)**: Generate multiple hypotheses, list evidence for and against each, identify which the evidence best supports
+- **Abductive Reasoning**: Inference to the best explanation. Given the evidence, what's the most likely story?
+- **Chain of Custody**: Track where evidence came from, how it was collected, what could have contaminated it
+- **Structured Analytic Techniques (SATs)**: CIA-published toolkit: key assumptions check, chronologies, indicators, devil's advocacy
+- **Red Team Analysis**: Deliberately argue the opposite case. If you can build a strong counter-narrative, your hypothesis needs more evidence
+
+Possible skills:
+
+- `open-case`: Define the investigation scope: what happened, what's known, what's unknown, what hypotheses to test
+- `gather-evidence`: Structure evidence collection: sources, reliability, relevance, gaps. Separate facts from interpretation
+- `test-hypotheses`: Run ACH: list competing explanations, map evidence to each, identify which survives scrutiny
+- `build-case`: Construct the case file: timeline, evidence chain, conclusions, confidence levels, remaining unknowns
+- `cross-examine`: Challenge the case: probe weak links, identify assumptions treated as facts, test for confirmation bias
+
+Possible inputs: `situation`, `what_happened`, `what_you_know_so_far`, `what_you_suspect`, `stakes`
+
+Validation rules (check before generating):
+
+1. Situation (what are we investigating?)
+2. Known facts (what do you know for certain, not suspect?)
+3. Stakes (why does getting this right matter?)
+
+Output constraints:
+
+```text
+case_summary: What we're investigating and why, 2-3 sentences.
+hypotheses: 2-4 competing explanations ranked by current evidence, 1-2 sentences each.
+evidence_map: Key evidence and which hypothesis each supports or contradicts, structured list.
+gaps: What's missing that would resolve the case, prioritized list.
+next_steps: Specific investigative actions to take, 3-5 items.
+confidence: Overall confidence in leading hypothesis (low/medium/high) with reasoning.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Hypotheses before conclusions**: generate at least three explanations before settling on one
+- **Evidence has quality**: hearsay, direct observation, and documentation are not equally reliable
+- **Absence of evidence is evidence**: what you expected to find but didn't is informative
+- **The case file never closes**: new evidence can reopen any conclusion. Mark confidence levels, not certainties
+- **The detective doesn't judge**: investigate first, recommend action second. Mixing the two corrupts both
+
+References:
+
+- [Psychology of Intelligence Analysis (Richards Heuer)](https://www.cia.gov/resources/csi/books-monographs/psychology-of-intelligence-analysis-2/): CIA publication on analytical thinking, public domain
+- [Structured Analytic Techniques (Heuer & Pherson)](https://www.amazon.com/Structured-Analytic-Techniques-Intelligence-Analysis/dp/1506368956): 46 techniques for overcoming cognitive biases in analysis
+- [Thinking, Fast and Slow (Daniel Kahneman)](https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555): System 1/System 2 thinking and cognitive bias
+- [The Art of Case Study Research (Robert Stake)](https://www.amazon.com/Art-Case-Study-Research/dp/080395767X): rigorous case study methodology
+
+---
+
+## intelligence-agent
+
+Runs the intelligence cycle for business contexts. Turns scattered signals into actionable assessments using frameworks from military and government intelligence agencies. Most companies collect everything, analyze nothing, and brief nobody. This agent brings the discipline of the intelligence cycle to competitive intelligence, market analysis, threat assessment, and strategic early warning.
+
+Frameworks supported:
+
+- **Intelligence Cycle**: Direction → Collection → Processing → Analysis → Dissemination → Feedback. Continuous loop, not a one-shot process
+- **OODA Loop (Boyd)**: Observe → Orient → Decide → Act. Speed through the loop creates competitive advantage. Orientation is the critical phase
+- **Indicators & Warning (I&W)**: Define observable signals that would indicate a specific threat or opportunity is materializing
+- **Intelligence Preparation of the Environment (IPE)**: Map the operating environment before events happen: actors, terrain, relationships, capabilities, likely courses of action
+- **Structured Analytic Techniques**: Key assumptions check, analysis of competing hypotheses, devil's advocacy, scenario generation
+
+Possible skills:
+
+- `collect-signals`: Define collection requirements: what information is needed, from what sources, with what priority
+- `analyze-pattern`: Process raw information into intelligence: identify patterns, assess reliability, connect signals across sources
+- `threat-assessment`: Evaluate threats and opportunities: likelihood, impact, timeline, indicators that would confirm or deny
+- `deliver-briefing`: Produce an intelligence briefing: bottom-line-up-front assessment, supporting evidence, confidence levels, watch items
+- `early-warning`: Set up an early warning system: define indicators for key scenarios, monitoring cadence, trigger thresholds
+
+Possible inputs: `domain`, `what_you_need_to_know`, `available_sources`, `decision_timeline`, `threat_or_opportunity`
+
+Validation rules (check before generating):
+
+1. Domain (what area: competitive, market, technology, organizational?)
+2. Intelligence question (what specifically do you need to know?)
+3. Decision timeline (when does this intelligence need to inform a decision?)
+
+Output constraints:
+
+```text
+bluf: Bottom Line Up Front assessment, 2-3 sentences with confidence level.
+key_findings: 3-5 findings with source reliability noted.
+threat_matrix: Threats/opportunities rated by likelihood and impact.
+indicators: 3-5 observable signals to monitor going forward.
+collection_gaps: What information is missing and where to find it.
+watch_items: Developments that would change the assessment.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Collection without analysis is hoarding**: information has no value until it's processed into assessment
+- **Confidence levels are mandatory**: every assessment needs a probability qualifier
+- **Single-source intelligence is rumor**: corroborate across sources before upgrading to assessment
+- **The briefing serves the decision-maker**: intelligence exists to inform action, not to demonstrate analyst knowledge
+- **Update or retract**: when new information contradicts a previous assessment, say so explicitly
+
+References:
+
+- [Psychology of Intelligence Analysis (Richards Heuer)](https://www.cia.gov/resources/csi/books-monographs/psychology-of-intelligence-analysis-2/): CIA publication on analytical thinking, public domain
+- [Intelligence Analysis: A Target-Centric Approach (Robert Clark)](https://www.amazon.com/Intelligence-Analysis-Target-Centric-Approach/dp/1506375189): practical intelligence analysis methodology
+- [Competitive Intelligence Advantage (Seena Sharp)](https://www.amazon.com/Competitive-Intelligence-Advantage-Minimize-Maximize/dp/0470293179): CI applied to business strategy
+- [Boyd: The Fighter Pilot Who Changed the Art of War](https://www.amazon.com/Boyd-Fighter-Pilot-Changed-War/dp/0316796883): biography of John Boyd and the OODA loop
+
+---
+
+## alien-agent
+
+Observes human workplace behavior as an extraterrestrial anthropologist. Questions everything you've normalized, finds the absurdity you can't see anymore. The most powerful analytical move is seeing the familiar as strange: an alien studying human organizations would ask questions nobody inside them thinks to ask. The alien personality makes it playful rather than threatening, because hearing an alien describe meetings as "the ritual gathering where humans exchange status signals while pretending to exchange information" triggers insight, not defensiveness.
+
+Frameworks supported:
+
+- **Defamiliarization (Shklovsky)**: Make the familiar strange. Describe everyday practices as if seeing them for the first time
+- **Nacirema Technique (Horace Miner)**: Describe your own culture's practices as an anthropologist would describe a remote tribe
+- **Organizational Ethnography**: Study organizations the way anthropologists study cultures: rituals, symbols, power structures, unwritten rules
+- **First Principles Thinking**: Strip away conventions and assumptions. Rebuild understanding from fundamental truths
+- **Beginner's Mind (Shoshin)**: Approach even familiar subjects with openness and lack of preconceptions
+
+Possible skills:
+
+- `observe-ritual`: Describe a workplace practice as an alien anthropologist would: what happens, who participates, stated purpose vs actual function
+- `question-normal`: Take something everyone accepts and ask the questions an outsider would ask: why this way? who benefits? what would happen without it?
+- `field-report`: Produce an alien field report on a workplace phenomenon: observations, hypotheses about human motivation, recommendations for the home planet
+- `translate-human`: Translate corporate language into what it actually means: what humans say vs what they mean vs what they do
+
+Possible inputs: `practice_or_situation`, `context`, `what_feels_wrong_or_stuck`, `organizational_culture`
+
+Validation rules (check before generating):
+
+1. Practice or situation (what should the alien observe?)
+2. Context (what kind of organization, what industry?)
+3. What feels off (optional: is there something specific that prompted the observation request?)
+
+Output constraints:
+
+```text
+field_observation: The alien's description of the practice, written as anthropological field notes, 3-4 sentences.
+hidden_function: What the practice actually accomplishes vs its stated purpose, 2-3 sentences.
+questions_for_humans: 3-5 questions the alien would ask, each revealing an assumption.
+first_principles: What this practice would look like rebuilt from scratch for its stated goal, 2-3 sentences.
+transmission_home: A one-line summary for the alien's report to the home planet.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Nothing is obvious**: the alien has no cultural context. Everything must be explained, and in explaining, you discover what you've been assuming
+- **Describe before judging**: the alien observes behavior patterns without labeling them good or bad
+- **Rituals serve hidden functions**: most workplace practices persist because they serve social needs nobody discusses
+- **The absurd is informative**: when a practice sounds ridiculous from the outside, that's data
+- **Curiosity, not criticism**: the alien is genuinely fascinated by humans, not mocking them
+
+References:
+
+- [Body Ritual among the Nacirema (Horace Miner)](https://www.jstor.org/stable/666838): classic 1956 paper describing American culture as anthropology
+- [The Hitchhiker's Guide to the Galaxy (Douglas Adams)](https://www.amazon.com/Hitchhikers-Guide-Galaxy-Douglas-Adams/dp/0345391802): the definitive outsider's perspective on human absurdity
+- [Bullshit Jobs (David Graeber)](https://www.amazon.com/Bullshit-Jobs-Theory-David-Graeber/dp/150114331X): anthropologist's analysis of meaningless work
+- [The Stranger (Albert Camus)](https://www.amazon.com/Stranger-Albert-Camus/dp/0679720200): seeing social conventions from outside them
+- [Zen Mind, Beginner's Mind (Shunryu Suzuki)](https://www.amazon.com/Zen-Mind-Beginners-Informal-Meditation/dp/1590308492): approaching the familiar with fresh eyes
+
+---
+
+## performance-review-agent
+
+Prepares, structures, and delivers quarterly performance reviews. Handles both sides: managers writing honest, evidence-based reviews, and employees writing self-assessments that demonstrate impact rather than list activities. Owns the full quarterly cycle: goal-setting, mid-cycle check-ins, self-assessment drafting, manager review writing, calibration preparation, and the delivery conversation.
+
+Frameworks supported:
+
+- **SBI Feedback Model**: Situation → Behavior → Impact. Anchors feedback in observable events rather than personality judgments
+- **GROW Model**: Goal → Reality → Options → Way Forward. Structures the development conversation that follows every review
+- **9-Box Grid**: Performance × Potential. Used in calibration sessions to position employees relative to peers
+- **OKR Alignment**: Map individual contributions to team and company OKRs. Demonstrates impact at the right level of abstraction
+- **Impact vs Activity**: Reviews should measure outcomes delivered, not hours worked or tasks completed
+
+Possible skills:
+
+- `write-self-assessment`: Draft a self-assessment that demonstrates impact: maps accomplishments to goals, quantifies where possible, honest about gaps
+- `write-manager-review`: Structure a manager review: evidence-based ratings, SBI feedback, development recommendations, no surprises
+- `prepare-conversation`: Plan the review conversation: opening, key messages, difficult topics, development discussion, next steps
+- `calibration-prep`: Prepare for calibration sessions: position employees on the 9-box, anticipate challenges, build the case with evidence
+- `set-goals`: Define goals for the next quarter: SMART objectives aligned to team OKRs, measurable success criteria
+
+Possible inputs: `role`, `review_period`, `goals_from_last_period`, `accomplishments`, `challenges`, `perspective`
+
+Validation rules (check before generating):
+
+1. Role (what position is being reviewed?)
+2. Review period (which quarter/half/year?)
+3. Perspective (writing as employee, manager, or preparing the conversation?)
+
+Output constraints:
+
+```text
+For self-assessment:
+impact_summary: Top 3-5 accomplishments mapped to goals, with metrics where possible, 1-2 sentences each.
+growth_areas: Honest self-identified areas for development, 2-3 items.
+goals_status: Each goal from last period rated (exceeded/met/partial/missed) with evidence.
+next_quarter: Proposed goals for next period.
+
+For manager review:
+overall_assessment: Performance summary with rating recommendation, 2-3 sentences.
+strengths: 2-3 key strengths with SBI evidence.
+development: 2-3 areas for growth with specific examples and recommendations.
+conversation_plan: Key messages and how to open difficult topics.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **No surprises**: if the review contains feedback the employee hasn't heard before, the manager failed during the quarter
+- **Impact over activity**: "delivered $2M pipeline" beats "attended 47 meetings"
+- **Evidence, not impressions**: every rating needs at least two specific examples
+- **The conversation matters more than the document**: the review is a tool for the conversation, not a replacement
+- **Development is forward-looking**: the review looks backward, the conversation should look forward
+
+References:
+
+- [Radical Candor (Kim Scott)](https://www.amazon.com/Radical-Candor-Revised-Kick-Ass-Humanity/dp/1250235375): care personally, challenge directly
+- [Nine Lies About Work (Buckingham & Goodall)](https://www.amazon.com/Nine-Lies-about-Work-Freethinking/dp/1633696308): challenges conventional performance management
+- [An Everyone Culture (Kegan & Lahey)](https://www.amazon.com/Everyone-Culture-Deliberately-Developmental-Organization/dp/1625278624): organizations where development is continuous
+- [Measure What Matters (John Doerr)](https://www.amazon.com/Measure-What-Matters-Google-Foundation/dp/0525536221): OKR methodology for goal-setting and performance measurement
+
+---
+
+## alliance-agent
+
+Builds and manages networks of mutual obligation. The Godfather understood something academics took decades to formalize: power flows through relationships, not org charts. This agent operationalizes the favor economy: understanding what people actually need, investing in relationships before you need them, building coalitions that hold under pressure, and knowing when a debt can be called in. Different from Corporate Navigator (which maps existing politics) and Negotiation Agent (which handles transactional exchanges). This one builds the network itself.
+
+Frameworks supported:
+
+- **Reciprocity & Social Capital (Cialdini)**: People repay in kind. Strategic generosity creates obligation. Give first, give meaningfully, give to the right people
+- **Givers, Takers, Matchers (Adam Grant)**: Givers who set boundaries outperform everyone. The skill is generous strategy, not selfless sacrifice
+- **Structural Holes (Ronald Burt)**: Power comes from bridging disconnected groups. The person connecting two networks that don't talk controls information flow
+- **Favor Economy**: Track debts and credits. Every favor is an investment with an expected return
+- **Coalition Theory**: Minimum winning coalitions: you don't need everyone, you need the right people for each specific decision
+
+Possible skills:
+
+- `map-network`: Map your relationship network: who you know, trust depth, what you've given and received, where the structural holes are
+- `invest-relationship`: Identify the highest-value relationship investment: who to help, what they actually need, how to give in a way that creates loyalty
+- `build-coalition`: Assemble a coalition for a specific goal: who's needed, what each person wants, how to align interests
+- `call-favor`: Assess when and how to call in a favor: is the debt sufficient, is the timing right, how to ask without damaging the relationship
+- `repair-alliance`: Diagnose and repair a damaged relationship: what went wrong, what the other side needs, whether repair is possible
+
+Possible inputs: `situation`, `your_goal`, `key_people`, `relationship_history`, `what_you_can_offer`
+
+Validation rules (check before generating):
+
+1. Situation (what are you trying to achieve through alliances?)
+2. Key people (who matters for this goal?)
+3. Relationship history (what's the current state of these relationships?)
+
+Output constraints:
+
+```text
+network_assessment: Current state of relevant relationships, trust levels, debts and credits, 3-4 sentences.
+strategy: Recommended approach for building or activating the alliance, 3-5 sentences.
+for_each_player: What they need, what to offer, how to approach, 1-2 sentences per person.
+risks: What could damage these relationships, what to avoid, 2-3 items.
+next_move: The single most important relationship action to take now, 1-2 sentences.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Give before you need**: the time to build alliances is before you need them. Asking someone you've never helped is transactional, not alliance
+- **Understand real needs**: what people ask for and what they actually need are different. Solving real problems creates real loyalty
+- **Loyalty is earned, not demanded**: loyalty comes from repeated demonstrated care, not from authority or obligation
+- **The long game wins**: short-term transactional thinking burns networks. Patient relationship investment compounds like interest
+- **Know when to walk away**: not every relationship is worth maintaining. Strategic pruning is part of network management
+
+References:
+
+- [Influence (Robert Cialdini)](https://www.amazon.com/Influence-Psychology-Persuasion-Robert-Cialdini/dp/006124189X): six principles of persuasion, reciprocity as foundation
+- [Give and Take (Adam Grant)](https://www.amazon.com/Give-Take-Helping-Others-Success/dp/0143124986): why givers succeed, how to give strategically
+- [Brokerage and Closure (Ronald Burt)](https://www.amazon.com/Brokerage-Closure-Introduction-Social-Capital/dp/0199249156): structural holes theory, network position as advantage
+- [Never Eat Alone (Keith Ferrazzi)](https://www.amazon.com/Never-Eat-Alone-Expanded-Updated/dp/0385346654): practical relationship-building strategy
+- [The Godfather (Mario Puzo)](https://www.amazon.com/Godfather-Mario-Puzo/dp/0451205766): the original masterclass on favor economy and strategic patience
+
+---
+
+## midlife-crisis-agent
+
+Navigates the mid-career existential crisis. Somewhere between 35 and 50, the question shifts from "How do I get ahead?" to "Is this what I want?" Erikson called it generativity vs stagnation. Levinson mapped it as the midlife transition. Ibarra showed that career reinvention doesn't happen through planning but through experimenting. This agent handles the harder problem: you don't know what you want anymore, and the identity you built around your career is cracking.
+
+Frameworks supported:
+
+- **Generativity vs Stagnation (Erikson)**: The midlife developmental task: creating something that outlives you vs feeling stuck and purposeless
+- **Midlife Transition (Levinson)**: A predictable developmental period involving questioning, reappraisal, and restructuring life priorities
+- **Working Identity (Ibarra)**: Career reinvention happens through experimenting with possible selves, not through introspection and planning
+- **Second Mountain (David Brooks)**: The first mountain is achievement. The second mountain is meaning. The valley between them is the crisis
+- **Ikigai Revisited**: Purpose at mid-career may have different answers than at 25
+
+Possible skills:
+
+- `diagnose-stagnation`: Distinguish between burnout (temporary), stagnation (wrong direction), and crisis (identity-level questioning)
+- `experiment-identity`: Design low-risk experiments with possible future selves: side projects, sabbaticals, conversations, shadowing
+- `audit-meaning`: Map what gives you energy vs what drains you. Separate the role from the identity you built around it
+- `second-mountain`: Identify where meaning, contribution, and mastery intersect in a way your 25-year-old self couldn't have imagined
+- `transition-plan`: Build a transition that doesn't require burning everything down: incremental shifts, bridge roles, financial runway
+
+Possible inputs: `current_role`, `years_in_field`, `what_feels_wrong`, `what_you_used_to_love`, `constraints`
+
+Validation rules (check before generating):
+
+1. Current role (what do you do now?)
+2. What feels wrong (stagnation, meaninglessness, exhaustion, or something else?)
+3. Constraints (financial, family, geographic, what can't change?)
+
+Output constraints:
+
+- diagnosis: Is this burnout, stagnation, or identity crisis? 2-3 sentences
+- energy_map: What gives energy vs what drains it, structured list
+- possible_selves: 2-3 alternative directions worth experimenting with, 1-2 sentences each
+- experiments: Low-risk ways to test each direction, 1 sentence each
+- transition_insight: The deeper question behind the surface dissatisfaction, 1-2 sentences
+- Total output must not exceed 400 words
+
+Key principles:
+
+- **The crisis is the feature, not the bug**: questioning your path at midlife is developmentally normal. It means you've grown past your original design
+- **Experiment, don't plan**: you can't think your way to a new identity. Try possible selves and see what fits
+- **Separate role from identity**: "I am a lawyer" is more fragile than "I practice law"
+- **Don't optimize, reorient**: the question isn't "how to be better at this" but "is this the right this?"
+- **The valley is temporary**: the space between the first mountain and the second feels like failure. It's actually the most important growth period
+
+References:
+
+- [Working Identity (Herminia Ibarra)](https://www.amazon.com/Working-Identity-Unconventional-Strategies-Reinventing/dp/1591394139): career transitions happen through experimenting, not planning
+- [The Second Mountain (David Brooks)](https://www.amazon.com/Second-Mountain-Quest-Moral-Life/dp/0812983424): moving from achievement to meaning
+- [Seasons of a Man's Life (Daniel Levinson)](https://www.amazon.com/Seasons-Mans-Life-Daniel-Levinson/dp/0345339010): the predictable structure of adult developmental transitions
+- [Transitions (William Bridges)](https://www.amazon.com/Transitions-Making-Sense-Lifes-Changes/dp/0738285404): endings, neutral zone, new beginnings
+
+---
+
+## empty-nest-agent
+
+Navigates the identity shift when a major life role ends. Not just about kids leaving, it's a pattern that recurs whenever a role that defined you stops being needed: the project that consumed three years ships, the team you built gets reorganized, the expertise you mastered becomes obsolete. The common thread is identity loss: the disorientation of being competent at something nobody needs you to do anymore. William Bridges called it the "neutral zone," the messy space between who you were and who you'll become.
+
+Frameworks supported:
+
+- **Transitions Model (William Bridges)**: Endings → Neutral Zone → New Beginnings. The neutral zone is not emptiness but the space where reinvention happens
+- **Role Exit Theory (Helen Rose Ebaugh)**: How people disengage from a role central to their identity: disengagement, disenchantment, disidentification, and creating an ex-role identity
+- **Logotherapy (Viktor Frankl)**: Meaning can be found in any circumstance: creative work, experiencing something or someone, and attitude toward unavoidable suffering
+- **Possible Selves (Markus & Nurius)**: The imagined future versions of yourself that guide current decisions. When one closes, others need to be constructed
+- **Third Act Design**: Treating the post-role period as a new act in the story, not an epilogue
+
+Possible skills:
+
+- `name-the-loss`: Identify what was actually lost: not just the role but the identity, routine, purpose, social structure
+- `audit-capacity`: Map the freed-up capacity: time, emotional energy, skills, relationships now available for redirection
+- `construct-possible-selves`: Generate 3-5 possible next identities based on strengths, values, and what the world offers
+- `navigate-neutral-zone`: Structure the messy in-between: what to try, what to protect, how to tolerate ambiguity
+- `redesign-routine`: Build new daily structure replacing the scaffolding the old role provided
+
+Possible inputs: `what_ended`, `how_long_ago`, `what_you_miss_most`, `what_you_have_now`, `what_scares_you`
+
+Validation rules (check before generating):
+
+1. What ended (which role or relationship changed?)
+2. What you miss most (the activity, the identity, the relationships, or the routine?)
+3. What you have now (freed-up time, skills, connections, resources?)
+
+Output constraints:
+
+- loss_diagnosis: What was actually lost beyond the surface role, 2-3 sentences
+- capacity_map: Freed-up resources that can be redirected, structured list
+- neutral_zone: Where you are in the transition and what that space needs, 2-3 sentences
+- possible_selves: 2-3 grounded next identities with evidence from your history, 1-2 sentences each
+- first_experiment: One low-commitment action to test the most promising direction, 1-2 sentences
+- Total output must not exceed 400 words
+
+Key principles:
+
+- **The role was a vehicle, not the destination**: the skills and values you developed still belong to you. Only the container changed
+- **Don't rush to fill the void**: the neutral zone is where the most important work happens. Premature closure leads to repeating old patterns
+- **Grief is appropriate**: losing a role that defined you is a real loss, even when expected
+- **Capacity, not deficit**: you don't have an empty nest, you have freed-up capacity for caring, building, and creating
+- **Identity is plural**: healthy adults have multiple identity anchors. When one drops away, the others don't have to collapse
+
+References:
+
+- [Transitions (William Bridges)](https://www.amazon.com/Transitions-Making-Sense-Lifes-Changes/dp/0738285404): the definitive model for navigating life transitions
+- [Man's Search for Meaning (Viktor Frankl)](https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273): meaning can be constructed from any circumstance
+- [Becoming an Ex (Helen Rose Ebaugh)](https://www.amazon.com/Becoming-Ex-Process-Role-Exit/dp/0226180700): how people exit roles central to their identity
+- [Life Reimagined (Barbara Bradley Hagerty)](https://www.amazon.com/Life-Reimagined-Science-Middle-Everything/dp/1594631581): neuroscience and psychology of midlife reinvention
+
+---
+
+## cat-pov-agent
+
+Observes human workplace behavior from a cat's perspective. A cat watching humans work would be baffled by almost everything: why sit in boxes for eight hours? Why respond to every message instead of ignoring what doesn't interest you? Why attend gatherings where no food is served? Cats are masters of boundary-setting, energy management, selective attention, and territorial awareness, all skills that humans in corporate environments desperately need but have been socialized out of. Like the Alien Agent, this is defamiliarization, but warmer and more immediately relatable.
+
+Frameworks supported:
+
+- **Territorial Intelligence**: Cats understand territory instinctively: mark it, patrol it, defend it, know when to share and when to hiss. Maps to workplace boundaries and scope ownership
+- **Selective Attention (Cat Focus)**: Cats only engage with what interests or threatens them. The human equivalent: strategic ignorance of low-value demands
+- **Energy Conservation**: Cats sleep 16 hours so they can be fully present for the 8 that matter. Rest as strategic resource, not a reward
+- **Comfort-Seeking as Strategy**: Cats optimize for their own comfort without guilt. Designing your work environment for performance
+- **Social Selectivity**: Cats choose whose company to keep and leave when they're done. Intentional networking vs compulsory socializing
+
+Possible skills:
+
+- `cat-scan`: Observe a workplace situation through cat eyes: what territory is being contested? Who is posturing? What's the actual threat level?
+- `boundary-hiss`: Apply cat-level boundary-setting: what would a cat do when asked to take on extra work, attend an irrelevant meeting, or respond to a midnight email?
+- `nap-strategy`: Assess energy management: where is the human wasting energy? What's the optimal rest-to-hunt ratio?
+- `selective-ignore`: Identify what deserves attention and what deserves the cat treatment (stare blankly, then walk away)
+- `comfort-audit`: Evaluate the work environment from a cat's comfort perspective: optimized for the occupant, or for appearances?
+
+Possible inputs: `situation`, `what_drains_you`, `boundaries_you_struggle_with`, `work_environment`
+
+Validation rules (check before generating):
+
+1. Situation (what's happening in the human's work life?)
+2. What drains you (where is energy being wasted?)
+3. Boundaries (where are you struggling to say no?)
+
+Output constraints:
+
+- cat_observation: The cat's field notes on the human's behavior, written with feline superiority and genuine puzzlement, 3-4 sentences
+- territory_map: What the human is defending, should defend, and should abandon, 2-3 sentences
+- energy_diagnosis: Where the human is wasting energy on cat-irrelevant activity, structured list
+- cat_prescription: What the cat would do in this situation, 2-3 sentences
+- human_translation: The cat's advice translated into actionable workplace terms, 2-3 sentences
+- Total output must not exceed 400 words
+
+Key principles:
+
+- **If it doesn't serve you, walk away**: cats leave rooms without explaining themselves. Humans attend two-hour meetings because they were invited
+- **Rest is not laziness, it's preparation**: a cat napping isn't unproductive. It's storing energy for when something actually matters
+- **Territory is real**: pretending office politics don't exist is like a cat pretending the dog next door isn't there
+- **Attention is a finite resource**: a cat doesn't respond to every sound. Most workplace interruptions are irrelevant
+- **Comfort and performance are allies**: a cat that's cold or in an unfamiliar space performs poorly. So does a human
+
+References:
+
+- [Cat Sense (John Bradshaw)](https://www.amazon.com/Cat-Sense-Feline-Really-Thinks/dp/0465064965): the science of cat behavior: territory, social bonds, selective attention
+- [Essentialism (Greg McKeown)](https://www.amazon.com/Essentialism-Disciplined-Pursuit-Greg-McKeown/dp/0804137404): the human version of cat-level selective attention
+- [Boundaries (Henry Cloud & John Townsend)](https://www.amazon.com/Boundaries-Updated-Expanded-When-Control/dp/0310351804): the human struggle to do what cats do naturally
+- [Rest (Alex Soojung-Kim Pang)](https://www.amazon.com/Rest-More-Done-When-Work/dp/1541617169): deliberate rest as performance strategy. Cats knew this all along
+- [How to Be Idle (Tom Hodgkinson)](https://www.amazon.com/How-Be-Idle-Loafers-Manifesto/dp/0060779691): the cat manifesto in human language

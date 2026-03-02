@@ -43,7 +43,7 @@ The standalone [Composition page](/composition) shows the full multi-agent hando
 | [Leadership Coach](agents/leadership-coach-agent/) | Leadership style assessment and development coaching |
 | [Networking Agent](agents/networking-agent/) | Professional networking strategy and relationship building |
 
-26 more agent concepts with frameworks researched. See [agent-ideas.md](agents/agent-ideas.md).
+49 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agent-ideas.md](agents/agent-ideas.md).
 
 ## Portable Agent Specifications
 
