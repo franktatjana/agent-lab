@@ -44,7 +44,7 @@ The standalone [Composition page](/composition) shows the full multi-agent hando
 | [Networking Agent](agents/networking-agent/) | Professional networking strategy and relationship building |
 | [Difficult Conversations](agents/difficult-conversations-agent/) | Prepares for and navigates high-stakes interpersonal conversations |
 
-49 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agent-ideas.md](agents/agent-ideas.md).
+48 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agent-ideas.md](agents/agent-ideas.md).
 
 ## Portable Agent Specifications
 

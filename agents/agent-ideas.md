@@ -18,7 +18,6 @@
 | [feedback-coach-agent](#feedback-coach-agent) | Helps craft and deliver effective feedback |
 | [presentation-coach-agent](#presentation-coach-agent) | Structures and improves presentations and delivery |
 | [negotiation-agent](#negotiation-agent) | Prepares negotiation strategy and tactics |
-| [difficult-conversations-agent](#difficult-conversations-agent) | Prepares for challenging interpersonal conversations |
 | [storytelling-agent](#storytelling-agent) | Crafts compelling narratives for professional contexts |
 | [pitch-agent](#pitch-agent) | Refines pitches for investors, executives, or customers |
 | [interview-prep-agent](#interview-prep-agent) | Prepares for behavioral, technical, and case interviews |
@@ -400,43 +399,6 @@ References:
 - [Start with No](https://www.campnegotiations.com/): Jim Camp's approach to saying and hearing "no"
 - [The Black Swan Group](https://www.blackswanltd.com/): Voss's consulting firm, case studies and training resources
 - [Bargaining for Advantage](https://www.richardshell.com/): G. Richard Shell's information-based approach
-
----
-
-## difficult-conversations-agent
-
-Helps prepare for and navigate challenging interpersonal conversations. Supports conflict resolution, delivering bad news, and addressing sensitive topics.
-
-Frameworks supported:
-
-- **Difficult Conversations Model**: Three conversations (What Happened, Feelings, Identity)
-- **Nonviolent Communication (NVC)**: Observation, Feeling, Need, Request
-- **Crucial Conversations**: Start with Heart, STATE (Share facts, Tell story, Ask for others' paths, Talk tentatively, Encourage testing)
-- **DEAR MAN**: Describe, Express, Assert, Reinforce, Mindful, Appear confident, Negotiate
-
-Possible skills:
-
-- `prepare-conversation`: structure approach and key points
-- `manage-emotions`: techniques for staying calm under pressure
-- `de-escalate`: strategies when conversations become heated
-- `find-resolution`: identify mutually acceptable outcomes
-- `follow-up`: repair and maintain relationship after difficult conversation
-
-Possible inputs: `situation`, `relationship`, `your_goal`, `their_likely_concerns`, `emotional_stakes`
-
-Key principles:
-
-- **Separate intent from impact**: Good intentions don't prevent hurt
-- **Listen to understand**: Seek first to understand, then to be understood
-- **Own your contribution**: Acknowledge your part in the situation
-- **Focus on interests**: Look beneath positions to underlying needs
-- **Plan but flex**: Prepare structure but adapt to the conversation
-
-References:
-
-- [Difficult Conversations (Stone, Patton, Heen)](https://www.stoneandheen.com/difficult-conversations): Harvard Negotiation Project
-- [Crucial Conversations](https://cruciallearning.com/crucial-conversations-book/): Patterson et al.
-- [Nonviolent Communication](https://www.cnvc.org/): Marshall Rosenberg's framework
 
 ---
 

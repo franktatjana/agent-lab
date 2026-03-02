@@ -174,7 +174,7 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 ## Agent Ideas
 
-49 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
+48 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
 
 ### Decision & Strategy (19 ideas)
 
@@ -186,9 +186,9 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 **Philosophy & Wisdom:** rhetoric, stoic-adviser, personal-philosopher
 
-### Communication (8 ideas)
+### Communication (7 ideas)
 
-**Persuasion:** negotiation, difficult-conversations, pitch
+**Persuasion:** negotiation, pitch
 
 **Interpersonal:** feedback-coach, supportive-colleague
 
