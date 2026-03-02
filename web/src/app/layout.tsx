@@ -36,8 +36,8 @@ export default function RootLayout({
               <a href="/#stories" className="text-sm text-stone-400 hover:text-stone-600 transition-colors">
                 Stories
               </a>
-              <a href="/#handbook" className="text-sm text-stone-400 hover:text-stone-600 transition-colors">
-                Handbook
+              <a href="/walkthrough" className="text-sm text-stone-400 hover:text-stone-600 transition-colors">
+                Walkthrough
               </a>
               <a href="/#agent-ideas" className="text-sm text-stone-400 hover:text-stone-600 transition-colors">
                 Agent Ideas

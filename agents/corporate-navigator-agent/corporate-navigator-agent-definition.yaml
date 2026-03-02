@@ -664,6 +664,8 @@ x-agentlab:
     - Handoff to Why Agent when root cause analysis is needed beyond political dynamics
     - Handoff to Question Decoder Agent when the challenge is framing a response, not understanding the landscape
     - Handoff to Difficult Conversations Agent when stakeholder strategy requires preparing a difficult one-on-one conversation
+    - Handoff to Cat POV Agent when political analysis could benefit from a fresh perspective on territorial behavior
+    - Handoff to Wargaming Agent when competitive or political analysis needs adversarial simulation to stress-test strategy
 
   permissions:
     - Map stakeholder interests, influence, and relationships

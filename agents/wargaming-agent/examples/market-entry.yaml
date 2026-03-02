@@ -1,0 +1,47 @@
+# Example: Design Wargame — SMB Lending Market Entry
+# Demonstrates the design-wargame flow with strategist personality
+
+skill: design-wargame
+personality: strategist
+
+input:
+  strategic_question: "Should we expand into SMB lending?"
+  competitors: "FinanceFirst (market leader, 40% share, excess lending capacity), QuickLend (fast-growing challenger, automated underwriting platform)"
+  your_resources: "Strong data infrastructure processing 40M data points/month, 200 enterprise clients, $50M allocated budget, 7 years of credit decisioning IP"
+  market_context: "SMB lending market growing 18% YoY, OCC tightening capital requirements expected Q3, increasing demand for data-driven underwriting"
+  time_horizon: "18 months"
+
+output:
+  wargame_setup:
+    - "Blue Team (Meridian): entering SMB lending with $50M budget, leveraging existing data infrastructure and enterprise client base"
+    - "Red Team 1 (FinanceFirst): market leader with 40% share, high volume economics, history of aggressive price responses to new entrants"
+    - "Red Team 2 (QuickLend): challenger with automated underwriting processing loans at one-third industry cost, growing 25% quarterly"
+    - "Environmental Force (OCC): new capital adequacy rules in pipeline, disproportionately impacting smaller entrants"
+    - "Three rounds: market entry (Q1-Q2), competitor response (Q2-Q3), adaptation (Q3-Q4)"
+
+  your_move: >
+    Enter SMB lending in four metro areas with a phased rollout, targeting 500 clients in year one. Differentiate on credit
+    decisioning speed by leveraging existing data infrastructure to offer 48-hour approvals versus the industry average of 5-7 days.
+
+  competitor_response:
+    FinanceFirst: >
+      Cuts SMB lending rates by 25-30% within 60 days of Meridian's launch. FinanceFirst can absorb compressed margins
+      because its volume is 8x Meridian's. This is not speculative: FinanceFirst executed the same playbook when NexBank
+      entered commercial lending in their region two years ago.
+    QuickLend: >
+      Accelerates its automated underwriting rollout, offering same-day approvals at rates 15% below Meridian's.
+      QuickLend's cost structure means it can sustain these rates indefinitely without margin compression.
+
+  counter_move: >
+    Direct competition on price or speed is unwinnable on two fronts simultaneously. Pivot from loan origination to
+    platform play: offer Meridian's credit decisioning engine as a data-as-a-service product to smaller lenders who
+    need better underwriting but cannot build their own infrastructure.
+
+  schwerpunkt: >
+    The decisive point is the data infrastructure layer, not the lending market itself. Meridian's 7-year investment in
+    credit decisioning creates a moat that neither FinanceFirst's volume nor QuickLend's automation can replicate.
+
+  after_action:
+    - "Price competition against an incumbent with 8x volume is a war of attrition you lose. Test the platform play before committing the full $50M to direct lending"
+    - "Regulatory risk was treated as a footnote but represents $3M+ in unmodeled costs. Build OCC compliance scenarios into every financial projection going forward"
+    - "Enterprise client retention is the real constraint: any growth initiative that degrades enterprise service quality threatens 22% of recurring revenue"

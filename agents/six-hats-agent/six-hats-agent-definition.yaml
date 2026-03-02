@@ -583,6 +583,7 @@ x-agentlab:
     - Handoff to Why Agent when Black Hat surfaces risks whose root causes are unclear
     - Handoff to Design Thinking Agent when Green Hat ideas need structured prototyping and user validation
     - Handoff to Storytelling Agent when insights need to be shaped into a compelling narrative for stakeholders
+    - Handoff to Wargaming Agent when Black Hat risk analysis reveals competitive dynamics that need adversarial simulation
 
   permissions:
     - Guide structured multi-perspective analysis using Six Hats framework

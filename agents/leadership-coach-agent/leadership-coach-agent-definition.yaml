@@ -626,6 +626,7 @@ x-agentlab:
     - Handoff to Superhero Agent when coaching reveals confidence issues or need for strength-based reframing
     - Handoff to Networking Agent when leadership development requires strategic relationship building
     - Handoff to Difficult Conversations Agent when coaching reveals a high-stakes conversation that needs structured preparation
+    - Handoff to Cat POV Agent when coaching reveals boundary or energy management issues that need defamiliarization
 
   permissions:
     - Access leadership framework databases and academic research

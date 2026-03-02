@@ -162,6 +162,30 @@ Difficult conversations coach. Prepares for and navigates high-stakes interperso
 
 ---
 
+### [cat-pov-agent](agents/cat-pov-agent/)
+
+Observes human workplace behavior from a cat's perspective. Uses feline instincts for boundary-setting, energy management, selective attention, and territorial awareness to reframe corporate challenges. *6 prompts · 3 skills · 3 personalities.*
+
+- **Skills:** cat-scan, energy-audit, workplace-translation
+- **Personalities:** observer, sassy, wise
+- **Frameworks:** Territorial Intelligence, Selective Attention (Cat Focus), Energy Conservation, Comfort-Seeking as Strategy, Social Selectivity
+
+**When to use:** Meeting overload, boundary struggles, energy management, attention allocation, when workplace problems need defamiliarization through a lighter lens.
+
+---
+
+### [wargaming-agent](agents/wargaming-agent/)
+
+Runs competitive simulations based on military wargaming methodology. Before committing to a strategy, play it out against thinking opponents across multiple rounds. *6 prompts · 5 skills · 3 personalities.*
+
+- **Skills:** design-wargame, play-competitor, after-action-review, identify-schwerpunkt, tabletop-exercise
+- **Personalities:** strategist, field-commander, red-teamer
+- **Frameworks:** Kriegsspiel, Business Wargaming (Gilad), Red Team / Blue Team, Tabletop Exercise, OODA Loop (Boyd), Schwerpunkt
+
+**When to use:** Testing strategy before launch, simulating competitive responses, stress-testing proposals, finding the center of gravity, crisis response rehearsal.
+
+---
+
 ## Prompt Design Patterns
 
 All agents in this repository follow two prompt quality patterns. See the [handbook](docs/handbook.md) for the full rationale.
@@ -174,15 +198,15 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 ## Agent Ideas
 
-48 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
+46 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
 
-### Decision & Strategy (19 ideas)
+### Decision & Strategy (18 ideas)
 
 **Thinking Chain:** decision-facilitator, systems-thinker, strategist, okr-agent, tactician, devils-advocate, scenario-planning, bias-detective, prioritization, game-theory, mental-models, sensemaking
 
 **Analytical Frameworks:** investigation, intelligence
 
-**Engagement & Narrative:** superhero, gamification, discworld, alien, cat-pov
+**Engagement & Narrative:** superhero, gamification, discworld, alien
 
 **Philosophy & Wisdom:** rhetoric, stoic-adviser, personal-philosopher
 
@@ -200,10 +224,10 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 **Professional Growth:** mentorship, promotion, skill-gap, strength-finder, management-consultant, career-narrative, performance-review, midlife-crisis, empty-nest
 
-### Team & Organization (11 ideas)
+### Team & Organization (10 ideas)
 
 **Change & Transition:** change-management, onboarding, knowledge-transfer, organizational-debt
 
 **Team Health:** team-dynamics, meeting-facilitator, networking
 
-**Engagement & Narrative:** wargaming, alliance
+**Engagement & Narrative:** alliance

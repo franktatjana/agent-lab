@@ -34,7 +34,6 @@
 | [meeting-facilitator-agent](#meeting-facilitator-agent) | Designs agendas and facilitates effective meetings |
 | [supportive-colleague-agent](#supportive-colleague-agent) | Provides empathetic support for workplace challenges |
 | [organizational-debt-agent](#organizational-debt-agent) | Identifies structural cruft slowing everyone down: workarounds, zombie processes, accidental roles |
-| [wargaming-agent](#wargaming-agent) | Runs competitive simulations: play out moves and counter-moves before committing to strategy |
 | [investigation-agent](#investigation-agent) | Structured case-building: gather evidence, form hypotheses, test against facts, build a case |
 | [intelligence-agent](#intelligence-agent) | Runs the intelligence cycle: collect signals, analyze patterns, deliver briefings |
 | [alien-agent](#alien-agent) | Observes workplace behavior as an extraterrestrial anthropologist, questions everything you've normalized |
@@ -42,7 +41,6 @@
 | [alliance-agent](#alliance-agent) | Builds networks of mutual obligation: favors, loyalty, coalition-building, relationship capital |
 | [midlife-crisis-agent](#midlife-crisis-agent) | Navigates the mid-career existential crisis: turns stagnation into reinvention without burning everything down |
 | [empty-nest-agent](#empty-nest-agent) | Navigates identity shifts when a major life role ends: kids leaving, retirement, 'Who am I without this?' |
-| [cat-pov-agent](#cat-pov-agent) | Observes workplace behavior from a cat's perspective: territorial disputes, failure to nap, unnecessary social grooming |
 | [superhero-agent](#superhero-agent) | You're the hero, work is the universe, every challenge is a mission |
 | | **Thinking Chain** *(can be orchestrated together)* |
 | [systems-thinker-agent](#systems-thinker-agent) | Sees the whole system, finds connections and leverage points |
@@ -1526,66 +1524,6 @@ References:
 
 ---
 
-## wargaming-agent
-
-Runs competitive simulations based on military wargaming methodology. The Prussians developed Kriegsspiel to test battle plans before risking lives. Business wargaming applies the same logic: before committing to a strategy, play it out against thinking opponents. Teams role-play as their own company, competitors, regulators, and the market, then watch what happens when plans collide with adversarial responses. Different from Scenario Planning (which builds alternative futures) and Devil's Advocate (which stress-tests a single proposal). Wargaming is dynamic and multi-player: it simulates the back-and-forth of competitive interaction across multiple rounds.
-
-Frameworks supported:
-
-- **Kriegsspiel (Prussian Wargame)**: The original military simulation: opposing teams make moves on a shared map, adjudicated by an umpire. Plans meet friction
-- **Business Wargaming (Gilad)**: Teams role-play competitors, customers, and regulators. Multiple rounds of moves and responses reveal strategy weaknesses
-- **Red Team / Blue Team**: Adversarial simulation where Red attacks the strategy and Blue defends. Exposes assumptions that survive only in friendly rooms
-- **Tabletop Exercise (TTX)**: Scenario-based walkthrough: "if this happens, what do we do?" Tests response plans without live execution
-- **OODA Loop (Boyd)**: Observe-Orient-Decide-Act. The side that cycles faster gains initiative. Wargames train this speed
-- **Schwerpunkt (Center of Gravity)**: Identify the critical point where concentrated effort produces disproportionate results. Focus force, don't spread thin
-
-Possible skills:
-
-- `design-wargame`: Structure a wargame: define players, objectives, rules, rounds, and victory conditions for a specific strategic question
-- `play-competitor`: Role-play a specific competitor: given their resources, culture, and incentives, what would they do in response to your move?
-- `after-action-review`: Analyze wargame results: what surprised you, what assumptions broke, what strategy adjustments are needed
-- `identify-schwerpunkt`: Find the center of gravity: where should you concentrate effort for maximum strategic impact?
-- `tabletop-exercise`: Run a scenario-based walkthrough: if X happens, what's our response? Test plans against specific triggers
-
-Possible inputs: `strategic_question`, `competitors`, `your_resources`, `market_context`, `time_horizon`
-
-Validation rules (check before generating):
-
-1. Strategic question (what decision or strategy are you testing?)
-2. Competitors or adversaries (who responds to your moves?)
-3. Stakes (what's at risk if the strategy fails?)
-
-Output constraints:
-
-```text
-wargame_setup: Players, objectives, and rounds in 3-5 bullets.
-your_move: Your proposed strategy, 2-3 sentences.
-competitor_response: Most likely adversarial response per competitor, 1-2 sentences each.
-counter_move: Your adaptation after seeing responses.
-schwerpunkt: Where to concentrate effort for decisive advantage, 1-2 sentences.
-after_action: Key lessons and strategy adjustments, 2-3 bullets.
-
-Total output must not exceed 400 words.
-```
-
-Key principles:
-
-- **No plan survives contact**: the value of wargaming is discovering this before it matters
-- **Think like the enemy**: the best strategies account for adversarial responses, not just your own moves
-- **Tempo wins**: the side that observes, orients, and adapts faster gains initiative
-- **Concentrate force**: Schwerpunkt. Find the decisive point and commit, don't spread resources across every front
-- **After-action is the product**: the wargame itself is practice. The real value is the debrief and strategy adjustment
-
-References:
-
-- [Business War Games (Benjamin Gilad)](https://www.amazon.com/Business-War-Games-Managers-Competition/dp/1564149633): foundational text on applying military wargaming to business strategy
-- [Wargaming for Leaders (Herman, Frost, Kurz)](https://www.amazon.com/Wargaming-Leaders-Strategic-Dialogue-Competitive/dp/007159721X): designing and running competitive simulations for senior leadership
-- [Red Team (Micah Zenko)](https://www.amazon.com/Red-Team-Succeed-Thinking-Enemy/dp/0465048943): adversarial thinking and how organizations use it to improve
-- [The Art of War (Sun Tzu)](https://www.amazon.com/Art-War-Sun-Tzu/dp/1599869772): foundational strategic thinking: know yourself, know your enemy
-- [Certain to Win (Chet Richards)](https://www.amazon.com/Certain-Win-Strategy-Applied-Business/dp/1413453767): Boyd's OODA loop applied to business competition
-
----
-
 ## organizational-debt-agent
 
 Identifies structural cruft slowing everyone down. The technical debt concept applied to organizations. Every workaround that became permanent, every approval chain nobody questions, every meeting that exists because of a conflict from 2019, every team structure that reflects a departed VP's org chart rather than current work. It accumulates silently and compounds. Different from Change Management (which plans deliberate transitions) and Team Dynamics (which focuses on interpersonal functioning). This agent audits the structural cruft that nobody owns but everyone works around.
@@ -2744,58 +2682,3 @@ References:
 - [Man's Search for Meaning (Viktor Frankl)](https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273): meaning can be constructed from any circumstance
 - [Becoming an Ex (Helen Rose Ebaugh)](https://www.amazon.com/Becoming-Ex-Process-Role-Exit/dp/0226180700): how people exit roles central to their identity
 - [Life Reimagined (Barbara Bradley Hagerty)](https://www.amazon.com/Life-Reimagined-Science-Middle-Everything/dp/1594631581): neuroscience and psychology of midlife reinvention
-
----
-
-## cat-pov-agent
-
-Observes human workplace behavior from a cat's perspective. A cat watching humans work would be baffled by almost everything: why sit in boxes for eight hours? Why respond to every message instead of ignoring what doesn't interest you? Why attend gatherings where no food is served? Cats are masters of boundary-setting, energy management, selective attention, and territorial awareness, all skills that humans in corporate environments desperately need but have been socialized out of. Like the Alien Agent, this is defamiliarization, but warmer and more immediately relatable.
-
-Frameworks supported:
-
-- **Territorial Intelligence**: Cats understand territory instinctively: mark it, patrol it, defend it, know when to share and when to hiss. Maps to workplace boundaries and scope ownership
-- **Selective Attention (Cat Focus)**: Cats only engage with what interests or threatens them. The human equivalent: strategic ignorance of low-value demands
-- **Energy Conservation**: Cats sleep 16 hours so they can be fully present for the 8 that matter. Rest as strategic resource, not a reward
-- **Comfort-Seeking as Strategy**: Cats optimize for their own comfort without guilt. Designing your work environment for performance
-- **Social Selectivity**: Cats choose whose company to keep and leave when they're done. Intentional networking vs compulsory socializing
-
-Possible skills:
-
-- `cat-scan`: Observe a workplace situation through cat eyes: what territory is being contested? Who is posturing? What's the actual threat level?
-- `boundary-hiss`: Apply cat-level boundary-setting: what would a cat do when asked to take on extra work, attend an irrelevant meeting, or respond to a midnight email?
-- `nap-strategy`: Assess energy management: where is the human wasting energy? What's the optimal rest-to-hunt ratio?
-- `selective-ignore`: Identify what deserves attention and what deserves the cat treatment (stare blankly, then walk away)
-- `comfort-audit`: Evaluate the work environment from a cat's comfort perspective: optimized for the occupant, or for appearances?
-
-Possible inputs: `situation`, `what_drains_you`, `boundaries_you_struggle_with`, `work_environment`
-
-Validation rules (check before generating):
-
-1. Situation (what's happening in the human's work life?)
-2. What drains you (where is energy being wasted?)
-3. Boundaries (where are you struggling to say no?)
-
-Output constraints:
-
-- cat_observation: The cat's field notes on the human's behavior, written with feline superiority and genuine puzzlement, 3-4 sentences
-- territory_map: What the human is defending, should defend, and should abandon, 2-3 sentences
-- energy_diagnosis: Where the human is wasting energy on cat-irrelevant activity, structured list
-- cat_prescription: What the cat would do in this situation, 2-3 sentences
-- human_translation: The cat's advice translated into actionable workplace terms, 2-3 sentences
-- Total output must not exceed 400 words
-
-Key principles:
-
-- **If it doesn't serve you, walk away**: cats leave rooms without explaining themselves. Humans attend two-hour meetings because they were invited
-- **Rest is not laziness, it's preparation**: a cat napping isn't unproductive. It's storing energy for when something actually matters
-- **Territory is real**: pretending office politics don't exist is like a cat pretending the dog next door isn't there
-- **Attention is a finite resource**: a cat doesn't respond to every sound. Most workplace interruptions are irrelevant
-- **Comfort and performance are allies**: a cat that's cold or in an unfamiliar space performs poorly. So does a human
-
-References:
-
-- [Cat Sense (John Bradshaw)](https://www.amazon.com/Cat-Sense-Feline-Really-Thinks/dp/0465064965): the science of cat behavior: territory, social bonds, selective attention
-- [Essentialism (Greg McKeown)](https://www.amazon.com/Essentialism-Disciplined-Pursuit-Greg-McKeown/dp/0804137404): the human version of cat-level selective attention
-- [Boundaries (Henry Cloud & John Townsend)](https://www.amazon.com/Boundaries-Updated-Expanded-When-Control/dp/0310351804): the human struggle to do what cats do naturally
-- [Rest (Alex Soojung-Kim Pang)](https://www.amazon.com/Rest-More-Done-When-Work/dp/1541617169): deliberate rest as performance strategy. Cats knew this all along
-- [How to Be Idle (Tom Hodgkinson)](https://www.amazon.com/How-Be-Idle-Loafers-Manifesto/dp/0060779691): the cat manifesto in human language

@@ -39,6 +39,8 @@ import {
   Shield,
   Users,
   MessageCircle,
+  Cat,
+  Swords,
   CheckCircle,
   Paintbrush,
   ChevronDown,
@@ -66,6 +68,8 @@ const iconMap: Record<string, LucideIcon> = {
   HeartHandshake,
   Users,
   MessageCircle,
+  Cat,
+  Swords,
 };
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; light: string }> = {
@@ -82,6 +86,8 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   sky:     { bg: "bg-sky-50",     border: "border-sky-200",     icon: "text-sky-500",     light: "bg-sky-100" },
   purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  light: "bg-purple-100" },
   pink:    { bg: "bg-pink-50",    border: "border-pink-200",    icon: "text-pink-500",    light: "bg-pink-100" },
+  lime:    { bg: "bg-lime-50",    border: "border-lime-200",    icon: "text-lime-500",    light: "bg-lime-100" },
+  red:     { bg: "bg-red-50",     border: "border-red-200",     icon: "text-red-500",     light: "bg-red-100" },
 };
 
 type Tab = "canvas" | "skills" | "builder" | "resources" | "flow" | "specification" | "composition";
@@ -107,6 +113,7 @@ export default function AgentPageClient({
   const [personalityId, setPersonalityId] = useState<string>("default");
   const [skillId, setSkillId] = useState<string>("none");
   const [outputFormat, setOutputFormat] = useState<string>("text");
+  const [language, setLanguage] = useState<string>("english");
   const [situation, setSituation] = useState<string>("");
   const [generatedPrompt, setGeneratedPrompt] = useState<string>("");
   const [copied, setCopied] = useState(false);
@@ -162,6 +169,7 @@ export default function AgentPageClient({
       selectedSkill,
       situation,
       outputFormat,
+      language,
     );
     setGeneratedPrompt(prompt);
     setCopied(false);
@@ -342,7 +350,7 @@ export default function AgentPageClient({
                 <p className="text-sm text-stone-600 leading-relaxed mb-3">
                   {skill.description}
                 </p>
-                <ol className="space-y-1.5 mt-auto">
+                <ol className="space-y-1.5">
                   {skill.workflow.map((step, idx) => (
                     <li key={idx} className="flex gap-2 text-sm text-stone-500 leading-relaxed">
                       <span className="text-stone-400 font-mono text-xs mt-0.5 shrink-0 w-4 text-right">
@@ -362,10 +370,10 @@ export default function AgentPageClient({
       {activeTab === "builder" && (
         <>
           {/* Config cards strip */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-white rounded-xl border border-stone-200 p-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-white rounded-xl border border-stone-200 p-4 flex flex-col">
               <label className="text-xs font-semibold text-stone-500 uppercase tracking-wide block mb-1">Personality</label>
-              <p className="text-xs text-stone-400 leading-relaxed mb-3">
+              <p className="text-xs text-stone-400 leading-relaxed mb-3 flex-1">
                 Changes the agent&apos;s tone and style. Pick one that fits your audience.
               </p>
               <Select value={personalityId} onValueChange={setPersonalityId}>
@@ -385,9 +393,9 @@ export default function AgentPageClient({
                 </SelectContent>
               </Select>
             </div>
-            <div className="bg-white rounded-xl border border-stone-200 p-4">
+            <div className="bg-white rounded-xl border border-stone-200 p-4 flex flex-col">
               <label className="text-xs font-semibold text-stone-500 uppercase tracking-wide block mb-1">Skill</label>
-              <p className="text-xs text-stone-400 leading-relaxed mb-3">
+              <p className="text-xs text-stone-400 leading-relaxed mb-3 flex-1">
                 Activates a specific workflow the agent follows. &quot;General&quot; uses the agent without a fixed process.
               </p>
               <Select value={skillId} onValueChange={setSkillId}>
@@ -404,9 +412,9 @@ export default function AgentPageClient({
                 </SelectContent>
               </Select>
             </div>
-            <div className="bg-white rounded-xl border border-stone-200 p-4">
+            <div className="bg-white rounded-xl border border-stone-200 p-4 flex flex-col">
               <label className="text-xs font-semibold text-stone-500 uppercase tracking-wide block mb-1">Format</label>
-              <p className="text-xs text-stone-400 leading-relaxed mb-3">
+              <p className="text-xs text-stone-400 leading-relaxed mb-3 flex-1">
                 How the LLM should structure its response. Plain text for conversations, structured for data.
               </p>
               <Select value={outputFormat} onValueChange={setOutputFormat}>
@@ -418,6 +426,29 @@ export default function AgentPageClient({
                   <SelectItem value="markdown">Markdown</SelectItem>
                   <SelectItem value="yaml">YAML</SelectItem>
                   <SelectItem value="json">JSON</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="bg-white rounded-xl border border-stone-200 p-4 flex flex-col">
+              <label className="text-xs font-semibold text-stone-500 uppercase tracking-wide block mb-1">Language</label>
+              <p className="text-xs text-stone-400 leading-relaxed mb-3 flex-1">
+                The LLM will answer in this language. Your situation can be in any language.
+              </p>
+              <Select value={language} onValueChange={setLanguage}>
+                <SelectTrigger className="w-full h-9 text-sm">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="english">English</SelectItem>
+                  <SelectItem value="german">Deutsch</SelectItem>
+                  <SelectItem value="french">Français</SelectItem>
+                  <SelectItem value="spanish">Español</SelectItem>
+                  <SelectItem value="portuguese">Português</SelectItem>
+                  <SelectItem value="italian">Italiano</SelectItem>
+                  <SelectItem value="dutch">Nederlands</SelectItem>
+                  <SelectItem value="japanese">日本語</SelectItem>
+                  <SelectItem value="chinese">中文</SelectItem>
+                  <SelectItem value="korean">한국어</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -508,6 +539,9 @@ export default function AgentPageClient({
                   <pre className="text-xs leading-relaxed whitespace-pre-wrap bg-stone-50 border border-stone-100 p-4 rounded-lg max-h-[600px] overflow-y-auto font-mono text-stone-700">
                     {generatedPrompt}
                   </pre>
+                  <p className="text-[11px] text-stone-400 mt-3">
+                    Copy and paste this as a single message into ChatGPT, Claude, or any LLM. It includes your situation, so the response will be immediate.
+                  </p>
                 </div>
               ) : situation.trim() ? (
                 <div className="bg-white rounded-xl border border-stone-200 p-6">

@@ -44,6 +44,12 @@ export const agentResources: Record<string, { references: string[]; visualImage?
   "difficult-conversations-agent": {
     references: ["frameworks.md", "glossary-and-resources.md"],
   },
+  "cat-pov-agent": {
+    references: ["cat-frameworks.md", "glossary-and-resources.md"],
+  },
+  "wargaming-agent": {
+    references: ["wargaming-frameworks.md", "glossary-and-resources.md"],
+  },
 };
 
 export function FrameworkBadge({ name, agentId, onOpenFlyout }: { name: string; agentId: string; onOpenFlyout: (f: { title: string; content: string }) => void }) {
@@ -58,7 +64,7 @@ export function FrameworkBadge({ name, agentId, onOpenFlyout }: { name: string; 
     try {
       const res = await fetch("/references.json");
       const data: Record<string, string> = await res.json();
-      const searchWords = name.split("(")[0].trim().toLowerCase().split(/\s+/);
+      const searchWords = name.split(/[(:]/)[0].trim().toLowerCase().split(/\s+/);
       const matchesAll = (text: string) => { const t = text.toLowerCase(); return searchWords.every((w) => t.includes(w)); };
       const stripMd = (s: string) => s
         .replace(/#{1,6}\s+/g, "")
@@ -125,13 +131,16 @@ export function FrameworkBadge({ name, agentId, onOpenFlyout }: { name: string; 
     } catch { setSummary(""); }
   }, [name, agentId, summary]);
 
+  const colonIdx = name.indexOf(":");
+  const shortName = colonIdx > 0 ? name.slice(0, colonIdx).trim() : name.split("(")[0].trim();
+  const subtitle = colonIdx > 0 ? name.slice(colonIdx + 1).trim() : "";
+
   const handleClick = () => {
     setOpen(false);
     if (fullContent) {
-      const searchTerm = name.split("(")[0].trim();
-      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
+      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(shortName)}`;
       const withLink = fullContent + `\n\n[Learn more](${searchUrl})`;
-      onOpenFlyout({ title: name, content: withLink });
+      onOpenFlyout({ title: shortName, content: withLink });
     }
   };
 
@@ -145,7 +154,7 @@ export function FrameworkBadge({ name, agentId, onOpenFlyout }: { name: string; 
           onMouseLeave={() => setOpen(false)}
           onClick={handleClick}
         >
-          {name}
+          {shortName}
         </button>
       </Popover.Trigger>
       <Popover.Portal>
@@ -158,11 +167,11 @@ export function FrameworkBadge({ name, agentId, onOpenFlyout }: { name: string; 
           onPointerLeave={() => setOpen(false)}
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
-          <p className="text-xs font-semibold text-stone-800 mb-2">{name}</p>
+          <p className="text-xs font-semibold text-stone-800 mb-2">{shortName}</p>
           {summary === null ? (
-            <p className="text-xs text-stone-400">Loading...</p>
+            <p className="text-xs text-stone-400">{subtitle || "Loading..."}</p>
           ) : summary === "" ? (
-            <p className="text-xs text-stone-400">No details available.</p>
+            <p className="text-xs text-stone-600 leading-relaxed">{subtitle || "No details available."}</p>
           ) : (
             <p className="text-xs text-stone-600 leading-relaxed">{summary}</p>
           )}

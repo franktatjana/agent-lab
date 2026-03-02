@@ -297,6 +297,73 @@ function ThreeConversationsVisual({ isVisible }: { isVisible: boolean }) {
   );
 }
 
+function CatAttentionFilterVisual({ isVisible }: { isVisible: boolean }) {
+  const levels = [
+    { label: "Signal", action: "Incoming demand", color: "bg-lime-50 border-lime-200 text-lime-700", actionColor: "" },
+    { label: "Threat?", action: "ENGAGE", color: "bg-red-50 border-red-200 text-red-700", actionColor: "text-red-600 font-bold" },
+    { label: "Opportunity?", action: "WATCH", color: "bg-amber-50 border-amber-200 text-amber-700", actionColor: "text-amber-600 font-bold" },
+    { label: "Irrelevant", action: "IGNORE", color: "bg-lime-200 border-lime-400 text-lime-900", actionColor: "text-lime-800 font-bold" },
+  ];
+  return (
+    <div className="space-y-0">
+      {levels.map((level, i) => {
+        const isLast = i === levels.length - 1;
+        return (
+          <div key={level.label}>
+            <div
+              className={`flex items-center justify-between rounded-lg border px-4 py-2.5 ${level.color} ${isVisible ? "scene-fade-up" : "scene-hidden"}`}
+              style={{ animationDelay: `${(i + 1) * 150}ms` }}
+            >
+              <span className="text-xs font-bold shrink-0">{level.label}</span>
+              <span className={`text-xs ${level.actionColor}`}>{level.action}</span>
+            </div>
+            {!isLast && (
+              <div className="pl-6 py-0.5">
+                <svg width="12" height="16" viewBox="0 0 12 16" fill="none" className="text-lime-300">
+                  <path d="M6 2v8M3 7l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function OodaLoopVisual({ isVisible }: { isVisible: boolean }) {
+  const phases = [
+    { label: "Observe", sub: "Scan the field", pos: "col-start-2 row-start-1" },
+    { label: "Orient", sub: "Read the situation", pos: "col-start-3 row-start-2" },
+    { label: "Decide", sub: "Pick your move", pos: "col-start-2 row-start-3" },
+    { label: "Act", sub: "Execute now", pos: "col-start-1 row-start-2" },
+  ];
+  return (
+    <div className="grid grid-cols-3 grid-rows-3 gap-3 max-w-xs mx-auto">
+      {phases.map((p, i) => (
+        <div
+          key={p.label}
+          className={`${p.pos} flex flex-col items-center justify-center rounded-lg border px-3 py-3 ${
+            i % 2 === 0
+              ? "bg-red-50 border-red-200 text-red-700"
+              : "bg-red-100 border-red-300 text-red-800"
+          } ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
+          style={{ animationDelay: `${(i + 1) * 150}ms` }}
+        >
+          <span className="text-xs font-bold">{p.label}</span>
+          <span className="text-[10px] opacity-70">{p.sub}</span>
+        </div>
+      ))}
+      <div className={`col-start-2 row-start-2 flex items-center justify-center ${isVisible ? "scene-fade-up" : "scene-hidden"}`} style={{ animationDelay: "750ms" }}>
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-red-300">
+          <path d="M24 8 L36 20 L24 40 L12 20Z" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinejoin="round" />
+          <path d="M24 14v6M30 20h-6M24 34v-6M18 20h6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 const visuals: Record<string, React.ComponentType<{ isVisible: boolean }>> = {
   "five-whys": FiveWhysVisual,
   "ccr-arc": CCRArcVisual,
@@ -308,6 +375,8 @@ const visuals: Record<string, React.ComponentType<{ isVisible: boolean }>> = {
   "culture-dimensions": CultureDimensionsVisual,
   "question-layers": QuestionLayersVisual,
   "three-conversations": ThreeConversationsVisual,
+  "cat-attention-filter": CatAttentionFilterVisual,
+  "ooda-loop": OodaLoopVisual,
 };
 
 export function FrameworkScene({ section }: { section: StorySection }) {

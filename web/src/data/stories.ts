@@ -49,7 +49,7 @@ export interface FrameworkInfo {
   description: string;
   how: string;
   why: string;
-  visual: "five-whys" | "ccr-arc" | "six-hats" | "double-diamond" | "grow" | "archetypes" | "network-tiers" | "culture-dimensions" | "question-layers" | "three-conversations";
+  visual: "five-whys" | "ccr-arc" | "six-hats" | "double-diamond" | "grow" | "archetypes" | "network-tiers" | "culture-dimensions" | "question-layers" | "three-conversations" | "cat-attention-filter" | "ooda-loop";
   principles: FrameworkPrinciple[];
   references: FrameworkReference[];
 }
@@ -1179,6 +1179,219 @@ export const stories: AgentStory[] = [
           { label: "Result", value: "Promoted" },
         ],
         agentCta: { agentId: "difficult-conversations-agent", label: "Try the Difficult Conversations Agent" },
+      },
+    ],
+  },
+  // ── Cat POV Agent ──
+  {
+    id: "the-human-who-attended-every-meeting",
+    agentId: "cat-pov-agent",
+    name: "The Human Who Attended Every Meeting",
+    tagline: "How a product manager cut 20 hours of meetings by thinking like a cat.",
+    format: "visual" as const,
+    sections: [
+      {
+        id: "hook",
+        type: "hook" as const,
+        title: "32 hours of meetings. Zero hours of deep work.",
+        content: "Sarah stares at her calendar. Five back-to-back syncs before lunch. Three more after. She hasn't done actual product work in weeks, but she's never been busier.",
+        heroStat: { value: "32 hrs", label: "of meetings per week" },
+      },
+      {
+        id: "problem",
+        type: "cards" as const,
+        title: "Everything demanded her attention. She gave it all away.",
+        content: "Sarah treated every meeting invite like a summons. Every Slack ping like an emergency. Every request like an obligation.",
+        cards: [
+          { label: "Meetings", detail: "27 recurring weekly meetings", status: "Accepted all" },
+          { label: "Slack", detail: "Average response time: 3 minutes", status: "Always on" },
+          { label: "Requests", detail: "\"Can you join this sync?\"", status: "Never declined" },
+          { label: "Deep Work", detail: "Product strategy, roadmap, analysis", status: "Zero hours" },
+        ],
+        metrics: [
+          { label: "Meetings", value: "32 hrs/wk" },
+          { label: "Deep Work", value: "0 hrs" },
+          { label: "Burnout", value: "Imminent" },
+        ],
+      },
+      {
+        id: "turning-point",
+        type: "turning-point" as const,
+        title: "The cat sees what the human cannot.",
+        content: "Sarah uses the Cat POV Agent to look at her week through feline eyes.",
+        framework: {
+          name: "Cat Attention Filter",
+          origin: "Cat behavioral science (Bradshaw) + Essentialism (McKeown)",
+          description: "A cat categorizes every signal as Threat, Opportunity, or Irrelevant. It engages fully with the first, monitors the second, and walks away from the third without explanation or guilt.",
+          how: "List every recurring demand on your time. For each one, ask: does this contain food (value) or threat (risk to my territory)? If neither, it gets the cat treatment: stare blankly, then walk away.",
+          why: "Sarah's calendar was full because she treated every signal as a threat. The cat filter revealed that over half her meetings were irrelevant: no decisions about her projects, no information she couldn't get asynchronously, no consequences for absence.",
+          visual: "cat-attention-filter",
+          principles: [
+            { label: "If there's no food and no threat, leave the room", detail: "Most meetings fail this test. Attendance without purpose is just sitting in a box." },
+            { label: "Rest is preparation, not reward", detail: "A cat napping isn't unproductive. It's storing energy for when something actually matters." },
+            { label: "Not every sound deserves a response", detail: "Cats categorize signals instantly. Most Slack pings are the equivalent of a leaf blowing past the window." },
+          ],
+          references: [
+            { label: "Cat Sense, John Bradshaw", url: "https://www.amazon.com/Cat-Sense-Feline-Really-Thinks/dp/0465064965" },
+            { label: "Essentialism, Greg McKeown", url: "https://www.amazon.com/Essentialism-Disciplined-Pursuit-Greg-McKeown/dp/0804137404" },
+          ],
+        },
+      },
+      {
+        id: "solution",
+        type: "steps" as const,
+        title: "The cat's prescription, applied to Monday morning.",
+        content: "Sarah filtered every recurring meeting through the cat attention test.",
+        steps: [
+          { label: "Audit Meetings", detail: "Categorized all 27 meetings: 8 Threat (decisions about her projects), 5 Opportunity (worth monitoring), 14 Irrelevant." },
+          { label: "Decline Irrelevant", detail: "Dropped 14 meetings. No explanation beyond \"I won't be able to attend.\" The cat doesn't explain why it left the room." },
+          { label: "Block Hunting Time", detail: "Three-hour morning block, no meetings, no Slack. Deep product work only." },
+          { label: "Batch Responses", detail: "Slack checks at 10am, 1pm, 4pm. Response time went from 3 minutes to 2 hours. Nobody noticed." },
+          { label: "Find the Warm Spot", detail: "Moved deep work to a quiet room. Optimized the environment instead of enduring it." },
+        ],
+        callout: { label: "Cat Wisdom", text: "If there is no food and no threat, leave the room." },
+        metrics: [
+          { label: "Meetings", value: "32 → 12" },
+          { label: "Deep Work", value: "0 → 15 hrs" },
+          { label: "Burnout", value: "Resolved" },
+        ],
+      },
+      {
+        id: "contrast",
+        type: "contrast" as const,
+        title: "Same role. Same company.",
+        content: "Different relationship with attention.",
+        comparisons: [
+          { dimension: "Meetings", before: "32 hrs/week", after: "12 hrs/week" },
+          { dimension: "Deep Work", before: "0 hrs/week", after: "15 hrs/week" },
+          { dimension: "Slack Response", before: "3 minutes", after: "2 hours" },
+          { dimension: "Meeting Declines", before: "Never", after: "14 per week" },
+          { dimension: "Burnout", before: "Imminent", after: "Resolved" },
+        ],
+      },
+      {
+        id: "quote",
+        type: "quote" as const,
+        title: "",
+        content: "I stopped going to meetings where I was furniture. The cat was right: if there is no food and no threat, leave the room.",
+        quote: "I stopped going to meetings where I was furniture. The cat was right: if there is no food and no threat, leave the room.",
+        attribution: "Sarah, 3 months later",
+      },
+      {
+        id: "summary",
+        type: "summary" as const,
+        title: "The workload problem was an attention problem.",
+        content: "Sarah didn't need fewer responsibilities. She needed to stop responding to every signal like it mattered equally. The cat knew this all along.",
+        metrics: [
+          { label: "Meetings cut", value: "20 hrs/wk" },
+          { label: "Deep work gained", value: "15 hrs/wk" },
+          { label: "Burnout", value: "Gone" },
+        ],
+        agentCta: { agentId: "cat-pov-agent", label: "Try the Cat POV Agent" },
+      },
+    ],
+  },
+  // ── Wargaming Agent ──
+  {
+    id: "market-entry-nobody-wargamed",
+    agentId: "wargaming-agent",
+    name: "The Market Entry Nobody War-Gamed",
+    tagline: "Rachel assumed competitors wouldn't react. They did.",
+    format: "visual",
+    sections: [
+      {
+        id: "hook",
+        type: "hook" as const,
+        title: "A bold expansion. One fatal assumption.",
+        subtitle: "Rachel, Head of Strategy at a mid-size fintech, pitches SMB lending. The board approves unanimously.",
+        content: "Rachel had modeled the revenue projections, stress-tested the credit risk assumptions, and built a go-to-market plan with phased rollout across four metro areas. She assembled a team of twelve, hired three SMB lending specialists, and committed to a Q2 launch targeting 500 SMB clients in the first year. What she had not done was simulate how anyone else would respond to her entering the market.",
+        heroStat: { value: "$50M committed", label: "Zero adversarial testing" },
+      },
+      {
+        id: "landscape",
+        type: "cards" as const,
+        title: "The forces Rachel didn't simulate.",
+        content: "Every player in the market had a reason to respond. None of them were going to hold still.",
+        cards: [
+          { label: "FinanceFirst", detail: "Market leader, 40% share, excess capacity, history of aggressive price responses to new entrants.", status: "Will defend" },
+          { label: "QuickLend", detail: "Fast-growing challenger with automated underwriting at one-third of Meridian's cost per loan.", status: "Will undercut" },
+          { label: "Regulator (OCC)", detail: "Tightening capital requirements for SMB lenders, effective Q1 next year. Compliance cost: $3.2M.", status: "Will constrain" },
+          { label: "Enterprise Clients", detail: "22% of recurring revenue. Account managers reassigned to SMB launch. Response times doubled.", status: "Feeling neglected" },
+        ],
+        metrics: [
+          { label: "Monthly burn", value: "$1.8M" },
+          { label: "Monthly revenue", value: "$340K" },
+          { label: "Client reviews", value: "1 formal" },
+        ],
+      },
+      {
+        id: "turning-point",
+        type: "turning-point" as const,
+        title: "Every move provokes a response.",
+        content: "The wargaming agent runs a design-wargame simulation. Three rounds: Meridian's entry, competitor and regulator response, Meridian's adaptation.",
+        framework: {
+          name: "OODA Loop (Boyd)",
+          origin: "Colonel John Boyd, US Air Force",
+          description: "Observe-Orient-Decide-Act: a decision cycle where competitive advantage comes from cycling faster than your opponent. The side that completes its loop quicker forces the other into reactive positions.",
+          how: "Observe the environment and incoming data. Orient by synthesizing observations against existing mental models, cultural traditions, and previous experience. Decide on a course of action. Act, then immediately begin observing the results. Speed through the loop, not speed of any single action, is the advantage.",
+          why: "Rachel's plan assumed a static battlefield. Her competitors were already cycling their own OODA loops: observing her hiring announcements, orienting around their cost advantages, deciding on price cuts, and acting before Meridian's first quarter closed.",
+          visual: "ooda-loop",
+          principles: [
+            { label: "Tempo over precision", detail: "The side that cycles faster forces the opponent to react to outdated conditions." },
+            { label: "Orientation is the key", detail: "The most critical phase: your mental model of the situation determines what you see and what you miss." },
+            { label: "Implicit over explicit", detail: "Organizations that share orientation can act without waiting for explicit orders, compressing the loop." },
+          ],
+          references: [
+            { label: "OODA Loop, Wikipedia", url: "https://en.wikipedia.org/wiki/OODA_loop" },
+            { label: "John Boyd, Patterns of Conflict", url: "https://en.wikipedia.org/wiki/John_Boyd_(military_strategist)" },
+          ],
+        },
+      },
+      {
+        id: "simulation-results",
+        type: "steps" as const,
+        title: "Four moves Rachel never saw coming.",
+        content: "The simulation surfaced what financial models had missed: the plan assumed competitors would hold still while Meridian moved.",
+        steps: [
+          { label: "FinanceFirst slashes rates 30%", detail: "Within 90 days of entry. Absorbable at 8x Meridian's volume. Erases projected margins before first quarter closes." },
+          { label: "Regulator announces new capital requirements", detail: "OCC rules add $3.2M to operating budget. A figure that appeared in no projection because regulatory risk was treated as a footnote." },
+          { label: "Enterprise clients threaten to leave", detail: "Three largest clients (22% of recurring revenue) issue formal review notices. Account managers had been reassigned to SMB launch." },
+          { label: "QuickLend partners with enterprise prospects", detail: "Automated underwriting at one-third cost. While Meridian fights FinanceFirst on price, QuickLend flanks from behind." },
+        ],
+        callout: { label: "Schwerpunkt", text: "The decisive point was never the lending market. It was the data layer underneath." },
+      },
+      {
+        id: "contrast",
+        type: "contrast" as const,
+        title: "Same company. Same $50M.",
+        content: "Different understanding of where the advantage actually was.",
+        comparisons: [
+          { dimension: "Strategy", before: "Capture 15% of SMB lending in 18 months", after: "Become the platform, not the lender" },
+          { dimension: "Competitors", before: "Assumed static", after: "Simulated adversarial response" },
+          { dimension: "Revenue model", before: "Loan origination (carry credit risk)", after: "Platform fees (no credit risk)" },
+          { dimension: "Monthly burn", before: "$1.8M against $340K revenue", after: "$620K, break-even by month 10" },
+          { dimension: "Enterprise clients", before: "Neglected, one formal review", after: "Retained, 3-year renewal" },
+        ],
+      },
+      {
+        id: "quote",
+        type: "quote" as const,
+        title: "",
+        content: "No plan survives contact with adversarial response. The value of wargaming is discovering your plan's weaknesses before real resources are committed.",
+        quote: "No plan survives contact with adversarial response. The value of wargaming is discovering your plan's weaknesses before real resources are committed.",
+        attribution: "Retrospective analysis",
+      },
+      {
+        id: "summary",
+        type: "summary" as const,
+        title: "The competitor's price war became irrelevant.",
+        content: "Rachel pivoted from direct SMB lending to a platform play. Partnered with 14 smaller lenders who used her data infrastructure to originate $280M in loans. Enterprise clients were retained. FinanceFirst's price war became irrelevant because Rachel left the battlefield. The Schwerpunkt was never the market, it was the data layer underneath.",
+        metrics: [
+          { label: "Lending partners", value: "14 signed" },
+          { label: "Platform volume", value: "$280M" },
+          { label: "Burn rate", value: "$1.8M → $620K" },
+        ],
+        agentCta: { agentId: "wargaming-agent", label: "Try the Wargaming Agent" },
       },
     ],
   },

@@ -6,8 +6,11 @@ export function buildPrompt(
   skill: AgentSkill | null,
   situation: string,
   outputFormat: string,
+  language: string = "english",
 ): string {
   const sections: string[] = [];
+
+  const langInstruction = language !== "english" ? `\n6. Answer in ${language}` : "";
 
   sections.push(`=== INSTRUCTIONS FOR THE LLM ===
 
@@ -16,7 +19,7 @@ You are receiving a complete agent configuration below. Your task is to:
 2. Apply the personality modifier if one is provided
 3. Validate the user's input before generating a full response
 4. Follow the skill workflow if one is specified
-5. Produce output in the requested format, respecting all output constraints
+5. Produce output in the requested format, respecting all output constraints${langInstruction}
 
 Be concise. Every sentence must earn its place.
 
@@ -56,14 +59,16 @@ ${skill.description}${workflowText}`);
 
   if (agent.outputConstraints) {
     sections.push(`--- OUTPUT FORMAT ---
-Produce your response in ${outputFormat} format.
+Produce your FIRST response in ${outputFormat} format using this structure:
+${agent.outputConstraints.trim()}
 
-Output structure and constraints:
-${agent.outputConstraints.trim()}`);
+For follow-up messages: drop the structured format. Stay in character, but respond conversationally. Answer the specific question, go deeper on one area, or help draft a concrete message. Keep the voice, lose the template.`);
   } else {
     sections.push(`--- OUTPUT FORMAT ---
-Produce your response in ${outputFormat} format.
-Keep it concise and actionable. Avoid filler, preamble, and repetition.`);
+Produce your FIRST response in ${outputFormat} format.
+Keep it concise and actionable. Avoid filler, preamble, and repetition.
+
+For follow-up messages: respond conversationally while staying in character. Answer the specific question or go deeper on the area the user asks about.`);
   }
 
   sections.push(`--- USER SITUATION ---

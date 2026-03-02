@@ -22,6 +22,8 @@ import {
   Users,
   Play,
   MessageCircle,
+  Cat,
+  Swords,
   type LucideIcon,
 } from "lucide-react";
 
@@ -39,6 +41,8 @@ const iconMap: Record<string, LucideIcon> = {
   HeartHandshake,
   Users,
   MessageCircle,
+  Cat,
+  Swords,
 };
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
@@ -55,24 +59,15 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
   sky:     { bg: "bg-sky-50",     border: "border-sky-200",     icon: "text-sky-500",     badge: "bg-sky-100 text-sky-700" },
   purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  badge: "bg-purple-100 text-purple-700" },
   pink:    { bg: "bg-pink-50",    border: "border-pink-200",    icon: "text-pink-500",    badge: "bg-pink-100 text-pink-700" },
+  lime:    { bg: "bg-lime-50",    border: "border-lime-200",    icon: "text-lime-500",    badge: "bg-lime-100 text-lime-700" },
+  red:     { bg: "bg-red-50",     border: "border-red-200",     icon: "text-red-500",     badge: "bg-red-100 text-red-700" },
 };
 
-const handbookPrinciples = [
-  "Define by responsibility, not capability",
-  "One sentence identity: if it takes more, it's doing too much",
-  "Prompts are code: version control, test, document",
-  "Atomic over monolithic: small prompts that compose",
-  "Prompt quality = clear I/O: define inputs, outputs, success criteria",
-  "Skills compose prompts: skills are workflows, prompts are building blocks",
-  "Load knowledge just-in-time: don't stuff context",
-  "Constraints as hard rules: 'must never' not 'prefers not to'",
-  "Separate concerns: gather ≠ analyze ≠ decide ≠ execute",
-  "Design for failure: every agent fails, specify what happens",
-  "Human oversight is essential: automation serves humans",
-];
+type Tab = "agents" | "stories" | "ideas";
 
 export default function Home() {
   const [flyout, setFlyout] = useState<{ title: string; content: string } | null>(null);
+  const [tab, setTab] = useState<Tab>("agents");
 
   const closeFlyout = useCallback(() => setFlyout(null), []);
 
@@ -88,8 +83,32 @@ export default function Home() {
         </p>
       </div>
 
+      <div className="flex gap-1 mb-8 border-b border-stone-200">
+        {([
+          { id: "agents" as Tab, label: "Agents", count: agents.length },
+          { id: "stories" as Tab, label: "Stories", count: stories.length },
+          { id: "ideas" as Tab, label: "Agent Ideas", count: agentIdeas.length },
+        ]).map((t) => (
+          <button
+            key={t.id}
+            type="button"
+            onClick={() => setTab(t.id)}
+            className={`px-4 py-2 text-sm font-medium transition-colors relative ${
+              tab === t.id
+                ? "text-stone-900"
+                : "text-stone-400 hover:text-stone-600"
+            }`}
+          >
+            {t.label}
+            <span className={`ml-1.5 text-xs ${tab === t.id ? "text-stone-500" : "text-stone-300"}`}>{t.count}</span>
+            {tab === t.id && (
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-stone-900 rounded-full" />
+            )}
+          </button>
+        ))}
+      </div>
 
-
+      {tab === "agents" && (<>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
           "superhero-agent",
@@ -105,6 +124,8 @@ export default function Home() {
           "networking-agent",
           "research-agent",
           "difficult-conversations-agent",
+          "cat-pov-agent",
+          "wargaming-agent",
         ].map((id) => agents.find((a) => a.id === id)!).filter(Boolean).map((agent) => {
           const colors = colorMap[agent.color] ?? colorMap.blue;
           const Icon = iconMap[agent.icon] ?? Globe;
@@ -163,13 +184,10 @@ export default function Home() {
           );
         })}
       </div>
+      </>)}
 
-      {/* Featured Stories */}
-      <div id="stories" className="mt-16 scroll-mt-20">
-        <div className="flex items-center gap-2 mb-2">
-          <Play size={20} className="text-stone-400" />
-          <h2 className="text-xl font-bold text-stone-900">Stories</h2>
-        </div>
+      {tab === "stories" && (
+      <div>
         <p className="text-stone-500 mb-6 text-sm">
           Pain point narratives that show why structured thinking matters, from problem to resolution.
         </p>
@@ -206,57 +224,10 @@ export default function Home() {
           })}
         </div>
       </div>
+      )}
 
-      {/* Handbook */}
-      <div id="handbook" className="mt-16 scroll-mt-20">
-        <div className="flex items-center gap-2 mb-5">
-          <BookOpen size={20} className="text-stone-400" />
-          <h2 className="text-xl font-bold text-stone-900">Design Handbook</h2>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl border border-stone-200 p-5">
-            <h3 className="text-sm font-semibold text-stone-900 mb-3">Core Principles</h3>
-            <ol className="space-y-1.5 text-sm text-stone-600">
-              {handbookPrinciples.map((p, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className="text-stone-400 font-mono text-xs mt-0.5 shrink-0 w-4 text-right">{i + 1}.</span>
-                  <span className="leading-relaxed">{p}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div className="bg-white rounded-xl border border-stone-200 p-5">
-            <h3 className="text-sm font-semibold text-stone-900 mb-3">Prompt Design Patterns</h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="text-sm font-medium text-stone-800 mb-1">Input Validation Gates</h4>
-                <p className="text-sm text-stone-500 leading-relaxed">
-                  Each agent defines required input dimensions. On incomplete input, the agent states what&apos;s missing, gives a short preliminary analysis, and asks for clarification instead of generating from insufficient context.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-sm font-medium text-stone-800 mb-1">Output Constraints</h4>
-                <p className="text-sm text-stone-500 leading-relaxed">
-                  Field-level word limits and a total word cap (250-400 words) force the agent to prioritize and distill. Structured fields ensure consistent, comparable output across runs.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-sm font-medium text-stone-800 mb-1">Personality Modifiers</h4>
-                <p className="text-sm text-stone-500 leading-relaxed">
-                  Same agent, different tone. A personality modifier adjusts voice and framing without changing the underlying logic. The facts stay identical, the delivery shifts to match the audience.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Agent Ideas */}
-      <div id="agent-ideas" className="mt-16 scroll-mt-20">
-        <div className="flex items-center gap-2 mb-2">
-          <Lightbulb size={20} className="text-stone-400" />
-          <h2 className="text-xl font-bold text-stone-900">Agent Ideas</h2>
-        </div>
+      {tab === "ideas" && (
+      <div>
         <p className="text-stone-500 mb-6 text-sm">
           Future agents under consideration. Concepts and frameworks researched, not yet built.
         </p>
@@ -294,6 +265,7 @@ export default function Home() {
           })}
         </div>
       </div>
+      )}
 
       <div className="mt-14 text-center text-sm text-stone-400">
         <p>

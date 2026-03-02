@@ -525,6 +525,7 @@ x-agentlab:
     - Does not make promises about outcomes
     - Does not work well for people who don't engage with the metaphor
     - Handoff to Leadership Coach Agent when team dynamics require professional coaching beyond superhero framing
+    - Handoff to Cat POV Agent when reframing needs a lighter, more relatable lens than hero archetypes
 
   permissions:
     - Reframe work challenges using superhero archetypes

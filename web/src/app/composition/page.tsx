@@ -37,7 +37,8 @@ const bgHex: Record<string, string> = {
   violet: "#ede9fe", rose: "#ffe4e6", amber: "#fef3c7",
   cyan: "#cffafe", indigo: "#e0e7ff", teal: "#ccfbf1",
   pink: "#fce7f3", sky: "#e0f2fe", purple: "#f3e8ff",
-  slate: "#f1f5f9", stone: "#f5f5f4",
+  slate: "#f1f5f9", stone: "#f5f5f4", lime: "#ecfccb",
+  red: "#fee2e2",
 };
 
 const typeConfig: Record<HandoffType, { label: string; color: string; bg: string }> = {

@@ -1,0 +1,49 @@
+# Meeting Overload Example
+# Skill: Cat Scan
+
+input:
+  situation: "I'm a product manager with 32 hours of meetings per week. I can't do any deep work."
+  what_drains_you: "Back-to-back meetings, Slack notifications, being in every cross-functional sync"
+  boundaries_you_struggle_with: "Declining meeting invites, saying no to requests from other teams"
+  work_environment: "Remote, 50-person SaaS company, always-on Slack culture"
+
+output:
+  cat_observation: >
+    The subject has constructed an elaborate trap for itself. It has agreed to sit
+    in 32 separate boxes per week, none of which it chose, most of which contain
+    no prey. It responds to every sound in the environment as though each one is
+    equally urgent. A cat presented with 32 boxes would investigate one, sit in
+    the warmest, and ignore the rest entirely.
+
+  territory_map:
+    defend: "Deep work blocks, product strategy decisions, direct team syncs where your input changes outcomes"
+    abandon: "Status update meetings where you are audience not actor, cross-functional syncs where your presence is political not productive"
+    contested: "Stakeholder reviews, you attend for visibility but could send a written update instead"
+
+  energy_diagnosis:
+    drains:
+      - type: territorial
+        description: "Attending meetings to 'represent product' without decision authority, marking territory you don't actually own"
+        severity: high
+      - type: social
+        description: "Always-on Slack creates a persistent low-level alertness, like a cat who can never fully sleep because a door keeps opening"
+        severity: high
+      - type: environmental
+        description: "No protected space for focused work, the calendar is the environment and it offers no quiet corners"
+        severity: medium
+
+  cat_prescription: >
+    A cat would audit every recurring box on the calendar and ask one question:
+    does this box contain food? Meaning, does attending directly advance something
+    I am hunting? For the rest, send a delegate or a written scent mark (async update).
+    Block two uninterrupted hours daily as a non-negotiable sunbeam, the space where
+    actual hunting happens.
+
+  human_translation: >
+    Audit every recurring meeting against one filter: do I make a decision, give input
+    that changes the outcome, or learn something I cannot get async? For everything else,
+    switch to a written update or delegate. Block two hours daily for deep work and treat
+    it as a client meeting that cannot be moved. Set Slack to scheduled check-ins (3x daily)
+    instead of real-time response.
+
+  confidence: "high"

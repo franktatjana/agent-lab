@@ -1,0 +1,113 @@
+import type { AgentStory } from "./stories";
+
+export const walkthrough: AgentStory = {
+  id: "walkthrough",
+  agentId: "",
+  name: "Agent Lab Walkthrough",
+  tagline: "A guided tour of the app and the thinking behind it",
+  format: "visual",
+  sections: [
+    {
+      id: "welcome",
+      type: "hook",
+      title: "Welcome to Agent Lab",
+      subtitle: "A sandbox for designing AI agents as portable specifications.",
+      content: "This walkthrough explains what you see in the app, how each part works, and why it was built that way. Start on the home page, open any agent, generate a prompt, download a YAML spec, or explore how agents hand off to each other.",
+      heroStat: { value: "7 tabs", label: "Per agent page" },
+    },
+    {
+      id: "home",
+      type: "cards",
+      title: "The home page: three tabs",
+      content: "The landing page organizes everything into three views. Agents shows every fully-built specification. Stories shows pain-point narratives that demonstrate why each agent matters. Ideas shows concepts under research, not yet built.",
+      cards: [
+        { label: "Agents tab", detail: "15 color-coded cards, each showing identity, personality variants, and skills at a glance" },
+        { label: "Stories tab", detail: "Real-world scenarios where structured thinking made the difference, linked to specific agents" },
+        { label: "Ideas tab", detail: "46 agent concepts organized by category: Decision & Strategy, Communication, Career, Team & Org" },
+        { label: "Header nav", detail: "Quick links to Stories, Walkthrough, Ideas, the Composition graph, and About" },
+      ],
+    },
+    {
+      id: "agent-page",
+      type: "steps",
+      title: "Inside an agent page",
+      content: "Every agent page has seven tabs. Each tab shows a different angle on the same specification, from strategic purpose down to machine-readable YAML.",
+      steps: [
+        { label: "Canvas", detail: "Purpose, mindset, value proposition, guardrails, human role, and success criteria in card layout" },
+        { label: "Skills", detail: "Structured workflows the agent follows, each built from sequenced atomic prompts" },
+        { label: "Builder", detail: "Pick a personality and skill, describe your situation, and generate a ready-to-use prompt" },
+        { label: "Flow", detail: "Interactive graph showing how prompts, tools, and personality variants connect inside the agent" },
+        { label: "Composition", detail: "How this agent hands off to other agents: delegation, data sharing, and escalation edges" },
+        { label: "Specification", detail: "The full Oracle Agent Spec YAML, downloadable as a file or ZIP with prompts and examples" },
+      ],
+      callout: { label: "Resources tab", text: "Reference files, stories, case studies, and input/output examples also live on the agent page when available." },
+    },
+    {
+      id: "builder",
+      type: "cards",
+      title: "The prompt builder",
+      content: "The builder turns a structured specification into a prompt you can paste into any LLM. You pick how the agent sounds (personality), what workflow it follows (skill), and what format you need. Then describe your situation and generate.",
+      cards: [
+        { label: "Personality selector", detail: "Three voices per agent, each tuned for a different audience: coach for learning, executive for decisions, facilitator for groups" },
+        { label: "Skill selector", detail: "Choose a specific workflow or keep it general, the prompt adapts to include the right steps" },
+        { label: "Situation input", detail: "Guiding questions help you describe what is happening, with validation rules shown before you generate" },
+        { label: "Output", detail: "Copy the prompt or switch formats: plain text, markdown, YAML, or JSON" },
+      ],
+      metrics: [
+        { label: "Personalities", value: "3" },
+        { label: "Output formats", value: "4" },
+        { label: "Avg. skills", value: "4" },
+      ],
+    },
+    {
+      id: "specification",
+      type: "contrast",
+      title: "The Specification tab",
+      content: "Each agent ships as a machine-readable YAML definition aligned with Oracle Agent Spec 26.1.0. The Specification tab lets you browse every section and download the full package.",
+      comparisons: [
+        { dimension: "Overview", before: "Agent identity, inputs, outputs, LLM config", after: "One place for what the agent is" },
+        { dimension: "Flows", before: "Visual step-by-step workflow with I/O cards", after: "How the agent works, step by step" },
+        { dimension: "Variants", before: "Personality cards with additional instructions", after: "How the agent sounds in each mode" },
+        { dimension: "Guardrails", before: "MUST/MUST NOT rules, boundaries, escalation triggers", after: "Where the agent stops and humans start" },
+        { dimension: "Download", before: "YAML file or ZIP with prompts and examples", after: "Portable, ready for any framework" },
+      ],
+    },
+    {
+      id: "composition",
+      type: "steps",
+      title: "The Composition page",
+      content: "The /composition route shows an interactive graph of every handoff across all 15 agents. Agents declare when to delegate, share data, or escalate. The graph makes these relationships visible and filterable.",
+      steps: [
+        { label: "Graph view", detail: "Draggable nodes for each agent, colored edges by type, click any edge to see the trigger condition" },
+        { label: "List view", detail: "Handoffs grouped by type, each showing source, target, trigger, and data passed" },
+        { label: "Filters", detail: "Filter by handoff type, source agent, or target agent to focus on specific relationships" },
+      ],
+      callout: { label: "Per-agent composition", text: "Each agent page also has a Composition tab showing only its own incoming and outgoing handoffs in the same graph format." },
+      metrics: [
+        { label: "Active handoffs", value: "30+" },
+        { label: "Handoff types", value: "3" },
+        { label: "Connected agents", value: "15" },
+      ],
+    },
+    {
+      id: "stories",
+      type: "quote",
+      title: "",
+      content: "",
+      quote: "Stories show the pain point first, then how structured thinking resolves it. Every story links back to a specific agent.",
+      attribution: "Each story has a visual mode: the same full-screen slides you are viewing right now.",
+    },
+    {
+      id: "start",
+      type: "summary",
+      title: "Where to start",
+      content: "Pick any agent card on the home page. Open the Canvas to see what it owns, try the Builder to generate a prompt, or browse the Specification to download the YAML.",
+      metrics: [
+        { label: "Agents", value: "15" },
+        { label: "Ideas", value: "46" },
+        { label: "Tabs per agent", value: "7" },
+      ],
+      agentCta: { agentId: "cat-pov-agent", label: "Start with Cat POV" },
+    },
+  ],
+};

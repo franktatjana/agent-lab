@@ -598,6 +598,7 @@ x-agentlab:
     - Does not make recommendations or decisions
     - Does not access sources requiring authentication without explicit approval
     - Does not exceed token budget without escalation
+    - Handoff to Wargaming Agent when competitive research reveals dynamics that need adversarial simulation to stress-test
 
   permissions:
     - Search the web for relevant pages

@@ -1,0 +1,41 @@
+# Example: Play Competitor — Enterprise Pricing Cut Response
+# Demonstrates the play-competitor flow with red-teamer personality
+
+skill: play-competitor
+personality: red-teamer
+
+input:
+  strategic_question: "How will CloudStack respond to our enterprise pricing cut?"
+  competitors: "CloudStack (dominant incumbent, 60% enterprise cloud share, $4.2B annual revenue, deep integration with Fortune 500 procurement workflows)"
+  your_resources: "Better developer experience (4.8 vs 3.2 satisfaction score), 15% market share, growing open-source community of 280K contributors, $800M ARR"
+  market_context: "Enterprise cloud spending growing 22% YoY, increasing frustration with vendor lock-in, regulatory push for multi-cloud in financial services"
+
+output:
+  competitor_response:
+    CloudStack: >
+      Your pricing cut is visible to CloudStack within 48 hours through their enterprise sales intelligence.
+      CloudStack's response unfolds in three moves. First, they match your price cut selectively for
+      accounts you are actively pursuing, not across the board, because a blanket cut would cost them
+      $600M in annual revenue they do not need to sacrifice. Second, they accelerate their "migration
+      complexity" program: free architecture reviews for any enterprise client considering a move,
+      designed to surface every integration dependency that makes switching painful. Third, they
+      announce a "developer experience initiative" with $200M in funding, directly neutralizing your
+      strongest differentiator within 12-18 months. CloudStack has done this before: when NimbusCloud
+      cut enterprise pricing in 2024, CloudStack matched selectively and NimbusCloud gained only 1.2%
+      share over two years while compressing its own margins by 18%.
+
+  counter_move: >
+    Price is the wrong battlefield. CloudStack can match any price cut selectively while you absorb the
+    margin compression across your entire base. Instead, concentrate on the lock-in frustration:
+    position your developer experience advantage as the path to multi-cloud portability. Target the
+    financial services vertical where regulators are mandating multi-cloud, making CloudStack's
+    integration lock-in a liability rather than an asset.
+
+  schwerpunkt: >
+    The decisive point is multi-cloud portability in regulated industries, where CloudStack's deepest
+    strength, tight procurement integration, becomes its greatest vulnerability.
+
+  after_action:
+    - "Price cuts against an incumbent with 4x revenue trigger selective matching, not market-wide response. You compress your margins while they protect theirs"
+    - "CloudStack's developer experience gap is real but temporary: a $200M initiative can close it within 18 months. Build switching-cost advantages now before the window closes"
+    - "Regulated industries (financial services, healthcare) are the wedge: multi-cloud mandates turn CloudStack's lock-in moat into a compliance liability you can exploit"

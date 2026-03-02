@@ -1,0 +1,52 @@
+# Boundary Struggle Example
+# Skill: Energy Audit
+
+input:
+  situation: "My colleague keeps pulling me into her projects. I have my own deadlines but feel guilty saying no."
+  what_drains_you: "Helping with tasks that aren't mine, context switching between my work and hers"
+  boundaries_you_struggle_with: "Saying no to a colleague I like, feeling selfish for protecting my time"
+  work_environment: "Open office, team of 8, collaborative culture that rewards 'helping'"
+
+output:
+  cat_observation: >
+    The subject is allowing another cat to eat from its bowl while its own food
+    goes cold. This is not collaboration, it is a territory confusion. The
+    neighboring cat has learned that a specific vocalization (the request) reliably
+    produces a resource transfer (the subject's time). The subject interprets its
+    own discomfort as selfishness, when in fact it is the body's correct signal
+    that a boundary has been crossed. No cat has ever felt guilty about sitting in
+    its own sunbeam.
+
+  territory_map:
+    defend: "Your own deadlines and deliverables, the core work only you can do"
+    abandon: "The expectation that 'being helpful' means dropping your own priorities on demand"
+    contested: "Genuine collaboration where both parties benefit vs one-directional help where you absorb her workload"
+
+  energy_diagnosis:
+    drains:
+      - type: territorial
+        description: "Colleague's projects have expanded into your territory without negotiation, you gave ground without noticing"
+        severity: high
+      - type: social
+        description: "Guilt is functioning as a social leash, the collaborative culture has trained you to equate boundary-setting with selfishness"
+        severity: high
+      - type: environmental
+        description: "Open office removes physical barriers, making it easy for interruptions to happen and hard to signal unavailability"
+        severity: medium
+
+  cat_prescription: >
+    A cat would relocate to a different room when it needs to eat undisturbed.
+    It would not explain or apologize. When the neighboring cat approaches, it
+    would offer a brief acknowledgment, then return to its own activity. The cat
+    understands that protecting its own resources is what allows it to be generous
+    later, on its own terms.
+
+  human_translation: >
+    Create a default response for requests: "I can look at this Thursday afternoon,
+    does that timeline work?" This replaces the instant yes with a time-bound offer
+    that protects your current work. For the guilt, reframe: helping at the cost of
+    your own deadlines is not generosity, it is avoidance of a brief discomfort.
+    Use headphones or a focus signal in the open office to create a visible boundary
+    that reduces the need for verbal refusal.
+
+  confidence: "high"
