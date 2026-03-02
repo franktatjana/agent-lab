@@ -64,7 +64,7 @@ export function FrameworkBadge({ name, agentId, onOpenFlyout }: { name: string; 
     try {
       const res = await fetch("/references.json");
       const data: Record<string, string> = await res.json();
-      const searchWords = name.split(/[(:]/)[0].trim().toLowerCase().split(/\s+/);
+      const searchWords = name.split(/[(:/]/)[0].trim().toLowerCase().split(/\s+/);
       const matchesAll = (text: string) => { const t = text.toLowerCase(); return searchWords.every((w) => t.includes(w)); };
       const stripMd = (s: string) => s
         .replace(/#{1,6}\s+/g, "")
