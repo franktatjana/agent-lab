@@ -1,0 +1,39 @@
+# Delivering Bad News Example
+# Skill: Conversation Preparation
+
+input:
+  situation: "I need to tell my direct report she didn't get the promotion she's been working toward for over a year."
+  relationship: "Strong working relationship, 2 years. She trusts me. I told her she was on track."
+  your_goal: "Deliver the news honestly, retain her, rebuild trust."
+  their_likely_concerns: "Betrayal, wasted effort, broken promise, whether merit matters here."
+  emotional_stakes: "Very high. She will feel devastated. I feel guilty."
+
+output:
+  situation_assessment:
+    your_story: "The decision was made above me. The external candidate had broader experience. I advocated for her but wasn't persuasive enough."
+    their_story: "I was promised a path, did everything asked, and they hired someone else. My manager either lied or couldn't protect me."
+    gap: "She doesn't know about the external search or how the decision was made. She's interpreting silence as indifference."
+    identity_threat: "Her self-image as someone who earns things through merit is under attack."
+
+  approach:
+    framework: "Three Conversations (Stone, Patton, Heen)"
+    rationale: "Both parties have different stories, and identity is at stake. The three-layer separation prevents the conversation from collapsing into a single emotional reaction."
+    sequence: "Feelings first (acknowledge impact), then What Happened (share the real story), then Identity (separate the decision from her worth)."
+
+  opening:
+    recommended: "Anika, I owe you a more honest conversation than the one we had. I handled it badly, and I want to do better. Can I share what actually happened and hear how you're feeling?"
+    avoid:
+      - "Don't take this personally"
+      - "The decision was out of my hands"
+      - "You should be proud of what you've accomplished"
+
+  follow_up:
+    immediate: "Thank her for the conversation. Summarize the development plan in writing within 24 hours."
+    short_term: "Weekly 1:1 check-ins for the next month with explicit space for how she's feeling."
+    long_term: "Executive visibility opportunities, sponsorship for next promotion cycle."
+
+  blind_spots:
+    - "Team dynamics: other engineers are watching how this is handled"
+    - "Structural issue: was the external search a pattern or one-time?"
+
+  confidence: "high"

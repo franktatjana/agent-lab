@@ -21,6 +21,7 @@ import {
   HeartHandshake,
   Users,
   Play,
+  MessageCircle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -37,6 +38,7 @@ const iconMap: Record<string, LucideIcon> = {
   Lightbulb,
   HeartHandshake,
   Users,
+  MessageCircle,
 };
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
@@ -52,6 +54,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
   cyan:    { bg: "bg-cyan-50",    border: "border-cyan-200",    icon: "text-cyan-500",    badge: "bg-cyan-100 text-cyan-700" },
   sky:     { bg: "bg-sky-50",     border: "border-sky-200",     icon: "text-sky-500",     badge: "bg-sky-100 text-sky-700" },
   purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  badge: "bg-purple-100 text-purple-700" },
+  pink:    { bg: "bg-pink-50",    border: "border-pink-200",    icon: "text-pink-500",    badge: "bg-pink-100 text-pink-700" },
 };
 
 const handbookPrinciples = [
@@ -101,6 +104,7 @@ export default function Home() {
           "corporate-navigator-agent",
           "networking-agent",
           "research-agent",
+          "difficult-conversations-agent",
         ].map((id) => agents.find((a) => a.id === id)!).filter(Boolean).map((agent) => {
           const colors = colorMap[agent.color] ?? colorMap.blue;
           const Icon = iconMap[agent.icon] ?? Globe;

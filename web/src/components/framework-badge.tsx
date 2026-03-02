@@ -41,6 +41,9 @@ export const agentResources: Record<string, { references: string[]; visualImage?
   "networking-agent": {
     references: ["networking-frameworks.md", "glossary-and-resources.md"],
   },
+  "difficult-conversations-agent": {
+    references: ["frameworks.md", "glossary-and-resources.md"],
+  },
 };
 
 export function FrameworkBadge({ name, agentId, onOpenFlyout }: { name: string; agentId: string; onOpenFlyout: (f: { title: string; content: string }) => void }) {

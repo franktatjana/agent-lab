@@ -264,6 +264,39 @@ function QuestionLayersVisual({ isVisible }: { isVisible: boolean }) {
   );
 }
 
+function ThreeConversationsVisual({ isVisible }: { isVisible: boolean }) {
+  const layers = [
+    { label: "What Happened?", sub: "Facts, stories, contribution", color: "bg-pink-50 border-pink-200 text-pink-700" },
+    { label: "Feelings", sub: "Emotions, impact, unexpressed reactions", color: "bg-pink-100 border-pink-300 text-pink-800" },
+    { label: "Identity", sub: "Self-image, worth, competence", color: "bg-pink-200 border-pink-400 text-pink-900" },
+  ];
+  return (
+    <div className="space-y-0">
+      {layers.map((layer, i) => {
+        const isLast = i === layers.length - 1;
+        return (
+          <div key={layer.label}>
+            <div
+              className={`rounded-lg border px-4 py-2.5 ${layer.color} ${isVisible ? "scene-fade-up" : "scene-hidden"}`}
+              style={{ animationDelay: `${(i + 1) * 150}ms` }}
+            >
+              <span className="text-xs font-bold shrink-0">{layer.label}: </span>
+              <span className="text-xs">{layer.sub}</span>
+            </div>
+            {!isLast && (
+              <div className="pl-6 py-0.5">
+                <svg width="12" height="16" viewBox="0 0 12 16" fill="none" className="text-pink-300">
+                  <path d="M6 2v8M3 7l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 const visuals: Record<string, React.ComponentType<{ isVisible: boolean }>> = {
   "five-whys": FiveWhysVisual,
   "ccr-arc": CCRArcVisual,
@@ -274,6 +307,7 @@ const visuals: Record<string, React.ComponentType<{ isVisible: boolean }>> = {
   "network-tiers": NetworkTiersVisual,
   "culture-dimensions": CultureDimensionsVisual,
   "question-layers": QuestionLayersVisual,
+  "three-conversations": ThreeConversationsVisual,
 };
 
 export function FrameworkScene({ section }: { section: StorySection }) {

@@ -49,7 +49,7 @@ export interface FrameworkInfo {
   description: string;
   how: string;
   why: string;
-  visual: "five-whys" | "ccr-arc" | "six-hats" | "double-diamond" | "grow" | "archetypes" | "network-tiers" | "culture-dimensions" | "question-layers";
+  visual: "five-whys" | "ccr-arc" | "six-hats" | "double-diamond" | "grow" | "archetypes" | "network-tiers" | "culture-dimensions" | "question-layers" | "three-conversations";
   principles: FrameworkPrinciple[];
   references: FrameworkReference[];
 }
@@ -1069,6 +1069,116 @@ export const stories: AgentStory[] = [
           { label: "Follow-up questions", value: "0" },
         ],
         agentCta: { agentId: "question-decoder-agent", label: "Try the Question Decoder Agent" },
+      },
+    ],
+  },
+  // ── Difficult Conversations Agent ──
+  {
+    id: "promotion-that-broke-a-team",
+    agentId: "difficult-conversations-agent",
+    name: "The Promotion That Broke a Team",
+    tagline: "Same news, different conversation, opposite outcome.",
+    format: "visual" as const,
+    sections: [
+      {
+        id: "hook",
+        type: "hook" as const,
+        title: "Friday afternoon. Conference room. One sentence.",
+        subtitle: "\"The senior architect role went to an external candidate.\"",
+        content: "Anika stares. Fourteen months of extra projects, mentoring, a platform migration that saved $200K. Gone in one sentence on a Friday afternoon.",
+        heroStat: { value: "14 months", label: "of work dismissed in 60 seconds" },
+      },
+      {
+        id: "problem",
+        type: "cards" as const,
+        title: "Everything David said made it worse.",
+        content: "He treated it as delivering a decision. It was three conversations colliding at once.",
+        cards: [
+          { label: "The Decision", detail: "\"Role went to an external candidate.\"", status: "Delivered" },
+          { label: "The Why", detail: "\"Broader architectural experience.\"", status: "Defensive" },
+          { label: "The Feelings", detail: "Not addressed", status: "Ignored" },
+          { label: "The Identity", detail: "\"Am I not good enough?\"", status: "Invisible" },
+        ],
+        metrics: [
+          { label: "LinkedIn", value: "Updated Monday" },
+          { label: "Velocity", value: "-20%" },
+          { label: "Trust", value: "Broken" },
+        ],
+      },
+      {
+        id: "turning-point",
+        type: "turning-point" as const,
+        title: "One conversation. Three layers.",
+        content: "David uses the Difficult Conversations Agent to prepare for a second attempt.",
+        framework: {
+          name: "Three Conversations (Stone, Patton, Heen)",
+          origin: "Harvard Negotiation Project",
+          description: "Every difficult conversation is actually three conversations happening simultaneously. Most people only address the surface layer and wonder why it went badly.",
+          how: "Separate the three layers before the conversation. Address Feelings first when emotions are high. Then What Happened with both stories, not just yours. Then Identity, the threat that drives defensiveness more than anything else.",
+          why: "David's first attempt collapsed because he treated it as one conversation (delivering a decision) when it was actually three (facts, feelings, and identity). The feelings and identity layers, left unaddressed, overwhelmed everything.",
+          visual: "three-conversations",
+          principles: [
+            { label: "Impact is not intent", detail: "Good intentions don't prevent hurt. Acknowledge the impact regardless of what you meant." },
+            { label: "Own your contribution", detail: "Not blame, but honest assessment of your part. This disarms defensiveness." },
+            { label: "Identity is the hidden layer", detail: "When someone's self-image is threatened, they stop listening and start defending." },
+          ],
+          references: [
+            { label: "Difficult Conversations, Stone, Patton, Heen", url: "https://www.stoneandheen.com/difficult-conversations" },
+            { label: "Harvard Negotiation Project", url: "https://www.pon.harvard.edu/" },
+          ],
+        },
+      },
+      {
+        id: "solution",
+        type: "steps" as const,
+        title: "Three layers, addressed one at a time.",
+        content: "The second conversation separated what the first one collapsed.",
+        steps: [
+          { label: "Feelings First", detail: "\"I handled our last conversation badly. You deserved honesty, and I owe you that.\"" },
+          { label: "Own Contribution", detail: "\"I should have told you there was an external search in parallel. That wasn't fair to you.\"" },
+          { label: "Their Story", detail: "Anika: \"I felt like my work didn't matter.\" David: \"Your work matters enormously.\"" },
+          { label: "Identity Layer", detail: "\"I worry you're hearing 'not good enough.' That's not what happened. Here's the real gap and the plan.\"" },
+          { label: "Path Forward", detail: "6-month development plan with milestones, executive visibility, and personal sponsorship." },
+        ],
+        callout: { label: "Turning Point", text: "David owned his part. Nobody had ever done that before." },
+        metrics: [
+          { label: "Time", value: "45 min" },
+          { label: "Outcome", value: "Stayed" },
+          { label: "Promotion", value: "9 months" },
+        ],
+      },
+      {
+        id: "contrast",
+        type: "contrast" as const,
+        title: "Same news. Same people.",
+        content: "Different structure of conversation.",
+        comparisons: [
+          { dimension: "Opening", before: "Led with the decision", after: "Led with acknowledgment" },
+          { dimension: "Feelings", before: "Not addressed", after: "Named and validated" },
+          { dimension: "Identity", before: "Invisible", after: "Addressed directly" },
+          { dimension: "Contribution", before: "\"Decision was above me\"", after: "\"I should have been transparent\"" },
+          { dimension: "Outcome", before: "LinkedIn updated Monday", after: "Promoted 9 months later" },
+        ],
+      },
+      {
+        id: "quote",
+        type: "quote" as const,
+        title: "",
+        content: "The promotion mattered, but what kept me was that David owned his part. Nobody had ever done that before.",
+        quote: "The promotion mattered, but what kept me was that David owned his part. Nobody had ever done that before.",
+        attribution: "Anika, 9 months later",
+      },
+      {
+        id: "summary",
+        type: "summary" as const,
+        title: "The first conversation broke trust. The second rebuilt it.",
+        content: "Separating the three layers turned a 60-second disaster into a 45-minute conversation that saved the team.",
+        metrics: [
+          { label: "First attempt", value: "60 seconds" },
+          { label: "Second attempt", value: "45 minutes" },
+          { label: "Result", value: "Promoted" },
+        ],
+        agentCta: { agentId: "difficult-conversations-agent", label: "Try the Difficult Conversations Agent" },
       },
     ],
   },

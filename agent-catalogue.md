@@ -150,6 +150,18 @@ Professional networking strategy and relationship building. Helps plan, execute,
 
 ---
 
+### [difficult-conversations-agent](agents/difficult-conversations-agent/)
+
+Difficult conversations coach. Prepares for and navigates high-stakes interpersonal conversations using structured frameworks for emotional intelligence and relationship preservation. *6 prompts · 3 skills · 3 personalities.*
+
+- **Skills:** conversation-preparation, in-conversation-toolkit, relationship-repair
+- **Personalities:** empathetic, direct, mediator
+- **Frameworks:** Three Conversations (Stone/Patton/Heen), Nonviolent Communication, Crucial Conversations/STATE, DEAR MAN
+
+**When to use:** Delivering bad news, addressing performance issues, navigating conflict, giving difficult feedback, repairing damaged relationships, preparing for emotionally charged discussions.
+
+---
+
 ## Prompt Design Patterns
 
 All agents in this repository follow two prompt quality patterns. See the [handbook](docs/handbook.md) for the full rationale.

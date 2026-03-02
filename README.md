@@ -22,11 +22,11 @@ Each agent has seven tabs in the web app:
 - **Composition** maps how this agent hands off to other agents: delegations, data sharing, and escalations to human experts, with clickable edges for handoff details
 - **Specification** is the portable agent definition aligned with Oracle Agent Spec 26.1.0, where you can browse flows, tools, variants, prompts, guardrails, validate the spec, and download the YAML
 
-The standalone [Composition page](/composition) shows the full multi-agent handoff graph across all 12 agents with draggable nodes and edge-click details.
+The standalone [Composition page](/composition) shows the full multi-agent handoff graph across all 13 agents with draggable nodes and edge-click details.
 
 ## Agents
 
-12 fully documented agents with prompts, skills, references, and personality variants:
+13 fully documented agents with prompts, skills, references, and personality variants:
 
 | Agent | Responsibility |
 |-------|---------------|
@@ -42,6 +42,7 @@ The standalone [Composition page](/composition) shows the full multi-agent hando
 | [Design Thinking Agent](agents/design-thinking-agent/) | Guides teams through the design thinking process |
 | [Leadership Coach](agents/leadership-coach-agent/) | Leadership style assessment and development coaching |
 | [Networking Agent](agents/networking-agent/) | Professional networking strategy and relationship building |
+| [Difficult Conversations](agents/difficult-conversations-agent/) | Prepares for and navigates high-stakes interpersonal conversations |
 
 49 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agent-ideas.md](agents/agent-ideas.md).
 

@@ -487,6 +487,7 @@ x-agentlab:
     - Does not coach on deception or manipulation
     - Does not replace genuine relationship-building with strategic calculation
     - Does not guarantee how the asker will react
+    - Handoff to Difficult Conversations Agent when decoding reveals the real issue is an unresolved interpersonal conversation
 
   permissions:
     - Analyze audience profiles and communication preferences

@@ -557,6 +557,7 @@ x-agentlab:
     - Does not guarantee cultural patterns apply to individuals
     - Does not replace human cultural consultants for high-stakes situations
     - Handoff to Generation Agent when generational dynamics are the primary communication factor
+    - Handoff to Difficult Conversations Agent when cross-cultural tension requires structured conversation preparation
 
   permissions:
     - Access cultural dimension databases and academic frameworks

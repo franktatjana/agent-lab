@@ -1,0 +1,40 @@
+# Addressing Performance Example
+# Skill: Conversation Preparation + In-Conversation Toolkit
+
+input:
+  situation: "A senior developer has been missing deadlines and their code quality has dropped significantly in the last 2 months."
+  relationship: "3 years on the team, previously high performer. Relationship is professional but not close."
+  your_goal: "Understand what's going on, address the performance gap, support them if something personal is happening."
+  their_likely_concerns: "Being put on a PIP, losing their job, being seen as failing."
+  emotional_stakes: "Medium-high. They may be dealing with something personal. I don't want to make it worse."
+
+output:
+  situation_assessment:
+    your_story: "Performance dropped suddenly. Deadlines missed, code quality down. Something changed."
+    their_story: "Possibly: personal crisis, burnout, team conflict, or loss of motivation. They may not realize how visible the change is."
+    gap: "You're seeing the output. They're living the cause. You won't know the cause until you ask."
+    identity_threat: "If they're a previously high performer, this conversation threatens their identity as 'the reliable one.'"
+
+  approach:
+    framework: "NVC (Nonviolent Communication)"
+    rationale: "NVC works well here because you're raising a concern without knowing the cause. The OFNR structure lets you state observations without judgment, leaving space for their story."
+    opening_with_nvc:
+      observation: "I've noticed that the last three sprint commitments came in late, and two PRs needed significant rework."
+      feeling: "I'm concerned because this is different from what I've seen from you."
+      need: "I need to understand what's happening so I can support you."
+      request: "Can we talk about what's been going on?"
+
+  response_cards:
+    defensiveness: "If they respond with 'Everything is fine,' try: 'I hear you. From my perspective, something has shifted. I'm not here to criticize, I'm here to understand.'"
+    personal_disclosure: "If they share something personal: 'Thank you for telling me. That takes courage. Let's figure out what support looks like.'"
+    anger: "If they push back: 'I can see this feels unfair. Help me understand what I'm missing.'"
+
+  follow_up:
+    immediate: "Summarize any agreements. If personal: 'Take the time you need. Here's what I can adjust.'"
+    short_term: "Check in on both the work and the person. 'How are you doing?' before 'How's the project?'"
+
+  blind_spots:
+    - "Are other team members affected or covering? They may have context you don't."
+    - "Is the performance drop related to a team or process change, not just the individual?"
+
+  confidence: "medium"

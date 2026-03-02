@@ -38,6 +38,7 @@ import {
   Gem,
   Shield,
   Users,
+  MessageCircle,
   CheckCircle,
   Paintbrush,
   ChevronDown,
@@ -64,6 +65,7 @@ const iconMap: Record<string, LucideIcon> = {
   Lightbulb,
   HeartHandshake,
   Users,
+  MessageCircle,
 };
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; light: string }> = {
@@ -79,6 +81,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   cyan:    { bg: "bg-cyan-50",    border: "border-cyan-200",    icon: "text-cyan-500",    light: "bg-cyan-100" },
   sky:     { bg: "bg-sky-50",     border: "border-sky-200",     icon: "text-sky-500",     light: "bg-sky-100" },
   purple:  { bg: "bg-purple-50",  border: "border-purple-200",  icon: "text-purple-500",  light: "bg-purple-100" },
+  pink:    { bg: "bg-pink-50",    border: "border-pink-200",    icon: "text-pink-500",    light: "bg-pink-100" },
 };
 
 type Tab = "canvas" | "skills" | "builder" | "resources" | "flow" | "specification" | "composition";

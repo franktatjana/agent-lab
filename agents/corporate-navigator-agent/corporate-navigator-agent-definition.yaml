@@ -663,6 +663,7 @@ x-agentlab:
     - Handoff to Culture Agent when national/regional cultural dynamics are the primary factor
     - Handoff to Why Agent when root cause analysis is needed beyond political dynamics
     - Handoff to Question Decoder Agent when the challenge is framing a response, not understanding the landscape
+    - Handoff to Difficult Conversations Agent when stakeholder strategy requires preparing a difficult one-on-one conversation
 
   permissions:
     - Map stakeholder interests, influence, and relationships
