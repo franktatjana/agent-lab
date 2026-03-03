@@ -2,6 +2,7 @@
 
 import type { StorySection } from "@/data/stories";
 import { formatInlineText } from "@/components/flyout";
+import { ImagePreview } from "../image-preview";
 import { useScrollReveal } from "../use-scroll-reveal";
 
 function FiveWhysVisual({ isVisible }: { isVisible: boolean }) {
@@ -459,6 +460,8 @@ export function FrameworkScene({ section }: { section: StorySection }) {
             ))}
           </div>
         </div>
+
+        {section.image && <ImagePreview image={section.image} />}
       </div>
     </section>
   );

@@ -10,19 +10,79 @@ Agent Lab is an agent design studio. Each agent is a portable specification: ide
 
 The core insight: **define agents by responsibility, not capability**. A "triage agent" accountable for routing beats a "classifier agent" that just describes a tool. This distinction shapes every agent spec in this repo.
 
+![Agent catalogue with 15 fully designed agents](web/public/screenshots/1.png)
+
 ## What You Can Do
 
-Each agent has seven tabs in the web app:
+Each agent has seven tabs that take you from understanding through to production-ready output.
 
-- **Canvas** shows the agent's purpose, mindset, value proposition, guardrails, human role, success criteria, and visual export prompts for Figma AI / v0.dev
-- **Skills** lists the agent's skills with step-by-step workflow breakdowns
-- **Builder** lets you pick a personality variant and skill, describe your situation, and generate a prompt ready to paste into any LLM
-- **Resources** collects stories, case studies, examples, and reference materials
-- **Flow** visualizes the agent's architecture: tools on the left, personality variants on the right, skill workflows below, with expandable detail panels
-- **Composition** maps how this agent hands off to other agents: delegations, data sharing, and escalations to human experts, with clickable edges for handoff details
-- **Specification** is the portable agent definition aligned with Oracle Agent Spec 26.1.0, where you can browse flows, tools, variants, prompts, guardrails, validate the spec, and download the YAML
+### Canvas
 
-The standalone [Composition page](/composition) shows the full multi-agent handoff graph across all 15 agents with draggable nodes and edge-click details.
+The agent's design blueprint: purpose, mindset, value proposition, guardrails, human role, and success criteria. Framework badges show the behavioral science behind each agent, with popovers that explain what each framework means and how it maps to workplace behavior.
+
+![Canvas tab showing purpose, mindset, value, guardrails, human role, and success criteria](web/public/screenshots/5.png)
+
+![Framework badge popover with details from bundled references](web/public/screenshots/6.png)
+
+### Skills
+
+Structured workflows the agent follows. Each skill composes multiple prompts into a repeatable process with numbered steps.
+
+![Skills tab with workflow steps](web/public/screenshots/8.png)
+
+### Builder
+
+Pick a personality variant and skill, describe your situation, and generate a self-contained prompt ready to paste into any LLM. The builder includes validation rules, suggested questions, and a live preview. Output works in ChatGPT, Claude, Gemini, Ollama, or any other model.
+
+![Builder with personality, skill, format, and language selectors](web/public/screenshots/10.png)
+
+![Situation input with validation rules and suggested questions](web/public/screenshots/13.png)
+
+![Generated prompt ready to copy and paste](web/public/screenshots/15.png)
+
+### Resources
+
+References, stories, examples, and case studies that inform the agent. Case studies walk through full scenarios from problem to resolution. Examples show raw input/output pairs for testing.
+
+![Resources tab with references, stories, examples, and case studies](web/public/screenshots/17.png)
+
+### Flow
+
+Interactive architecture diagram showing the agent's tools, personality variants, and skill workflows as a connected graph. Click any node to expand details.
+
+![Flow diagram showing agent architecture](web/public/screenshots/23.png)
+
+### Composition
+
+Maps how this agent hands off to other agents: delegations, data sharing, and escalations to human experts. Click any edge to see handoff details.
+
+![Composition graph showing multi-agent handoffs](web/public/screenshots/24.png)
+
+### Specification
+
+The portable agent definition aligned with Oracle Agent Spec 26.1.0. Browse flows, tools, variants, prompts, and guardrails. Validate the spec, download as YAML or ZIP.
+
+![Specification overview with flows, variants, tools, prompts, and guardrails](web/public/screenshots/25.png)
+
+![Specification prompts tab with detailed prompt content](web/public/screenshots/26.png)
+
+![Specification guardrails with boundaries, permissions, and escalation triggers](web/public/screenshots/27.png)
+
+## Stories
+
+Pain point narratives that show why structured thinking matters. Each story follows a real workplace problem from pain to resolution through the agent's lens. Stories come in two formats: a scrollable article and a full-screen visual presentation with animated slides.
+
+![Stories catalogue](web/public/screenshots/2.png)
+
+![Visual story with full-screen animated slides](web/public/screenshots/22.png)
+
+## Agent Ideas
+
+46 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. Each idea card shows the concept, category, and key frameworks. Click to expand the full design brief.
+
+![Agent ideas catalogue with 46 researched concepts](web/public/screenshots/3.png)
+
+![Agent idea detail with frameworks, skills, and key principles](web/public/screenshots/4.png)
 
 ## Agents
 
@@ -45,8 +105,6 @@ The standalone [Composition page](/composition) shows the full multi-agent hando
 | [Difficult Conversations](agents/difficult-conversations-agent/) | Prepares for and navigates high-stakes interpersonal conversations |
 | [Cat POV Agent](agents/cat-pov-agent/) | Observes workplace behavior through a cat's lens for boundary and energy insights |
 | [Wargaming Agent](agents/wargaming-agent/) | Runs competitive simulations to stress-test strategy against adversarial responses |
-
-46 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agent-ideas.md](agents/agent-ideas.md).
 
 ## Portable Agent Specifications
 

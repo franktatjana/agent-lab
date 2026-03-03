@@ -70,6 +70,7 @@ export interface StorySection {
   quote?: string;
   attribution?: string;
   agentCta?: { agentId: string; label: string };
+  image?: { src: string; alt: string };
 }
 
 export interface AgentStory {

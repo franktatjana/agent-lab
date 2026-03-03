@@ -2,6 +2,7 @@
 
 import type { StorySection } from "@/data/stories";
 import { formatInlineText } from "@/components/flyout";
+import { ImagePreview } from "../image-preview";
 import { useScrollReveal } from "../use-scroll-reveal";
 
 const typeLabels: Record<string, { label: string; color: string; metricBg: string; metricBorder: string; metricColor: string }> = {
@@ -30,22 +31,26 @@ export function MetricScene({ section }: { section: StorySection }) {
           </p>
         )}
 
-        {section.metrics && section.metrics.length > 0 && (
-          <div className="grid grid-cols-3 gap-5">
-            {section.metrics.map((m, i) => (
-              <div
-                key={m.label}
-                className={`text-center py-8 ${typeConfig.metricBg} rounded-xl border ${typeConfig.metricBorder} ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
-                style={{ animationDelay: `${(i + 1) * 150}ms` }}
-              >
-                <div className={`text-4xl md:text-5xl font-bold ${typeConfig.metricColor} tracking-tight`}>
-                  {m.value}
+        <div className={`grid ${section.image ? "md:grid-cols-[1fr_380px]" : ""} gap-6 items-start`}>
+          {section.metrics && section.metrics.length > 0 && (
+            <div className="grid grid-cols-3 gap-5">
+              {section.metrics.map((m, i) => (
+                <div
+                  key={m.label}
+                  className={`text-center py-8 ${typeConfig.metricBg} rounded-xl border ${typeConfig.metricBorder} ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
+                  style={{ animationDelay: `${(i + 1) * 150}ms` }}
+                >
+                  <div className={`text-4xl md:text-5xl font-bold ${typeConfig.metricColor} tracking-tight`}>
+                    {m.value}
+                  </div>
+                  <div className="text-sm text-stone-500 mt-2">{m.label}</div>
                 </div>
-                <div className="text-sm text-stone-500 mt-2">{m.label}</div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+
+          {section.image && <ImagePreview image={section.image} />}
+        </div>
       </div>
     </section>
   );

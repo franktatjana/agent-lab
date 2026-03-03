@@ -2,6 +2,7 @@
 
 import type { StorySection } from "@/data/stories";
 import { formatInlineText } from "@/components/flyout";
+import { ImagePreview } from "../image-preview";
 import { ArrowRight } from "lucide-react";
 
 export function SummaryScene({ section }: { section: StorySection }) {
@@ -38,6 +39,8 @@ export function SummaryScene({ section }: { section: StorySection }) {
             ))}
           </div>
         )}
+
+        {section.image && <ImagePreview image={section.image} />}
 
         {section.agentCta && (
           <a

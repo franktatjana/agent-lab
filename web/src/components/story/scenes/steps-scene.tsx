@@ -2,6 +2,7 @@
 
 import type { StorySection } from "@/data/stories";
 import { formatInlineText } from "@/components/flyout";
+import { ImagePreview } from "../image-preview";
 import { useScrollReveal } from "../use-scroll-reveal";
 
 export function StepsScene({ section }: { section: StorySection }) {
@@ -24,8 +25,8 @@ export function StepsScene({ section }: { section: StorySection }) {
           </p>
         )}
 
-        <div className={`grid ${hasMetrics ? "md:grid-cols-[1fr_240px]" : ""} gap-8`}>
-          {/* Steps + callout */}
+        <div className={`grid ${section.image ? "md:grid-cols-[1fr_380px]" : hasMetrics ? "md:grid-cols-[1fr_240px]" : ""} gap-6 items-start`}>
+          {/* Steps + callout + metrics (left column) */}
           <div>
             {section.steps && (
               <div className="space-y-0">
@@ -66,8 +67,26 @@ export function StepsScene({ section }: { section: StorySection }) {
             )}
           </div>
 
-          {/* Metrics sidebar */}
-          {hasMetrics && (
+          {/* Right column: image or metrics */}
+          {section.image ? (
+            <div className="flex flex-col items-center gap-3">
+              <ImagePreview image={section.image} />
+              {hasMetrics && (
+                <div className="flex flex-wrap justify-center gap-3 mt-2">
+                  {section.metrics!.map((m, i) => (
+                    <div
+                      key={m.label}
+                      className={`bg-white border border-stone-200 rounded-xl px-4 py-3 text-center ${isVisible ? "scene-scale-in" : "scene-hidden"}`}
+                      style={{ animationDelay: `${((section.steps?.length ?? 5) + 2 + i) * 150}ms` }}
+                    >
+                      <div className="text-xl font-bold text-stone-900">{m.value}</div>
+                      <div className="text-xs text-stone-500 mt-0.5">{m.label}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : hasMetrics ? (
             <div className="flex flex-col justify-center gap-4">
               {section.metrics!.map((m, i) => (
                 <div
@@ -80,7 +99,7 @@ export function StepsScene({ section }: { section: StorySection }) {
                 </div>
               ))}
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </section>

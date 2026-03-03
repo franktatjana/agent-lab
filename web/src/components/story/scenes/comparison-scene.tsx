@@ -2,6 +2,7 @@
 
 import type { StorySection } from "@/data/stories";
 import { formatInlineText } from "@/components/flyout";
+import { ImagePreview } from "../image-preview";
 import { useScrollReveal } from "../use-scroll-reveal";
 
 export function ComparisonScene({ section }: { section: StorySection }) {
@@ -23,33 +24,37 @@ export function ComparisonScene({ section }: { section: StorySection }) {
           </p>
         )}
 
-        {section.comparisons && section.comparisons.length > 0 && (
-          <div className="bg-white rounded-xl border border-stone-200 overflow-hidden">
-            {/* Header */}
-            <div className="grid grid-cols-[140px_1fr_1fr] md:grid-cols-[180px_1fr_1fr] gap-4 px-5 py-3 border-b border-stone-200 bg-stone-50">
-              <div />
-              <div className="text-xs font-medium uppercase tracking-wide text-red-500">Before</div>
-              <div className="text-xs font-medium uppercase tracking-wide text-emerald-600">After</div>
-            </div>
-
-            {/* Rows */}
-            {section.comparisons.map((c, i) => (
-              <div
-                key={c.dimension}
-                className={`grid grid-cols-[140px_1fr_1fr] md:grid-cols-[180px_1fr_1fr] gap-4 px-5 py-3 border-b border-stone-100 last:border-b-0 ${isVisible ? "scene-fade-up" : "scene-hidden"}`}
-                style={{ animationDelay: `${(i + 1) * 80}ms` }}
-              >
-                <div className="text-sm font-medium text-stone-400">{c.dimension}</div>
-                <div className="text-sm text-stone-600 bg-red-50 rounded-lg px-3 py-1.5 border border-red-100">
-                  {c.before}
-                </div>
-                <div className="text-sm text-stone-900 font-medium bg-emerald-50 rounded-lg px-3 py-1.5 border border-emerald-100">
-                  {c.after}
-                </div>
+        <div className={`grid ${section.image ? "md:grid-cols-[1fr_380px]" : ""} gap-6 items-start`}>
+          {section.comparisons && section.comparisons.length > 0 && (
+            <div className="bg-white rounded-xl border border-stone-200 overflow-hidden">
+              {/* Header */}
+              <div className="grid grid-cols-[140px_1fr_1fr] md:grid-cols-[180px_1fr_1fr] gap-4 px-5 py-3 border-b border-stone-200 bg-stone-50">
+                <div />
+                <div className="text-xs font-medium uppercase tracking-wide text-red-500">Before</div>
+                <div className="text-xs font-medium uppercase tracking-wide text-emerald-600">After</div>
               </div>
-            ))}
-          </div>
-        )}
+
+              {/* Rows */}
+              {section.comparisons.map((c, i) => (
+                <div
+                  key={c.dimension}
+                  className={`grid grid-cols-[140px_1fr_1fr] md:grid-cols-[180px_1fr_1fr] gap-4 px-5 py-3 border-b border-stone-100 last:border-b-0 ${isVisible ? "scene-fade-up" : "scene-hidden"}`}
+                  style={{ animationDelay: `${(i + 1) * 80}ms` }}
+                >
+                  <div className="text-sm font-medium text-stone-400">{c.dimension}</div>
+                  <div className="text-sm text-stone-600 bg-red-50 rounded-lg px-3 py-1.5 border border-red-100">
+                    {c.before}
+                  </div>
+                  <div className="text-sm text-stone-900 font-medium bg-emerald-50 rounded-lg px-3 py-1.5 border border-emerald-100">
+                    {c.after}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {section.image && <ImagePreview image={section.image} />}
+        </div>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import type { StorySection } from "@/data/stories";
 import { formatInlineText } from "@/components/flyout";
+import { ImagePreview } from "../image-preview";
 import { ChevronDown } from "lucide-react";
 
 export function HeroScene({ section }: { section: StorySection }) {
@@ -23,6 +24,8 @@ export function HeroScene({ section }: { section: StorySection }) {
             {formatInlineText(section.content)}
           </p>
         )}
+
+        {section.image && <ImagePreview image={section.image} />}
 
         {section.heroStat && (
           <div className="mt-16 pt-10 border-t border-stone-200 inline-block px-16">

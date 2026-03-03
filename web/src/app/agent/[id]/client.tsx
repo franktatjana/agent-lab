@@ -356,7 +356,14 @@ export default function AgentPageClient({
                       <span className="text-stone-400 font-mono text-xs mt-0.5 shrink-0 w-4 text-right">
                         {idx + 1}.
                       </span>
-                      <span>{step}</span>
+                      <span>
+                        {step.includes(":") ? (
+                          <>
+                            <span className="font-medium text-stone-700">{step.slice(0, step.indexOf(":"))}:</span>
+                            {step.slice(step.indexOf(":") + 1)}
+                          </>
+                        ) : step}
+                      </span>
                     </li>
                   ))}
                 </ol>
