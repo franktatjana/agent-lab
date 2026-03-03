@@ -36,6 +36,9 @@ export default function RootLayout({
               <a href="/guide" className="text-sm font-semibold text-stone-600 hover:text-stone-900 transition-colors">
                 Guide
               </a>
+              <a href="/handbook" className="text-sm font-semibold text-stone-600 hover:text-stone-900 transition-colors">
+                Handbook
+              </a>
               <a href="/#agent-ideas" className="text-sm text-stone-400 hover:text-stone-600 transition-colors">
                 Agent Ideas
               </a>

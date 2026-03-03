@@ -604,6 +604,7 @@ The definition has two clear zones. The Agent Spec Standard Zone contains the en
 - `knowledge`: References with conditional loading (`load_when`)
 - `assets`: Generated document templates
 - `quality`: Evaluation criteria checklist
+- `monitoring`: Signals, thresholds, and drift detection configuration for runtime observability
 
 **Landscape of portable formats:**
 
@@ -990,6 +991,64 @@ Monitor agent systems with these capabilities:
 - **Logging**: structured, searchable events (inputs, outputs, errors)
 - **Metrics**: tokens, latency, error rates, costs over time
 - **Alerting**: thresholds triggering notifications
+
+### Agent Monitoring
+
+Observability tells you what happened. Monitoring tells you whether what happened was good enough, and whether it's getting worse. Guardrails enforce rules at execution time. Monitoring watches execution over time and catches problems guardrails cannot: gradual quality degradation, behavioral drift after model updates, and cost trends that signal design inefficiency.
+
+Agent monitoring operates at four layers, each answering a different question:
+
+**Runtime observability** tracks execution mechanics. Latency per skill, token consumption per request, tool call frequency, error rates, and retry counts. These are infrastructure signals that apply to every agent regardless of domain. A spike in token usage after a model update signals prompt drift before output quality visibly degrades.
+
+**Behavioral monitoring** compares actual agent output against the spec. The quality criteria already defined in `x-agentlab.quality` become the baseline. If an agent's Cat Scan skill is supposed to produce "genuinely insightful" territory observations, behavioral monitoring measures whether outputs still meet that bar over time. This layer catches drift: the agent still runs, still produces output, but the output no longer matches what the spec promised.
+
+**Guardrail telemetry** tracks the enforcement layer. How often do input validation gates reject incomplete requests? Which escalation triggers fire most frequently? Are resource guardrails (max tool calls, token limits) being hit, or do they have headroom? Guardrail metrics reveal whether the agent is operating within its designed boundaries or constantly bumping against constraints. High escalation rates may signal that the agent's scope is wrong, not that the user is doing something unexpected.
+
+**Business outcome monitoring** maps agent execution to the success criteria defined on the Canvas. If the Canvas says the agent succeeds when "users act on at least one recommendation within 48 hours," then monitoring tracks that outcome, not just whether the agent produced a recommendation. This layer requires integration beyond the agent itself, connecting to downstream systems that can observe whether the agent's output actually moved the needle.
+
+**Defining monitoring in the spec.** The `x-agentlab.monitoring` extension makes monitoring configuration portable alongside the agent definition. Rather than leaving observability as an afterthought that each deployment team figures out independently, the spec declares what signals matter, what thresholds indicate degradation, and what baselines define "good."
+
+```yaml
+x-agentlab:
+  monitoring:
+    signals:
+      - name: task_completion_rate
+        description: Percentage of requests that produce a complete, valid output
+        target: ">= 0.95"
+      - name: quality_score
+        description: Model-graded score against x-agentlab.quality criteria
+        target: ">= 0.8"
+      - name: avg_tokens_per_request
+        description: Mean token consumption per completed request
+        baseline: 2400
+        alert_threshold: 3600
+      - name: escalation_rate
+        description: Fraction of requests triggering escalation_triggers
+        target: "<= 0.15"
+      - name: guardrail_rejection_rate
+        description: Fraction of inputs rejected by validation gates
+        baseline: 0.05
+        alert_threshold: 0.20
+    drift_detection:
+      method: periodic_evaluation
+      frequency: weekly
+      golden_dataset: examples/golden-set.yaml
+      grader: model-based
+      threshold: 0.1
+      action: flag_for_review
+```
+
+**Signals** are the specific metrics this agent cares about. Each signal has a name, description, and either a `target` (the goal to maintain) or a `baseline` with `alert_threshold` (normal value and the point where something is wrong). Not every agent needs the same signals. A research agent might track source diversity and citation accuracy. A triage agent might track routing correctness and handoff latency.
+
+**Drift detection** defines how to catch behavioral degradation over time. The `golden_dataset` points to known-good input/output pairs from the agent's examples folder. Periodically re-running these against the current model and comparing results reveals whether a model update or prompt change has shifted behavior. The `threshold` sets how much deviation triggers review. The `action` determines the response: `flag_for_review`, `alert`, or `block_deployment`.
+
+**Connection to existing spec fields.** Monitoring does not duplicate guardrails or quality criteria. Guardrails are enforcement: they block bad outputs in real-time. Quality criteria are evaluation: they define what "good" looks like. Monitoring is observation: it tracks whether enforcement and evaluation are working as designed, over time, across many executions. The three layers are complementary:
+
+| Concern | Spec field | When it acts | What it does |
+|---------|-----------|-------------|-------------|
+| Enforcement | `guardrails` | Per request | Blocks violations |
+| Evaluation | `quality` | Per output | Grades goodness |
+| Observation | `monitoring` | Over time | Detects trends and drift |
 
 ---
 

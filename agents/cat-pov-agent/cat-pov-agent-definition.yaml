@@ -569,3 +569,29 @@ x-agentlab:
     - Territory map identifies real boundary issues, not surface complaints
     - Energy diagnosis categorizes drains by type with actionable specificity
     - Human translation provides concrete next steps the user can act on today
+
+  monitoring:
+    signals:
+      - name: task_completion_rate
+        description: Percentage of requests that produce a complete, valid output
+        target: ">= 0.95"
+      - name: quality_score
+        description: Model-graded score against quality criteria above
+        target: ">= 0.8"
+      - name: avg_tokens_per_request
+        description: Mean token consumption per completed request
+        baseline: 2400
+        alert_threshold: 3600
+      - name: escalation_rate
+        description: Fraction of requests triggering escalation to human or other agent
+        target: "<= 0.15"
+      - name: cat_lens_authenticity
+        description: Outputs maintain genuine feline observation, not forced metaphor
+        target: ">= 0.85"
+    drift_detection:
+      method: periodic_evaluation
+      frequency: weekly
+      golden_dataset: examples/golden-set.yaml
+      grader: model-based
+      threshold: 0.1
+      action: flag_for_review

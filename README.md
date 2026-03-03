@@ -88,23 +88,23 @@ Pain point narratives that show why structured thinking matters. Each story foll
 
 15 fully documented agents with prompts, skills, references, and personality variants:
 
-| Agent | Responsibility |
-|-------|---------------|
-| [Culture Agent](agents/culture-agent/) | Cross-cultural communication bridging and meeting preparation |
-| [Research Agent](agents/research-agent/) | Multi-source research, synthesis, and fact-checking |
-| [Why Agent](agents/why-agent/) | Root cause analysis through structured questioning |
-| [Generation Agent](agents/generation-agent/) | Cross-generational workplace communication |
-| [Superhero Agent](agents/superhero-agent/) | Reframes work challenges through Marvel hero archetypes |
-| [Storytelling Agent](agents/storytelling-agent/) | Crafts compelling narratives for professional contexts |
-| [Question Decoder](agents/question-decoder-agent/) | Decodes who is asking, why, and architects the right answer |
-| [Six Hats Agent](agents/six-hats-agent/) | Structured parallel thinking using de Bono's Six Thinking Hats |
-| [Corporate Navigator](agents/corporate-navigator-agent/) | Navigates office politics, stakeholder dynamics, and career strategy |
-| [Design Thinking Agent](agents/design-thinking-agent/) | Guides teams through the design thinking process |
-| [Leadership Coach](agents/leadership-coach-agent/) | Leadership style assessment and development coaching |
-| [Networking Agent](agents/networking-agent/) | Professional networking strategy and relationship building |
-| [Difficult Conversations](agents/difficult-conversations-agent/) | Prepares for and navigates high-stakes interpersonal conversations |
-| [Cat POV Agent](agents/cat-pov-agent/) | Observes workplace behavior through a cat's lens for boundary and energy insights |
-| [Wargaming Agent](agents/wargaming-agent/) | Runs competitive simulations to stress-test strategy against adversarial responses |
+| Agent | Responsibility | Guide |
+|-------|---------------|-------|
+| [Culture Agent](agents/culture-agent/) | Cross-cultural communication bridging and meeting preparation | [Guide](docs/guides/culture-agent-guide.md) |
+| [Research Agent](agents/research-agent/) | Multi-source research, synthesis, and fact-checking | [Guide](docs/guides/research-agent-guide.md) |
+| [Why Agent](agents/why-agent/) | Root cause analysis through structured questioning | [Guide](docs/guides/why-agent-guide.md) |
+| [Generation Agent](agents/generation-agent/) | Cross-generational workplace communication | [Guide](docs/guides/generation-agent-guide.md) |
+| [Superhero Agent](agents/superhero-agent/) | Reframes work challenges through Marvel hero archetypes | [Guide](docs/guides/superhero-agent-guide.md) |
+| [Storytelling Agent](agents/storytelling-agent/) | Crafts compelling narratives for professional contexts | [Guide](docs/guides/storytelling-agent-guide.md) |
+| [Question Decoder](agents/question-decoder-agent/) | Decodes who is asking, why, and architects the right answer | [Guide](docs/guides/question-decoder-agent-guide.md) |
+| [Six Hats Agent](agents/six-hats-agent/) | Structured parallel thinking using de Bono's Six Thinking Hats | [Guide](docs/guides/six-hats-agent-guide.md) |
+| [Corporate Navigator](agents/corporate-navigator-agent/) | Navigates office politics, stakeholder dynamics, and career strategy | [Guide](docs/guides/corporate-navigator-agent-guide.md) |
+| [Design Thinking Agent](agents/design-thinking-agent/) | Guides teams through the design thinking process | [Guide](docs/guides/design-thinking-agent-guide.md) |
+| [Leadership Coach](agents/leadership-coach-agent/) | Leadership style assessment and development coaching | [Guide](docs/guides/leadership-coach-agent-guide.md) |
+| [Networking Agent](agents/networking-agent/) | Professional networking strategy and relationship building | [Guide](docs/guides/networking-agent-guide.md) |
+| [Difficult Conversations](agents/difficult-conversations-agent/) | Prepares for and navigates high-stakes interpersonal conversations | [Guide](docs/guides/difficult-conversations-agent-guide.md) |
+| [Cat POV Agent](agents/cat-pov-agent/) | Observes workplace behavior through a cat's lens for boundary and energy insights | [Guide](docs/guides/cat-pov-agent-guide.md) |
+| [Wargaming Agent](agents/wargaming-agent/) | Runs competitive simulations to stress-test strategy against adversarial responses | [Guide](docs/guides/wargaming-agent-guide.md) |
 
 ## Portable Agent Specifications
 
@@ -116,7 +116,8 @@ See [handbook.md](docs/handbook.md) Part 5 (Portable Agent Definitions) for the 
 
 ## Documentation
 
-- **[Handbook](docs/handbook.md)** documents the design patterns: identity, skills, validation gates, output constraints, context engineering, portable definitions
+- **[Agent Handbook](docs/agent-handbook.md)** narrative guide to every agent: when to use it, what trap to avoid, and how it changes the outcome
+- **[Design Handbook](docs/handbook.md)** documents the design patterns: identity, skills, validation gates, output constraints, context engineering, portable definitions
 - **[Lessons Learned](docs/lessons-learned.md)** captures dos and don'ts from building these agents
 - **[Bookmarks](docs/bookmarks.md)** curates external resources on agent design, prompt engineering, and agent specifications
 - **[Agent Catalogue](agent-catalogue.md)** lists all agents and ideas in one place

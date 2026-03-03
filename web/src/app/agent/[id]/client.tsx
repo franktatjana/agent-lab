@@ -52,6 +52,7 @@ import { FrameworkBadge, agentResources } from "@/components/framework-badge";
 import { SandboxTab } from "@/components/sandbox/sandbox-tab";
 import { FlowTab } from "@/components/flow/FlowTab";
 import { CompositionTab } from "@/components/composition-tab";
+import { GuideTab, type GuideData } from "@/components/guide-tab";
 
 
 const iconMap: Record<string, LucideIcon> = {
@@ -90,7 +91,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   red:     { bg: "bg-red-50",     border: "border-red-200",     icon: "text-red-500",     light: "bg-red-100" },
 };
 
-type Tab = "canvas" | "skills" | "builder" | "resources" | "flow" | "specification" | "composition";
+type Tab = "canvas" | "skills" | "builder" | "resources" | "flow" | "specification" | "composition" | "guide";
 
 const canvasCards: { key: keyof AgentCanvas; label: string; icon: LucideIcon; question: string }[] = [
   { key: "purpose", label: "Purpose", icon: Target, question: "Why does this agent exist?" },
@@ -121,6 +122,7 @@ export default function AgentPageClient({
   const [designPrompts, setDesignPrompts] = useState<Record<string, string>>({});
   const [designPromptsOpen, setDesignPromptsOpen] = useState(false);
   const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
+  const [guideData, setGuideData] = useState<GuideData | null>(null);
 
   useEffect(() => {
     fetch("/definitions.json")
@@ -128,6 +130,12 @@ export default function AgentPageClient({
       .then((data: Record<string, BundledAgentDefinition>) => {
         const bundled = data[id];
         if (bundled?.designPrompts) setDesignPrompts(bundled.designPrompts);
+      })
+      .catch(() => {});
+    fetch("/guides.json")
+      .then((res) => res.json())
+      .then((data: { guides: Record<string, GuideData> }) => {
+        if (data.guides[id]) setGuideData(data.guides[id]);
       })
       .catch(() => {});
   }, [id]);
@@ -214,6 +222,7 @@ export default function AgentPageClient({
       {/* Tab navigation */}
       <div className="flex gap-1 mb-6 border-b border-stone-200">
         {([
+          ...(guideData ? [{ id: "guide" as Tab, label: "Guide" }] : []),
           { id: "canvas" as Tab, label: "Canvas" },
           { id: "skills" as Tab, label: "Skills" },
           { id: "builder" as Tab, label: "Builder" },
@@ -813,6 +822,11 @@ export default function AgentPageClient({
       {/* ── Sandbox Tab ── */}
       {activeTab === "specification" && (
         <SandboxTab agentId={agent.id} colors={colors} />
+      )}
+
+      {/* ── Guide Tab ── */}
+      {activeTab === "guide" && guideData && (
+        <GuideTab guide={guideData} colors={colors} />
       )}
 
       {/* Flyout panel */}
