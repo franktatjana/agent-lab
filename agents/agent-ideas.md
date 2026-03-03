@@ -52,6 +52,8 @@
 | [bias-detective-agent](#bias-detective-agent) | Spots cognitive biases in reasoning: sunk cost, confirmation bias, anchoring, groupthink |
 | [prioritization-agent](#prioritization-agent) | Ranks competing options when everything feels urgent: frameworks for what to do first |
 | [game-theory-agent](#game-theory-agent) | Analyzes competitive interactions and incentive structures: what happens when outcomes depend on others |
+| [contradiction-solver-agent](#contradiction-solver-agent) | Resolves contradictions using TRIZ inventive principles: when improving one thing worsens another |
+| [ambivalence-agent](#ambivalence-agent) | Surfaces and resolves resistance using Motivational Interviewing: when someone agrees but doesn't move |
 | [mental-models-agent](#mental-models-agent) | Cross-domain pattern matching: maps problems to models from physics, biology, economics, and psychology |
 | [sensemaking-agent](#sensemaking-agent) | Clarifies ambiguous situations before you can decide: what's actually going on here? |
 | | **Use-Case Specific** *(may use personality frameworks internally)* |
@@ -2682,3 +2684,114 @@ References:
 - [Man's Search for Meaning (Viktor Frankl)](https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273): meaning can be constructed from any circumstance
 - [Becoming an Ex (Helen Rose Ebaugh)](https://www.amazon.com/Becoming-Ex-Process-Role-Exit/dp/0226180700): how people exit roles central to their identity
 - [Life Reimagined (Barbara Bradley Hagerty)](https://www.amazon.com/Life-Reimagined-Science-Middle-Everything/dp/1594631581): neuroscience and psychology of midlife reinvention
+
+---
+
+## contradiction-solver-agent
+
+Resolves contradictions using TRIZ inventive principles. Most problem-solving assumes tradeoffs are permanent: you can have speed or quality, cost or reliability, flexibility or control. TRIZ (Theory of Inventive Problem Solving) starts from the opposite premise, that contradictions are solvable if you find the right inventive principle. Genrich Altshuller analyzed 40,000 patents and found that inventive solutions follow 40 recurring patterns. The agent identifies the technical or administrative contradiction in a situation, maps it to the TRIZ contradiction matrix, and suggests inventive principles that have resolved similar contradictions in other domains.
+
+Frameworks supported:
+
+- **TRIZ 40 Inventive Principles (Altshuller)**: Recurring solution patterns extracted from patent analysis: segmentation, taking out, local quality, asymmetry, merging, universality, nesting, counterweight, and 32 more
+- **Contradiction Matrix**: Maps improving parameter vs worsening parameter to a shortlist of inventive principles most likely to resolve the conflict
+- **Ideal Final Result (IFR)**: The system achieves the desired function by itself, with no added cost or complexity. Forces thinking beyond incremental improvement
+- **Su-Field Analysis**: Substance-field modeling for analyzing and improving technical systems
+- **Trimming**: Systematically remove components by redistributing their functions to remaining elements
+
+Possible skills:
+
+- `find-contradiction`: Identify the technical or administrative contradiction hiding inside a problem. Name what improves and what worsens
+- `map-to-principles`: Use the contradiction matrix to surface the 3-5 inventive principles most likely to resolve this specific contradiction
+- `ideal-final-result`: Define the IFR, then work backward to find the minimum change needed to approach it
+- `cross-domain-transfer`: Find analogous contradictions solved in other industries and translate the solution pattern
+
+Possible inputs: `problem`, `what_you_want_to_improve`, `what_gets_worse`, `domain`, `constraints`
+
+Validation rules (check before generating):
+
+1. Problem (what are you trying to solve?)
+2. Improving parameter (what do you want to get better?)
+3. Worsening parameter (what degrades when you improve the first?)
+
+Output constraints:
+
+```text
+contradiction: The named contradiction in one sentence (improving X worsens Y).
+inventive_principles: Top 3 TRIZ principles that apply, with one-sentence explanation each.
+analogies: 1-2 examples of this contradiction solved in other domains.
+ideal_final_result: What the solution looks like if the contradiction fully disappears, 1-2 sentences.
+next_experiment: One concrete step to test the most promising principle.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Contradictions are solvable**: the assumption that tradeoffs are permanent is the real constraint, not the physics of the situation
+- **Solutions repeat across domains**: the same inventive principle that solved a materials science problem often resolves an organizational one
+- **Ideal Final Result forces ambition**: defining the ideal outcome prevents settling for incremental improvement
+- **The contradiction is the diagnosis**: naming what improves and what worsens is half the solution
+
+References:
+
+- [And Suddenly the Inventor Appeared (Altshuller)](https://www.amazon.com/Suddenly-Inventor-Appeared-Genrich-Altshuller/dp/0964074028): TRIZ explained through stories by its creator
+- [TRIZ for Engineers (Gadd)](https://www.amazon.com/TRIZ-Engineers-Enabling-Inventive-Problem/dp/0470741880): comprehensive engineering-focused TRIZ reference
+- [The Innovator's Solution (Christensen)](https://www.amazon.com/Innovators-Solution-Creating-Sustaining-Successful/dp/1422196577): complementary framework for innovation strategy
+- [Oxford Creativity TRIZ Effects Database](https://www.triz.co.uk/): searchable database of TRIZ principles and effects
+
+---
+
+## ambivalence-agent
+
+Surfaces and resolves resistance using Motivational Interviewing techniques. Most agents assume the user knows what they want and just needs help executing. This agent covers the harder case: when someone intellectually agrees with a direction but isn't moving. The gap between knowing and doing is not laziness or lack of information, it is ambivalence. Motivational Interviewing (MI), originally from clinical psychology, is the most evidence-based approach for helping people resolve their own resistance. The DARN-CAT framework (Desire, Ability, Reasons, Need, Commitment, Activation, Taking Steps) maps exactly where someone is stuck and what kind of conversation moves them forward.
+
+Frameworks supported:
+
+- **Motivational Interviewing (Miller & Rollnick)**: A collaborative conversation style for strengthening a person's own motivation and commitment to change
+- **DARN-CAT**: Desire (want), Ability (can), Reasons (why), Need (must) are preparatory change talk. Commitment (will), Activation (ready), Taking Steps (doing) are mobilizing change talk
+- **Decisional Balance**: Structured exploration of pros and cons of both changing and staying the same
+- **Readiness Ruler**: Self-assessed confidence and importance ratings that reveal where the block is
+- **Righting Reflex (to avoid)**: The instinct to fix, advise, or argue for change, which paradoxically increases resistance
+
+Possible skills:
+
+- `surface-ambivalence`: Identify where someone is stuck on the DARN-CAT spectrum. Are they missing desire, ability, reasons, or need? Or do they have all four but lack commitment to act?
+- `evoke-change-talk`: Ask questions designed to draw out the person's own arguments for change rather than providing external motivation
+- `decisional-balance`: Map the four quadrants: benefits of change, costs of change, benefits of status quo, costs of status quo
+- `roll-with-resistance`: When someone pushes back, reflect rather than argue. Techniques for turning resistance into exploration
+
+Possible inputs: `situation`, `what_they_agree_with`, `what_they_are_not_doing`, `what_you_have_tried`, `relationship_to_person`
+
+Validation rules (check before generating):
+
+1. Situation (what change is being resisted?)
+2. Agreement level (what does the person intellectually accept?)
+3. Behavior gap (what are they not doing despite agreeing?)
+
+Output constraints:
+
+```text
+ambivalence_diagnosis: Where on DARN-CAT the person is stuck, 2-3 sentences.
+change_talk_present: What preparatory or mobilizing language they've already used, bulleted list.
+sustain_talk_present: What resistance language reveals their concerns, bulleted list.
+evocative_questions: 3-4 questions designed to draw out their own motivation.
+what_not_to_do: The righting reflex trap specific to this situation, 1-2 sentences.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Ambivalence is normal, not pathological**: feeling two ways about change is the human default, not a character flaw
+- **The righting reflex backfires**: arguing for change triggers the person to argue against it. The harder you push, the more they resist
+- **Change talk predicts change**: when people hear themselves articulating desire, ability, reasons, and need, they move toward action
+- **Autonomy is non-negotiable**: MI works because it respects the person's right to choose, even to choose not to change
+- **Sustain talk is information**: resistance tells you what matters to the person. Listen to it instead of overriding it
+
+References:
+
+- [Motivational Interviewing (Miller & Rollnick, 3rd ed)](https://www.amazon.com/Motivational-Interviewing-Third-Helping-Applications/dp/1609182278): the definitive clinical text on MI
+- [Motivational Interviewing in Health Care (Rollnick, Miller, Butler)](https://www.amazon.com/Motivational-Interviewing-Health-Care-Patients/dp/1593856121): MI adapted for non-clinical settings
+- [Building Motivational Interviewing Skills (Rosengren)](https://www.amazon.com/Building-Motivational-Interviewing-Skills-Applications/dp/1462532063): practical exercises and skill-building
+- [DARN-CAT Framework](https://motivationalinterviewing.org/): change talk classification from the MI Network of Trainers
