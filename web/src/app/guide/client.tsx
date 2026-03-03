@@ -102,16 +102,19 @@ export function GuideClient() {
       <h2 className="text-xl font-bold text-stone-900 mt-16 mb-6">What You Can Do</h2>
 
       <p className="text-stone-600 leading-relaxed mb-8">
-        Each agent has seven tabs that take you from understanding through to
-        production-ready output.
+        Each agent has{" "}
+        <strong className="text-stone-900">seven tabs that take you from understanding through to
+        production-ready output.</strong>
       </p>
 
       {/* Canvas */}
       <h3 className="text-lg font-semibold text-stone-800 mb-3">Canvas</h3>
       <p className="text-stone-600 leading-relaxed mb-4">
         The agent&apos;s design blueprint: purpose, mindset, value proposition,
-        guardrails, human role, and success criteria. Framework badges show the
-        behavioral science behind each agent. Click any badge to open a popover
+        guardrails, human role, and success criteria.{" "}
+        <strong className="text-stone-900">Framework badges show the
+        behavioral science behind each agent.</strong>{" "}
+        Click any badge to open a popover
         with the full explanation: what the framework means, how it maps to
         workplace behavior, and a link to the original research.
       </p>
@@ -124,8 +127,9 @@ export function GuideClient() {
       {/* Skills */}
       <h3 className="text-lg font-semibold text-stone-800 mb-3">Skills</h3>
       <p className="text-stone-600 leading-relaxed mb-4">
-        Structured workflows the agent follows. Each skill composes multiple
-        prompts into a repeatable process with numbered steps.
+        Structured workflows the agent follows.{" "}
+        <strong className="text-stone-900">Each skill composes multiple
+        prompts into a repeatable process</strong> with numbered steps.
       </p>
       <div className="mb-12">
         <Screenshot src="/screenshots/8.png" alt="Skills tab with workflow steps" />
@@ -134,9 +138,10 @@ export function GuideClient() {
       {/* Builder */}
       <h3 className="text-lg font-semibold text-stone-800 mb-3">Builder</h3>
       <p className="text-stone-600 leading-relaxed mb-4">
-        Pick a personality variant and skill, describe your situation, and
-        generate a self-contained prompt ready to paste into any LLM. The
-        builder includes validation rules, suggested questions, and a live
+        Pick a personality variant and skill, describe your situation, and{" "}
+        <strong className="text-stone-900">generate a self-contained prompt
+        ready to paste into any LLM.</strong>{" "}
+        The builder includes validation rules, suggested questions, and a live
         preview. Output works in ChatGPT, Claude, Gemini, Ollama, or any other
         model.
       </p>
@@ -149,9 +154,11 @@ export function GuideClient() {
       {/* Resources */}
       <h3 className="text-lg font-semibold text-stone-800 mb-3">Resources</h3>
       <p className="text-stone-600 leading-relaxed mb-4">
-        References, stories, examples, and case studies that inform the agent.
-        Case studies walk through full scenarios from problem to resolution.
-        Examples show raw input/output pairs for testing.
+        <strong className="text-stone-900">References from published research</strong>{" "}
+        are what inform each agent&apos;s prompts, validation rules, and output structure.
+        Stories, examples, and case studies show the agent applied to real scenarios.
+        Case studies walk through full problems from pain to resolution.
+        Examples provide raw input/output pairs for testing.
       </p>
       <div className="mb-12">
         <Screenshot src="/screenshots/17.png" alt="Resources tab with references, stories, examples, and case studies" />
@@ -160,7 +167,8 @@ export function GuideClient() {
       {/* Flow */}
       <h3 className="text-lg font-semibold text-stone-800 mb-3">Flow</h3>
       <p className="text-stone-600 leading-relaxed mb-4">
-        Interactive architecture diagram showing the agent&apos;s tools,
+        <strong className="text-stone-900">Interactive architecture diagram</strong>{" "}
+        showing the agent&apos;s tools,
         personality variants, and skill workflows as a connected graph. Click any
         node to expand details.
       </p>
@@ -171,7 +179,9 @@ export function GuideClient() {
       {/* Composition */}
       <h3 className="text-lg font-semibold text-stone-800 mb-3">Composition</h3>
       <p className="text-stone-600 leading-relaxed mb-4">
-        Maps how this agent hands off to other agents: delegations, data sharing,
+        Maps how this agent{" "}
+        <strong className="text-stone-900">hands off to other agents:</strong>{" "}
+        delegations, data sharing,
         and escalations to human experts. Click any edge to see handoff details.
       </p>
       <div className="mb-12">
@@ -183,8 +193,9 @@ export function GuideClient() {
       <p className="text-stone-600 leading-relaxed mb-4">
         This is what the whole project builds toward. The Specification tab shows
         the portable agent definition aligned with Oracle Agent Spec 26.1.0:
-        flows, tools, variants, prompts, and guardrails in one structured view.
-        Validate the spec against the standard, then download as YAML or ZIP to
+        flows, tools, variants, prompts, and guardrails in one structured view.{" "}
+        <strong className="text-stone-900">Validate the spec against the
+        standard, then download as YAML or ZIP</strong> to
         use in your own agent runtime.
       </p>
       <div className="space-y-4 mb-12">
@@ -196,8 +207,9 @@ export function GuideClient() {
       {/* Stories */}
       <h2 className="text-xl font-bold text-stone-900 mt-16 mb-3">Stories</h2>
       <p className="text-stone-600 leading-relaxed mb-4">
-        Pain point narratives that show why structured thinking matters. Each
-        story follows a real workplace problem from pain to resolution through
+        Pain point narratives that show why structured thinking matters.{" "}
+        <strong className="text-stone-900">Each story follows a real workplace
+        problem from pain to resolution</strong> through
         the agent&apos;s lens. Stories come in two formats: a scrollable article
         and a full-screen visual presentation with animated slides.
       </p>
@@ -209,7 +221,8 @@ export function GuideClient() {
       {/* Agent Ideas */}
       <h2 className="text-xl font-bold text-stone-900 mt-16 mb-3">Agent Ideas</h2>
       <p className="text-stone-600 leading-relaxed mb-4">
-        46 more agent concepts with frameworks, skills, validation rules, output
+        <strong className="text-stone-900">46 more agent concepts</strong> with
+        frameworks, skills, validation rules, output
         constraints, and IP notes researched. Each idea card shows the concept,
         category, and key frameworks. Click to expand the full design brief.
       </p>
@@ -221,8 +234,8 @@ export function GuideClient() {
       {/* Agents table */}
       <h2 className="text-xl font-bold text-stone-900 mt-16 mb-3">Agents</h2>
       <p className="text-stone-600 leading-relaxed mb-4">
-        15 fully documented agents with prompts, skills, references, and
-        personality variants.
+        <strong className="text-stone-900">15 fully documented agents</strong> with
+        prompts, skills, references, and personality variants.
       </p>
       <div className="overflow-x-auto mb-12">
         <table className="w-full text-sm">
@@ -253,8 +266,10 @@ export function GuideClient() {
       {/* Portable Agent Specifications */}
       <h2 className="text-xl font-bold text-stone-900 mt-16 mb-3">Portable Agent Specifications</h2>
       <p className="text-stone-600 leading-relaxed mb-4">
-        Every tab in the app feeds into one deliverable: a framework-agnostic
-        YAML definition you can take with you. The Canvas captures identity, the
+        Every tab in the app feeds into{" "}
+        <strong className="text-stone-900">one deliverable: a framework-agnostic
+        YAML definition you can take with you.</strong>{" "}
+        The Canvas captures identity, the
         Skills define workflows, the Resources provide knowledge, and the
         Specification tab assembles everything into a validated file aligned with
         Oracle Agent Spec 26.1.0. Download a single agent as YAML or grab the
@@ -262,8 +277,9 @@ export function GuideClient() {
       </p>
       <p className="text-stone-600 leading-relaxed mb-4">
         The specs are designed to be consumed by any agent runtime: OpenAI Agents
-        SDK, LangGraph, CrewAI, Claude Agent SDK, or Oracle Agent Runtime. The
-        same definition works across all of them because the spec describes what
+        SDK, LangGraph, CrewAI, Claude Agent SDK, or Oracle Agent Runtime.{" "}
+        <strong className="text-stone-900">The same definition works across all
+        of them</strong> because the spec describes what
         the agent is and does, not how a particular framework should wire it up.
       </p>
       <p className="text-stone-600 leading-relaxed mb-12">
@@ -276,7 +292,9 @@ export function GuideClient() {
       {/* Running Locally */}
       <h2 className="text-xl font-bold text-stone-900 mt-16 mb-3">Running Locally</h2>
       <p className="text-stone-600 leading-relaxed mb-4">
-        The Builder tab generates self-contained prompts that work with any LLM,
+        The Builder tab generates{" "}
+        <strong className="text-stone-900">self-contained prompts that work
+        with any LLM,</strong>{" "}
         whether cloud (ChatGPT, Claude, Gemini) or local (Ollama, LM Studio).
       </p>
       <pre className="bg-stone-900 text-stone-100 rounded-lg p-4 font-mono text-sm overflow-x-auto mb-12">
