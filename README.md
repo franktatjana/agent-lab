@@ -86,7 +86,7 @@ Pain point narratives that show why structured thinking matters. Each story foll
 
 ## Agents
 
-15 fully documented agents with prompts, skills, references, and personality variants:
+18 fully documented agents with prompts, skills, references, and personality variants:
 
 | Agent | Responsibility | Guide |
 |-------|---------------|-------|
@@ -105,6 +105,9 @@ Pain point narratives that show why structured thinking matters. Each story foll
 | [Difficult Conversations](agents/difficult-conversations-agent/) | Prepares for and navigates high-stakes interpersonal conversations | [Guide](docs/guides/difficult-conversations-agent-guide.md) |
 | [Cat POV Agent](agents/cat-pov-agent/) | Observes workplace behavior through a cat's lens for boundary and energy insights | [Guide](docs/guides/cat-pov-agent-guide.md) |
 | [Wargaming Agent](agents/wargaming-agent/) | Runs competitive simulations to stress-test strategy against adversarial responses | [Guide](docs/guides/wargaming-agent-guide.md) |
+| [Pre-Mortem Agent](agents/pre-mortem-agent/) | Assumes your project already failed and works backward to find exactly why | [Guide](docs/guides/pre-mortem-agent-guide.md) |
+| [Decision Decomposer](agents/decision-decomposer-agent/) | Breaks complex decisions into components so you stop going in circles | [Guide](docs/guides/decision-decomposer-agent-guide.md) |
+| [Crisis Navigator](agents/crisis-navigator-agent/) | Provides structured thinking when everything is already on fire | [Guide](docs/guides/crisis-navigator-agent-guide.md) |
 
 ## Portable Agent Specifications
 

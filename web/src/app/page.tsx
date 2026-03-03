@@ -24,6 +24,9 @@ import {
   MessageCircle,
   Cat,
   Swords,
+  Crosshair,
+  GitBranch,
+  Flame,
   type LucideIcon,
 } from "lucide-react";
 
@@ -43,6 +46,9 @@ const iconMap: Record<string, LucideIcon> = {
   MessageCircle,
   Cat,
   Swords,
+  Crosshair,
+  GitBranch,
+  Flame,
 };
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
@@ -61,6 +67,9 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
   pink:    { bg: "bg-pink-50",    border: "border-pink-200",    icon: "text-pink-500",    badge: "bg-pink-100 text-pink-700" },
   lime:    { bg: "bg-lime-50",    border: "border-lime-200",    icon: "text-lime-500",    badge: "bg-lime-100 text-lime-700" },
   red:     { bg: "bg-red-50",     border: "border-red-200",     icon: "text-red-500",     badge: "bg-red-100 text-red-700" },
+  stone:   { bg: "bg-stone-50",   border: "border-stone-300",   icon: "text-stone-500",   badge: "bg-stone-200 text-stone-700" },
+  yellow:  { bg: "bg-yellow-50",  border: "border-yellow-200",  icon: "text-yellow-500",  badge: "bg-yellow-100 text-yellow-700" },
+  fuchsia: { bg: "bg-fuchsia-50", border: "border-fuchsia-200", icon: "text-fuchsia-500", badge: "bg-fuchsia-100 text-fuchsia-700" },
 };
 
 type Tab = "agents" | "stories" | "ideas";

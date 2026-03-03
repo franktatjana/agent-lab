@@ -1,0 +1,58 @@
+# Example: Communication Brief — Client Escalation
+# Demonstrates the communication-brief flow with war-correspondent personality
+
+skill: communication-brief
+personality: war-correspondent
+
+input:
+  situation_description: "Major enterprise client (NovaTech, $1.2M ARR) threatening to churn after a failed implementation. Their VP of Operations emailed our CEO directly, citing three missed milestones, two data migration errors, and a 'complete loss of confidence in the team.' Implementation was supposed to take 8 weeks, it's now at week 14 with the core integration still incomplete. NovaTech's VP has cc'd their legal team on the latest email."
+  affected_parties: "NovaTech (VP Operations, project team of 6, legal team). Internal: implementation team (4 people), their manager, VP Sales (owns the relationship), CEO (received the escalation email). Two other enterprise prospects who were referred by NovaTech."
+  stakeholders: "CEO, VP Sales, VP Engineering, Implementation team lead, NovaTech VP Operations, NovaTech project team, two referred prospects"
+  available_resources: "CEO (available for executive sponsor call), VP Sales (relationship owner), VP Engineering (can assign senior implementation engineer), Implementation team lead (knows the technical details), Customer Success manager (has been tracking the account health score)"
+
+output:
+  situation_assessment: >
+    NovaTech ($1.2M ARR) implementation is 6 weeks overdue with core integration incomplete. The client has
+    escalated to CEO level with legal cc'd, signaling both frustration and potential contract action. Two
+    data migration errors have eroded technical trust. The internal implementation team has been working on
+    the account but has not escalated the timeline slip through proper channels. Unknown: whether NovaTech
+    has begun evaluating alternative vendors, and whether the two referred prospects are aware of the
+    implementation difficulties.
+
+  severity_classification: >
+    Complex domain: the crisis involves interacting technical (failed integration), relationship (lost trust),
+    and organizational (internal escalation failure) dimensions that cannot be resolved with a single fix.
+
+  communication_brief:
+    ceo_to_novatech_vp: >
+      Thank you for bringing this to my attention directly. The implementation delays and errors you've
+      experienced are unacceptable, and I take personal responsibility for getting this back on track.
+      I've assigned our VP of Engineering to lead a recovery plan, and I'd like to schedule a call this
+      week to walk you through the specific steps, timeline commitments, and the dedicated resources we're
+      putting on your account. I'll have a concrete recovery plan in your hands within 48 hours.
+
+    vp_sales_internal_brief: >
+      NovaTech has escalated to CEO level with legal cc'd. This is a $1.2M ARR account with two active
+      referral prospects. The implementation is 6 weeks overdue with data migration errors. I need a meeting
+      with you, VP Engineering, and the implementation lead today to build a recovery plan before the CEO's
+      call with NovaTech's VP. We need to assess whether the referred prospects are at risk.
+
+    implementation_team: >
+      NovaTech has escalated to CEO level. VP Engineering is taking over technical leadership of this account
+      effective immediately. We need a full status report by end of day: what's complete, what's blocked,
+      what caused the two data migration errors, and a realistic timeline to complete the core integration.
+      This is not about blame, it's about building an honest recovery plan the client can trust.
+
+    vp_engineering_directive: >
+      CEO has asked you to lead the NovaTech recovery. The account is $1.2M ARR, 6 weeks overdue, with
+      legal now cc'd on client emails. I need you to review the implementation status, identify the
+      technical blockers, assign a senior engineer to the account, and deliver a recovery plan to the CEO
+      within 48 hours. The plan needs specific milestones with dates the client can hold us to.
+
+    referred_prospects_preemptive: >
+      No action required yet. VP Sales should assess whether NovaTech has communicated their frustration
+      to the two referred prospects. If so, prepare a proactive outreach acknowledging the situation and
+      reinforcing commitment to their evaluation process. If not, accelerate their implementation
+      timelines to demonstrate capability before any word-of-mouth risk materializes.
+
+  next_review_point: "48 hours. Decision point: recovery plan delivered to NovaTech VP. CEO call scheduled. Internal process review initiated to understand why timeline slippage was not escalated earlier."

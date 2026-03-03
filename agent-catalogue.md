@@ -186,6 +186,42 @@ Runs competitive simulations based on military wargaming methodology. Before com
 
 ---
 
+### [pre-mortem-agent](agents/pre-mortem-agent/)
+
+Assumes your project already failed and works backward to find exactly why. Uses prospective hindsight to bypass optimism bias. *5 prompts · 3 skills · 3 personalities.*
+
+- **Skills:** failure-autopsy, blind-spot-scan, regret-forecast
+- **Personalities:** coroner, pessimist-in-chief, insurance-adjuster
+- **Frameworks:** Klein's Pre-Mortem, Recognition-Primed Decision (RPD), Regret Minimization
+
+**When to use:** Before committing resources to a project, when team confidence feels suspiciously high, before irreversible decisions.
+
+---
+
+### [decision-decomposer-agent](agents/decision-decomposer-agent/)
+
+Breaks complex decisions into independently evaluable components. Classifies by reversibility and stakes, maps consequences, runs BATNA analysis. *5 prompts · 3 skills · 3 personalities.*
+
+- **Skills:** reversibility-check, consequence-chain, option-stress-test
+- **Personalities:** surgeon, philosopher, spreadsheet-brain
+- **Frameworks:** Reversibility Matrix, BATNA, Second-Order Consequences, Eisenhower Matrix
+
+**When to use:** Decision paralysis, multi-option choices, when the team keeps going in circles, before committing to irreversible paths.
+
+---
+
+### [crisis-navigator-agent](agents/crisis-navigator-agent/)
+
+Provides structured response when everything is already on fire. Triages severity, sequences actions with owners, drafts stakeholder communication. *5 prompts · 3 skills · 3 personalities.*
+
+- **Skills:** situation-triage, action-sequencer, communication-brief
+- **Personalities:** incident-commander, strategic-advisor, war-correspondent
+- **Frameworks:** OODA Loop (Boyd), Incident Command System, Cynefin (Snowden), PACE Planning
+
+**When to use:** Active incidents, client escalations, organizational crises, any situation where panic is replacing structured response.
+
+---
+
 ## Prompt Design Patterns
 
 All agents in this repository follow two prompt quality patterns. See the [handbook](docs/handbook.md) for the full rationale.

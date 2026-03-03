@@ -1,0 +1,92 @@
+# Example: Failure Autopsy — B2B SaaS Product Launch
+# Demonstrates the failure-autopsy flow with coroner personality
+
+skill: failure-autopsy
+personality: coroner
+
+input:
+  project_description: "Launching a new AI-powered contract analysis product for mid-market legal teams. $2M development budget, team of 12 (4 ML engineers, 3 backend, 2 frontend, 2 product, 1 designer). Product uses fine-tuned LLM for clause extraction and risk flagging."
+  timeline: "9-month development cycle, launch targeted for Q4. $800K already spent on model training and initial development. Marketing commitments include a keynote slot at LegalTech NYC in October."
+  stakeholders: "CEO (publicly committed to Q4 launch at board meeting), VP Product (career promotion tied to successful launch), Head of Sales (pipeline of 40 prospects waiting for GA), Head of ML (concerned about accuracy benchmarks but has not escalated)"
+  assumptions: "LLM accuracy will reach 95% by launch. Mid-market legal teams will adopt AI tools despite regulatory uncertainty. Current team can ship without additional hires. Competitor (DocuSign Insight) will not ship a similar feature before Q4."
+  constraints: "$2M total budget with $1.2M remaining. No additional headcount approved. SOC 2 Type II certification in progress but not complete."
+
+output:
+  failure_modes:
+    - mode: "LLM accuracy plateaus at 89% instead of the targeted 95%, and the gap is not discoverable until the final 6 weeks of testing"
+      likelihood: High
+      impact: High
+      detectability: Late
+      priority: Critical
+      category: technology
+    - mode: "SOC 2 Type II certification is not completed before launch, and 60% of mid-market prospects require it before procurement can proceed"
+      likelihood: High
+      impact: High
+      detectability: Early
+      priority: Critical
+      category: regulatory
+    - mode: "Head of ML leaves in month 5 after concerns about accuracy benchmarks are dismissed, taking institutional knowledge of the model architecture"
+      likelihood: Medium
+      impact: High
+      detectability: Silent
+      priority: Critical
+      category: people
+    - mode: "DocuSign ships Insight V2 with contract analysis in September, 6 weeks before planned launch, with enterprise-grade accuracy and existing customer base"
+      likelihood: Medium
+      impact: High
+      detectability: Late
+      priority: Major
+      category: market
+    - mode: "CEO's public commitment to Q4 creates sunk cost pressure that prevents the team from delaying even when accuracy benchmarks are not met"
+      likelihood: High
+      impact: Medium
+      detectability: Early
+      priority: Major
+      category: organizational
+    - mode: "Marketing spend on LegalTech NYC keynote ($180K committed) creates a launch date that drives the technical timeline rather than the other way around"
+      likelihood: High
+      impact: Medium
+      detectability: Early
+      priority: Monitor
+      category: timeline
+
+  blind_spots:
+    - bias: "Optimism bias on accuracy targets"
+      evidence: "The 95% accuracy target has no reference class data from comparable LLM deployments in legal domains. The Head of ML has concerns but has not escalated, suggesting the concern is being suppressed rather than addressed."
+      risk: "The accuracy gap is discovered too late to fix, and the product launches with known deficiencies"
+      test: "Commission an independent accuracy benchmark against a held-out test set this week, before more budget is committed"
+    - bias: "Sunk cost anchoring on Q4 timeline"
+      evidence: "$800K already spent, CEO publicly committed, marketing commitments locked. The language focuses on 'hitting the date' rather than 'launching when ready.'"
+      risk: "The team ships a product that is not ready because the timeline has become the goal rather than the quality benchmark"
+      test: "Ask the CEO: 'If we were starting today with the same information, would we commit to a Q4 launch?' If the answer is different, the timeline is a sunk cost anchor"
+
+  mitigations:
+    - failure_mode: "LLM accuracy plateaus at 89%"
+      type: detect
+      action: "Run a full accuracy benchmark against held-out legal corpus by end of this month. If accuracy is below 92%, trigger a scope reduction to clause extraction only (dropping risk flagging) and adjust launch messaging"
+      owner: Head of ML
+      deadline: "End of current month"
+      cost: "2 engineering days"
+      residual_risk: "Scope reduction may disappoint early prospects expecting full risk flagging capability"
+    - failure_mode: "SOC 2 certification incomplete"
+      type: prevent
+      action: "Engage external SOC 2 accelerator firm to compress certification timeline. Simultaneously, build a prospect qualification filter that identifies SOC 2-dependent deals and removes them from the Q4 pipeline"
+      owner: VP Engineering
+      deadline: "2 weeks from now"
+      cost: "$40-60K for accelerator engagement"
+      residual_risk: "Some prospects will still require completed certification before signing"
+    - failure_mode: "Head of ML departure"
+      type: prevent
+      action: "CEO has a direct conversation with Head of ML this week about accuracy concerns. Create an explicit decision gate at 8 weeks before launch: if accuracy is below threshold, launch is delayed without career consequences"
+      owner: CEO
+      deadline: "This week"
+      cost: "1 hour of CEO time, potential timeline adjustment"
+      residual_risk: "Conversation may surface deeper concerns about the project's viability"
+
+  regret_forecast: >
+    In 9 months, this team will wish they had confronted the accuracy gap in month 4 instead of
+    month 8. They will wish they had separated the launch date from the marketing commitment,
+    because the keynote slot created a deadline that should have been a milestone. They will wish
+    someone had asked the Head of ML what "concerned" meant before it became a resignation letter.
+    The information to prevent the three most likely failure modes is available right now, and the
+    cost of gathering it is measured in days, not months.

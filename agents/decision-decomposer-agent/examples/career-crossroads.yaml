@@ -1,0 +1,72 @@
+# Example: Reversibility Check — Career Crossroads
+# Demonstrates the reversibility-check flow with philosopher personality
+
+skill: reversibility-check
+personality: philosopher
+
+input:
+  decision_context: "Senior product manager (8 years experience, $185K base) deciding between staying at current company where she's on track for VP promotion in 12-18 months, vs. joining an early-stage startup (Series A, 30 people) as Head of Product with 0.8% equity. Has been going back and forth for 3 weeks."
+  options: "Option A: stay at current company, pursue VP promotion. Option B: join the startup as Head of Product with equity."
+  stakeholders: "Herself, her partner (dual income household, mortgage), her current team (she manages 6 PMs), the startup founder (former colleague, personal relationship at stake)"
+
+output:
+  sub_decisions:
+    - name: "Financial structure"
+      options: ["Stable compensation path ($185K → $220K VP)", "Lower base ($160K) + 0.8% equity (speculative value)"]
+      stakeholders: ["Herself, partner (mortgage, financial planning)"]
+      independence: "Independent, can be evaluated on its own terms"
+    - name: "Career growth trajectory"
+      options: ["VP title at established company in 12-18 months", "Head of Product title immediately at startup, but title value depends on company outcome"]
+      stakeholders: ["Herself, future employers (resume signal)"]
+      independence: "Independent, different evaluation criteria than financial"
+    - name: "Lifestyle and work pattern"
+      options: ["Predictable hours, established processes, larger team buffer", "Startup intensity, ambiguity, wearing multiple hats, smaller margin for error"]
+      stakeholders: ["Herself, partner, current team members"]
+      independence: "Independent, often the dimension people evaluate last but feel first"
+    - name: "Learning and skill development"
+      options: ["Depth: mastering VP-level skills in a structured environment", "Breadth: building a company from the ground up across product, strategy, hiring"]
+      stakeholders: ["Herself (long-term career capital)"]
+      independence: "Independent, different time horizon than financial or title"
+    - name: "Relationship dynamics"
+      options: ["Preserve current professional relationships at existing company", "Deepen relationship with startup founder (former colleague), risk if it goes poorly"]
+      stakeholders: ["Herself, startup founder, current colleagues"]
+      independence: "Coupled with the main decision but worth evaluating separately"
+
+  reversibility_matrix:
+    - sub_decision: "Financial structure"
+      classification: "Partially reversible"
+      reversal_cost: "6-12 months to return to equivalent compensation if startup fails. Equity is illiquid for 4-7 years."
+      time_window: "Startup equity vesting cliff at 12 months. Financial commitment deepens quarterly."
+      stakes: "Medium-High"
+    - sub_decision: "Career growth trajectory"
+      classification: "Fully reversible"
+      reversal_cost: "Low. Both paths build resume value. VP promotion may still be available in 2-3 years if she returns to big-company track."
+      time_window: "No hard expiration. Career capital compounds in either direction."
+      stakes: "Medium"
+    - sub_decision: "Lifestyle and work pattern"
+      classification: "Fully reversible"
+      reversal_cost: "Minimal. Can return to established-company rhythm. 6-month adjustment period."
+      time_window: "Startup intensity is temporary by nature, either the company grows into stability or it doesn't."
+      stakes: "Low-Medium"
+    - sub_decision: "Learning and skill development"
+      classification: "Fully reversible"
+      reversal_cost: "None. Skills acquired in either environment are additive."
+      time_window: "No expiration. Learning compounds regardless of path."
+      stakes: "Low"
+    - sub_decision: "Relationship dynamics"
+      classification: "Partially reversible"
+      reversal_cost: "If the startup relationship sours, the personal friendship may be permanently damaged. Professional relationships at current company fade naturally with time."
+      time_window: "Friendship risk materializes if startup encounters stress, typically months 6-18."
+      stakes: "Medium"
+
+  paralysis_diagnosis: >
+    The decision feels monolithic because she is treating "stay vs. go" as one choice.
+    The decomposition reveals that 3 of 5 sub-decisions are fully reversible (career
+    trajectory, lifestyle, learning). The real tension lives in 2 partially reversible
+    sub-decisions: financial structure (equity illiquidity and compensation gap) and
+    relationship dynamics (friendship at risk under startup pressure). The paralysis is
+    not about the whole decision. It is about the financial risk and the friendship risk.
+    Addressing those two dimensions directly, perhaps by negotiating a higher base or
+    a shorter vesting cliff, and having an honest conversation with the founder about
+    what happens if it does not work, would resolve the gridlock without needing to
+    decide the whole thing at once.

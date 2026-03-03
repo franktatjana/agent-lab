@@ -1,0 +1,63 @@
+# Example: Situation Triage + Action Sequencer — Production Outage
+# Demonstrates the situation-triage and action-sequencer flows with incident-commander personality
+
+skill: situation-triage + action-sequencer
+personality: incident-commander
+
+input:
+  situation_description: "SaaS platform API returning intermittent 500 errors since 2:14 AM. Automated failover triggered on the primary database cluster but only partially restored service. Approximately 30% of API requests are failing. Error logs show connection pool exhaustion on the application servers. The on-call engineer has restarted two application nodes with no improvement."
+  affected_parties: "Three enterprise clients (Acme Corp, Beacon Industries, CoreTech) have opened P1 support tickets. Estimated 1,200 end users currently unable to complete transactions. Internal sales team reports two prospects have demos scheduled for this morning."
+  actions_taken: "On-call engineer restarted two application nodes at 2:45 AM (no improvement). Database automated failover triggered at 2:16 AM (partial restoration). Status page updated to 'investigating' at 3:00 AM. No customer communication sent."
+  stakeholders: "Engineering team (12 people, Slack), CTO (phone), VP Customer Success (phone), three enterprise account managers, all customers (status page + email)"
+  available_resources: "CTO (executive authority, available by phone), Senior DBA (on-call, remote), Platform engineering team (3 people, arriving in office by 8 AM), VP Customer Success (available by phone), Support team (2 agents online)"
+
+output:
+  situation_assessment: >
+    Primary database cluster failed over at 2:14 AM with partial service restoration. 30% of API requests
+    are returning 500 errors due to connection pool exhaustion on application servers. Two application node
+    restarts have not resolved the issue, indicating the root cause is upstream of the application layer.
+    Three enterprise clients have escalated to P1. No customer communication has been sent in the 50 minutes
+    since detection. Unknown: whether the connection pool exhaustion is caused by the partial failover
+    (database accepting connections but responding slowly) or by a separate application-level issue.
+
+  severity_classification: >
+    Complicated domain: the system has identifiable failure modes (connection pool exhaustion, partial
+    failover) that require expert diagnosis. The on-call engineer's restart attempts confirmed it is not a
+    simple application restart problem. A senior DBA needs to investigate the database layer.
+
+  action_sequence:
+    - action: "Senior DBA investigates database cluster health: connection count, replication lag, query performance on the failover node"
+      owner: "Senior DBA (name TBD by CTO)"
+      timeline: "Start immediately, initial findings within 30 minutes"
+      done_when: "Root cause of connection pool exhaustion identified or escalation triggered"
+    - action: "VP Customer Success sends initial communication to three P1 enterprise clients acknowledging the issue and committing to hourly updates"
+      owner: "VP Customer Success"
+      timeline: "Within 15 minutes"
+      done_when: "All three clients have received a personal message with status page link and next update time"
+    - action: "Support team updates public status page from 'investigating' to 'identified' with estimated resolution window"
+      owner: "Support team lead"
+      timeline: "Within 10 minutes"
+      done_when: "Status page reflects current state and includes next update time"
+    - action: "CTO assembles incident bridge call with DBA, platform engineering lead, and VP Customer Success"
+      owner: "CTO"
+      timeline: "Within 20 minutes"
+      done_when: "All parties on a shared call with a single incident channel established"
+    - action: "Platform engineering prepares rollback plan for database failover in case DBA investigation reveals the failover node is the problem"
+      owner: "Platform engineering lead"
+      timeline: "Rollback plan ready within 45 minutes"
+      done_when: "Documented rollback procedure reviewed and ready to execute on CTO authorization"
+
+  communication_brief:
+    engineering_team: >
+      Database cluster partial failover causing connection pool exhaustion. 30% of API requests failing.
+      DBA investigating root cause. Bridge call starting in 20 minutes. Hold all non-critical deployments.
+    enterprise_clients: >
+      We are experiencing intermittent service disruption affecting API availability. Our engineering team
+      has identified the affected component and is working on resolution. We will provide an update by
+      [time + 1 hour]. Your dedicated account manager is available for questions.
+    all_customers: >
+      We are currently experiencing degraded API performance. Some requests may fail intermittently.
+      Our team is actively working on resolution. Status updates at [status page URL]. Next update by
+      [time + 1 hour].
+
+  next_review_point: "45 minutes from now. Decision point: if DBA has identified root cause, execute fix. If not, CTO decides on full rollback to pre-failover state."

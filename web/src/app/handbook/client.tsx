@@ -22,6 +22,9 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   pink:    { bg: "bg-pink-50",    border: "border-pink-200",    icon: "text-pink-500",    light: "bg-pink-100" },
   lime:    { bg: "bg-lime-50",    border: "border-lime-200",    icon: "text-lime-500",    light: "bg-lime-100" },
   red:     { bg: "bg-red-50",     border: "border-red-200",     icon: "text-red-500",     light: "bg-red-100" },
+  stone:   { bg: "bg-stone-50",   border: "border-stone-300",   icon: "text-stone-500",   light: "bg-stone-200" },
+  yellow:  { bg: "bg-yellow-50",  border: "border-yellow-200",  icon: "text-yellow-500",  light: "bg-yellow-100" },
+  fuchsia: { bg: "bg-fuchsia-50", border: "border-fuchsia-200", icon: "text-fuchsia-500", light: "bg-fuchsia-100" },
 };
 
 const categories: { label: string; description: string; ids: string[] }[] = [
@@ -45,6 +48,11 @@ const categories: { label: string; description: string; ids: string[] }[] = [
     description: "Structure thinking, investigate causes, and test strategies",
     ids: ["six-hats-agent", "why-agent", "design-thinking-agent", "research-agent", "wargaming-agent"],
   },
+  {
+    label: "Decisions & Risk",
+    description: "Structure decisions, anticipate failures, and navigate active crises",
+    ids: ["pre-mortem-agent", "decision-decomposer-agent", "crisis-navigator-agent"],
+  },
 ];
 
 const decisionTree: { situation: string; agentId: string; also: string }[] = [
@@ -63,6 +71,9 @@ const decisionTree: { situation: string; agentId: string; also: string }[] = [
   { situation: "Imposter syndrome or new role anxiety", agentId: "superhero-agent", also: "Leadership Coach for skill dev" },
   { situation: "About to commit resources to a strategy", agentId: "wargaming-agent", also: "Six Hats for multi-perspective" },
   { situation: "Something is broken, do not know why", agentId: "why-agent", also: "Design Thinking to solve it" },
+  { situation: "About to launch and need to stress-test assumptions", agentId: "pre-mortem-agent", also: "Wargaming for competitive response" },
+  { situation: "Stuck choosing between options for weeks", agentId: "decision-decomposer-agent", also: "Six Hats for perspective shift" },
+  { situation: "Active crisis, stakeholders panicking", agentId: "crisis-navigator-agent", also: "Difficult Conversations if people conflict" },
 ];
 
 export default function HandbookClient() {

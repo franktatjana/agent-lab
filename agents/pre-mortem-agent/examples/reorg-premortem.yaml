@@ -1,0 +1,104 @@
+# Example: Failure Autopsy — Department Reorganization
+# Demonstrates the failure-autopsy flow with pessimist-in-chief personality
+
+skill: failure-autopsy
+personality: pessimist-in-chief
+
+input:
+  project_description: "VP of Engineering is reorganizing a 120-person engineering department from functional teams (frontend, backend, infra, QA) to cross-functional product squads (8 squads of 12-15 people each). Each squad will own a product area end-to-end. The goal is to reduce handoff delays and increase delivery speed."
+  timeline: "6-month transition. Month 1-2: design new structure and assign people. Month 3-4: transition period with both structures operating. Month 5-6: full operation in new structure. Budget: $0 incremental (reorg only, no new headcount)."
+  stakeholders: "VP Engineering (architect of the plan, staked reputation on delivery speed improvement), 8 Engineering Managers (4 will become squad leads, 4 will be reassigned or 'made available'), CTO (supportive but hands-off), Director of QA (losing her direct reports to squads, privately opposed), Head of Infra (concerned about knowledge fragmentation)"
+  assumptions: "Engineers will adapt to cross-functional work within 2 months. Knowledge transfer between functional teams and squads will happen naturally. The 4 displaced managers will find roles internally. Delivery speed will improve within one quarter of full operation."
+  constraints: "No incremental budget. No backfill for displaced managers. Hiring freeze prevents external replacement if people leave. Q3 product roadmap commitments remain unchanged during transition."
+
+output:
+  failure_modes:
+    - mode: "3 of the 4 displaced managers leave the company within 60 days of the announcement, taking institutional knowledge and triggering a wave of 8-12 senior engineer departures from their former teams"
+      likelihood: High
+      impact: High
+      detectability: Late
+      priority: Critical
+      category: people
+    - mode: "Infrastructure knowledge fragments across 8 squads, and within 90 days a critical production incident takes 14 hours to resolve instead of 2 because no single squad owns the full infrastructure stack"
+      likelihood: High
+      impact: High
+      detectability: Silent
+      priority: Critical
+      category: technology
+    - mode: "Director of QA's private opposition becomes organized resistance: she aligns with the 4 displaced managers to build a case to the CTO that the reorg is failing, creating a political crisis in month 3"
+      likelihood: Medium
+      impact: High
+      detectability: Late
+      priority: Critical
+      category: organizational
+    - mode: "The 2-month transition period extends to 5 months because engineers cannot deliver on Q3 roadmap commitments while simultaneously learning new squad processes, and the VP is forced to run both structures indefinitely"
+      likelihood: High
+      impact: Medium
+      detectability: Early
+      priority: Major
+      category: timeline
+    - mode: "Cross-functional squads produce slower delivery in the first two quarters because engineers lack context in adjacent domains, and the metrics the VP promised to improve get worse before they get better"
+      likelihood: High
+      impact: Medium
+      detectability: Early
+      priority: Major
+      category: organizational
+    - mode: "The hiring freeze means every departure is a permanent headcount loss: the 120-person department becomes a 108-person department by month 4 with no ability to backfill"
+      likelihood: Medium
+      impact: High
+      detectability: Early
+      priority: Major
+      category: people
+    - mode: "Two of the 8 new squad leads are first-time managers who struggle with the dual challenge of building a new team while delivering on product commitments, and their squads underperform for 6+ months"
+      likelihood: Medium
+      impact: Medium
+      detectability: Late
+      priority: Monitor
+      category: people
+
+  blind_spots:
+    - bias: "Survivorship bias from reorg success stories"
+      evidence: "The plan references Spotify's squad model as inspiration without noting that Spotify itself has publicly discussed the model's failures and evolved away from it. The team is drawing from curated success narratives, not base rates for reorg outcomes."
+      risk: "The structural design is based on an idealized model that did not work as described even at the company that created it"
+      test: "Research 5 companies that attempted functional-to-squad transitions with similar team sizes. What was the average time to productive operation, and what was the attrition rate during transition?"
+    - bias: "Groupthink among the VP's inner circle"
+      evidence: "The Director of QA and Head of Infra have concerns but are privately opposed rather than openly debating. The CTO is supportive but hands-off. The decision was made by the VP and communicated, not co-created with the people most affected."
+      risk: "The opposition is real but invisible to the VP, and it surfaces as passive resistance rather than constructive input"
+      test: "Run anonymous skip-level conversations with 10-15 senior engineers asking: 'What concerns do you have about the reorg that you have not shared with your manager?'"
+    - bias: "Planning fallacy on transition timeline"
+      evidence: "The plan assumes engineers adapt to cross-functional work within 2 months while simultaneously delivering on unchanged Q3 roadmap commitments. This requires people to learn new processes, build new relationships, and deliver at full capacity simultaneously."
+      risk: "The transition takes twice as long as planned, and the parallel-operation period creates confusion rather than stability"
+      test: "Ask 5 of the most senior engineers: 'How long did it take you to become fully productive the last time you changed teams?' Average their answers and compare to the 2-month assumption"
+
+  mitigations:
+    - failure_mode: "Displaced manager departures triggering senior engineer attrition"
+      type: prevent
+      action: "Before announcing the reorg, have the CTO personally offer each of the 4 displaced managers a specific alternative role with equivalent scope and compensation. If the roles do not exist, create them or acknowledge the budget impact of severance"
+      owner: CTO
+      deadline: "Before reorg announcement"
+      cost: "4 role design conversations, potential $200-400K in retention packages"
+      residual_risk: "Some managers may leave regardless, but personal engagement from the CTO reduces the likelihood from 75% to 30%"
+    - failure_mode: "Infrastructure knowledge fragmentation"
+      type: contain
+      action: "Create an Infrastructure Guild that operates across all 8 squads: a rotating group of infra-experienced engineers who maintain shared ownership of the production stack and serve as escalation paths for incidents"
+      owner: Head of Infra
+      deadline: "Before transition period begins"
+      cost: "10-15% of infra engineering capacity allocated to guild responsibilities"
+      residual_risk: "Guild model adds coordination overhead, partially offsetting the handoff reduction the reorg was designed to achieve"
+    - failure_mode: "Director of QA organizing resistance"
+      type: prevent
+      action: "VP Engineering meets with Director of QA one-on-one before the announcement. Acknowledge her concerns directly. Offer her the role of defining quality practices across all 8 squads, a scope expansion rather than a reduction"
+      owner: VP Engineering
+      deadline: "This week, before any announcement"
+      cost: "2 hours of VP time, potential scope redefinition for QA function"
+      residual_risk: "Director of QA may not accept the reframing if she perceives it as a consolation prize"
+
+  regret_forecast: >
+    In 6 months, this VP will wish they had talked to the 4 displaced managers before the
+    announcement rather than after. They will wish they had protected the infrastructure knowledge
+    before distributing it across 8 squads with no shared ownership model. They will wish they had
+    reduced Q3 roadmap commitments during the transition instead of expecting full delivery from
+    teams that are simultaneously reorganizing. The reorg may be the right structural decision, but
+    the execution plan assumes people behave like org chart boxes: move them and they function
+    immediately. People are not boxes. The transition cost is real, and this plan has budgeted zero
+    for it.

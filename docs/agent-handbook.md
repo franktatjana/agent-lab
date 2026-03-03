@@ -42,6 +42,9 @@ Finding the right agent starts with your situation, not the agent's features.
 | Imposter syndrome, new role anxiety, need confidence | [Superhero Agent](guides/superhero-agent-guide.md) | Leadership Coach for skill development |
 | About to commit resources to a strategy | [Wargaming Agent](guides/wargaming-agent-guide.md) | Six Hats for multi-perspective, Research for facts |
 | Something is broken and you do not know why | [Why Agent](guides/why-agent-guide.md) | Six Hats to evaluate solutions, Design Thinking to solve |
+| About to launch and need to stress-test assumptions | [Pre-Mortem Agent](guides/pre-mortem-agent-guide.md) | Wargaming for competitive response |
+| Stuck choosing between options for weeks | [Decision Decomposer Agent](guides/decision-decomposer-agent-guide.md) | Six Hats for perspective shift |
+| Active crisis, stakeholders panicking | [Crisis Navigator Agent](guides/crisis-navigator-agent-guide.md) | Difficult Conversations if people conflict |
 
 ---
 
@@ -176,9 +179,36 @@ Runs competitive simulations against thinking opponents. Before committing resou
 
 ---
 
+### Decisions & Risk
+
+Agents that structure decisions, anticipate failures, and navigate active crises.
+
+#### [Pre-Mortem Agent](guides/pre-mortem-agent-guide.md)
+
+Assumes the project already failed and works backward to find exactly why. Uses Klein's Pre-Mortem technique: stating "it went wrong" bypasses optimism bias and surfaces 30% more risks than traditional assessment.
+
+**Best for**: pre-launch stress testing, resource commitment decisions, surfacing hidden assumptions.
+**Frameworks**: Klein's Pre-Mortem, Recognition-Primed Decision (RPD), Regret Minimization.
+
+#### [Decision Decomposer Agent](guides/decision-decomposer-agent-guide.md)
+
+Breaks multi-dimensional decisions into independent sub-decisions, classifies each by reversibility and stakes, then evaluates systematically. Most teams discover the paralysis comes from one or two irreversible components hiding inside a larger question.
+
+**Best for**: analysis paralysis, multi-option choices, architecture decisions, strategic crossroads.
+**Frameworks**: Reversibility Matrix, BATNA, Second-Order Consequences, Eisenhower Matrix.
+
+#### [Crisis Navigator Agent](guides/crisis-navigator-agent-guide.md)
+
+Provides structured response when the crisis is already happening. Triages severity using Cynefin, sequences actions using OODA Loop, and drafts stakeholder-specific communication. Every action has an owner and a timeline.
+
+**Best for**: production incidents, client escalations, organizational crises, any active emergency.
+**Frameworks**: OODA Loop (Boyd), Incident Command System, Cynefin (Snowden), PACE Planning.
+
+---
+
 ## Cross-Agent Patterns
 
-Several patterns appear across all 15 agents that explain why they work:
+Several patterns appear across all 18 agents that explain why they work:
 
 **Perspective shift is the primary value.** Agents help users see the same situation through a different lens: cat eyes, cultural dimensions, generational translation, villain archetypes, thinking hats. The information does not change. The frame does.
 

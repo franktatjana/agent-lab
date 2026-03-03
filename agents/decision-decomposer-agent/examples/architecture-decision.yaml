@@ -1,0 +1,73 @@
+# Example: Option Stress Test — Backend Architecture Choice
+# Demonstrates the option-stress-test flow with surgeon personality
+
+skill: option-stress-test
+personality: surgeon
+
+input:
+  decision_context: "Engineering team at a mid-size fintech (45 engineers, $12M ARR) has spent 6 weeks debating backend architecture. Three options on the table, no consensus, CTO frustrated. Current monolith is hitting scaling limits at 2,000 requests/second."
+  options: "Option A: microservices (full decomposition, 9-12 month migration). Option B: modular monolith (internal boundaries, 4-6 month refactor). Option C: serverless (event-driven rewrite, 6-9 months)."
+  stakeholders: "Engineering team (45 people, split into 3 camps), CTO (wants speed), VP Product (wants feature velocity), CFO (watching infrastructure costs)"
+  constraints: "Series B funding gives 18-month runway, must maintain feature velocity during migration, 3 key enterprise clients with SLAs"
+  urgency: "Current monolith hitting performance ceiling, losing deals that require >5,000 rps guarantee"
+
+output:
+  sub_decisions:
+    - name: "Data layer architecture"
+      options: ["Shared database with schema boundaries", "Isolated data stores per service", "Hybrid with shared read replicas"]
+      stakeholders: ["Engineering, DBA team, enterprise clients (SLA dependent)"]
+      independence: "Sequential: must decide before deployment model"
+    - name: "Deployment model"
+      options: ["Containers (Kubernetes)", "Serverless functions", "Hybrid with container core and serverless edge"]
+      stakeholders: ["DevOps, Engineering, CFO (cost structure)"]
+      independence: "Depends on data layer decision"
+    - name: "Team structure"
+      options: ["Feature teams (cross-functional)", "Platform team + feature teams", "Current structure with new boundaries"]
+      stakeholders: ["Engineering leads, CTO, VP Product"]
+      independence: "Independent, can decide in parallel"
+    - name: "API contract"
+      options: ["REST (current)", "GraphQL", "gRPC for internal + REST for external"]
+      stakeholders: ["Engineering, enterprise clients (integration dependent)"]
+      independence: "Independent, can decide in parallel"
+    - name: "Migration path"
+      options: ["Big bang rewrite", "Strangler fig pattern", "Parallel run with traffic splitting"]
+      stakeholders: ["Engineering, VP Product (feature velocity), enterprise clients (SLA)"]
+      independence: "Depends on data layer and deployment model"
+
+  reversibility_matrix:
+    - sub_decision: "Data layer architecture"
+      classification: "Practically irreversible"
+      reversal_cost: "$2-4M and 6-12 months to re-migrate data layer once services build on it"
+      time_window: "Decision becomes locked once 3+ services integrate with chosen pattern"
+      stakes: "High"
+    - sub_decision: "Deployment model"
+      classification: "Partially reversible"
+      reversal_cost: "$500K-1M and 3-4 months to re-platform"
+      time_window: "6 months before operational tooling creates deep dependency"
+      stakes: "Medium"
+    - sub_decision: "Team structure"
+      classification: "Fully reversible"
+      reversal_cost: "2-4 weeks of reorganization disruption"
+      time_window: "No expiration, can adjust quarterly"
+      stakes: "Low-Medium"
+    - sub_decision: "API contract"
+      classification: "Partially reversible"
+      reversal_cost: "$200-400K to rewrite API layer, 2-3 months"
+      time_window: "Becomes harder after enterprise clients integrate, roughly 6 months"
+      stakes: "Medium"
+    - sub_decision: "Migration path"
+      classification: "Partially reversible"
+      reversal_cost: "Depends on chosen path, strangler fig is most reversible"
+      time_window: "Big bang becomes irreversible at cutover, strangler fig is reversible throughout"
+      stakes: "Medium-High"
+
+  recommendation: >
+    The team stopped debating "microservices vs. monolith" and focused on the one
+    irreversible sub-decision: data layer architecture. Recommendation: shared database
+    with clear schema boundaries (modular monolith data pattern), decided in one meeting.
+    Team structure set to platform team + feature teams (reversible, decide this week).
+    API contract: gRPC internal + REST external (partially reversible, decide within 2 weeks).
+    Migration path: strangler fig (most reversible, start immediately). Deployment model:
+    containers initially, evaluate serverless for edge functions at 6-month checkpoint.
+
+  confidence_level: "High. The decomposition reveals that only 1 of 5 sub-decisions is truly irreversible. The other 4 can be decided quickly and adjusted later. The team's paralysis was caused by treating the bundle as a single monolithic choice."
