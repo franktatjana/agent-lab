@@ -1,8 +1,8 @@
 import HandbookClient from "./client";
 
 export const metadata = {
-  title: "Agent Handbook - Agent Lab",
-  description: "Narrative guide to every agent: when to use it, what trap to avoid, and how it changes the outcome",
+  title: "Which Agent to Use? - Agent Lab",
+  description: "Find the right agent for your situation",
 };
 
 export default function HandbookPage() {

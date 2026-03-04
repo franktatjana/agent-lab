@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
-import { Flyout } from "@/components/flyout";
+import { useState } from "react";
+
 import { agents } from "@/data/agents";
-import { agentIdeas, ideaCategories, buildIdeaFlyoutContent } from "@/data/agent-ideas";
+
 import { stories } from "@/data/stories";
 import Link from "next/link";
 import {
@@ -72,13 +72,13 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
   fuchsia: { bg: "bg-fuchsia-50", border: "border-fuchsia-200", icon: "text-fuchsia-500", badge: "bg-fuchsia-100 text-fuchsia-700" },
 };
 
-type Tab = "agents" | "stories" | "ideas";
+type Tab = "agents" | "stories";
 
 export default function Home() {
-  const [flyout, setFlyout] = useState<{ title: string; content: string } | null>(null);
+
   const [tab, setTab] = useState<Tab>("agents");
 
-  const closeFlyout = useCallback(() => setFlyout(null), []);
+
 
   return (
     <div>
@@ -96,7 +96,6 @@ export default function Home() {
         {([
           { id: "agents" as Tab, label: "Agents", count: agents.length },
           { id: "stories" as Tab, label: "Stories", count: stories.length },
-          { id: "ideas" as Tab, label: "Agent Ideas", count: agentIdeas.length },
         ]).map((t) => (
           <button
             key={t.id}
@@ -135,6 +134,9 @@ export default function Home() {
           "difficult-conversations-agent",
           "cat-pov-agent",
           "wargaming-agent",
+          "pre-mortem-agent",
+          "decision-decomposer-agent",
+          "crisis-navigator-agent",
         ].map((id) => agents.find((a) => a.id === id)!).filter(Boolean).map((agent) => {
           const colors = colorMap[agent.color] ?? colorMap.blue;
           const Icon = iconMap[agent.icon] ?? Globe;
@@ -235,46 +237,6 @@ export default function Home() {
       </div>
       )}
 
-      {tab === "ideas" && (
-      <div>
-        <p className="text-stone-500 mb-6 text-sm">
-          Future agents under consideration. Concepts and frameworks researched, not yet built.
-        </p>
-        <div className="space-y-8">
-          {ideaCategories.map((category) => {
-            const ideas = agentIdeas.filter((i) => i.category === category);
-            return (
-              <div key={category}>
-                <h3 className="text-sm font-semibold text-stone-600 uppercase tracking-wide mb-3">
-                  {category}
-                  <span className="ml-2 text-stone-400 font-normal normal-case tracking-normal">{ideas.length}</span>
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {ideas.map((idea) => (
-                    <button
-                      type="button"
-                      key={idea.id}
-                      className="text-left bg-white rounded-lg border border-dashed border-stone-300 px-4 py-3 transition-all hover:border-stone-400 hover:shadow-sm cursor-pointer"
-                      onClick={() => setFlyout({ title: idea.name, content: buildIdeaFlyoutContent(idea) })}
-                    >
-                      <div className="flex items-center gap-2">
-                        <h3 className="text-sm font-medium text-stone-800">{idea.name}</h3>
-                        {idea.group && (
-                          <span className="text-[10px] font-medium text-stone-400 bg-stone-100 rounded-full px-1.5 py-0.5">
-                            {idea.group}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs text-stone-500 mt-0.5 leading-relaxed">{idea.description}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      )}
 
       <div className="mt-14 text-center text-sm text-stone-400">
         <p>
@@ -282,12 +244,6 @@ export default function Home() {
         </p>
       </div>
 
-      <Flyout
-        open={flyout !== null}
-        title={flyout?.title ?? ""}
-        content={flyout?.content ?? ""}
-        onClose={closeFlyout}
-      />
     </div>
   );
 }

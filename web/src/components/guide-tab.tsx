@@ -174,7 +174,7 @@ export function GuideTab({
           href="/handbook"
           className="text-xs text-stone-400 hover:text-stone-600 transition-colors"
         >
-          View all agent guides in the handbook &rarr;
+          Find the right agent for your situation &rarr;
         </Link>
       </div>
     </div>

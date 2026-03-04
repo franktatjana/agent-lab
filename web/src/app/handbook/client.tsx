@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { agents } from "@/data/agents";
-import { ArrowLeft, BookOpen, ChevronDown } from "lucide-react";
-import { GuideTab, type GuideData } from "@/components/guide-tab";
+import { ArrowLeft, Search } from "lucide-react";
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; light: string }> = {
   blue:    { bg: "bg-blue-50",    border: "border-blue-200",    icon: "text-blue-500",    light: "bg-blue-100" },
@@ -77,19 +76,34 @@ const decisionTree: { situation: string; agentId: string; also: string }[] = [
 ];
 
 export default function HandbookClient() {
-  const [guideContents, setGuideContents] = useState<Record<string, GuideData>>({});
-  const [expandedGuide, setExpandedGuide] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetch("/guides.json")
-      .then((res) => res.json())
-      .then((data: { guides: Record<string, GuideData> }) => {
-        setGuideContents(data.guides);
-      })
-      .catch(() => {});
-  }, []);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   const agentMap = Object.fromEntries(agents.map((a) => [a.id, a]));
+  const query = searchQuery.toLowerCase().trim();
+
+  const filteredDecisionTree = useMemo(() => {
+    if (!query) return decisionTree;
+    return decisionTree.filter((row) => {
+      const agent = agentMap[row.agentId];
+      const searchable = [row.situation, row.also, agent?.name ?? "", agent?.identity ?? ""].join(" ").toLowerCase();
+      return searchable.includes(query);
+    });
+  }, [query, agentMap]);
+
+  const filteredCategories = useMemo(() => {
+    const cats = selectedCategory === "all" ? categories : categories.filter((c) => c.label === selectedCategory);
+    if (!query) return cats;
+    return cats.map((cat) => ({
+      ...cat,
+      ids: cat.ids.filter((id) => {
+        const agent = agentMap[id];
+        if (!agent) return false;
+        const searchable = [agent.name, agent.identity, ...agent.frameworks].join(" ").toLowerCase();
+        return searchable.includes(query);
+      }),
+    })).filter((cat) => cat.ids.length > 0);
+  }, [query, selectedCategory, agentMap]);
 
   return (
     <div>
@@ -101,111 +115,124 @@ export default function HandbookClient() {
         All agents
       </Link>
 
-      <div className="mt-4 mb-8">
+      <div className="mt-4 mb-6">
         <h1 className="text-3xl font-bold tracking-tight text-stone-900 mb-2">
-          Agent Handbook
+          Which Agent to Use?
         </h1>
         <p className="text-stone-500 max-w-2xl">
-          Visual guide to every agent. Find the right one for your situation, understand the problem it solves, and see its skills and personalities at a glance.
+          Start with your situation. Search by keyword, filter by category, or browse the decision tree.
         </p>
+      </div>
+
+      {/* Search + Category Filter */}
+      <div className="flex flex-col sm:flex-row gap-3 mb-8">
+        <div className="relative flex-1">
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
+          <input
+            type="text"
+            placeholder="Search agents, situations, frameworks..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-9 pr-4 py-2.5 text-sm bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-300 focus:border-stone-300 placeholder:text-stone-400"
+          />
+        </div>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="px-4 py-2.5 text-sm bg-white border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-300 focus:border-stone-300 text-stone-700 min-w-[200px]"
+        >
+          <option value="all">All Categories</option>
+          {categories.map((c) => (
+            <option key={c.label} value={c.label}>{c.label}</option>
+          ))}
+        </select>
       </div>
 
       {/* Decision Tree */}
-      <div className="mb-10">
-        <h2 className="text-lg font-semibold text-stone-900 mb-1">Find the Right Agent</h2>
-        <p className="text-sm text-stone-500 mb-4">
-          Start with your situation, not the agent&apos;s features.
-        </p>
-        <div className="bg-white rounded-xl border border-stone-200 overflow-hidden">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-stone-200 bg-stone-50">
-                <th className="text-left py-3 px-4 font-semibold text-stone-700 text-xs uppercase tracking-wide">Your Situation</th>
-                <th className="text-left py-3 px-4 font-semibold text-stone-700 text-xs uppercase tracking-wide">Start Here</th>
-                <th className="text-left py-3 px-4 font-semibold text-stone-700 text-xs uppercase tracking-wide hidden md:table-cell">Then Consider</th>
-              </tr>
-            </thead>
-            <tbody>
-              {decisionTree.map((row) => {
-                const agent = agentMap[row.agentId];
-                return (
-                  <tr key={row.agentId} className="border-b border-stone-100 hover:bg-stone-50 transition-colors">
-                    <td className="py-3 px-4 text-stone-600">{row.situation}</td>
-                    <td className="py-3 px-4">
-                      {agent ? (
-                        <Link
-                          href={`/agent/${agent.id}`}
-                          className="text-stone-900 font-medium hover:underline"
-                        >
-                          {agent.name}
-                        </Link>
-                      ) : row.agentId}
-                    </td>
-                    <td className="py-3 px-4 text-stone-400 text-xs hidden md:table-cell">{row.also}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      {filteredDecisionTree.length > 0 && (
+        <div className="mb-10">
+          <h2 className="text-lg font-semibold text-stone-900 mb-1">Find by Situation</h2>
+          <p className="text-sm text-stone-500 mb-4">
+            Start with your situation, not the agent&apos;s features.
+          </p>
+          <div className="bg-white rounded-xl border border-stone-200 overflow-hidden">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-stone-200 bg-stone-50">
+                  <th className="text-left py-3 px-4 font-semibold text-stone-700 text-xs uppercase tracking-wide">Your Situation</th>
+                  <th className="text-left py-3 px-4 font-semibold text-stone-700 text-xs uppercase tracking-wide">Start Here</th>
+                  <th className="text-left py-3 px-4 font-semibold text-stone-700 text-xs uppercase tracking-wide hidden md:table-cell">Then Consider</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredDecisionTree.map((row) => {
+                  const agent = agentMap[row.agentId];
+                  return (
+                    <tr key={row.agentId} className="border-b border-stone-100 hover:bg-stone-50 transition-colors">
+                      <td className="py-3 px-4 text-stone-600">{row.situation}</td>
+                      <td className="py-3 px-4">
+                        {agent ? (
+                          <Link
+                            href={`/agent/${agent.id}`}
+                            className="text-stone-900 font-medium hover:underline"
+                          >
+                            {agent.name}
+                          </Link>
+                        ) : row.agentId}
+                      </td>
+                      <td className="py-3 px-4 text-stone-400 text-xs hidden md:table-cell">{row.also}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Agent Guides by Category */}
-      {categories.map((cat) => (
+      {/* Agents by Category */}
+      {filteredCategories.map((cat) => (
         <div key={cat.label} className="mb-10">
           <h2 className="text-lg font-semibold text-stone-900 mb-1">{cat.label}</h2>
           <p className="text-sm text-stone-500 mb-4">{cat.description}</p>
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {cat.ids.map((agentId) => {
               const agent = agentMap[agentId];
               if (!agent) return null;
-              const guide = guideContents[agentId];
-              const isExpanded = expandedGuide === agentId;
               const colors = colorMap[agent.color] ?? colorMap.blue;
               return (
-                <div key={agentId} className="bg-white rounded-xl border border-stone-200 overflow-hidden">
-                  <button
-                    type="button"
-                    onClick={() => setExpandedGuide(isExpanded ? null : agentId)}
-                    className="w-full flex items-center gap-4 px-5 py-4 hover:bg-stone-50 transition-colors text-left"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2.5 flex-wrap">
-                        <span className="text-sm font-semibold text-stone-900">
-                          {agent.name}
-                        </span>
-                        <div className="flex gap-1.5">
-                          {agent.frameworks.slice(0, 3).map((f) => (
-                            <span key={f} className="text-[10px] text-stone-400 bg-stone-100 rounded-full px-2 py-0.5">{f}</span>
-                          ))}
-                        </div>
-                      </div>
-                      {guide && (
-                        <p className="text-xs text-stone-500 mt-1 line-clamp-1">{guide.problem}</p>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-3 shrink-0">
-                      <Link
-                        href={`/agent/${agent.id}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="text-xs text-stone-400 hover:text-stone-600 transition-colors"
-                      >
+                <Link key={agentId} href={`/agent/${agent.id}`}>
+                  <div className={`rounded-xl border ${colors.bg} ${colors.border} px-5 py-4 transition-all hover:shadow-md hover:-translate-y-0.5`}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-sm font-semibold text-stone-900">
+                        {agent.name}
+                      </span>
+                      <span className="text-xs text-stone-400">
                         Open &rarr;
-                      </Link>
-                      <ChevronDown className={`w-4 h-4 text-stone-400 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                      </span>
                     </div>
-                  </button>
-                  {isExpanded && guide && (
-                    <div className="border-t border-stone-100 px-5 py-6">
-                      <GuideTab guide={guide} colors={colors} />
+                    <p className="text-xs text-stone-600 leading-relaxed mb-2">
+                      {agent.identity}
+                    </p>
+                    <div className="flex gap-1.5 flex-wrap">
+                      {agent.frameworks.slice(0, 3).map((f) => (
+                        <span key={f} className="text-[10px] text-stone-400 bg-white/60 border border-stone-200 rounded-full px-2 py-0.5">{f}</span>
+                      ))}
                     </div>
-                  )}
-                </div>
+                  </div>
+                </Link>
               );
             })}
           </div>
         </div>
       ))}
+
+      {/* No results */}
+      {filteredDecisionTree.length === 0 && filteredCategories.length === 0 && (
+        <div className="text-center py-12 text-stone-400 text-sm">
+          No agents match your search. Try different keywords.
+        </div>
+      )}
 
       {/* Cross-Agent Patterns */}
       <div className="mb-10 bg-stone-50 rounded-xl border border-stone-200 p-6">
@@ -217,6 +244,7 @@ export default function HandbookClient() {
             { title: "Framework first", desc: "Structure messy situations through proven analytical models." },
             { title: "Timing matters", desc: "Most valuable before decisions, conversations, and commitments." },
             { title: "Personality shapes output", desc: "Coach for partnerships, Business for boardrooms, Strategic for high-stakes." },
+            { title: "Knowledge prevents hallucination", desc: "An agent without domain knowledge is an LLM guessing." },
           ].map((p) => (
             <div key={p.title} className="bg-white rounded-lg border border-stone-200 px-4 py-3">
               <span className="text-xs font-semibold text-stone-800 block mb-0.5">{p.title}</span>

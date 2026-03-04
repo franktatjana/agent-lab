@@ -54,7 +54,7 @@ import { Flyout } from "@/components/flyout";
 import { FrameworkBadge, agentResources } from "@/components/framework-badge";
 import { SandboxTab } from "@/components/sandbox/sandbox-tab";
 import { FlowTab } from "@/components/flow/FlowTab";
-import { CompositionTab } from "@/components/composition-tab";
+
 import { GuideTab, type GuideData } from "@/components/guide-tab";
 
 
@@ -100,7 +100,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; light
   fuchsia: { bg: "bg-fuchsia-50", border: "border-fuchsia-200", icon: "text-fuchsia-500", light: "bg-fuchsia-100" },
 };
 
-type Tab = "canvas" | "skills" | "builder" | "resources" | "flow" | "specification" | "composition" | "guide";
+type Tab = "canvas" | "skills" | "builder" | "resources" | "flow" | "specification" | "guide";
 
 const canvasCards: { key: keyof AgentCanvas; label: string; icon: LucideIcon; question: string }[] = [
   { key: "purpose", label: "Purpose", icon: Target, question: "Why does this agent exist?" },
@@ -237,7 +237,6 @@ export default function AgentPageClient({
           { id: "builder" as Tab, label: "Builder" },
           ...(hasResources ? [{ id: "resources" as Tab, label: "Resources" }] : []),
           { id: "flow" as Tab, label: "Flow" },
-          { id: "composition" as Tab, label: "Composition" },
           { id: "specification" as Tab, label: "Specification" },
         ]).map((tab) => (
           <button
@@ -821,11 +820,6 @@ export default function AgentPageClient({
       {/* ── Flow Tab ── */}
       {activeTab === "flow" && (
         <FlowTab agentId={agent.id} colors={colors} onOpenFlyout={setFlyout} />
-      )}
-
-      {/* ── Composition Tab ── */}
-      {activeTab === "composition" && (
-        <CompositionTab agentId={agent.id} colors={colors} />
       )}
 
       {/* ── Sandbox Tab ── */}
