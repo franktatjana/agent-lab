@@ -553,3 +553,5 @@ x-agentlab:
     - Blind spots are grounded in evidence from the input, not theoretical bias lists
     - Mitigations are concrete and assignable, not vague recommendations
     - Regret forecast is forward-looking and anchored in the project's specific context
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions

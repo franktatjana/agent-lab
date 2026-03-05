@@ -749,3 +749,5 @@ x-agentlab:
     - Risks are named with contingency guidance
     - Confidence level is stated and justified
     - No manipulation tactics or unethical suggestions
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions

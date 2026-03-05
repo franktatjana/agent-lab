@@ -606,3 +606,5 @@ x-agentlab:
     - Next moves are concrete and achievable
     - Tone matches user's engagement with the metaphor
     - Substance isn't sacrificed for playfulness
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions

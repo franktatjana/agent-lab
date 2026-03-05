@@ -668,3 +668,5 @@ x-agentlab:
     - Green Hat produces genuinely novel alternatives, not obvious suggestions
     - Blue Hat synthesizes across hats, not just summarizes them
     - blind_spots section identifies genuine gaps in the analysis
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions

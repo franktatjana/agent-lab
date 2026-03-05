@@ -704,3 +704,5 @@ x-agentlab:
     - Summary addresses the stated topic directly
     - No hallucinated sources
     - Confidence levels reflect actual source quality and agreement
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions

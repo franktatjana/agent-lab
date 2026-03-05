@@ -706,3 +706,5 @@ x-agentlab:
     - Riskiest assumptions identified and addressed first
     - Testable prototype plan with clear success/failure signals
     - Evidence-based decisions at every stage transition
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions

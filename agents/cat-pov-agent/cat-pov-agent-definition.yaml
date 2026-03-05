@@ -569,6 +569,8 @@ x-agentlab:
     - Territory map identifies real boundary issues, not surface complaints
     - Energy diagnosis categorizes drains by type with actionable specificity
     - Human translation provides concrete next steps the user can act on today
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
   monitoring:
     signals:

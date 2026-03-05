@@ -582,3 +582,5 @@ x-agentlab:
     - Consequence maps trace effects at least two orders deep with concrete scenarios
     - BATNA analysis identifies real alternatives, not hypothetical escape routes
     - Recommendation includes a clear confidence level with honest assessment of what is unknown
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions

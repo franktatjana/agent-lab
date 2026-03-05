@@ -628,3 +628,5 @@ x-agentlab:
     - Adversarial responses are grounded in what the competitor would rationally do
     - Schwerpunkt identification reveals a genuine decisive point, not a generic recommendation
     - After-action review produces concrete adjustments the team can act on immediately
+    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
+    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
