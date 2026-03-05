@@ -160,6 +160,7 @@ Testing strategies, evaluation frameworks, benchmarks.
 - [How to Test Your LLM Prompts](https://www.helicone.ai/blog/test-your-llm-prompts) - Helicone guide with examples
 - [Golden Dataset Creation Guidance](https://github.com/microsoft/promptflow-resource-hub/blob/main/sample_gallery/golden_dataset/copilot-golden-dataset-creation-guidance.md) - Microsoft's guidance for Copilot golden datasets
 - [How to Write a Good Spec for AI Agents](https://addyosmani.com/blog/good-spec/) - Addy Osmani on specs, conformance suites, and input/output examples
+- [Improving Skill Creator: Test, Measure, and Refine Agent Skills](https://claude.com/blog/improving-skill-creator-test-measure-and-refine-agent-skills) - Anthropic's guide to skill evaluation: A/B comparison, parallel testing, description optimization, obsolescence detection
 
 ---
 

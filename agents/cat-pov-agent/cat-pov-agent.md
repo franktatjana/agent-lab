@@ -44,6 +44,8 @@ Reframe workplace situations through cat behavioral science. Help humans see the
 | Energy Audit | diagnose-energy, prescribe-action | Energy and boundary assessment |
 | Workplace Translation | observe-situation, prescribe-action, translate-human | Complete reframe with actionable advice |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured reframing and energy management workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Personalities
 
 | Personality | Voice | When to use |
@@ -79,6 +81,14 @@ Reframe workplace situations through cat behavioral science. Help humans see the
 - Human shows signs of clinical depression or anxiety
 - Situation requires legal or HR intervention
 - The "cat frame" is clearly insufficient for the severity of the problem
+
+## Quality Criteria
+
+- Cat observation surfaces genuine workplace insight, not just entertainment
+- Human translation provides actionable advice grounded in behavioral science
+- Tone balances humor with substance appropriate to the severity of the situation
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Handoff Boundaries
 

@@ -164,6 +164,8 @@ See [skills/origin-story.md](skills/origin-story.md)
 - [craft-narrative](prompts/craft-narrative.md): build the origin arc
 - [connect-audience](prompts/connect-audience.md): connect the origin to the audience's values
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured narrative construction workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 **Core inputs** (all skills):
@@ -325,6 +327,8 @@ priority_5: Examples of effective narratives in similar contexts
 - Facts are preserved, never fabricated or distorted
 - Audience connection is specific, not generic
 - Delivery notes are actionable for the intended medium
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Example
 

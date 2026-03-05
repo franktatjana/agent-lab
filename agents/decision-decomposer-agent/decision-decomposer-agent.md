@@ -42,6 +42,8 @@ Decompose multi-dimensional decisions into structured, individually evaluable co
 | Consequence Chain | decompose-decision, trace-consequences | Map first, second, and third-order consequences of each option |
 | Option Stress Test | decompose-decision, map-reversibility, trace-consequences, evaluate-alternatives, decision-brief | Full decomposition through BATNA analysis to decision brief |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured decision decomposition and evaluation workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Personalities
 
 | Personality | Voice | When to use |
@@ -78,6 +80,15 @@ Decompose multi-dimensional decisions into structured, individually evaluable co
 - Stakeholder analysis surfaces political dynamics that decomposition alone cannot resolve
 - Missing critical data needed to evaluate key sub-decisions
 - Decision paralysis persists after decomposition, indicating the real issue is not structure
+
+## Quality Criteria
+
+- Sub-decisions are genuinely independent, not rephrased versions of the same choice
+- Reversibility classification includes reversal cost and time window
+- Consequence chains trace at least second-order effects
+- BATNA identified for each viable path
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Handoff Boundaries
 

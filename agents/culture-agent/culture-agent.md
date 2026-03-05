@@ -170,6 +170,8 @@ See [skills/conflict-mediation.md](skills/conflict-mediation.md)
 - [explain-perspectives](prompts/explain-perspectives.md):help each side understand the other
 - [suggest-resolution](prompts/suggest-resolution.md):path forward
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured cultural analysis and communication adaptation workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 **Core inputs** (all skills):
@@ -384,6 +386,8 @@ When the culture agent analyzes a cross-cultural interaction, it surfaces mutual
 - Caveats about individual variation always included
 - No stereotyping or cultural judgment
 - Mutual learning opportunities are surfaced alongside friction points
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Example
 

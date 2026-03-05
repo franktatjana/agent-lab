@@ -160,6 +160,8 @@ See [skills/anticipate-follow-ups.md](skills/anticipate-follow-ups.md)
 - [decode-question](prompts/decode-question.md): understand the original intent
 - [anticipate-follow-ups](prompts/anticipate-follow-ups.md): generate likely next questions
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured question decoding and answer architecture workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 **Core inputs** (all skills):
@@ -319,6 +321,8 @@ priority_5: Examples of successful decoding (if needed)
 - Answer architecture matches the audience's altitude and format preference
 - Drafted responses lead with what the audience needs to hear
 - Follow-up questions are plausible and prepared answers are substantive
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Example
 

@@ -183,6 +183,8 @@ See [skills/coach-sender.md](skills/coach-sender.md)
 
 - [coach-sender](prompts/coach-sender.md): guide skill development over time
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured cross-generational communication workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 ```yaml
@@ -384,6 +386,8 @@ When the generation agent detects a cross-generational interaction, it actively 
 - Stereotypes are avoided while still providing useful guidance
 - Alternatives offer genuine choices, not token options
 - Mutual learning opportunities are surfaced alongside friction points
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Example
 

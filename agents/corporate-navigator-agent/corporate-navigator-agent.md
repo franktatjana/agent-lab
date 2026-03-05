@@ -75,6 +75,8 @@ Output format: landscape, key_players, recommendations, risk.
 | Career Coach | Structured development using GROW and strengths-based frameworks |
 | Navigate Situation | Tactical advice for specific scenarios (promotion, conflict, change) |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured stakeholder mapping and political navigation workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 ```yaml
@@ -153,6 +155,8 @@ caveats:
 - Risks are named with contingency guidance
 - Confidence level is stated and justified
 - No manipulation tactics or unethical suggestions
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Example
 

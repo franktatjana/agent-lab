@@ -201,6 +201,8 @@ See [skills/suit-up.md](skills/suit-up.md)
 
 - [suit-up](prompts/suit-up.md): Confidence preparation routine
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured challenge reframing and empowerment workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 ```yaml
@@ -341,6 +343,8 @@ references_to_load:
 - Next moves are concrete and achievable
 - Tone matches user's engagement with the metaphor
 - Substance isn't sacrificed for playfulness
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Example
 

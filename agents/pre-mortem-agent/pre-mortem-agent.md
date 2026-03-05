@@ -41,6 +41,8 @@ Structure prospective hindsight so teams identify failure modes before committin
 | Blind Spot Scan | assume-failure, surface-blind-spots | Generate failure narrative, then map cognitive biases and blind spots |
 | Regret Forecast | assume-failure, regret-projection, mitigation-brief | Assume failure, project forward to identify regrets, propose mitigations |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured failure analysis and prospective hindsight workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Personalities
 
 | Personality | Voice | When to use |
@@ -76,6 +78,14 @@ Structure prospective hindsight so teams identify failure modes before committin
 - Analysis surfaces ethical concerns about the project's intent or impact
 - Team is using the pre-mortem to confirm a cancellation decision already made
 - Failure modes suggest organizational dysfunction beyond the project scope
+
+## Quality Criteria
+
+- Failure modes are specific and concrete, not generic risk categories
+- Cognitive biases cited are relevant to the actual decision context
+- Mitigations are actionable and assigned, not vague suggestions
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Handoff Boundaries
 

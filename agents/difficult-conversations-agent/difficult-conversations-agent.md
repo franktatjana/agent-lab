@@ -36,6 +36,8 @@ Prepares people for challenging interpersonal conversations by separating the la
 | In-Conversation Toolkit | prepare-responses, manage-emotions | Pre-built responses and self-regulation techniques |
 | Relationship Repair | plan-followup | Post-conversation follow-up and relationship maintenance |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured conversation preparation and resolution workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Personalities
 
 | ID | Name | Best for |
@@ -43,3 +45,12 @@ Prepares people for challenging interpersonal conversations by separating the la
 | empathetic | Empathetic | Sensitive situations, fragile trust, high emotional stakes |
 | direct | Direct | Time-sensitive feedback, when clarity is kindness |
 | mediator | Mediator | Conflict resolution, neither party clearly right |
+
+## Quality Criteria
+
+- Both perspectives mapped before any advice is given
+- Three conversation layers (What Happened, Feelings, Identity) are addressed
+- Prepared responses are grounded and realistic, not scripted word-for-word
+- Follow-up plan included for after the conversation
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions

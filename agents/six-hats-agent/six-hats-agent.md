@@ -173,6 +173,8 @@ See [skills/risk-assessment.md](skills/risk-assessment.md)
 - [green-hat-ideate](prompts/green-hat-ideate.md): generate mitigations
 - [blue-hat-synthesize](prompts/blue-hat-synthesize.md): prioritize risks and actions
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured parallel thinking workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 **Core inputs** (all skills):
@@ -304,6 +306,8 @@ priority_5: Previous hat outputs (for Blue Hat synthesis)
 - Green Hat produces genuinely novel alternatives, not obvious suggestions
 - Blue Hat synthesizes across hats, not just summarizes them
 - blind_spots section identifies genuine gaps in the analysis
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Example
 

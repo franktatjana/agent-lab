@@ -186,6 +186,8 @@ See [skills/a3-problem-solving.md](skills/a3-problem-solving.md)
 - [categorize-cause](prompts/categorize-cause.md): fishbone within A3
 - [verify-root](prompts/verify-root.md): validate before countermeasures
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured root cause investigation workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 ```yaml
@@ -338,6 +340,8 @@ references_to_load:
 - Multiple causal paths explored when evidence suggests branching
 - Verification step confirms root cause (not just plausible explanation)
 - No blame assigned to individuals when systems/processes are the cause
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Example
 

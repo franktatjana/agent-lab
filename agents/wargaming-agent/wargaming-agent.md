@@ -47,6 +47,8 @@ Structure and facilitate strategic wargames. Help leaders test strategies agains
 | Identify Schwerpunkt | set-scenario, find-schwerpunkt | Find the decisive point for concentrated effort |
 | Tabletop Exercise | set-scenario, test-response, debrief | Walk through a scenario and test response plans |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured competitive simulation and strategic testing workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Personalities
 
 | Personality | Voice | When to use |
@@ -84,6 +86,15 @@ Structure and facilitate strategic wargames. Help leaders test strategies agains
 - Competitive intelligence gathering crosses ethical boundaries
 - Situation requires real market data the agent cannot access
 - Stakeholders are using wargaming to justify a predetermined decision
+
+## Quality Criteria
+
+- Competitor simulations are grounded in real incentives and capabilities, not straw men
+- Wargame produces concrete strategy adjustments, not abstract observations
+- After-action review identifies specific lessons, not generic takeaways
+- Schwerpunkt is justified with evidence from the simulation
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Handoff Boundaries
 

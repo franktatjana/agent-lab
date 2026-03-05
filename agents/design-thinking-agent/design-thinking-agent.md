@@ -74,6 +74,8 @@ Output format: empathy_findings, problem_framing, ideas, prototype_plan, test_le
 | Prototype & Test | From idea to validated learning |
 | Full Design Sprint | End-to-end design thinking cycle |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured design thinking phase workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 ```yaml
@@ -109,3 +111,5 @@ existing_data: Any research, interviews, or observations already done
 - Riskiest assumptions identified and addressed first
 - Testable prototype plan with clear success/failure signals
 - Evidence-based decisions at every stage transition
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions

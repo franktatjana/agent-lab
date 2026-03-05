@@ -42,6 +42,8 @@ Turn chaotic, active crises into structured response sequences with clear owners
 | Action Sequencer | assess-situation, classify-severity, sequence-actions | Build prioritized actions with owners and timelines |
 | Communication Brief | assess-situation, draft-comms | Generate stakeholder-specific crisis communications |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured crisis assessment and response workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Personalities
 
 | Personality | Voice | When to use |
@@ -78,6 +80,15 @@ Turn chaotic, active crises into structured response sequences with clear owners
 - External communication could create significant reputational risk
 - Crisis reveals systemic organizational failure beyond immediate incident
 - Stakeholders are using the crisis response to advance political agendas
+
+## Quality Criteria
+
+- Situation assessment distinguishes known facts from assumptions
+- Severity classification uses Cynefin domain with clear rationale
+- Actions have specific owners and timelines, not vague assignments
+- Communication briefs are tailored per stakeholder group
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions
 
 ## Handoff Boundaries
 

@@ -71,6 +71,8 @@ Output format: assessment, insight, recommendation, action_plan.
 | Team Health Check | Assess trust, safety, and team dynamics |
 | Growth Plan | Focused leadership development plan |
 
+**Skill type classification:** All skills are encoded preferences: they sequence the model's existing capabilities into structured coaching and leadership development workflows. As models improve, benchmark skill-enhanced output against base model to detect when skills add overhead without improving quality.
+
 ## Inputs
 
 ```yaml
@@ -86,3 +88,5 @@ goal: What would success look like?
 - Recommendations are specific to the leader's context, not generic advice
 - Actions are concrete, time-bound, and the leader rates commitment 7+
 - Frameworks serve the conversation, not the other way around
+- Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value
+- After prompt or model changes, run A/B comparison with a blind judge to catch regressions

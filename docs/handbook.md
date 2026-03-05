@@ -94,6 +94,13 @@ These terms get used interchangeably but mean different things. Tools are extern
 - Use skills when behavior involves multiple steps or needs naming for reuse
 - Skip skills when the prompt is self-contained: adding a skill layer just duplicates it
 
+**Skill types by durability:**
+
+Not all skills age the same way. Understanding which type you're building determines your testing strategy and maintenance burden.
+
+- **Capability uplift**: encodes techniques the base model cannot reliably perform on its own. These skills become less necessary as models improve, making regular benchmarking against the base model essential to detect obsolescence. If the base model matches the skill's output quality, the skill is dead weight.
+- **Encoded preference**: sequences the model's existing capabilities according to your specific workflow. More durable because they encode *your* process, not a workaround for model limitations. Still require validation that they maintain fidelity to your actual workflow as it evolves.
+
 ### Model Selection
 
 Different tasks within a single agent workflow have different complexity profiles, and not every step requires the most capable model. A simple retrieval or intent classification task may be handled by a smaller, faster model, while harder tasks like deciding whether to approve a refund benefit from a more capable one.
@@ -968,6 +975,34 @@ Agents can catch some of their own mistakes before delivery. Build in a review s
 **Outcomes:** Pass → deliver. Revise → fix and retry. Flag → note issues for user. Fail → escalate.
 
 **Limit:** Agents miss issues they're prone to make. Complements but doesn't replace external evaluation.
+
+### A/B Comparison Testing
+
+Sometimes the question isn't "does this skill work?" but "is version B better than version A?" A/B comparison uses a comparator agent to judge two outputs side-by-side without knowing which is which.
+
+**Use cases:**
+
+- Comparing two skill versions after a prompt change
+- Testing skill-enhanced output vs base model (no skill) to measure actual value added
+- Validating whether a model update improved or degraded a specific workflow
+
+**How it works:** Run the same input through both versions. A separate judge agent scores both outputs against the same rubric, blind to which version produced which output. This eliminates confirmation bias and produces objective comparisons.
+
+**Key design rule:** The judge must not know which output is "new" and which is "old." Blind evaluation prevents anchoring on the version the evaluator expects to be better.
+
+### Skill Obsolescence Detection
+
+Skills that add value today may become redundant as models improve. A capability uplift skill (see Part 2) that compensates for a model limitation becomes dead weight once the base model catches up. Without periodic checks, you accumulate skills that add latency and complexity without improving output.
+
+**Detection method:** Run the same eval suite with the skill enabled and with the skill disabled (base model only). Compare pass rates, output quality scores, and token usage. If the base model matches or exceeds the skill-enhanced version, the skill is a candidate for retirement.
+
+**When to check:**
+
+- After every major model update
+- When eval pass rates hit 100% (the eval may have saturated, or the skill may be unnecessary)
+- On a regular cadence (quarterly) for all production skills
+
+**What to track:** Pass rate delta (skill vs base), token cost delta, and latency delta. A skill that adds 500 tokens of overhead for 2% quality improvement may not be worth maintaining.
 
 ### Failure Modes
 
