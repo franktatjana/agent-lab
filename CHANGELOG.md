@@ -2,7 +2,16 @@
 
 All notable changes to the Agent Lab project.
 
-## [Unreleased] - 2026-02-16
+## [Unreleased] - 2026-03-05
+
+### Added
+
+- Skill type taxonomy: all agent skills classified as encoded preferences or capability uplifts
+- A/B comparison testing and skill obsolescence detection as standard quality criteria across all 18 agents
+- Quality Criteria sections for 7 agents that previously lacked them
+- Handbook sections: A/B Comparison Testing, Skill Obsolescence Detection (Part 6)
+
+## [0.6.0] - 2026-02-16
 
 ### Added
 

@@ -223,6 +223,27 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 
 ---
 
+## Skill Quality & Maintenance
+
+**Do:**
+
+- Classify every skill by type: encoded preference (sequences your workflow, durable) or capability uplift (compensates for model limitation, temporary)
+- Run A/B comparisons after prompt or model changes: blind judge, same rubric, two outputs side by side
+- Periodically benchmark skill-enhanced output against base model (no skill) to detect when skills add overhead without improving quality
+- Retire skills where the base model matches or exceeds skill-enhanced output, they're adding latency for nothing
+- Track three deltas: pass rate (skill vs base), token cost, and latency
+
+**Don't:**
+
+- Assume skills stay valuable forever, models improve and skills that compensated for limitations become dead weight
+- Skip blind evaluation, knowing which output is "new" biases the comparison toward confirming what you expect
+- Test only after building, run A/B before committing to a prompt change across all agents
+- Ignore token cost, a skill that adds 500 tokens for 2% quality improvement may not be worth maintaining
+
+*Why it matters: Skills accumulate. Without periodic validation, you carry skills that slow agents down and burn tokens without improving output. The best skill set is the smallest one that demonstrably outperforms the base model.*
+
+---
+
 ## Case Studies & Documentation
 
 **Do:**
