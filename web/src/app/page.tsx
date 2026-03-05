@@ -6,6 +6,7 @@ import { agents } from "@/data/agents";
 
 import { stories } from "@/data/stories";
 import Link from "next/link";
+import { AgentRecommender } from "@/components/agent-recommender";
 import {
   Globe,
   Search,
@@ -117,6 +118,7 @@ export default function Home() {
       </div>
 
       {tab === "agents" && (<>
+      <AgentRecommender />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
           "superhero-agent",

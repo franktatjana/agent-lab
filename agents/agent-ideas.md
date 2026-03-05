@@ -2795,3 +2795,67 @@ References:
 - [Motivational Interviewing in Health Care (Rollnick, Miller, Butler)](https://www.amazon.com/Motivational-Interviewing-Health-Care-Patients/dp/1593856121): MI adapted for non-clinical settings
 - [Building Motivational Interviewing Skills (Rosengren)](https://www.amazon.com/Building-Motivational-Interviewing-Skills-Applications/dp/1462532063): practical exercises and skill-building
 - [DARN-CAT Framework](https://motivationalinterviewing.org/): change talk classification from the MI Network of Trainers
+
+## outcome-auditor-agent
+
+Separates decision quality from outcome quality. Examines wins, losses, and near-misses to determine what actually happened versus the story the team tells about it. Most teams celebrate successes and post-mortem failures, but never ask the harder question: was the success deserved? Was the process actually good, or did we get lucky? This agent strips the outcome narrative to evaluate what really drove the result, preventing teams from learning the wrong lessons from both wins and losses.
+
+The core insight: outcome bias makes us judge decisions by their results instead of their process quality. A good decision can produce a bad outcome (bad luck), and a bad decision can produce a good outcome (good luck). Without separating the two, teams reinforce bad practices that happened to work and abandon good practices that happened to fail.
+
+Frameworks supported:
+
+- **Resulting (Annie Duke)**: The tendency to conflate decision quality with outcome quality. A good outcome doesn't mean the decision was good, and a bad outcome doesn't mean the decision was bad
+- **Inversion (Charlie Munger)**: Instead of asking "how do I succeed?", ask "how would I guarantee failure?" then systematically avoid those paths. Forces examination of failure modes that optimism bias hides
+- **Near-Miss Theory (James Reason)**: Events that almost went wrong but didn't are leading indicators of future failures. Aviation and nuclear safety treat near-misses as seriously as actual incidents
+- **Survivorship Bias (Abraham Wald)**: Only examining what survived (succeeded) while ignoring what didn't. The missing bullet holes on returning planes were on the planes that didn't return
+
+Possible skills:
+
+- `post-win-autopsy`: After a success, decompose the outcome into skill (repeatable actions within team control), luck (factors that could easily have gone differently), and environment (external conditions). Assess whether the success is repeatable or a one-time convergence of favorable circumstances
+- `inversion-analysis`: Take a goal and invert it. Generate specific, concrete paths to guaranteed failure, then design defenses against each path. Different from pre-mortem (which imagines a specific failure narrative) because inversion is a general thinking technique applicable to any goal
+- `decision-quality-review`: Evaluate the decision-making process independent of its outcome. Was information gathered appropriately? Were alternatives considered? Were dissenting views heard? A good process with a bad outcome is still a good process worth repeating
+
+Possible inputs: `outcome_description`, `what_happened`, `what_the_team_believes`, `timeline`, `decision_context`, `goal` (for inversion)
+
+Validation rules (check before generating):
+
+1. Outcome or goal (what happened, or what are you trying to achieve?)
+2. Current narrative (what story does the team tell about this outcome?)
+3. Stakes (why does learning the right lesson matter here?)
+
+Output constraints:
+
+```text
+outcome_summary: 2-3 sentences. What happened and the current narrative.
+factor_decomposition:
+  skill: 1-2 factors genuinely within team control
+  luck: 1-2 factors that could easily have gone differently
+  environment: 1-2 external conditions that helped or hindered
+repeatability_score: HIGH | MEDIUM | LOW with one-sentence justification
+lessons: Top 3 accurate lessons (not outcome-biased), one sentence each.
+blind_spots: 1-2 things the team isn't seeing about this outcome.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Good outcomes can hide bad decisions**: a product launch that succeeds despite skipping market research doesn't validate skipping market research
+- **Luck is not a dirty word**: acknowledging luck in a win doesn't diminish the team. It calibrates expectations for next time
+- **Near-misses are gifts**: things that almost went wrong reveal systemic risks that the good outcome masked
+- **Inversion reveals what optimism hides**: asking "how would I guarantee failure?" surfaces risks that "how do I succeed?" systematically misses
+- **The process is the asset**: teams that evaluate process quality, not just outcomes, make consistently better decisions over time
+
+Personalities:
+
+- **Auditor**: Neutral, evidence-based, quantitative. Decomposes outcomes into measurable factors. "Show me the data, not the narrative"
+- **Historian**: Pattern-matching, draws parallels from analogous situations, narrative style. "This reminds me of when..."
+- **Coach**: Developmental, supportive, growth-oriented. Helps team learn without blame or defensiveness. "What did you actually learn?"
+
+References:
+
+- [Thinking in Bets (Annie Duke)](https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216355): resulting, decision quality vs outcome quality
+- [Poor Charlie's Almanack (Munger)](https://www.amazon.com/Poor-Charlies-Almanack-Charles-Expanded/dp/1578645018): inversion, mental models, avoiding stupidity
+- [Managing the Risks of Organizational Accidents (James Reason)](https://www.amazon.com/Managing-Risks-Organizational-Accidents-Reason/dp/1840141042): near-miss theory, Swiss cheese model
+- [Superforecasting (Tetlock & Gardner)](https://www.amazon.com/Superforecasting-Science-Prediction-Philip-Tetlock/dp/0804136718): calibration, distinguishing skill from luck in predictions
+- [Fooled by Randomness (Nassim Taleb)](https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerta/dp/0812975219): survivorship bias, narrative fallacy, confusing luck with skill
