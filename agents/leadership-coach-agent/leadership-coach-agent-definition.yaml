@@ -252,6 +252,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: set-coaching-goal
@@ -295,6 +296,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: assess-leadership-style
@@ -336,6 +338,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: diagnose-team-dynamics
@@ -379,6 +382,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: assess-leadership-style
@@ -702,10 +706,24 @@ x-agentlab:
       description: Leadership growth plan with 30/60/90 day actions
 
   quality:
-    - Leader's own contribution to the situation is honestly identified
-    - Recommendations are specific to the leader's context, not generic advice
-    - Actions are concrete, time-bound, and the leader rates commitment 7+
-    - Frameworks serve the conversation, not the other way around
-    - No judgment, only genuine curiosity and care
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Leader's own contribution to the situation is honestly identified
+      - Recommendations are specific to the leader's context, not generic advice
+      - Actions are concrete, time-bound, and the leader rates commitment 7+
+      - Frameworks serve the conversation, not the other way around
+      - No judgment, only genuine curiosity and care
+    ab_comparison_testing:
+      approach: >
+        Generate leadership coaching output with and without the skill.
+        Compare on: situational diagnosis accuracy, framework application
+        depth, action plan specificity, feedback quality.
+      dimensions:
+        - situational_diagnosis_accuracy
+        - framework_application_depth
+        - action_plan_specificity
+        - feedback_quality
+    obsolescence_detection:
+      signals:
+        - Users apply leadership frameworks without coaching guidance
+        - LLM produces equivalent situational leadership analysis unprompted
+        - Leadership development research has superseded current models

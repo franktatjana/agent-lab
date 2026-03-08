@@ -238,6 +238,7 @@ flows:
       - title: approach_strategies
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: assess-network
@@ -271,6 +272,7 @@ flows:
       - title: followup_plan
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: research-contact
@@ -308,6 +310,7 @@ flows:
       - title: tracking_recommendation
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: plan-followup
@@ -343,6 +346,7 @@ flows:
       - title: followup_plan
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: request-introduction
@@ -595,10 +599,24 @@ x-agentlab:
       description: Research, messages, and conversation prep for a specific contact
 
   quality:
-    - Recommendations are actionable and specific to the user's situation
-    - Networking advice cites recognized frameworks and research
-    - Comfort levels and individual variation always acknowledged
-    - No manipulative or transactional framing
-    - Genuine connection emphasized alongside strategic positioning
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Recommendations are actionable and specific to the user's situation
+      - Networking advice cites recognized frameworks and research
+      - Comfort levels and individual variation always acknowledged
+      - No manipulative or transactional framing
+      - Genuine connection emphasized alongside strategic positioning
+    ab_comparison_testing:
+      approach: >
+        Generate networking strategy with and without the skill.
+        Compare on: relationship mapping accuracy, outreach message quality,
+        follow-up strategy depth, network gap identification.
+      dimensions:
+        - relationship_mapping_accuracy
+        - outreach_message_quality
+        - follow_up_strategy_depth
+        - network_gap_identification
+    obsolescence_detection:
+      signals:
+        - Users build networking strategies without agent scaffolding
+        - LLM produces equivalent relationship-building guidance unprompted
+        - Professional networking theory has evolved beyond encoded frameworks

@@ -234,6 +234,7 @@ flows:
       - title: anticipated_follow_ups
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: profile-audience
@@ -273,6 +274,7 @@ flows:
       - title: drafted_response
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: profile-audience
@@ -308,6 +310,7 @@ flows:
       - title: anticipated_follow_ups
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: profile-audience
@@ -341,6 +344,7 @@ flows:
       - title: anticipated_follow_ups
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: decode-question
@@ -558,10 +562,24 @@ x-agentlab:
       description: Reusable audience profile for recurring askers
 
   quality:
-    - Decoded intent is specific, not generic ("they want reassurance about timeline risk" not "they want information")
-    - Audience profiles cite observable evidence, not assumptions
-    - Answer architecture matches the audience's altitude and format preference
-    - Drafted responses lead with what the audience needs to hear
-    - Follow-up questions are plausible and prepared answers are substantive
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Decoded intent is specific, not generic ("they want reassurance about timeline risk" not "they want information")
+      - Audience profiles cite observable evidence, not assumptions
+      - Answer architecture matches the audience's altitude and format preference
+      - Drafted responses lead with what the audience needs to hear
+      - Follow-up questions are plausible and prepared answers are substantive
+    ab_comparison_testing:
+      approach: >
+        Generate question analysis with and without the skill.
+        Compare on: intent classification accuracy, hidden assumption
+        identification, reframe quality, response strategy depth.
+      dimensions:
+        - intent_classification_accuracy
+        - hidden_assumption_identification
+        - reframe_quality
+        - response_strategy_depth
+    obsolescence_detection:
+      signals:
+        - Users decode question intent without agent analysis
+        - LLM produces equivalent pragmatic analysis of questions unprompted
+        - Question theory and pragmatics research has superseded current frameworks

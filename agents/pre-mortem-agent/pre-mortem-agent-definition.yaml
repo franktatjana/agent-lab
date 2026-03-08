@@ -267,6 +267,7 @@ flows:
       - title: mitigations
         type: object
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: assume-failure
@@ -296,6 +297,7 @@ flows:
       - title: blind_spots
         type: object
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: assume-failure
@@ -325,6 +327,7 @@ flows:
       - title: failure_modes
         type: object
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: assume-failure
@@ -549,9 +552,23 @@ x-agentlab:
       description: Actionable mitigation brief with one concrete action per top failure mode
 
   quality:
-    - Failure modes are specific enough to act on, not generic risks that apply to everything
-    - Blind spots are grounded in evidence from the input, not theoretical bias lists
-    - Mitigations are concrete and assignable, not vague recommendations
-    - Regret forecast is forward-looking and anchored in the project's specific context
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Failure modes are specific enough to act on, not generic risks that apply to everything
+      - Blind spots are grounded in evidence from the input, not theoretical bias lists
+      - Mitigations are concrete and assignable, not vague recommendations
+      - Regret forecast is forward-looking and anchored in the project's specific context
+    ab_comparison_testing:
+      approach: >
+        Generate pre-mortem analysis with and without the skill.
+        Compare on: failure mode specificity, blind spot identification,
+        mitigation actionability, regret forecast grounding.
+      dimensions:
+        - failure_mode_specificity
+        - blind_spot_identification
+        - mitigation_actionability
+        - regret_forecast_grounding
+    obsolescence_detection:
+      signals:
+        - Users conduct structured pre-mortems without agent guidance
+        - LLM produces equivalent failure mode analysis unprompted
+        - Risk assessment methodologies have superseded current frameworks

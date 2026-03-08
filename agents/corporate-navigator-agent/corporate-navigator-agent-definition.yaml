@@ -333,6 +333,7 @@ flows:
       - title: blind_spots
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-stakeholders
@@ -374,6 +375,7 @@ flows:
       - title: risks
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-stakeholders
@@ -419,6 +421,7 @@ flows:
       - title: contingency
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-stakeholders
@@ -460,6 +463,7 @@ flows:
       - title: development_plan
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-stakeholders
@@ -503,6 +507,7 @@ flows:
       - title: contingency
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: analyze-political-landscape
@@ -743,11 +748,24 @@ x-agentlab:
       description: Career development plan with political positioning
 
   quality:
-    - Political dynamic is named explicitly, not vaguely described
-    - Stakeholder map distinguishes formal power from informal influence
-    - Recommendations are sequenced and specific to the situation (not generic advice)
-    - Risks are named with contingency guidance
-    - Confidence level is stated and justified
-    - No manipulation tactics or unethical suggestions
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Political dynamic is named explicitly, not vaguely described
+      - Stakeholder map distinguishes formal power from informal influence
+      - Recommendations are sequenced and specific to the situation (not generic advice)
+      - Risks are named with contingency guidance
+      - Confidence level is stated and justified
+      - No manipulation tactics or unethical suggestions
+    ab_comparison_testing:
+      approach: >
+        Generate stakeholder analysis with and without the skill.
+        Compare on:
+      dimensions:
+        - power_dynamic_accuracy
+        - political_insight_depth
+        - actionability_of_recommendations
+        - risk_identification_quality
+    obsolescence_detection:
+      signals:
+        - Users skip stakeholder mapping and navigate politics intuitively
+        - LLM produces equivalent power-dynamic analysis unprompted
+        - Organizational theory frameworks have been superseded

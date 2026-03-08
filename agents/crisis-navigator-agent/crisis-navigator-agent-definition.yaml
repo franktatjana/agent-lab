@@ -275,6 +275,7 @@ flows:
       - title: severity_classification
         type: string
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: assess-situation
@@ -304,6 +305,7 @@ flows:
       - title: next_review_point
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: assess-situation
@@ -335,6 +337,7 @@ flows:
       - title: communication_brief
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: assess-situation
@@ -587,10 +590,23 @@ x-agentlab:
       description: Audience-specific crisis communications ready for review and distribution
 
   quality:
-    - Situation assessment is factual and distinguishes known from unknown
-    - Severity classification matches Cynefin domain criteria, not gut feeling
-    - Action sequence has a named owner and specific timeline for every item
-    - Communication brief uses different language and detail level for each audience
-    - Next review point is specific enough to hold the team accountable
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Situation assessment is factual and distinguishes known from unknown
+      - Severity classification matches Cynefin domain criteria, not gut feeling
+      - Action sequence has a named owner and specific timeline for every item
+      - Communication brief uses different language and detail level for each audience
+      - Next review point is specific enough to hold the team accountable
+    ab_comparison_testing:
+      approach: >
+        Generate crisis response plan with and without the skill.
+        Compare on:
+      dimensions:
+        - severity_classification_accuracy
+        - action_sequencing_quality
+        - stakeholder_communication_appropriateness
+        - escalation_trigger_identification
+    obsolescence_detection:
+      signals:
+        - Users produce structured crisis responses without the agent's framework
+        - LLM generates equivalent severity classification and action sequencing unprompted
+        - Crisis management methodologies have evolved beyond current frameworks

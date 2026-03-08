@@ -241,6 +241,7 @@ flows:
       - title: blind_spots
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: sequence-hats
@@ -294,6 +295,7 @@ flows:
       - title: blind_spots
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: white-hat-analysis
@@ -339,6 +341,7 @@ flows:
       - title: blind_spots
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: white-hat-analysis
@@ -384,6 +387,7 @@ flows:
       - title: blind_spots
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: white-hat-analysis
@@ -662,11 +666,23 @@ x-agentlab:
       description: Decision-focused summary
 
   quality:
-    - Each hat perspective is genuinely distinct, not rephrased versions of the same point
-    - Red Hat surfaces real emotions, not rationalized feelings
-    - Black Hat identifies specific risks, not generic caution
-    - Green Hat produces genuinely novel alternatives, not obvious suggestions
-    - Blue Hat synthesizes across hats, not just summarizes them
-    - blind_spots section identifies genuine gaps in the analysis
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Each hat perspective is genuinely distinct, not rephrased versions of the same point
+      - Red Hat surfaces real emotions, not rationalized feelings
+      - Black Hat identifies specific risks, not generic caution
+      - Green Hat produces genuinely novel alternatives, not obvious suggestions
+      - Blue Hat synthesizes across hats, not just summarizes them
+      - blind_spots section identifies genuine gaps in the analysis
+    ab_comparison_testing:
+      approach: >
+        Generate six hats analysis with and without the skill. Compare on:
+      dimensions:
+        - perspective_separation_quality
+        - hat_specific_depth
+        - integration_coherence
+        - blind_spot_coverage
+    obsolescence_detection:
+      signals:
+        - Users apply parallel thinking without agent scaffolding
+        - LLM produces equivalent multi-perspective analysis unprompted
+        - de Bono's thinking frameworks have been superseded by newer methodologies

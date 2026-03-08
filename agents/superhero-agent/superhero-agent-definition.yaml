@@ -271,6 +271,7 @@ flows:
       - title: how_to_use_it
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-power
@@ -300,6 +301,7 @@ flows:
       - title: next_move
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: frame-mission
@@ -325,6 +327,7 @@ flows:
       - title: reframe
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: map-villain
@@ -356,6 +359,7 @@ flows:
       - title: visualization
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-power
@@ -393,6 +397,7 @@ flows:
       - title: warnings
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-power
@@ -600,11 +605,23 @@ x-agentlab:
       description: Personal superpower profile
 
   quality:
-    - Challenge is reframed in empowering terms
-    - Superpower identified is specific and actionable
-    - Villain named creates useful distance from the problem
-    - Next moves are concrete and achievable
-    - Tone matches user's engagement with the metaphor
-    - Substance isn't sacrificed for playfulness
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Challenge is reframed in empowering terms
+      - Superpower identified is specific and actionable
+      - Villain named creates useful distance from the problem
+      - Next moves are concrete and achievable
+      - Tone matches user's engagement with the metaphor
+      - Substance isn't sacrificed for playfulness
+    ab_comparison_testing:
+      approach: >
+        Generate archetype-based reframe with and without the skill. Compare on:
+      dimensions:
+        - archetype_accuracy
+        - reframe_insight_depth
+        - actionability_of_archetype_derived_advice
+        - engagement_quality
+    obsolescence_detection:
+      signals:
+        - Users apply archetype thinking without agent scaffolding
+        - LLM produces equivalent archetype-based analysis unprompted
+        - Archetype and mythology frameworks have been superseded by newer models

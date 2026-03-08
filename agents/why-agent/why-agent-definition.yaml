@@ -267,6 +267,7 @@ flows:
       - title: next_steps
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: ask-why
@@ -302,6 +303,7 @@ flows:
       - title: next_steps
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: categorize-cause
@@ -337,6 +339,7 @@ flows:
       - title: next_steps
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: challenge-assumption
@@ -376,6 +379,7 @@ flows:
       - title: verification
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: ask-why
@@ -589,10 +593,22 @@ x-agentlab:
       description: Working notes maintained outside context window
 
   quality:
-    - Root cause is actionable, fixing it would prevent recurrence
-    - Questioning sequence is logical, each "why" follows from previous answer
-    - Multiple causal paths explored when evidence suggests branching
-    - Verification step confirms root cause (not just plausible explanation)
-    - No blame assigned to individuals when systems/processes are the cause
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Root cause is actionable, fixing it would prevent recurrence
+      - Questioning sequence is logical, each "why" follows from previous answer
+      - Multiple causal paths explored when evidence suggests branching
+      - Verification step confirms root cause (not just plausible explanation)
+      - No blame assigned to individuals when systems/processes are the cause
+    ab_comparison_testing:
+      approach: >
+        Generate root-cause analysis with and without the skill. Compare on:
+      dimensions:
+        - causal_chain_depth
+        - assumption_surfacing_quality
+        - reframe_insight
+        - action_specificity
+    obsolescence_detection:
+      signals:
+        - Users conduct structured root-cause analysis without agent guidance
+        - LLM produces equivalent causal chain analysis unprompted
+        - Root-cause analysis methodologies have been superseded by newer frameworks

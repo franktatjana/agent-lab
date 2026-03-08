@@ -259,6 +259,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: empathize-stakeholders
@@ -298,6 +299,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: frame-problem
@@ -339,6 +341,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: prototype-strategy
@@ -386,6 +389,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: empathize-stakeholders
@@ -701,10 +705,23 @@ x-agentlab:
       description: Full design sprint documentation
 
   quality:
-    - Problem reframed from user perspective, not just team perspective
-    - Multiple ideas generated before any are evaluated
-    - Riskiest assumptions identified and addressed first
-    - Testable prototype plan with clear success/failure signals
-    - Evidence-based decisions at every stage transition
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Problem reframed from user perspective, not just team perspective
+      - Multiple ideas generated before any are evaluated
+      - Riskiest assumptions identified and addressed first
+      - Testable prototype plan with clear success/failure signals
+      - Evidence-based decisions at every stage transition
+    ab_comparison_testing:
+      approach: >
+        Generate design thinking output with and without the skill.
+        Compare on:
+      dimensions:
+        - empathy_map_depth
+        - problem_reframing_quality
+        - ideation_breadth
+        - prototype_actionability
+    obsolescence_detection:
+      signals:
+        - Users apply design thinking stages without agent scaffolding
+        - LLM produces equivalent human-centered analysis unprompted
+        - Design thinking methodology has evolved beyond the frameworks encoded

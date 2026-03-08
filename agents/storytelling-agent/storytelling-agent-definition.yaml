@@ -232,6 +232,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: find-hook
@@ -283,6 +284,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: connect-audience
@@ -330,6 +332,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: craft-narrative
@@ -373,6 +376,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: find-hook
@@ -586,10 +590,22 @@ x-agentlab:
       description: Visual story arc and delivery guide
 
   quality:
-    - Stories have clear beginning, tension, and resolution
-    - Every narrative answers "what changed and why it matters"
-    - Facts are preserved, never fabricated or distorted
-    - Audience connection is specific, not generic
-    - Delivery notes are actionable for the intended medium
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Stories have clear beginning, tension, and resolution
+      - Every narrative answers "what changed and why it matters"
+      - Facts are preserved, never fabricated or distorted
+      - Audience connection is specific, not generic
+      - Delivery notes are actionable for the intended medium
+    ab_comparison_testing:
+      approach: >
+        Generate narrative structure with and without the skill. Compare on:
+      dimensions:
+        - story_arc_coherence
+        - emotional_engagement
+        - message_clarity
+        - audience_adaptation_quality
+    obsolescence_detection:
+      signals:
+        - Users craft structured narratives without agent guidance
+        - LLM produces equivalent story arc and narrative frameworks unprompted
+        - Narrative theory has evolved beyond the frameworks encoded

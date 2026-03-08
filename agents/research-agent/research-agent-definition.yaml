@@ -273,6 +273,7 @@ flows:
       - title: gaps
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: generate-queries
@@ -327,6 +328,7 @@ flows:
       - title: next_steps
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: generate-queries
@@ -369,6 +371,7 @@ flows:
       - title: sources
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           parse: claim
@@ -419,6 +422,7 @@ flows:
       - title: recommendation
         type: string
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           tool: fetch-url
@@ -699,10 +703,22 @@ x-agentlab:
       description: All extracted claims with source mapping
 
   quality:
-    - All findings have source citations
-    - Sources are from last 2 years unless historical topic
-    - Summary addresses the stated topic directly
-    - No hallucinated sources
-    - Confidence levels reflect actual source quality and agreement
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - All findings have source citations
+      - Sources are from last 2 years unless historical topic
+      - Summary addresses the stated topic directly
+      - No hallucinated sources
+      - Confidence levels reflect actual source quality and agreement
+    ab_comparison_testing:
+      approach: >
+        Generate research synthesis with and without the skill. Compare on:
+      dimensions:
+        - source_diversity
+        - evidence_quality_assessment
+        - gap_identification_completeness
+        - synthesis_coherence
+    obsolescence_detection:
+      signals:
+        - Users conduct systematic research without agent structure
+        - LLM produces equivalent source evaluation and synthesis unprompted
+        - Information science methodologies have superseded current frameworks

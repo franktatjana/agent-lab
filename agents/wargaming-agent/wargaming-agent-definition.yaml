@@ -270,6 +270,7 @@ flows:
       - title: counter_move
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: set-scenario
@@ -301,6 +302,7 @@ flows:
       - title: counter_move
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: analyze-competitor
@@ -326,6 +328,7 @@ flows:
       - title: after_action
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: simulate-round
@@ -353,6 +356,7 @@ flows:
       - title: schwerpunkt
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: set-scenario
@@ -382,6 +386,7 @@ flows:
       - title: after_action
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: set-scenario
@@ -624,9 +629,21 @@ x-agentlab:
       description: Detailed competitor analysis with incentive mapping and predicted response patterns
 
   quality:
-    - Competitor profiles reflect real incentives and resources, not straw men
-    - Adversarial responses are grounded in what the competitor would rationally do
-    - Schwerpunkt identification reveals a genuine decisive point, not a generic recommendation
-    - After-action review produces concrete adjustments the team can act on immediately
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Competitor profiles reflect real incentives and resources, not straw men
+      - Adversarial responses are grounded in what the competitor would rationally do
+      - Schwerpunkt identification reveals a genuine decisive point, not a generic recommendation
+      - After-action review produces concrete adjustments the team can act on immediately
+    ab_comparison_testing:
+      approach: >
+        Generate wargaming scenario with and without the skill. Compare on:
+      dimensions:
+        - adversary_modeling_accuracy
+        - scenario_plausibility
+        - move_countermove_depth
+        - strategic_insight_quality
+    obsolescence_detection:
+      signals:
+        - Users conduct structured competitive analysis without agent wargaming
+        - LLM produces equivalent adversary modeling and scenario analysis unprompted
+        - Wargaming and competitive intelligence methodologies have evolved beyond encoded doctrine

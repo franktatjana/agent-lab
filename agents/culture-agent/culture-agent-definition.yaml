@@ -225,6 +225,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-dimensions
@@ -266,6 +267,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-dimensions
@@ -305,6 +307,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-dimensions
@@ -348,6 +351,7 @@ flows:
       - title: caveats
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: diagnose-misunderstanding
@@ -634,10 +638,23 @@ x-agentlab:
       description: One-page quick reference
 
   quality:
-    - Recommendations are actionable and specific
-    - Cultural patterns cite recognized frameworks
-    - Caveats about individual variation always included
-    - No stereotyping or cultural judgment
-    - Mutual learning opportunities surfaced alongside friction points
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Recommendations are actionable and specific
+      - Cultural patterns cite recognized frameworks
+      - Caveats about individual variation always included
+      - No stereotyping or cultural judgment
+      - Mutual learning opportunities surfaced alongside friction points
+    ab_comparison_testing:
+      approach: >
+        Generate cultural bridging output with and without the Cultural Bridge skill.
+        Compare on:
+      dimensions:
+        - cultural_accuracy
+        - actionability
+        - framework_grounding
+        - caveat_quality
+    obsolescence_detection:
+      signals:
+        - Users skip the skill and provide cultural context directly
+        - LLM produces equivalent cultural analysis unprompted
+        - Referenced frameworks have been superseded by newer research

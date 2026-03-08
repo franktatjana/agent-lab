@@ -275,6 +275,7 @@ flows:
       - title: energy_diagnosis
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: observe-situation
@@ -306,6 +307,7 @@ flows:
       - title: cat_prescription
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: diagnose-energy
@@ -337,6 +339,7 @@ flows:
       - title: human_translation
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: observe-situation
@@ -565,12 +568,25 @@ x-agentlab:
       description: Detailed energy drain analysis with cat-informed recovery plan
 
   quality:
-    - Cat observation is genuinely insightful, not just a gimmick
-    - Territory map identifies real boundary issues, not surface complaints
-    - Energy diagnosis categorizes drains by type with actionable specificity
-    - Human translation provides concrete next steps the user can act on today
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Cat observation is genuinely insightful, not just a gimmick
+      - Territory map identifies real boundary issues, not surface complaints
+      - Energy diagnosis categorizes drains by type with actionable specificity
+      - Human translation provides concrete next steps the user can act on today
+    ab_comparison_testing:
+      approach: >
+        Generate cat-perspective reframe with and without the skill.
+        Compare on:
+      dimensions:
+        - feline_behavioral_accuracy
+        - humor_quality
+        - reframe_insight
+        - absurdity_to_truth_ratio
+    obsolescence_detection:
+      signals:
+        - Users produce cat-perspective reframes without prompting
+        - LLM generates equivalent feline behavioral insights unprompted
+        - Cat behavioral research has shifted paradigms making current frameworks outdated
 
   monitoring:
     signals:

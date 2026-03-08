@@ -242,6 +242,7 @@ flows:
       - title: caution
         type: string
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: adapt-message
@@ -291,6 +292,7 @@ flows:
       - title: bridge_building_tips
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: explain-style
@@ -334,6 +336,7 @@ flows:
       - title: success_indicators
         type: array
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: bridge-gap
@@ -381,6 +384,7 @@ flows:
       - title: next_session_focus
         type: string
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: coach-sender
@@ -627,11 +631,25 @@ x-agentlab:
       description: Cross-generational communication strategy document
 
   quality:
-    - Adapted message preserves original intent
-    - Changes are explained, not just made
-    - Individual variation is acknowledged
-    - Stereotypes are avoided while still providing useful guidance
-    - Alternatives offer genuine choices, not token options
-    - Mutual learning opportunities are surfaced alongside friction points
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Adapted message preserves original intent
+      - Changes are explained, not just made
+      - Individual variation is acknowledged
+      - Stereotypes are avoided while still providing useful guidance
+      - Alternatives offer genuine choices, not token options
+      - Mutual learning opportunities are surfaced alongside friction points
+    ab_comparison_testing:
+      approach: >
+        Generate structured ideation output with and without the skill.
+        Compare on: idea diversity, comparison rigor, evaluation criteria
+        clarity, actionability of recommendations.
+      dimensions:
+        - idea_diversity
+        - comparison_rigor
+        - evaluation_criteria_clarity
+        - actionability_of_recommendations
+    obsolescence_detection:
+      signals:
+        - Users generate structured comparisons without agent guidance
+        - LLM produces equivalent multi-criteria evaluations unprompted
+        - Generational analysis frameworks have been superseded

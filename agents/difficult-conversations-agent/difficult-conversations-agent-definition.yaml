@@ -256,6 +256,7 @@ flows:
       - title: opening_options
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: assess-situation
@@ -287,6 +288,7 @@ flows:
       - title: emotion_strategies
         type: object
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: prepare-responses
@@ -314,6 +316,7 @@ flows:
       - title: blind_spots
         type: array
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: plan-followup
@@ -543,9 +546,23 @@ x-agentlab:
       description: Post-conversation follow-up actions and relationship repair strategy
 
   quality:
-    - Each perspective genuinely distinct, not a mirror of the other
-    - Opening options offer real tonal variety
-    - Response cards address the actual emotion, not just the behavior
-    - Follow-up plan has specific timelines
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Each perspective genuinely distinct, not a mirror of the other
+      - Opening options offer real tonal variety
+      - Response cards address the actual emotion, not just the behavior
+      - Follow-up plan has specific timelines
+    ab_comparison_testing:
+      approach: >
+        Generate conversation preparation with and without the skill.
+        Compare on: emotional accuracy, script actionability,
+        de-escalation technique quality, framework grounding.
+      dimensions:
+        - emotional_accuracy
+        - script_actionability
+        - de_escalation_technique_quality
+        - framework_grounding
+    obsolescence_detection:
+      signals:
+        - Users prepare for difficult conversations without agent scaffolding
+        - LLM produces equivalent conversation frameworks unprompted
+        - Conflict resolution research has superseded current frameworks

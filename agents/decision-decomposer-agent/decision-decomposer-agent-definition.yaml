@@ -271,6 +271,7 @@ flows:
       - title: reversibility_matrix
         type: object
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: decompose-decision
@@ -300,6 +301,7 @@ flows:
       - title: consequence_map
         type: object
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: decompose-decision
@@ -337,6 +339,7 @@ flows:
       - title: confidence_level
         type: string
     x-agentlab:
+      skill_type: capability-uplift
       workflow_shorthand:
         - step: 1
           prompt: decompose-decision
@@ -577,10 +580,23 @@ x-agentlab:
       description: Detailed reversibility classification for all sub-decisions with cost and time window estimates
 
   quality:
-    - Sub-decisions are genuinely independent, not just relabeled aspects of the same choice
-    - Reversibility classifications are grounded in real reversal costs, not gut feeling
-    - Consequence maps trace effects at least two orders deep with concrete scenarios
-    - BATNA analysis identifies real alternatives, not hypothetical escape routes
-    - Recommendation includes a clear confidence level with honest assessment of what is unknown
-    - "Baseline comparison: periodically test skill-enhanced output against base model (no skill) to verify skills add measurable value"
-    - After prompt or model changes, run A/B comparison with a blind judge to catch regressions
+    acceptance_criteria:
+      - Sub-decisions are genuinely independent, not just relabeled aspects of the same choice
+      - Reversibility classifications are grounded in real reversal costs, not gut feeling
+      - Consequence maps trace effects at least two orders deep with concrete scenarios
+      - BATNA analysis identifies real alternatives, not hypothetical escape routes
+      - Recommendation includes a clear confidence level with honest assessment of what is unknown
+    ab_comparison_testing:
+      approach: >
+        Generate decision decomposition with and without the skill.
+        Compare on:
+      dimensions:
+        - decomposition_completeness
+        - criteria_weighting_clarity
+        - option_coverage
+        - bias_identification
+    obsolescence_detection:
+      signals:
+        - Users decompose decisions systematically without agent guidance
+        - LLM produces equivalent structured decision analysis unprompted
+        - Decision science frameworks have been superseded by newer methodologies
