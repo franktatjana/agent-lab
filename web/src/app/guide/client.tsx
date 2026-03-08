@@ -221,13 +221,13 @@ export function GuideClient() {
       {/* Agent Ideas */}
       <h2 className="text-xl font-bold text-stone-900 mt-16 mb-3">Agent Ideas</h2>
       <p className="text-stone-600 leading-relaxed mb-4">
-        <strong className="text-stone-900">46 more agent concepts</strong> with
+        <strong className="text-stone-900">60 more agent concepts</strong> with
         frameworks, skills, validation rules, output
         constraints, and IP notes researched. Each idea card shows the concept,
         category, and key frameworks. Click to expand the full design brief.
       </p>
       <div className="space-y-4 mb-12">
-        <Screenshot src="/screenshots/3.png" alt="Agent ideas catalogue with 46 researched concepts" />
+        <Screenshot src="/screenshots/3.png" alt="Agent ideas catalogue with 60 researched concepts" />
         <Screenshot src="/screenshots/4.png" alt="Agent idea detail with frameworks, skills, and key principles" />
       </div>
 

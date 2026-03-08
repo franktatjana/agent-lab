@@ -24,7 +24,7 @@ See [handbook: Agent Identity](handbook.md#agent-identity) for naming rules and 
 
 ## Step 2: Create the Directory Structure
 
-```
+```text
 agents/{agent-id}/
 ├── {agent-id}.md                    # Source of truth
 ├── {agent-id}-definition.yaml       # Portable spec (this tutorial)
@@ -186,7 +186,7 @@ specialized_agents:
 
 ### 3g: Flows
 
-Each flow is a skill. Define typed I/O and a `workflow_shorthand` step chain.
+Each flow is a skill. Define typed I/O, a `skill_type`, and a `workflow_shorthand` step chain.
 
 ```yaml
 flows:
@@ -203,6 +203,7 @@ flows:
       - title: reframed_message
         type: string
     x-agentlab:
+      skill_type: encoded-preference
       workflow_shorthand:
         - step: 1
           prompt: identify-dimensions
@@ -223,6 +224,8 @@ flows:
 ```
 
 Note how `identify-dimensions` is reused in steps 1 and 2 with different inputs. Prompt reuse keeps the registry small and the logic consistent.
+
+Classify each flow's `skill_type`: `encoded-preference` when the skill captures expert judgment the LLM lacks (e.g., cultural dimension mapping), `capability-uplift` when it structures reasoning the LLM can do but does inconsistently (e.g., root cause analysis). This determines how you test the skill later.
 
 **Pattern**: 4 flows, 3-4 steps each. See [patterns: Flows](patterns.md#flows).
 
@@ -371,13 +374,31 @@ Then write the actual prompt file at `prompts/identify-dimensions.md`. Keep prom
 
 ```yaml
   quality:
-    - Recommendations are actionable and specific
-    - Cultural patterns cite recognized frameworks
-    - Caveats about individual variation always included
-    - No stereotyping or cultural judgment
+    acceptance_criteria:
+      - Recommendations are actionable and specific
+      - Cultural patterns cite recognized frameworks
+      - Caveats about individual variation always included
+      - No stereotyping or cultural judgment
+    ab_comparison_testing:
+      approach: >
+        Generate cultural bridging output with and without the Cultural Bridge
+        skill. Compare on dimensions: cultural accuracy, actionability,
+        framework usage, nuance of caveats.
+      dimensions:
+        - cultural_accuracy
+        - actionability
+        - framework_grounding
+        - caveat_quality
+    obsolescence_detection:
+      signals:
+        - Users skip the skill and provide cultural context directly
+        - LLM produces equivalent cultural analysis unprompted
+        - Referenced frameworks have been superseded by newer research
 ```
 
-Each criterion should be testable. "Output is good" is not a criterion. "Recommendations are actionable" is.
+Each acceptance criterion should be testable. "Output is good" is not a criterion. "Recommendations are actionable" is.
+
+A/B comparison testing validates that the skill adds value over baseline LLM output. Obsolescence detection catches skills that have decayed: users skip them, LLMs match them unprompted, or the domain has shifted. See [handbook: A/B Comparison Testing](handbook.md#ab-comparison-testing).
 
 ## Step 5: Write the Supporting Files
 

@@ -227,6 +227,6 @@ Several patterns appear across all 18 agents that explain why they work:
 - [Design Handbook](handbook.md): methodology and design patterns for building agents
 - [Tutorial](tutorial.md): step-by-step guide to creating an agent from idea to definition
 - [Agent Catalogue](../agent-catalogue.md): complete listing of all agents with specs
-- [Lessons Learned](lessons-learned.md): practical dos and don'ts from building 15 agents
+- [Lessons Learned](lessons-learned.md): practical dos and don'ts from building 18 agents
 - [Patterns](patterns.md): recurring structural patterns across agent definitions
 - [Definition Checklist](definition-checklist.md): validation checklist for agent specifications

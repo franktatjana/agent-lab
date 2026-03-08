@@ -67,6 +67,7 @@ Each flow represents a skill the agent can execute.
 
 - `component_type: Flow`, `id`, `name`, `description`
 - Typed `inputs` and `outputs` per flow
+- `x-agentlab.skill_type` — classify as `encoded-preference` (captures expert judgment the LLM lacks) or `capability-uplift` (structures a reasoning process the LLM can do but does inconsistently)
 - `x-agentlab.workflow_shorthand` — ordered step chain, each step references a prompt from the registry
 - Reuse prompts across flows where the same reasoning step applies
 
@@ -162,6 +163,10 @@ See [handbook: Context Engineering](handbook.md#context-engineering).
 
 - Acceptance criteria as a checklist
 - Each criterion is testable: "recommendations are actionable", not "output is good"
+- `ab_comparison_testing` — structured approach: generate with/without skill, compare on defined dimensions, record which version is preferred and why
+- `obsolescence_detection` — signals that a skill has decayed or been superseded: users skip it, LLMs produce equivalent output unprompted, domain has shifted
+
+See [handbook: A/B Comparison Testing](handbook.md#ab-comparison-testing), [handbook: Skill Obsolescence Detection](handbook.md#skill-obsolescence-detection).
 
 ### Visual
 

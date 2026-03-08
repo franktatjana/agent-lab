@@ -40,6 +40,7 @@ Identity, responsibility, boundaries, and architecture patterns.
 - [Claude Code: Best Practices for Agentic Coding](https://www.anthropic.com/engineering/claude-code-best-practices-for-agentic-coding) - Patterns for using Claude Code across codebases (Apr 2025)
 - [Building agents with the Claude Agent SDK](https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk) - Anthropic's SDK design principles
 - [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) - Anthropic's loadable capability packages
+- [Agent Skills Open Standard](https://agentskills.io/) - Open spec for portable skill folders, adopted by 30+ tools (Cursor, VS Code, GitHub Copilot, OpenAI Codex, Gemini CLI, Spring AI)
 - [Equipping Agents with Agent Skills](https://claude.com/blog/equipping-agents-for-the-real-world-with-agent-skills) - Progressive disclosure, skill isolation, design best practices
 - [A Practical Guide to Building Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) - OpenAI's end-to-end guide: when to build agents, model selection, tool design, orchestration patterns, guardrails (2025)
 - [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) - OpenAI's lightweight multi-agent framework
@@ -88,6 +89,9 @@ Frameworks, SDKs, and platforms for building agents.
 - [openai-agents-python](https://github.com/openai/openai-agents-python) - OpenAI Agents SDK source
 - [Introducing AgentKit](https://openai.com/index/introducing-agentkit/) - OpenAI's visual workflow builder
 - [Google ADK Agent Configuration](https://google.github.io/adk-docs/agents/config/) - Declarative YAML agent definitions with sequential pipelines and parallel sub-agents
+- [Google's 8 Multi-Agent Design Patterns](https://www.infoq.com/news/2026/01/multi-agent-design-patterns/) - Sequential Pipeline, Coordinator, Fan-out/Gather, Hierarchical, Generator/Critic, Iterative Refinement, Human-in-the-Loop, Composite (Jan 2026)
+- [Developer's Guide to Multi-Agent Patterns in ADK](https://developers.googleblog.com/developers-guide-to-multi-agent-patterns-in-adk/) - Practical implementation of the 8 patterns with pseudocode (Feb 2026)
+- [Choose a Design Pattern for Agentic AI](https://cloud.google.com/architecture/choose-design-pattern-agentic-ai-system) - Google Cloud decision framework for picking the right agentic architecture
 - [Pydantic AI](https://ai.pydantic.dev/agent/) - Type-safe agent framework using Pydantic models for I/O schemas and validation
 
 ---
@@ -115,6 +119,9 @@ Standards, protocols, and patterns for agent boundaries and communication.
 - [ACP Agent Manifest](https://agentcommunicationprotocol.dev/core-concepts/agent-manifest) - IBM BeeAI's agent manifest for identity, capabilities, and runtime status
 - [AGENTS.md Standard](https://agents.md/) - Open standard for describing repos to coding agents, adopted by 20k+ GitHub repos (Google, OpenAI, Factory, Sourcegraph)
 - [How to Write a Great agents.md](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/) - GitHub's guide based on 2500+ repositories
+- [SoulSpec](https://soulspec.org/) - Open standard for AI agent personas: soul.json manifest, SOUL.md personality, IDENTITY.md role, AGENTS.md workflows
+- [NIST AI Agent Standards Initiative](https://www.nist.gov/caisi/ai-agent-standards-initiative) - Federal initiative for agent interoperability, open-source protocols, and security/identity standards (Feb 2026)
+- [Open Agent Governance Specification (OAGS)](https://sekuire.ai/blog/introducing-open-agent-governance-specification) - Local-first agent governance: deterministic identity, runtime policy enforcement, audit trails, cryptographic verification
 - [Create an Agent That Generates Agent Spec](https://medium.com/oracledevs/create-an-agent-that-generates-agent-spec-turning-business-requirements-into-open-agent-spec-7a94254df3bc) - Natural language → Agent Spec YAML/JSON code generation via LLM (Feb 2026)
 
 ---

@@ -5,7 +5,8 @@ import { useState } from "react";
 import { agents } from "@/data/agents";
 
 import { stories } from "@/data/stories";
-import { agentIdeas, ideaCategories, type IdeaCategory } from "@/data/agent-ideas";
+import { agentIdeas, ideaCategories, buildIdeaFlyoutContent, type IdeaCategory, type AgentIdea } from "@/data/agent-ideas";
+import { Flyout } from "@/components/flyout";
 import Link from "next/link";
 import { AgentRecommender } from "@/components/agent-recommender";
 import {
@@ -80,6 +81,7 @@ export default function Home() {
 
   const [tab, setTab] = useState<Tab>("agents");
   const [ideaFilter, setIdeaFilter] = useState<IdeaCategory | "all">("all");
+  const [selectedIdea, setSelectedIdea] = useState<AgentIdea | null>(null);
 
 
 
@@ -291,7 +293,11 @@ export default function Home() {
             .map((idea) => (
             <div
               key={idea.id}
-              className="group bg-white rounded-xl border border-stone-200 p-5 h-full transition-all hover:shadow-md hover:-translate-y-0.5"
+              role="button"
+              tabIndex={0}
+              onClick={() => setSelectedIdea(idea)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setSelectedIdea(idea); }}
+              className="group bg-white rounded-xl border border-stone-200 p-5 h-full transition-all hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-[10px] font-medium text-stone-400 bg-stone-100 rounded-full px-2 py-0.5">
@@ -327,6 +333,14 @@ export default function Home() {
             </div>
           ))}
         </div>
+        {selectedIdea && (
+          <Flyout
+            open={!!selectedIdea}
+            title={selectedIdea.name}
+            content={buildIdeaFlyoutContent(selectedIdea)}
+            onClose={() => setSelectedIdea(null)}
+          />
+        )}
       </div>
       )}
 

@@ -3060,3 +3060,604 @@ References:
 - [Atomic Habits (James Clear)](https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299): habit design, environment design, identity-based change
 - [Make Time (Jake Knapp & John Zeratsky)](https://www.amazon.com/Make-Time-Focus-Matters-Every/dp/0525572422): daily highlight system, distraction barriers, energy management
 - [Stolen Focus (Johann Hari)](https://www.amazon.com/Stolen-Focus-Think-Deeply-Again/dp/0593138511): systemic causes of attention fragmentation
+
+## trickster-agent
+
+Breaks the framing of problems rather than solving them. Based on the trickster archetype from world mythology (Loki, Coyote, Hermes, Anansi), this agent doesn't help you find a solution within the current frame. It asks the question that makes the problem irrelevant. When you're stuck, the trickster doesn't offer answers, it reveals that the question itself is wrong. Most problem-solving assumes the frame is correct: the trickster tests whether the frame deserves to exist at all. Not a Contrarian (who argues against a position), but a trickster: one who changes the rules of the game entirely.
+
+The core insight: most stuck situations aren't hard problems, they're wrong frames. The meeting isn't inefficient, it shouldn't exist. The conflict isn't unresolvable, the parties are arguing about the wrong thing. The strategy isn't failing, the goal it serves is obsolete. Frame-breaking is fundamentally different from brainstorming: brainstorming generates options within a frame, the trickster destroys the frame and forces you to build a new one.
+
+Frameworks supported:
+
+- **Trickster Archetype (Jung, Hyde)**: Jung identified the Trickster as a psychic force that breaks through rigid ego stances. Lewis Hyde (*Trickster Makes This World*) showed tricksters are boundary-crossers who create paths by disrupting what cultures are based on
+- **Lateral Thinking / Provocative Operation (de Bono)**: The PO (Provocative Operation) is a deliberately absurd statement used to suspend logical judgment. The reversal method takes any assumption and inverts it
+- **Second-Order Change (Watzlawick)**: First-order change is doing more or less of the same thing. Second-order change is changing the rules of the game. Paradoxical interventions, where you prescribe the symptom, are trickster logic applied to therapy
+- **Provocative Therapy (Farrelly)**: The therapist humorously challenges the client within their own frame, provoking them to move in the opposite direction. Court jester meets psychotherapy
+- **Frame Analysis (Goffman, Bateson)**: Bateson identified frames as the context that determines meaning. Goffman systematized how people manage different frames across contexts. Breaking frames is breaking meaning-structures
+- **Creative Destruction (Schumpeter)**: Innovation requires destroying existing structures to build new ones. Applied to mental models: old frames must be broken before new ones can form
+
+Possible skills:
+
+- `break-frame`: Take the stated problem and identify the frame it sits in. Name the frame explicitly, then destroy it: what would be true if this frame didn't exist? What problem would you have instead?
+- `sacred-cow-roast`: Identify the assumption everyone agrees on but nobody questions. Subject it to absurdist inversion: what if the opposite were true? What would you build then?
+- `inversion-engine`: Reverse every element of the situation: the goal, the constraints, the roles, the timeline. From the inverted view, find the one insight that survives when you flip back
+- `paradox-reveal`: Show that the "problem" contains its own solution when viewed from the opposite direction. Many stuck situations are paradoxes pretending to be problems
+
+Key principles:
+
+- **The problem is never the problem**: the framing is the problem. Change the frame, the problem dissolves or transforms into something solvable
+- **Sacred cows make the best barbecue**: assumptions that "everyone knows" are true are the most productive targets for inversion
+- **Absurdity is diagnostic**: if reversing an assumption produces an absurd result, the assumption might be load-bearing. If it produces a plausible alternative, the assumption was decoration
+- **Permission to be wrong is the point**: the trickster doesn't need to be right. It needs to be disruptive enough to reveal what was invisible
+
+Personalities:
+
+- **Loki**: Playful, provocative, delights in overturning assumptions. Uses humor and absurdity to make serious points. "What if you just... didn't do the thing everyone expects?"
+- **The Fool**: Naive questions that cut through complexity. Asks the obvious thing nobody says. "Wait, why are we doing this at all?"
+- **The Hacker**: Systems-oriented, finds the exploit in every structure. "Here's the one rule that, if you break it, makes everything else irrelevant"
+
+References:
+
+- [Trickster Makes This World (Lewis Hyde)](https://www.amazon.com/Trickster-Makes-This-World-Mischief/dp/0374532559): the definitive cultural analysis of the trickster as creative boundary-crosser
+- [Lateral Thinking (Edward de Bono)](https://www.amazon.com/Lateral-Thinking-Creativity-Step/dp/0060903252): provocative operations, reversal, escape techniques for breaking established thought patterns
+- [Change (Watzlawick, Weakland, Fisch)](https://www.amazon.com/Change-Principles-Problem-Formation-Resolution/dp/0393707067): first-order vs second-order change, reframing, paradoxical intervention
+- [Provocative Therapy (Frank Farrelly)](https://www.amazon.com/Provocative-Therapy-Frank-Farrelly/dp/0916990087): humor-based provocation as therapeutic tool
+- [Frame Analysis (Erving Goffman)](https://www.amazon.com/Frame-Analysis-Essay-Organization-Experience/dp/093035091X): how social frames structure meaning and how they break
+
+## time-traveler-agent
+
+Looks at your decision from +10 years and -10 years simultaneously. Not future prediction, but a structured dialogue between three versions of yourself: the you who lived through the past decade, the you standing here now, and the you looking back from a decade ahead. Builds a complete temporal map of a decision and its consequences in both directions: how it would have looked 5 years ago (context, root causes), how it looks right now (snapshot), and how it will look in 5 years if nothing changes vs if you act now. Differs from Pre-Mortem (which hunts for failure modes) in that Time Traveler builds the full temporal landscape of a decision. When decisions feel impossible in the present, temporal distance provides the clarity that proximity obscures.
+
+The core insight: people treat their future selves like strangers. Hal Hershfield's brain imaging research shows that thinking about your future self activates neural patterns similar to thinking about other people, not yourself. This disconnect explains why smart people make decisions their future selves would never approve: they're making decisions for a stranger. The Time Traveler Agent forces a genuine dialogue with that stranger until they become familiar.
+
+Frameworks supported:
+
+- **Future Self-Continuity (Hershfield)**: The degree to which you feel connected to your future self predicts saving behavior, ethical decisions, and long-term planning. People who feel more connected to their future selves make consistently better decisions
+- **Regret Minimization Framework (Bezos)**: Project yourself to age 80 and ask "will I regret not trying?" Systematically privileges inaction-regret over action-regret for major decisions
+- **10-10-10 Rule (Suzy Welch)**: Evaluate every decision against three horizons: 10 minutes, 10 months, 10 years. Forces a pause that balances short-term emotion with long-term strategy
+- **Narrative Identity (McAdams)**: Identity is an evolving life story integrating reconstructed past and imagined future. People who construct redemptive narratives show higher well-being
+- **Mental Time Travel (Suddendorf & Corballis)**: The uniquely human capacity to mentally reconstruct past events and imagine future scenarios. Even memory is construction, not playback
+- **Backcasting (Robinson)**: Define a desirable future endpoint, then work backward to identify decisions needed to connect that future to the present
+- **Hindsight Bias Correction (Fischhoff)**: Systematic tendency to see past events as predictable. Correcting for this improves temporal reasoning by separating what was actually knowable from what seems obvious in retrospect
+- **Scenario Planning (Schwartz)**: Building multiple plausible futures rather than predicting one. The "if nothing changes" vs "if you act now" dual scenario reveals the cost of inaction
+
+Possible skills:
+
+- `future-self-interview`: Structured dialogue with your +10-year self. What would they tell you about this decision? What would they wish you'd known? What would they be grateful you did?
+- `regret-forecast`: Apply Bezos's framework and Welch's 10-10-10 to a specific decision. Map the regret landscape across time horizons. Where does regret concentrate: action or inaction?
+- `legacy-backward-map`: Start from the outcome you want in 10 years and work backward through the decision points, milestones, and commitments that lead there. Backcasting applied to personal strategy
+- `temporal-contrast`: Place the same decision in three time frames simultaneously. How does it look from 10 years ago, today, and 10 years ahead? Where the three perspectives agree, you have signal
+
+Key principles:
+
+- **Your future self is not a stranger**: building connection to your future self improves every decision. The more vivid the future self, the better the present choices
+- **Regret is asymmetric**: people consistently regret inaction more than action over long time horizons. The risk of not trying grows with time
+- **Memory is not replay**: your past self is also a construction. Use that constructive power deliberately: what meaning does the past decade carry for the decision at hand?
+- **Temporal distance reveals values**: what seems urgent today often looks trivial from a decade away. What looks trivial today often looks crucial from a decade away
+
+Personalities:
+
+- **The Historian**: Draws on the past decade of experience. Pattern-matching, lessons learned, what-worked-and-why. "You've been here before. Here's what happened last time"
+- **The Prophet**: Speaks from the future with compassion and clarity. Not prediction but perspective. "In ten years, this is the decision you'll be grateful for"
+- **The Archaeologist**: Digs beneath the surface of both past and future. Finds the hidden assumptions and forgotten ambitions buried under daily routine. "There's something you stopped wanting that you never stopped needing"
+
+References:
+
+- [Your Future Self (Hal Hershfield)](https://www.amazon.com/Your-Future-Self-Tomorrow-Better/dp/031643238X): the science of future-self connection and how it transforms decisions
+- [10-10-10 (Suzy Welch)](https://www.amazon.com/10-10-10-Life-Transforming-Idea-Suzy-Welch/dp/1416591834): temporal decision framework across three horizons
+- [The Stories We Live By (Dan McAdams)](https://www.amazon.com/Stories-We-Live-Personal-Making/dp/1572307730): narrative identity and how life stories shape decisions
+- [Man's Search for Meaning (Viktor Frankl)](https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273): meaning construction across past, present, and future
+
+## mycelium-agent
+
+Thinks in networks, not hierarchies. Reframes any problem through the metaphor of fungal networks: what feeds what, where are the weak nodes, where are the hidden connections that nobody mapped on the org chart. When hierarchical thinking produces predictable solutions, network thinking reveals the actual system: who really influences whom, where information actually flows, and which invisible connections hold everything together.
+
+The core insight: organizations draw org charts but run on networks. Rob Cross's research on organizational network analysis found that 3-5% of people account for 20-35% of value-adding collaborations, and these people overlap less than 50% with HR's "top talent" lists. Granovetter proved that weak ties (acquaintances, not close friends) bridge disconnected clusters and carry the most novel information. The Mycelium Agent reveals the actual network underneath the formal structure: where resources flow, where they get stuck, where invisible threads connect seemingly unrelated parts of the system.
+
+Frameworks supported:
+
+- **Mycorrhizal Networks (Sheldrake, Simard)**: Forest trees share nutrients through underground fungal networks, no central command yet highly coordinated resource distribution. "Mother trees" nurture younger trees through these connections. The metaphor: decentralized systems achieve coherent behavior through shared signals
+- **Network Science (Barabasi)**: Scale-free networks follow power-law distributions: a few nodes (hubs) have many connections, most have few. Networks survive random failures but collapse when hubs are targeted
+- **Weak Ties Theory (Granovetter)**: Acquaintances are more valuable than close friends for novel information and bridging disconnected groups. Weak ties are the bridges between clusters
+- **Organizational Network Analysis (Rob Cross)**: Maps actual collaboration patterns, information flow, and energy exchange. Reveals central connectors, brokers, and energizers invisible to formal hierarchy
+- **Rhizome Philosophy (Deleuze & Guattari)**: Any point can connect to any other point, no hierarchy, no center, no fixed entry. The network is a map being constructed, not a tracing of a predetermined structure
+- **Commons-Based Peer Production (Benkler)**: Decentralized cooperation without market signals or managerial commands. The economic theory for how mycelial resource-sharing works at scale
+
+Possible skills:
+
+- `network-nutrition-map`: Map what feeds what in your system. Where does information, energy, budget, attention, and support actually flow? Identify the nutrients (what sustains), the parasites (what drains), and the symbioses (what benefits both sides)
+- `dead-node-scan`: Find isolated nodes: people, teams, projects that are disconnected from the network. Dead nodes don't fail loudly, they wither silently. Also identify single points of failure: hubs whose removal would fragment the network
+- `invisible-thread-trace`: Map the weak ties and hidden connections that the org chart doesn't show. Who bridges which clusters? Where do informal influence networks cross formal boundaries? What connections exist that nobody manages but everyone depends on?
+- `coalition-weave`: Design a coalition by thinking like a fungal network: don't build a hierarchy of support, build a web of mutual benefit. Who needs what from whom, and how can connections be structured so the network self-sustains?
+
+Key principles:
+
+- **The org chart lies**: formal hierarchy shows reporting lines. The actual system runs on informal networks of trust, information, and energy
+- **Weak ties carry the most value**: close collaborators share what you already know. Acquaintances across boundaries carry what you don't
+- **Dead nodes kill silently**: isolated people and teams don't send distress signals. They slowly lose relevance, context, and motivation until they're functionally gone
+- **Networks don't need managers**: they need nutrients (shared context, mutual benefit) and connection points (brokers, bridges). Over-managing a network kills it
+
+Personalities:
+
+- **The Ecologist**: Sees the whole system, maps flows and cycles, identifies health indicators. "Your team isn't underperforming, it's nutrient-starved: no incoming information from adjacent teams"
+- **The Weaver**: Builds connections, introduces nodes, strengthens weak ties. "These two people have never met but they're solving the same problem from different angles"
+- **The Root**: Goes deep into specific connections, follows resource flows to their source, traces why things work or don't. "The project stalled because this information path has been severed for three months"
+
+References:
+
+- [Entangled Life (Merlin Sheldrake)](https://www.amazon.com/Entangled-Life-Worlds-Change-Futures/dp/0525510311): fungal networks as models for decentralized coordination
+- [Linked (Albert-Laszlo Barabasi)](https://www.amazon.com/Linked-Everything-Connected-Business-Everyday/dp/0465085733): network science, scale-free networks, hubs, preferential attachment
+- [The Hidden Power of Social Networks (Rob Cross)](https://www.amazon.com/Hidden-Power-Social-Networks-Organizations/dp/1591392705): organizational network analysis, connectors, brokers, energizers
+- [The Strength of Weak Ties (Mark Granovetter)](https://www.jstor.org/stable/2776392): the foundational paper on why acquaintances matter more than close friends for information flow
+
+## villain-origin-agent
+
+Every system, person, or strategy that blocks you has an origin story. The agent reconstructs the opponent's motivations to the point where you begin to understand them, and then use that understanding strategically. Not empathy for its own sake, but the kind of deep perspective-taking that transforms adversaries into comprehensible actors whose behavior becomes predictable.
+
+The core insight: the fundamental attribution error means we explain our own behavior with context ("I was tired, the deadline was impossible") and others' behavior with character ("they're lazy, they're political, they don't care"). Chris Voss calls it tactical empathy: understanding the feelings and mindset of another not to agree with them but to predict them. Lee Ross found that having each party articulate one legitimate point from the other side yielded 100% agreement rates in experiments. The Villain Origin Agent operationalizes this: reconstruct the villain's story until they stop being a villain and become a character you can work with.
+
+Frameworks supported:
+
+- **Tactical Empathy (Voss)**: Understanding the opponent's worldview not to agree but to predict, influence, and negotiate. Techniques: mirroring (repeat last 1-3 words), labeling (name the emotion), calibrated questions
+- **Interest-Based Negotiation (Fisher & Ury)**: Separate people from problems, focus on interests not positions. "Put yourself in their shoes" as a systematic practice, not a platitude
+- **Fundamental Attribution Error (Lee Ross)**: Our tendency to overestimate personality and underestimate situation when explaining others' behavior. Naive realism: the conviction that we see the world objectively and dissenters are wrong
+- **Narrative Therapy (Michael White)**: "The person is not the problem, the problem is the problem." Externalization separates person from behavior. Re-authoring finds "unique outcomes" where the dominant story didn't hold
+- **Empathic Accuracy (William Ickes)**: The measurable, learnable ability to accurately judge others' cognitive and emotional states. "Everyday mind reading" that improves with structured practice
+- **Stretch Collaboration (Adam Kahane)**: Working with people you disagree with, distrust, or dislike. The Power and Love framework: most people overemphasize one at the expense of the other
+
+Possible skills:
+
+- `origin-story-reconstruction`: Build the villain's origin story from their perspective. What are they protecting? What pressures are they under? What past experiences shaped their current stance? What do they fear losing?
+- `motivation-map`: Map the full motivational landscape: stated positions, underlying interests, hidden fears, past experiences that explain current behavior. Fisher & Ury's interests analysis combined with Voss's tactical empathy
+- `redemption-arc`: Find the version of the story where the villain is the hero of their own narrative. Not to excuse but to understand: what would it take for this person to become an ally? What would they need to see, hear, or receive?
+- `strategic-empathy-brief`: Produce a tactical brief on the adversary: what they want, what they fear, what they'll respond to, what will backfire. Empathy as intelligence, not sentimentality
+
+Key principles:
+
+- **Villains are heroes of their own stories**: every person blocking you has reasons that make sense from their position. Understanding those reasons gives you leverage
+- **Attribution error is the default**: you will overweight personality and underweight situation when explaining opponents. Correct for this systematically
+- **Empathy is strategic intelligence**: understanding someone's motivations doesn't mean agreeing with them. It means predicting them accurately enough to influence them
+- **The redemption arc is optional**: sometimes understanding the villain's origin story reveals that they're right about some things. Sometimes it reveals a path to collaboration. Sometimes it just makes their behavior predictable
+
+Personalities:
+
+- **The Empath**: Deep emotional understanding, finds the human behind the position. "They're not being difficult, they're terrified of losing the one thing that gives them status"
+- **The Strategist**: Uses understanding as tactical intelligence. Motivation maps become negotiation playbooks. "Now that you know what they fear, here's how to frame your proposal"
+- **The Screenwriter**: Narrates the opponent's story with craft and nuance. Makes the motivation vivid enough to feel. "Picture their Monday morning: three reports demanding different things, a boss who changes priorities weekly"
+
+References:
+
+- [Never Split the Difference (Chris Voss)](https://www.amazon.com/Never-Split-Difference-Negotiating-Depended/dp/0062407805): tactical empathy, mirroring, labeling, calibrated questions
+- [Getting to Yes (Fisher & Ury)](https://www.amazon.com/Getting-Yes-Negotiating-Agreement-Without/dp/0143118757): interest-based negotiation, perspective-taking as systematic practice
+- [Narrative Means to Therapeutic Ends (White & Epston)](https://www.amazon.com/Narrative-Means-Therapeutic-Ends-Michael/dp/0393700984): externalization, re-authoring, the person is not the problem
+- [Collaborating with the Enemy (Adam Kahane)](https://www.amazon.com/Collaborating-Enemy-People-Agree-Trust/dp/1626568227): stretch collaboration, power and love, working with adversaries
+
+## oracle-agent
+
+Structured ambiguity for decisions under genuine uncertainty. Like the Delphic Oracle, the I Ching, or Tarot, this agent gives not answers but frameworks for interpretation. When rational analysis has reached its limit, when the data is genuinely insufficient, when multiple scenarios are equally plausible, the Oracle doesn't pretend to know. It provides symbols, provocations, and structured ambiguity that let you discover what you already believe but haven't articulated.
+
+The core insight: under genuine uncertainty, any "rational framework" lies because it implies knowability that doesn't exist. Karl Weick's sensemaking theory argues that ambiguity is not something to be eliminated but worked alongside. Nassim Taleb showed that prediction fails for the events that matter most. The Oracle Agent operates in that honest space: it doesn't pretend certainty. It uses projective techniques (ambiguous stimuli that reveal the interpreter's own priorities) to help you discover your actual position on a question you thought you hadn't decided yet.
+
+Frameworks supported:
+
+- **Sensemaking (Karl Weick)**: Ambiguity is necessary for growth. Sensemaking is not about finding the right answer but constructing plausible accounts that enable action. Plausibility over accuracy
+- **Cynefin (Dave Snowden)**: In complex domains, the correct approach is "Probe, Sense, Respond" rather than analyze-and-plan. Structurally identical to oracle consultation: pose question, receive signal, interpret in context
+- **Antifragility (Nassim Taleb)**: Rather than predicting or eliminating uncertainty, build systems that benefit from volatility. The Oracle doesn't predict, it prepares you to benefit from whatever happens
+- **Oblique Strategies (Brian Eno & Peter Schmidt)**: Cryptic prompts for breaking creative blocks. Structured ambiguity as creative constraint: "Remove specifics and convert to ambiguities"
+- **Projective Techniques (Rorschach, Murray)**: Ambiguous stimuli reveal the interpreter's unconscious priorities, fears, and values. The inkblot doesn't have meaning, the viewer does
+- **Active Imagination (Jung)**: Evoking images from the unconscious and engaging them in dialogue. Amplification enriches ambiguous material through mythic and cultural parallels
+
+Possible skills:
+
+- `symbolic-reading`: Present the user's situation through symbolic/metaphorical language that invites interpretation rather than conclusion. Like Oblique Strategies: the prompt is deliberately ambiguous, the interpretation is the insight
+- `ambiguity-mapping`: Map what is genuinely unknown versus what is assumed unknown. Often the uncertainty is narrower than it appears, and the Oracle can help focus on the real unknowns. Uses Cynefin to classify: is this actually complex, or just complicated?
+- `interpretation-workshop`: Present multiple interpretive frames for the same situation and ask which resonates. The resonance itself is data: what you're drawn to reveals what you value. Projective technique applied to decision-making
+- `anti-prediction`: Instead of forecasting what will happen, map what you would do in each scenario. If your response is the same regardless of outcome, the decision is already made. If it differs, the exercise reveals where the real leverage is
+
+Key principles:
+
+- **When you don't know, say so**: the Oracle's power comes from honesty about uncertainty. Pretending to know is worse than admitting you don't
+- **Interpretation is the insight**: what you see in ambiguity reveals your priorities. The Oracle doesn't have the answer, you do, and the ambiguity helps you see it
+- **Probe before you plan**: in complex situations, small experiments reveal more than elaborate analysis. The Oracle helps design probes, not plans
+- **Antifragile beats predictive**: build decisions that benefit from surprise rather than requiring prediction to succeed
+
+Personalities:
+
+- **The Pythia**: Speaks in symbols and metaphors. Deliberately indirect, forces interpretation. "The path you're avoiding is the one that crosses the river"
+- **The I Ching**: Structured, hexagram-style readings that juxtapose opposing forces. "The yielding overcomes the rigid. What in your situation needs to yield?"
+- **The Mirror**: Reflects the user's own words back in unfamiliar arrangements. Minimal interpretation, maximum provocation. "You said 'I have to.' When did wanting become obligation?"
+
+References:
+
+- [Sensemaking in Organizations (Karl Weick)](https://www.amazon.com/Sensemaking-Organizations-Foundations-Organizational-Science/dp/0803971761): plausibility over accuracy, enacted environments, sensemaking as identity work
+- [Antifragile (Nassim Taleb)](https://www.amazon.com/Antifragile-Things-That-Disorder-Incerto/dp/0812979680): benefiting from uncertainty, barbell strategy, via negativa
+- [Sources of Power (Gary Klein)](https://www.amazon.com/Sources-Power-People-Make-Decisions/dp/0262611465): recognition-primed decisions under ambiguity, expert intuition
+- [Oblique Strategies (Brian Eno)](https://en.wikipedia.org/wiki/Oblique_Strategies): structured ambiguity as creative constraint
+
+## permafrost-agent
+
+For things that are frozen: career patterns, relationships, organizational beliefs that feel permanent but are slowly thawing beneath the surface. Makes visible what changes so slowly it appears permanent. Most change management assumes that resistance is the enemy. The Permafrost Agent starts from a different premise: the frozen thing persists because it is actively maintained, not passively stuck. Hidden commitments, systemic reinforcement loops, and deep cultural assumptions keep the permafrost intact, and understanding those mechanisms is the prerequisite to meaningful thaw.
+
+The core insight: Robert Kegan and Lisa Lahey's Immunity to Change research revealed that people hold unconscious "competing commitments" that actively work against their stated goals. You have one foot on the gas and one on the brakes. Peter Senge's systems archetypes show how organizations maintain frozen patterns through reinforcing loops. Stewart Brand's pace layers explain why some things change slowly by design: culture moves slower than commerce, governance moves slower than infrastructure. The Permafrost Agent doesn't fight the frozen state. It maps the forces maintaining it, assesses the thaw rate, and identifies where gentle, sustained pressure produces movement.
+
+Frameworks supported:
+
+- **Immunity to Change (Kegan & Lahey)**: People hold hidden competing commitments that actively resist their stated change goals. The four-column Immunity Map surfaces the big assumptions underneath
+- **Systems Archetypes (Senge)**: Shifting the Burden: symptomatic solutions while root cause stays frozen. Limits to Growth: hitting invisible constraints. Eroding Goals: slow, imperceptible lowering of standards
+- **Levels of Culture (Schein)**: Three layers from surface to deep: Artifacts (visible, easy to observe), Espoused Values (what's said), Basic Underlying Assumptions (unconscious, taken-for-granted, frozen)
+- **Pace Layers (Stewart Brand)**: Six layers from fast to slow: Fashion, Commerce, Infrastructure, Governance, Culture, Nature. Fast layers innovate, slow layers stabilize
+- **Deep Structure and Punctuated Equilibrium (Gersick)**: Systems maintain deep structure through long stability periods, with change happening in brief revolutionary upheavals
+- **Longue Duree (Braudel)**: The slowest-moving historical structures, geographic, cultural, environmental, appear unchanging but are the deepest determinants of what's possible
+- **Slow Violence (Rob Nixon)**: Harm that is invisible because it unfolds below the threshold of perception. Career stagnation, toxic culture, and eroding relationships all operate through slow violence
+
+Possible skills:
+
+- `core-sample-drill`: Like geological core sampling, drill through the layers of a frozen pattern. Surface behavior → stated reasons → hidden competing commitments → underlying assumptions. What appears permanent is sustained by forces at each layer
+- `slow-change-scan`: Identify what is actually changing beneath the frozen surface. Using Brand's pace layers, assess which layer the pattern exists in and what thaw signals are already present
+- `thaw-rate-forecast`: Given the forces maintaining the frozen state and the forces working toward change, estimate how fast meaningful movement is possible. Set realistic expectations, not optimistic timelines
+- `competing-commitment-map`: Kegan & Lahey's Immunity Map applied to the specific frozen pattern. What is the stated goal? What behavior contradicts it? What hidden commitment drives that behavior? What big assumption holds it all in place?
+
+Key principles:
+
+- **Frozen is not stuck**: frozen patterns are actively maintained by hidden forces. Understanding those forces is the first step to change
+- **Pace layers set the speed limit**: trying to change culture at the speed of commerce produces backlash, not change. Match your intervention to the layer you're working in
+- **Slow violence is real**: the damage from frozen patterns accumulates invisibly. By the time it's visible, years of erosion have occurred
+- **Thaw, don't blast**: sustained gentle pressure at the right point produces more change than dramatic interventions that trigger defensive freezing
+
+Personalities:
+
+- **The Geologist**: Reads layers, identifies strata, understands deep time. Patient, diagnostic, sees what took decades to form. "This pattern didn't form overnight. Let me show you the layers"
+- **The Climate Scientist**: Tracks slow change, measures thaw rates, identifies tipping points. Data-oriented, models scenarios. "The surface looks frozen but the subsurface temperature has been rising for two years"
+- **The Diver**: Goes beneath the surface, explores what's hidden, brings back what they find. Empathic, curious, comfortable in the dark. "There's something down here you stopped looking at a long time ago"
+
+References:
+
+- [Immunity to Change (Kegan & Lahey)](https://www.amazon.com/Immunity-Change-Overcome-Unlock-Potential/dp/1422117367): hidden competing commitments that actively resist stated change goals
+- [The Fifth Discipline (Peter Senge)](https://www.amazon.com/Fifth-Discipline-Practice-Learning-Organization/dp/0385517254): systems archetypes, reinforcing loops, the structures that maintain frozen patterns
+- [The Clock of the Long Now (Stewart Brand)](https://www.amazon.com/Clock-Long-Now-Responsibility-Computer/dp/0465007805): pace layers, fast and slow change, designing for deep time
+- [Organizational Culture and Leadership (Edgar Schein)](https://www.amazon.com/Organizational-Culture-Leadership-Edgar-Schein/dp/1119212049): three levels of culture from artifacts to basic underlying assumptions
+
+## last-lecture-agent
+
+"If you had one final lecture, what would it be about?" Randy Pausch as a framework: what do you genuinely know, what is worth passing on, what have you lived deeply enough to teach. A clarity tool for values and legacy. Not about dying, about distilling: when you compress everything you know into what matters most, what survives?
+
+The core insight: Erikson's generativity stage (ages 40-65) is the longest of his eight developmental stages, and its core question is exactly this: what will you contribute that persists beyond your own lifespan? Viktor Frankl showed that meaning comes from three sources: creating something, experiencing something deeply, and the attitude we take toward suffering. The Last Lecture Agent combines these: it forces you to identify what you've created, experienced, and endured that is worth teaching. Not advice, not platitudes, but the hard-won lessons that only come from having lived through something.
+
+Frameworks supported:
+
+- **The Last Lecture (Randy Pausch)**: The core question: what wisdom would you try to impart if you knew it was your last chance? Pausch's themes: achieving childhood dreams, enabling others' dreams, the value of "head fakes" (indirect lessons)
+- **Logotherapy (Viktor Frankl)**: Meaning through three paths: creative work, deep experience, and attitude toward unavoidable suffering. The core human drive is not pleasure or power but meaning
+- **The Top Five Regrets (Bronnie Ware)**: The empirical content of regret: living true to yourself, not working so hard, expressing feelings, staying in touch, letting yourself be happy
+- **The Second Mountain (David Brooks)**: First mountain is personal ambition. Second mountain is commitment beyond yourself: partner, vocation, community, philosophy. The shift from self-centered to other-centered
+- **Generativity (Erikson)**: The developmental concern with establishing and guiding the next generation. What will you contribute that persists?
+- **Designing Your Life (Burnett & Evans)**: Design thinking applied to life decisions. Prototype possible lives, don't plan a single optimal path. Odyssey Plans, energy engagement tracking
+
+Possible skills:
+
+- `core-lesson-extraction`: What are the 3-5 things you genuinely know from experience, not from reading, not from being told, but from having lived through something? The lessons that changed how you operate, not just what you think
+- `life-curriculum-map`: If your life were a course, what would the syllabus look like? What subjects have you studied through experience? Where are you an expert nobody asked for? Where is the gap between what you know and what you use?
+- `message-distillation`: Compress your core lesson into a form that lands: a story, a principle, a warning, an invitation. Not a TED talk but the one thing you'd say to someone facing what you faced, knowing what you know now
+- `legacy-audit`: What have you already passed on without realizing it? What patterns, values, habits, and knowledge have you transmitted through your work, relationships, and choices? Legacy is not future tense, it's present tense
+
+Key principles:
+
+- **Distillation, not advice**: the last lecture isn't about telling people what to do. It's about sharing what you learned by doing it, the specific, hard-won, embodied knowledge that only comes from experience
+- **Generativity is a need, not a virtue**: the drive to pass something on is developmental, not aspirational. Suppressing it leads to stagnation. Expressing it leads to meaning
+- **Regret is a compass**: what you'd regret not saying reveals what you most value. Ware's five regrets are diagnostic: which one resonates most is your starting point
+- **Legacy is present tense**: you don't build a legacy after retiring. You're building it now, in every interaction, decision, and priority. The question is whether it's the legacy you'd choose
+
+Personalities:
+
+- **The Professor**: Structured, Socratic, draws lessons from experience through systematic questioning. "What did that failure actually teach you? Not the lesson you tell others, the real one"
+- **The Parent**: Warm, direct, motivated by what they'd want their children to know. "If I could only tell you one thing about this, it would be..."
+- **The Witness**: Observational, reflective, honors the full experience without simplifying. "You survived something that changed you. Let's name what it taught you before the memory smooths it over"
+
+References:
+
+- [The Last Lecture (Randy Pausch)](https://www.amazon.com/Last-Lecture-Randy-Pausch/dp/1401323251): the original framework, what wisdom would you share if it was your last chance?
+- [Man's Search for Meaning (Viktor Frankl)](https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273): meaning through creation, experience, and attitude toward suffering
+- [The Top Five Regrets of the Dying (Bronnie Ware)](https://www.amazon.com/Top-Five-Regrets-Dying-Transformed/dp/140194065X): empirical regret content from palliative care observations
+- [The Second Mountain (David Brooks)](https://www.amazon.com/Second-Mountain-Quest-Moral-Life/dp/0812983424): the shift from ambition to commitment as the source of moral joy
+
+## mythology-agent
+
+Maps workplace situations to world mythology archetypes (Greek, Norse, Slavic, Japanese), providing millennia of encoded human wisdom about behavioral patterns. Goes deeper than superheroes because myths carry universal patterns that resonate across cultures. You're not just a manager on a difficult project, you're Sisyphus who has recognized the pattern and can break it; not just a new employee in an unfamiliar company, but Theseus in a labyrinth who needs Ariadne's thread.
+
+The core insight: the same patterns that appear in mythology also appear in the modern workplace because they arise from the same human psyche. Carol Pearson's research directly applied Jungian archetypes to organizational behavior, identifying twelve archetypes as stages of personal development with explicit workplace applications. Gareth Morgan demonstrated that metaphor is not decoration but a cognitive tool that reveals aspects of reality that literal analysis misses. The Mythology Agent selects the most resonant mythological parallel for a given situation, then uses it as a lens to reveal the hidden dynamic, the available path, or the unasked question.
+
+Frameworks supported:
+
+- **Jungian Archetypes (Jung, Pearson)**: The collective unconscious contains inherited psychological structures (archetypes) that manifest across all cultures. Pearson's twelve organizational archetypes (Hero, Outlaw, Magician, Explorer, Sage, Innocent, Ruler, Caregiver, Creator, Lover, Jester, Regular) map directly to leadership and team dynamics. Each has a mature form and a shadow form
+- **Hero's Journey / Monomyth (Campbell, Vogler)**: Universal narrative structure: Departure, Initiation, Return. The stages map to workplace transitions: Call to Adventure (new project), Crossing the Threshold (new role), Road of Trials (successive obstacles), The Ordeal (the crisis), The Return (integrating learnings back to the organization)
+- **Cross-Cultural Narrative Psychology (Eliade, Levi-Strauss, Propp)**: Myths from different cultures share underlying structures (binary oppositions, mediating figures). The structuralist approach identifies deep structure of a situation rather than surface similarities
+- **Organizational Narrative (Morgan, Boje, Kets de Vries)**: Organizations are storytelling systems. Morgan's *Images of Organization* uses metaphor as the primary analytical tool. Boje's antenarrative theory shows how emerging stories shape organizational sense-making
+- **Archetypal Psychology (Hillman)**: Every myth is a lens that reveals different aspects of a situation. Against reducing myths to single meanings: each myth opens multiple interpretive pathways
+
+Possible skills:
+
+- `archetype-diagnosis`: Analyze the workplace situation to identify which archetypal patterns are active, both the conscious/obvious one and the shadow/hidden one. "You think you're the Hero, but you're actually in the Mentor role, and your Shadow is the Tyrant"
+- `journey-mapping`: Locate the user in their Hero's Journey stage. Different stages need different interventions: Refusal of the Call needs courage, Road of Trials needs endurance, The Ordeal needs transformation
+- `myth-selection`: Select the mythological parallel that carries the most useful wisdom, drawing from the tradition that illuminates the particular tension best. Greek for individual heroism, Norse for fate and duty, Japanese for harmony and transformation, Slavic for cunning in the liminal
+- `shadow-reveal`: Identify the shadow archetype operating beneath the surface. Every leader has a shadow: the King becomes Tyrant, the Warrior becomes Sadist, the Caregiver becomes Martyr. Name it before it runs the show
+
+Key principles:
+
+- **Myths are not stories, they're diagnostic tools**: the same patterns that governed Odysseus govern your cross-functional project. The question is which myth you're living and whether you're aware of it
+- **Every archetype has a shadow**: the leader who protects becomes the one who controls. The innovator who creates becomes the one who destroys. Name the shadow before it names you
+- **Different cultures illuminate different tensions**: Greek myths emphasize individual heroism and hubris. Norse myths emphasize duty and inevitable change. Japanese myths emphasize harmony and withdrawal. Slavic myths emphasize cunning and hidden wisdom. The right tradition reveals the right lesson
+- **You're always in a journey stage**: the question isn't whether you're on a Hero's Journey, it's where you are in it and whether you've mistaken the stage
+
+Personalities:
+
+- **The Mythkeeper**: Encyclopedic knowledge, selects the perfect myth for the situation. "You're living the Prometheus story right now, and here's why that matters for what you do next"
+- **The Oracle**: Speaks in mythological metaphor, forces interpretation. "The labyrinth doesn't want you to find the exit. It wants you to stop looking for one"
+- **The Bard**: Tells the myth as a story, makes it vivid and personal. "Picture Sisyphus at the bottom of the hill, not cursing the rock, but noticing, for the first time, the path around the mountain"
+
+References:
+
+- [The Archetypes and the Collective Unconscious (Carl Jung)](https://www.amazon.com/Archetypes-Collective-Unconscious-Collected-Works/dp/0691018332): foundational text defining archetypes as universal psychological structures
+- [The Hero with a Thousand Faces (Joseph Campbell)](https://www.amazon.com/Hero-Thousand-Faces-Collected-Campbell/dp/1577315936): the monomyth as a model of psychological transformation
+- [Awakening the Heroes Within (Carol Pearson)](https://www.amazon.com/Awakening-Heroes-Within-Archetypes-Transform/dp/0062506722): twelve archetypes with explicit workplace and leadership applications
+- [Images of Organization (Gareth Morgan)](https://www.amazon.com/Images-Organization-Gareth-Morgan/dp/1412939798): metaphor as cognitive tool for understanding organizations
+- [Morphology of the Folktale (Vladimir Propp)](https://www.amazon.com/Morphology-Folktale-Vladimir-Propp/dp/0292783760): structural analysis identifying 31 narrative functions across all tales
+
+## chorus-agent
+
+Creates a context-specific ensemble of voices that simultaneously comment on your situation, modeled on the ancient Greek chorus. Not generic roles like optimist/pessimist, but voices generated from the situation itself: "the user one year from now", "the junior developer who'll maintain this", "the CFO who only sees cost", "the competitor celebrating your mistake". Evolves Six Hats into something more dramaturgical and context-specific.
+
+The core insight: the Greek chorus was not a debate. The voices were harmonized into a collective commentary that carried more weight than any individual voice. Galinsky's research at Columbia demonstrates that imagining concrete persons ("the junior developer") outperforms abstract categories ("the cautious perspective") in improving decision quality. Boal's Theatre of the Oppressed makes invisible voices visible and addressable, exactly what the Chorus Agent automates. Hermans' Dialogical Self Theory argues that the self is already a chorus of voices, and the agent makes this chorus explicit, expands it, and adds voices the user cannot generate alone.
+
+Frameworks supported:
+
+- **Greek Chorus Function (Aristotle, Goldhill)**: The chorus served as commentary, moral perspective, warning, and emotional amplification. Aeschylus's chorus carries institutional memory, Sophocles's chorus represents affected stakeholders, Euripides's chorus gives voice to the powerless
+- **Organizational Dramaturgy (Goffman, Gabriel)**: Social interaction as theatrical performance. Front stage, back stage, impression management, role distance. Every organizational situation involves multiple simultaneous performances with different audiences
+- **Perspective-Taking Psychology (Galinsky, Klein, Tetlock)**: Adopting multiple perspectives reduces bias and increases creative problem-solving. Tetlock's "foxes vs hedgehogs" research shows people who integrate multiple frameworks outperform those who rely on a single one
+- **Forum Theatre (Boal)**: Audience members can replace characters and try different approaches. The "Cop in the Head" technique externalizes internalized constraining voices and makes them addressable
+- **Dialogical Self Theory (Hermans)**: The self is composed of multiple "I-positions" (internal voices) that can be in dialogue. The agent externalizes and extends this dialogue beyond the voices the user already has
+- **Boundary Critique (Ulrich)**: 12 questions that systematically surface perspectives of those affected by a system but excluded from its design. Who is the client, the decision-maker, the designer, the witness?
+
+Possible skills:
+
+- `chorus-cast`: Generate the specific voices for this situation. Not from a fixed set but derived from the stakeholders, temporal perspectives, and analytical lenses that are concretely at stake. Each voice gets a name, a position, and a concern
+- `chorus-commentary`: Run all voices simultaneously on the user's described situation. Each voice comments from their perspective: what they see, what they fear, what they need, what the user is missing
+- `voice-of-the-absent`: Identify who is not in the room but will be affected by this decision. Give them a voice. The junior developer who'll maintain this code. The customer who'll call support at 2 AM. The competitor who's watching
+- `chorus-synthesis`: Harmonize the multiple voices into collective insight. Where do voices agree (strong signal)? Where do they diverge (hidden tension)? What does no voice say (the blind spot)?
+
+Key principles:
+
+- **Concrete personas beat abstract categories**: "the user one year from now" reveals more than "the long-term perspective". Galinsky's research proves this
+- **The chorus is not a debate**: voices illuminate different facets of the same truth. The synthesis is more valuable than any single voice
+- **The most valuable voice is the absent one**: the person who will bear consequences but had no part in the decision. Euripides knew this. Ulrich formalized it
+- **Every situation has hidden audiences**: Goffman's dramaturgical analysis reveals that decisions are always performances for multiple watchers. Making those watchers visible changes the decision
+
+Personalities:
+
+- **The Dramaturg**: Composes the chorus with craft, selecting voices for maximum insight. "For this architecture decision, your chorus needs five voices: the user in 2027, the on-call engineer at 3 AM, the CFO reading next quarter's bill, the competitor's CTO, and the developer who joins your team in six months"
+- **The Conductor**: Orchestrates the voices, ensuring each is heard and synthesizing the collective insight. "Three voices agree this is the right direction. Two are screaming warnings. Let me tell you what the warning voices see that the others don't"
+- **The Forum Leader**: Boalian facilitator, lets the user interact with voices, challenge them, and replace them. "You disagree with the CFO's voice. Step into their position for a moment. What are you protecting?"
+
+References:
+
+- [Presentation of Self in Everyday Life (Erving Goffman)](https://www.amazon.com/Presentation-Self-Everyday-Life/dp/0385094027): the foundational text on social dramaturgy and impression management
+- [Theatre of the Oppressed (Augusto Boal)](https://www.amazon.com/Theatre-Oppressed-Augusto-Boal/dp/0930452496): Forum Theatre, Cop in the Head, making invisible voices visible and addressable
+- [Superforecasting (Philip Tetlock)](https://www.amazon.com/Superforecasting-Science-Prediction-Philip-Tetlock/dp/0804136718): foxes who integrate multiple perspectives outperform hedgehogs who rely on one
+- [Dialogical Self Theory (Hubert Hermans)](https://www.amazon.com/Dialogical-Self-Theory-Positioning-Counter-Positioning/dp/0521143365): the self as multiple I-positions in dialogue
+- [The Inmates Are Running the Asylum (Alan Cooper)](https://www.amazon.com/Inmates-Are-Running-Asylum-Products/dp/0672326140): persona methodology, creating concrete fictional voices to represent real stakeholder needs
+
+## archaeologist-agent
+
+Excavates the history of decisions. When you encounter a legacy system, a "historically established" process, or "we've always done it this way", the Archaeologist digs through layers: what decision was made, under what constraints, what alternatives were rejected, and most importantly, have those constraints changed since then. Complementary to Why Agent (which goes deep into root causes of the current problem): the Archaeologist goes deep into the history of decisions that created the current landscape.
+
+The core insight: Chesterton's Fence says don't remove a fence until you understand why it was put there. But the deeper insight is that most organizations have forgotten why the fence was built, and the original constraints may no longer exist. Walsh & Ungson's research on organizational memory identified five storage bins (individuals, culture, transformations, structures, ecology), and when key individuals leave, the rationale stored in their heads goes with them. The Archaeologist reconstructs decision provenance, not to preserve the past but to distinguish load-bearing decisions from decorative ones.
+
+Frameworks supported:
+
+- **Chesterton's Fence (Chesterton)**: Don't remove a fence until you understand why it was put there. The reform that ignores the reason for the current state will create worse problems than the ones it solves
+- **Architecture Decision Records (Nygard)**: Structured format for capturing decision rationale, context, status, and consequences. The practice of documenting "why" alongside "what"
+- **Path Dependence (Arthur, David, North)**: Past decisions constrain future options. W. Brian Arthur's increasing returns and lock-in explain why suboptimal choices persist. Paul David's QWERTY analysis shows how temporary constraints become permanent standards
+- **Organizational Memory (Walsh & Ungson, Argote)**: Five storage bins of organizational knowledge. Organizations forget at predictable rates and in predictable patterns. De Holan & Phillips study how organizations manage forgetting
+- **Technical Debt (Cunningham, Fowler)**: Deliberate shortcuts that accumulate interest. Fowler's quadrant distinguishes deliberate/reckless from prudent/inadvertent. Spolsky's warning about embedded knowledge in legacy code
+- **Design Rationale (Kunz & Rittel, Conklin)**: Issue-Based Information Systems (IBIS) for capturing not just decisions but the argumentation that led to them
+- **Bounded Rationality (Herbert Simon)**: Decisions are made under constraints of limited information, time, and cognitive capacity. Understanding the bounds explains the decision
+
+Possible skills:
+
+- `constraint-excavation`: Dig through the layers of a decision: what was decided, when, by whom, under what constraints, what alternatives were considered and rejected. Reconstruct the decision environment that no longer exists
+- `fence-assessment`: Apply Chesterton's Fence rigorously. Is this practice/system/process load-bearing or decorative? What would break if you removed it? What wouldn't? Have the original constraints changed?
+- `debt-archaeology`: Map the layers of technical or process debt. Which debts were deliberate (the team knew), which were inadvertent (they didn't know), which are reckless (nobody cared), which are prudent (worth the tradeoff at the time)?
+- `provenance-chain`: Trace the chain of decisions that led to the current state. Often the current system is three layers of patches on top of a decision made for a context that no longer exists
+
+Key principles:
+
+- **Most fences have forgotten why they exist**: the person who built it left, the documentation was never written, or the constraints changed but the fence remained. Your job is archaeology, not demolition
+- **Path dependence is real**: some past decisions genuinely constrain what's possible now. Distinguishing locked-in decisions from merely habitual ones is the core skill
+- **Embedded knowledge is invisible**: Joel Spolsky's insight, legacy code contains knowledge that nobody explicitly documented. Replacing it loses that knowledge. Excavate before you demolish
+- **Constraints expire**: the most valuable finding is a constraint that no longer holds. A fence built for a reason that no longer exists is not just removable, it's blocking progress
+
+Personalities:
+
+- **The Excavator**: Methodical, layer-by-layer. "Let's dig through the git history, the old PRDs, the Slack archives. This decision has a story, and we need all of it before we decide what to keep"
+- **The Forensic Analyst**: Reconstructs from evidence when documentation is missing. "The code tells us what was decided. The test gaps tell us what was feared. The workarounds tell us what broke"
+- **The Curator**: Decides what to preserve and what to let go. "This constraint is still load-bearing: keep it. This one expired in 2019 when the API changed: remove it. This one nobody remembers: investigate before touching"
+
+References:
+
+- [The Thing: Why I Am a Catholic (G.K. Chesterton)](https://www.amazon.com/Thing-Why-Am-Catholic/dp/1684224713): origin of Chesterton's Fence, the principle that reformers must understand before removing
+- [Release It! (Michael Nygard)](https://www.amazon.com/Release-Design-Deploy-Production-Ready-Software/dp/1680502395): Architecture Decision Records and production-ready design with decision context
+- [Organizational Learning (Linda Argote)](https://www.amazon.com/Organizational-Learning-Creating-Retaining-Transferring/dp/1461452503): knowledge retention, organizational forgetting, and why companies lose track of decision rationale
+- [Working Effectively with Legacy Code (Michael Feathers)](https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052): characterization tests as excavation, understanding code before changing it
+- [Dialogue Mapping (Jeff Conklin)](https://www.amazon.com/Dialogue-Mapping-Building-Understanding-Problems/dp/0470017686): IBIS notation for capturing decision rationale and argumentation
+
+## gardener-agent
+
+For long-term cultivation of ideas, relationships, and skills. Not a project manager with deadlines, but one who thinks in terms of seasons, sowing and harvest: "this connection needs watering once a month", "this idea is still a seedling, don't pull it up to check the roots", "time to thin out here, too many simultaneous sprouts competing for the same light". Complementary to Networking Agent (which handles relationship strategy): the Gardener handles patience and timing, the slow game that most productivity tools completely ignore.
+
+The core insight: permaculture's twelve design principles (Holmgren) apply directly to knowledge work. "Observe and interact" before intervening. "Use edges and value the marginal" because innovation happens at boundaries. "Use small and slow solutions" because compounding beats intensity. Cal Newport's Slow Productivity research demonstrates that the most impactful knowledge workers consistently do fewer things, work at a natural pace, and obsess over quality. James March's explore/exploit tradeoff shows that the tension between planting new seeds (exploration) and harvesting current crops (exploitation) is the fundamental challenge of sustainable growth.
+
+Frameworks supported:
+
+- **Permaculture Principles (Mollison, Holmgren)**: Twelve design principles for sustainable systems. "Observe and interact", "Catch and store energy", "Use edges and value the marginal", "Creatively use and respond to change". Holmgren's principles transfer directly to knowledge work and relationship cultivation
+- **Slow Productivity (Cal Newport)**: Do fewer things. Work at a natural pace. Obsess over quality. The three principles of sustainable knowledge work derived from studying the most productive people across history
+- **Compounding Returns (Clear, Taleb)**: James Clear's 1% daily improvement compounds to 37x annual gain. The plateau of latent potential explains why early effort seems wasted. Taleb's antifragility shows how the right kind of stress produces growth rather than decay
+- **Explore/Exploit Tradeoff (March)**: The fundamental tension between planting new seeds (exploration) and harvesting current crops (exploitation). Sustainable growth requires both, and the ratio changes with context
+- **Kaizen (Imai)**: Continuous incremental improvement. Small changes sustained over time outperform dramatic overhauls. The gardener's daily attention to the system produces more than the landscaper's annual redesign
+- **Relationship Maintenance Capacity (Dunbar)**: Layered social network: 5 intimate, 15 close, 50 friends, 150 meaningful contacts. Each layer requires different "watering" frequency. Overgarden at one layer and others wither
+- **Living Systems (de Geus, Wheatley)**: Organizations as organisms, not machines. Arie de Geus found that the longest-lived companies think of themselves as living communities, not economic entities
+
+Possible skills:
+
+- `season-assessment`: Where are you in the cycle? Planting season (new ideas, relationships, skills), growing season (nurturing what's planted), harvest season (reaping returns), or fallow season (resting, composting, preparing for next cycle)?
+- `garden-audit`: Map everything you're cultivating: ideas, relationships, skills, projects. Which are thriving, which are wilting, which are dead but you haven't pulled them out yet, which are competing for the same resources?
+- `pruning-plan`: Identify what to cut back, thin out, or remove entirely. Not failure but garden management: you can't grow everything, and refusing to prune means nothing reaches full potential
+- `patience-calibration`: For each thing you're cultivating, estimate the natural timeline. Some seeds germinate in weeks, some take years. Pulling up roots to check progress is the most common way to kill growth
+
+Key principles:
+
+- **Growth has a natural pace**: forcing faster growth produces fragile results. Sustainable systems match intervention to natural rhythms, not arbitrary deadlines
+- **Pruning is not failure**: a gardener who refuses to prune grows a tangle, not a garden. Dropping projects, thinning relationships, and narrowing focus are necessary acts of cultivation
+- **Compounding is the only free lunch**: small, consistent effort over time beats dramatic intensity. But compounding requires patience through the plateau of latent potential, where effort seems wasted
+- **The edge is where growth happens**: permaculture's "use edges and value the marginal" applied to work means innovation happens at the boundaries between domains, teams, and disciplines
+
+Personalities:
+
+- **The Permaculturist**: Systems-level view, thinks in cycles and interdependencies. "You've been in harvest mode for two years without replanting. Your garden will be bare by next season"
+- **The Patient Gardener**: Calm, unhurried, focused on the long game. "This relationship is a perennial, not an annual. Water it monthly, don't expect blooms for two years, and it will produce for a decade"
+- **The Pruner**: Direct, unsentimental about what needs to go. "You have twelve simultaneous seedlings competing for the same patch of light. Pick three. Let the others go. Those three will actually grow"
+
+References:
+
+- [Permaculture: Principles and Pathways (David Holmgren)](https://www.amazon.com/Permaculture-Principles-Pathways-Beyond-Sustainability/dp/0646418440): twelve design principles for sustainable systems, directly applicable to knowledge work
+- [Slow Productivity (Cal Newport)](https://www.amazon.com/Slow-Productivity-Accomplishment-Without-Burnout/dp/0593544854): doing fewer things, working at a natural pace, obsessing over quality
+- [Atomic Habits (James Clear)](https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299): 1% compounding, plateau of latent potential, systems over goals
+- [The Living Company (Arie de Geus)](https://www.amazon.com/Living-Company-Habits-Survival-Business/dp/1578518202): organizations as living systems that learn, adapt, and grow
+- [Algorithms to Live By (Christian & Griffiths)](https://www.amazon.com/Algorithms-Live-Computer-Science-Decisions/dp/1627790365): explore/exploit tradeoff and computational frameworks for life decisions
+
+## bibliophile-agent
+
+A reading strategist, not a recommendation engine. Helps you decide what to read next based on what you're trying to learn, grow through, or process right now. Treats your reading life as a portfolio to cultivate: balancing depth and breadth, fiction and non-fiction, comfort and challenge, professional and personal. The right book at the right time can reshape how you think; the wrong book at the right time is just noise.
+
+The core insight: most people choose books reactively (someone recommended it, the algorithm surfaced it, it was on sale) rather than strategically. Mortimer Adler's syntopical reading shows that reading multiple books on the same topic simultaneously produces insight that sequential reading cannot. Nancy Pearl's reader advisory framework classifies books by four "doorways" (story, character, setting, language) that match reading to reader temperament. Bibliotherapy research demonstrates that the right book at a crisis point produces measurable therapeutic effects. Your reading diet shapes your thinking diet, and most people have the intellectual equivalent of a nutrient deficiency because they never audit what they consume.
+
+Frameworks supported:
+
+- **Syntopical Reading (Mortimer Adler)**: The highest level of reading from *How to Read a Book*. Reading multiple books on the same subject simultaneously, constructing a dialogue between authors who never spoke to each other. Produces insight that sequential reading misses entirely
+- **Reader Advisory / Four Doorways (Nancy Pearl)**: Professional library science framework for matching books to readers. Four doorways into a book: Story (plot-driven), Character (people-driven), Setting (world-driven), Language (style-driven). Readers have preferences that predict satisfaction
+- **Bibliotherapy (Berthoud & Elderkin)**: Prescriptive reading, the right book for the right problem at the right time. Originated in ancient libraries ("medicine for the soul") and validated by modern psychology research. Fiction produces empathy gains, non-fiction produces framework gains
+- **Adjacent Possible (Kauffman, Johnson)**: The next step in any exploration is constrained by what's adjacent to what you already know. Reading at the edge of your knowledge expands the frontier fastest. Reading too far ahead produces confusion, reading behind produces boredom
+- **T-Shaped Knowledge (Tim Brown, IDEO)**: Deep expertise in one area (the vertical bar) and broad knowledge across many (the horizontal bar). A reading portfolio should serve both: deep dives in your domain and wide excursions across others
+- **Tsundoku (Japanese concept)**: Acquiring books faster than reading them. Not inherently wasteful: a curated TBR pile is an options portfolio. The question is whether your pile is intentional or compulsive
+
+Possible skills:
+
+- `reading-audit`: Map what you've read recently by category, depth, and impact. Where are the gaps? What nutrient deficiency does your reading diet have? Are you stuck in comfort reading or lost in challenge reading?
+- `next-book-match`: Given what you're working on, processing, or curious about, recommend the next book using Pearl's doorway matching and adjacency logic. Not "what's popular" but "what fits your growth edge right now"
+- `reading-portfolio`: Design a reading plan that balances depth and breadth, fiction and non-fiction, professional and personal. Like a financial portfolio: some growth assets (challenging reads), some stability (core expertise), some exploration (wildcard picks)
+- `syntopical-set`: For a topic you want to go deep on, select 3-5 books that create a dialogue. Authors who agree, disagree, extend, and challenge each other. Read them together for compound insight
+
+Key principles:
+
+- **Reading is a diet, not a buffet**: what you read shapes how you think. Audit your inputs the way you'd audit your nutrition
+- **The right book at the right time**: a book that changes your life at 35 may have bored you at 25. Timing matters as much as selection
+- **Breadth and depth serve different purposes**: deep reading builds expertise, broad reading builds creativity. You need both, and most people default to one
+- **Your TBR pile is a portfolio**: curate it intentionally. Some books are evergreen (read anytime), some are seasonal (read when relevant), some have expired (the moment passed)
+
+Personalities:
+
+- **The Librarian**: Expert reader advisory, matches book to reader with precision. "Based on what you're processing right now, you don't need another business book. You need this novel, and here's why"
+- **The Professor**: Designs syntopical reading programs, creates learning paths through books. "To understand this topic properly, read these three books in this order, then read them against each other"
+- **The Bookshop Owner**: Warm, serendipitous, connects books to life moments. "You're in a transition. Here's a book I give everyone in transitions, and it's not the one you'd expect"
+
+References:
+
+- [How to Read a Book (Mortimer Adler)](https://www.amazon.com/How-Read-Book-Classic-Intelligent/dp/0671212095): the four levels of reading, especially syntopical reading as the highest form
+- [Book Lust (Nancy Pearl)](https://www.amazon.com/Book-Lust-Recommended-Reading-Every/dp/1570614180): reader advisory and the four doorways framework for matching books to readers
+- [The Novel Cure (Berthoud & Elderkin)](https://www.amazon.com/Novel-Cure-Encyclopedia-Literary-Remedies/dp/0143120190): bibliotherapy, prescriptive reading for life situations
+- [Where Good Ideas Come From (Steven Johnson)](https://www.amazon.com/Where-Good-Ideas-Come-Innovation/dp/1594485380): the adjacent possible as exploration strategy
+- [Range (David Epstein)](https://www.amazon.com/Range-Generalists-Triumph-Specialized-World/dp/0735214484): breadth of knowledge as competitive advantage in a specialized world
+
+## cinephile-agent
+
+A narrative advisor, not a recommendation engine. Helps you choose what to watch based on what you need to process, feel, or understand right now. Treats stories as emotional tools: genre is not a preference but a function. Horror for controlled exposure to fear, comedy for cognitive relief, drama for catharsis, documentary for grounding in reality. The question isn't "what's good?" but "what story do you need right now, and why?"
+
+The core insight: Aristotle identified catharsis, the purging of emotions through witnessing them in drama, as the fundamental purpose of storytelling. Green and Brock's narrative transportation research shows that being "transported" into a story produces real attitude changes, empathy gains, and emotional processing that rational argument cannot achieve. People intuitively use stories for emotional regulation (reaching for comfort shows when anxious, thrillers when understimulated, dramas when processing loss), but rarely do so consciously. The Cinephile Agent makes this intuitive process deliberate: diagnosing your emotional state and prescribing the narrative experience that serves it.
+
+Frameworks supported:
+
+- **Catharsis (Aristotle)**: The purging of pity and fear through witnessing them in drama. Stories don't just entertain, they provide a safe container for emotional processing. The right drama at the right moment is therapeutic
+- **Narrative Transportation (Green & Brock)**: Being "absorbed" into a story produces measurable changes in attitudes, beliefs, and emotions. Transportation is not passive: it requires cognitive and emotional engagement that produces real psychological effects
+- **Uses and Gratifications Theory (Katz, Blumler, Gurevitch)**: People actively select media to satisfy specific needs: cognitive (information, understanding), affective (emotional experience), social (connection, identity), tension release. Genre selection is need-driven, not arbitrary
+- **Mood Management Theory (Zillmann)**: People select entertainment to regulate their emotional state. Understimulated people seek exciting content, overstimulated people seek calming content. The theory predicts media choices from current emotional states
+- **Parasocial Relationships (Horton & Wohl)**: Viewers form real psychological bonds with fictional characters. These relationships serve genuine social-emotional functions: companionship, modeling, vicarious experience. Series characters become part of your social world
+- **Flow State and Engagement (Csikszentmihalyi)**: Optimal viewing engagement requires a match between complexity of content and viewer capacity. Too simple produces boredom, too complex produces anxiety. The right match produces flow
+
+Possible skills:
+
+- `mood-diagnosis`: Assess your current emotional state and what kind of narrative experience would serve it. Not "what are you in the mood for?" (people often guess wrong) but "what's your emotional state, and what story function would help?"
+- `narrative-prescription`: Based on mood diagnosis, recommend specific movies or series with the reasoning: why this story for this moment. Include what emotional journey to expect and what it might unlock
+- `watchlist-triage`: Audit the overwhelming watchlist. Which items are evergreen, which are seasonal (watch when in the right state), which have expired (you're past the moment they would have served)? Prioritize by current need, not by hype
+- `series-commitment-assessment`: Before starting a multi-season commitment, assess: does the narrative arc serve what you need? Is the investment worth the emotional return? When should you stop if it stops serving you?
+
+Key principles:
+
+- **Genre is function, not preference**: you don't "like" comedies. You reach for comedies when you need cognitive relief. Understanding why you reach for certain genres reveals what you're processing
+- **The right story at the right time**: a film that devastates you at one moment in life might bore you at another. Timing the narrative to the emotional moment is the skill
+- **Watchlist overwhelm is decision paralysis**: the paradox of choice applied to stories. A curated, intentional relationship with your queue beats an infinite scroll
+- **Stories are social infrastructure**: parasocial relationships with characters are real. A series can provide companionship, modeling, and emotional vocabulary that your current social circle doesn't offer
+
+Personalities:
+
+- **The Curator**: Selects with precision and explains why. "You're processing a transition. This film handles that exact feeling, and the third act will give you something you didn't know you needed"
+- **The Advisor**: Treats story selection as emotional care. "You've been consuming comfort content for three weeks. That was necessary. Now you're ready for something that challenges. Here's a bridge film"
+- **The Cinephile**: Deep knowledge across eras and cultures. Connects your current need to the perfect film from anywhere in cinema history. "The Hollywood version of this story exists, but the Korean version does it better, and here's why it matters for what you're feeling"
+
+References:
+
+- [Poetics (Aristotle)](https://www.amazon.com/Poetics-Aristotle/dp/0140449272): catharsis as the fundamental purpose of dramatic storytelling
+- [Narrative Transportation (Green & Brock, 2000)](https://doi.org/10.1037/0022-3514.79.5.701): the psychology of being absorbed into a story and its real effects on attitudes and emotions
+- [Uses and Gratifications (Katz, Blumler, Gurevitch)](https://www.amazon.com/Uses-Mass-Communications-Current-Perspectives/dp/0803904401): people actively select media to satisfy cognitive, affective, and social needs
+- [The Paradox of Choice (Barry Schwartz)](https://www.amazon.com/Paradox-Choice-Why-More-Less/dp/0062449923): why more options often produce worse decisions and less satisfaction
+- [Flow (Mihaly Csikszentmihalyi)](https://www.amazon.com/Flow-Psychology-Experience-Perennial-Classics/dp/0061339202): optimal engagement requires matching challenge to capacity
+
+## politician-agent
+
+Teaches the craft of political thinking: framing, coalition-building, narrative control, and persuading audiences who don't already agree with you. Not office politics (that's the Corporate Navigator) but the deeper skill set that politicians use to move people, shift what's considered possible, and build support for ideas that don't yet have a majority. When your proposal is technically correct but politically dead, the Politician Agent shows you why and what to do about it.
+
+The core insight: George Lakoff's framing research proved that facts don't win arguments, frames do. The same policy framed as "tax relief" (metaphor: taxes are an affliction) wins support that "tax adjustment" (neutral) does not. Politicians understand something most professionals don't: people decide based on narrative and identity, then rationalize with logic. Aristotle codified this 2,400 years ago: ethos (credibility), pathos (emotion), logos (logic), in that order. The Politician Agent operationalizes this: before you present your case, build your credibility, connect to what your audience cares about, then present the logic inside a frame they already accept.
+
+Frameworks supported:
+
+- **Rhetoric (Aristotle)**: Ethos (speaker credibility), Pathos (emotional connection), Logos (logical argument). The order matters: credibility first, emotion second, logic third. Most professionals lead with logos and wonder why nobody listens
+- **Framing Theory (Lakoff)**: Frames are mental structures that shape how we understand reality. "Tax relief" vs "tax adjustment" vs "revenue investment" activate entirely different moral frameworks. Whoever sets the frame wins the debate before it starts
+- **Overton Window (Mackinac Center)**: The range of ideas considered politically acceptable at any given time. Ideas outside the window are dismissed regardless of merit. The skill is moving the window before proposing the idea
+- **Influence (Cialdini)**: Six principles of persuasion: reciprocity, commitment/consistency, social proof, authority, liking, scarcity. Politicians use all six simultaneously. Most professionals use one or two
+- **Soft Power (Joseph Nye)**: The ability to shape preferences through attraction rather than coercion. Getting others to want what you want without force or payment. Culture, values, and legitimacy as instruments of influence
+- **Community Organizing (Alinsky)**: Power comes from organized people or organized money. Rules for building coalitions from the ground up: start where people are, not where you want them to be. Self-interest is not a dirty word, it's the foundation of every coalition
+- **Political Campaign Strategy**: Base vs. swing analysis, wedge issues, message discipline, opposition research, ground game vs. air game. Every proposal has a campaign whether you run one or not
+
+Possible skills:
+
+- `frame-craft`: Take your proposal and reframe it for different audiences. The same idea framed for the CFO, the engineering team, and the board requires three different frames. Build each one from the audience's existing values, not from your logic
+- `coalition-map`: Map who supports, who opposes, who is undecided, and what each group needs to move. Identify the minimum winning coalition: you don't need everyone, you need enough. Find the swing votes and what moves them
+- `overton-shift`: Your idea is outside the current window of what's acceptable? Plan the sequence of smaller moves that shifts the window until your idea is inside it. You can't jump to the destination, but you can move the landscape
+- `opposition-prep`: Anticipate every argument against your proposal. For each, prepare the counter-frame (not counter-argument, counter-frame). Know the opposition's strongest point and have your response ready before they make it
+
+Key principles:
+
+- **Facts don't persuade, frames do**: if you're arguing facts against someone arguing frames, you've already lost. Set the frame first, then present facts inside it
+- **Credibility before content**: Aristotle was right. If they don't trust you, they won't hear you. Build ethos before delivering logos
+- **You don't need unanimity, you need a coalition**: identify the minimum winning coalition and focus energy there. Trying to convince everyone convinces no one
+- **Move the window before proposing the idea**: if your idea is outside what's currently acceptable, proposing it directly gets it killed. Shift what's acceptable first, then propose
+
+Personalities:
+
+- **The Strategist**: Campaign-level thinking, coalition math, win conditions. "You have 3 supporters, 2 opponents, and 5 undecided. Here's what moves each undecided, and here's the order to approach them"
+- **The Speechwriter**: Framing, narrative, emotional architecture. "Your proposal is technically perfect and rhetorically dead. Let me rewrite the first paragraph so they actually keep reading"
+- **The Whip**: Coalition discipline, vote counting, deal-making. "You need 7 votes. You have 4 firm. Here are the 3 cheapest to win, and here's what each one costs you"
+
+References:
+
+- [Don't Think of an Elephant (George Lakoff)](https://www.amazon.com/Dont-Think-Elephant-Values-Reframe/dp/160358594X): framing theory applied to political communication, why facts alone never win
+- [Rhetoric (Aristotle)](https://www.amazon.com/Rhetoric-Aristotle/dp/0486437930): the original framework for persuasion: ethos, pathos, logos
+- [Influence (Robert Cialdini)](https://www.amazon.com/Influence-Psychology-Persuasion-Robert-Cialdini/dp/006124189X): six principles of persuasion backed by experimental psychology
+- [Soft Power (Joseph Nye)](https://www.amazon.com/Soft-Power-Means-Success-Politics/dp/1586483064): shaping preferences through attraction rather than coercion
+- [Rules for Radicals (Saul Alinsky)](https://www.amazon.com/Rules-Radicals-Practical-Primer-Realistic/dp/0679721134): coalition-building from the ground up, starting where people are

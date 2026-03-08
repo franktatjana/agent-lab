@@ -2,14 +2,27 @@
 
 All notable changes to the Agent Lab project.
 
-## [Unreleased] - 2026-03-05
+## [Unreleased] - 2026-03-08
 
 ### Added
 
+- Ideas tab on home page with category filters and "Why do I need an agent?" infobox
+- Agent recommender on home page: suggests agents based on user's situation
+- Agent guide system: handbook page with search/filters, per-agent Guide tab
+- Difficult Conversations agent with story and composition edges
+- Wargaming agent and Cat POV agent
+- Pre-Mortem, Decision Decomposer, and Crisis Navigator agents (Decisions & Risk category)
+- Agent ideas catalog: 49 structured ideas across 4 categories
+- Prompt engineering bookmarks in docs
 - Skill type taxonomy: all agent skills classified as encoded preferences or capability uplifts
 - A/B comparison testing and skill obsolescence detection as standard quality criteria across all 18 agents
 - Quality Criteria sections for 7 agents that previously lacked them
 - Handbook sections: A/B Comparison Testing, Skill Obsolescence Detection (Part 6)
+
+### Changed
+
+- Handbook page redesigned with search and filters
+- Agent ideas expanded with researched frameworks (ambivalence, promotion, goal-setting agents)
 
 ## [0.6.0] - 2026-02-16
 

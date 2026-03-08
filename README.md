@@ -78,9 +78,9 @@ Pain point narratives that show why structured thinking matters. Each story foll
 
 ## Agent Ideas
 
-46 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. Each idea card shows the concept, category, and key frameworks. Click to expand the full design brief.
+60 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. Each idea card shows the concept, category, and key frameworks. Click to expand the full design brief.
 
-![Agent ideas catalogue with 46 researched concepts](web/public/screenshots/3.png)
+![Agent ideas catalogue with 60 researched concepts](web/public/screenshots/3.png)
 
 ![Agent idea detail with frameworks, skills, and key principles](web/public/screenshots/4.png)
 

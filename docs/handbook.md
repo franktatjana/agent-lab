@@ -482,7 +482,7 @@ Follow the {{escalation_policy}} for unresolved complaints.
 
 ### Composition Patterns
 
-Agents can be combined in different topologies, each with tradeoffs. Choose based on your task structure: sequential stages favor pipelines, complex decisions favor orchestration, independent work favors peer networks.
+Agents can be combined in different topologies, each with tradeoffs. Choose based on your task structure: sequential stages favor pipelines, complex decisions favor orchestration, independent work favors peer networks. Google's Agent Development Kit (Feb 2026) formalized eight fundamental patterns built on three execution primitives: sequential, loop, and parallel.
 
 **Pipeline:** Agent A → Agent B → Agent C
 
@@ -492,11 +492,23 @@ Output feeds input. Works for clear stages. Challenge: failure midstream affects
 
 One agent coordinates multiple specialists. Works for complex tasks requiring judgment. Challenge: orchestrator becomes bottleneck.
 
+**Parallel Fan-out/Gather:** Coordinator → [Agent A, Agent B, Agent C] → Synthesizer
+
+Multiple agents work simultaneously on specific tasks, results are gathered and synthesized. Works for independent subtasks that benefit from parallelism. Challenge: aggregation logic and handling partial failures.
+
 **Peer Network:** Agent A ←→ Agent B ←→ Agent C
 
 Agents operate independently, share signals. Works for monitoring, parallel processing. Challenge: coordination, may duplicate work or miss handoffs.
 
-Most real systems use hybrid patterns.
+**Generator/Critic:** Generator → Critic → (accept or feedback loop)
+
+One agent creates content, another validates it against criteria. The critic can accept the output or send feedback for another iteration. Works for tasks requiring quality gates: code review, document editing, compliance checks. Challenge: defining clear acceptance criteria so the loop terminates.
+
+**Iterative Refinement:** Generator → Critique → Refiner → (loop until satisfactory)
+
+A three-agent cycle where generation, evaluation, and improvement are separated. The critique agent identifies gaps, the refiner addresses them, and the cycle repeats until quality thresholds are met. Works for progressive improvement: writing, analysis, design. Challenge: convergence, the loop must have exit conditions to prevent infinite cycling.
+
+**Composite:** Combines patterns, for example a coordinator that fans out to specialists, each running generator/critic loops internally. Most real systems are composites.
 
 ### Routing: Static vs. Dynamic
 
@@ -567,6 +579,8 @@ Four distinct interface layers exist, each solving a different boundary problem.
 **Typed Data Contracts:** The data schemas that define what an agent accepts and produces. Every major framework now supports Pydantic models, JSON schemas, or equivalent typed output definitions. These function as contracts between agents, between agents and tools, and between agents and consuming applications. Structured output has shifted decisively from free-text communication toward schema-defined contracts with required and optional fields, data types, constraints, and validation rules.
 
 **How the layers compose:** The emerging architecture stacks three complementary protocols: MCP at the tool layer, A2A at the coordination layer, and AG-UI at the presentation layer. Each operates independently but composes into a full-stack agent communication architecture. Typed data contracts (Pydantic, JSON Schema) apply at every boundary across all three layers.
+
+**Standards convergence (2026).** The agent standards landscape is consolidating around complementary layers. NIST launched the AI Agent Standards Initiative (Feb 2026) with three pillars: industry-led standards development, community-led open-source protocol maintenance, and research into agent security and identity. Anthropic released Agent Skills as an open standard (Dec 2025) for portable skill packages, now adopted by 30+ tools including Cursor, VS Code, GitHub Copilot, OpenAI Codex, and Gemini CLI. SoulSpec emerged as an open standard for agent personas, defining identity, personality, and behavior in a versionable structure (soul.json, SOUL.md, IDENTITY.md, AGENTS.md). The Open Agent Governance Specification (OAGS) addresses runtime governance: deterministic identity, policy enforcement, audit trails, and cryptographic verification. These standards complement rather than compete: Agent Skills standardizes capabilities, SoulSpec standardizes identity, OAGS standardizes governance, and the protocol stack (MCP + A2A + AG-UI) standardizes communication.
 
 **For specification repositories:** Even without runtime code, interface definitions serve as portable contracts. Defining input shapes, output shapes, handoff protocols, and tool requirements in agent specs makes them significantly more useful when someone wires them to any framework. The specs become integration-ready rather than requiring the implementer to reverse-engineer the contract from prose descriptions.
 
@@ -1186,12 +1200,14 @@ Reference definitions for terms used throughout this handbook. When frameworks u
 | ACI (Agent-Computer Interface) | The contract between an agent and tools it invokes: names, schemas, docs, error handling |
 | Agent | Software built on an LLM that pursues a goal by reasoning, using tools, and adapting |
 | Agent Card | Machine-readable JSON metadata advertising an agent's identity, capabilities, and endpoint |
+| Agent Skills (open standard) | Anthropic-originated open format for portable skill folders: instructions, scripts, and resources that agents discover and load dynamically |
 | AG-UI | Protocol for bidirectional agent-to-user frontend communication (streaming, events, interrupts) |
 | Capability | Abstract category of what an agent can do (retrieval, analysis, generation) |
 | Checkpoint | Saved state allowing resumption after interruption |
 | Context window | Token limit of what an LLM can process in one call |
 | Contract | Explicit input/output expectations between agents |
 | Data contract | Typed schema (Pydantic, JSON Schema) defining what an agent accepts and produces |
+| Generator/Critic | Composition pattern where one agent creates and another validates, with optional feedback loops |
 | Guardrail | Runtime-enforced constraint (vs. documented rule) |
 | Dynamic routing | LLM-reasoning-based task decomposition and delegation where subtasks are determined at runtime |
 | Effort scaling | Dynamically adjusting agent count and resource allocation based on task complexity |
@@ -1200,11 +1216,14 @@ Reference definitions for terms used throughout this handbook. When frameworks u
 | Knowledge base | Reference materials encoding expertise loaded into context |
 | MCP (Model Context Protocol) | Anthropic's standard for agent-to-tool integration, now governed by Linux Foundation |
 | Micro-agent | Single-purpose autonomous function node |
+| NIST AI Agent Standards Initiative | Federal initiative for agent interoperability standards, open-source protocols, and security/identity research (Feb 2026) |
+| OAGS (Open Agent Governance Specification) | Local-first agent governance standard: deterministic identity, runtime policy, audit trails, cryptographic verification |
 | Orchestrator | Agent that coordinates specialists by decomposing tasks, delegating, and synthesizing results |
 | Permissions | Explicit scope of authority defining what an agent is allowed to do: data sources, tools, action types |
 | Prompt | Specific instructions sent to the LLM |
 | Router | Component that classifies input and directs it to specialized handlers (static or LLM-based) |
 | Skill | Composed behavior using multiple steps, tools, or prompts |
+| SoulSpec | Open standard for AI agent personas: identity, personality, behavior in versionable markdown files |
 | Speaker selection | LLM-based or rule-based choice of which agent speaks next in a group chat (AutoGen pattern) |
 | Static routing | Classification-based routing into predefined categories using LLM or traditional classifier |
 | Subagent | Specialized agent orchestrated by a parent agent |
@@ -1219,27 +1238,28 @@ Reference definitions for terms used throughout this handbook. When frameworks u
 
 Every framework invents its own vocabulary. This table maps handbook terms to their equivalents in popular frameworks. Understanding the pattern matters more than memorizing each framework's words.
 
-| This Handbook | Anthropic | OpenAI | LangChain | CrewAI |
-|---------------|-----------|--------|-----------|--------|
-| Identity | System prompt | System message | Agent description | Role + Goal + Backstory |
-| Rules | Instructions | Behavioral guidelines | Agent instructions | - |
-| Knowledge base | - | - | Retriever content | - |
-| Skills | Agent skills | Tools | Tools / Chains | Tasks |
-| Tools | Tools | Function calling | Tools | Tools |
-| Permissions | Allowed tools | Allowed tools | Allowed tools | Tools |
-| Escalation triggers | Human-in-the-loop | - | Human tools | Human input |
-| Subagent | Task tool (subagents) | - | Agent executor | Agent |
-| Orchestrator | Lead agent | - | Agent supervisor | Manager |
-| Handoff | - | Handoffs (`transfer_to_<name>`) | `Command(goto=...)` | `Delegate work to coworker` |
-| Static routing | Routing workflow | - | Conditional edges | - |
-| Dynamic routing | Orchestrator-workers | Handoff-as-tool-call | Supervisor (structured output) | Hierarchical process |
-| Supervisor | - | - | `create_supervisor` | Manager agent |
-| Swarm | - | - | `create_swarm` | - |
-| Speaker selection | - | - | - | - |
-| Tool interface | MCP servers | Function schemas | Tool definitions | Tool configs |
-| Data contract | Structured output | output_type (Pydantic) | Output parsers | output_pydantic / output_json |
-| Agent discovery | - | - | - | - |
-| Guardrails | Permission management | Guardrails (input/output) | - | - |
+| This Handbook | Anthropic | OpenAI | LangChain | CrewAI | Google ADK |
+|---------------|-----------|--------|-----------|--------|------------|
+| Identity | System prompt | System message | Agent description | Role + Goal + Backstory | Agent `instruction` |
+| Rules | Instructions | Behavioral guidelines | Agent instructions | - | - |
+| Knowledge base | - | - | Retriever content | - | - |
+| Skills | Agent skills | Tools | Tools / Chains | Tasks | - |
+| Tools | Tools | Function calling | Tools | Tools | `FunctionTool` |
+| Permissions | Allowed tools | Allowed tools | Allowed tools | Tools | - |
+| Escalation triggers | Human-in-the-loop | - | Human tools | Human input | Human-in-the-Loop pattern |
+| Subagent | Task tool (subagents) | - | Agent executor | Agent | `sub_agents` |
+| Orchestrator | Lead agent | - | Agent supervisor | Manager | Coordinator pattern |
+| Handoff | - | Handoffs (`transfer_to_<name>`) | `Command(goto=...)` | `Delegate work to coworker` | Agent transfer |
+| Static routing | Routing workflow | - | Conditional edges | - | Sequential pipeline |
+| Dynamic routing | Orchestrator-workers | Handoff-as-tool-call | Supervisor (structured output) | Hierarchical process | Coordinator/Dispatcher |
+| Supervisor | - | - | `create_supervisor` | Manager agent | - |
+| Swarm | - | - | `create_swarm` | - | - |
+| Speaker selection | - | - | - | - | - |
+| Generator/Critic | - | - | - | - | Generator/Critic pattern |
+| Tool interface | MCP servers | Function schemas | Tool definitions | Tool configs | `FunctionTool` schema |
+| Data contract | Structured output | output_type (Pydantic) | Output parsers | output_pydantic / output_json | `output_schema` |
+| Agent discovery | - | - | - | - | Agent Card (A2A) |
+| Guardrails | Permission management | Guardrails (input/output) | - | - | `before_model_callback` |
 
 **Key insight:** Most "new" concepts are renamed existing ideas. Understanding the pattern matters more than memorizing each framework's vocabulary.
 

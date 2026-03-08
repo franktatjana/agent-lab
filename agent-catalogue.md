@@ -234,36 +234,38 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 ## Agent Ideas
 
-46 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
+60 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
 
-### Decision & Strategy (18 ideas)
+### Decision & Strategy (23 ideas)
 
-**Thinking Chain:** decision-facilitator, systems-thinker, strategist, okr-agent, tactician, devils-advocate, scenario-planning, bias-detective, prioritization, game-theory, mental-models, sensemaking
+**Thinking Chain:** decision-facilitator, systems-thinker, strategist, okr-agent, tactician, devils-advocate, scenario-planning, bias-detective, prioritization, game-theory, mental-models, sensemaking, chorus-agent, archaeologist-agent
 
 **Analytical Frameworks:** investigation, intelligence
 
 **Engagement & Narrative:** superhero, gamification, discworld, alien
 
-**Philosophy & Wisdom:** rhetoric, stoic-adviser, personal-philosopher
+**Philosophy & Wisdom:** rhetoric, stoic-adviser, personal-philosopher, trickster-agent, oracle-agent, mythology-agent
 
-### Communication (7 ideas)
+### Communication (9 ideas)
 
 **Persuasion:** negotiation, pitch
 
-**Interpersonal:** feedback-coach, supportive-colleague
+**Interpersonal:** feedback-coach, supportive-colleague, villain-origin-agent, politician-agent
 
 **Delivery & Adaptation:** presentation-coach, communication-adapter, friction-reducer
 
-### Career Development (11 ideas)
+### Career Development (18 ideas)
 
 **Job Search:** interview-prep, resume, salary-negotiation
 
-**Professional Growth:** mentorship, promotion, skill-gap, strength-finder, management-consultant, career-narrative, performance-review, midlife-crisis, empty-nest
+**Professional Growth:** mentorship, promotion, skill-gap, strength-finder, management-consultant, career-narrative, performance-review, midlife-crisis, empty-nest, time-traveler-agent, last-lecture-agent, bibliophile-agent, cinephile-agent, gardener-agent
+
+**Change & Transition:** permafrost-agent
 
 ### Team & Organization (10 ideas)
 
 **Change & Transition:** change-management, onboarding, knowledge-transfer, organizational-debt
 
-**Team Health:** team-dynamics, meeting-facilitator, networking
+**Team Health:** team-dynamics, meeting-facilitator, networking, mycelium-agent
 
 **Engagement & Narrative:** alliance
