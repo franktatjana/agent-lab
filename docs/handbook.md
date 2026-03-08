@@ -1004,6 +1004,31 @@ Skills that add value today may become redundant as models improve. A capability
 
 **What to track:** Pass rate delta (skill vs base), token cost delta, and latency delta. A skill that adds 500 tokens of overhead for 2% quality improvement may not be worth maintaining.
 
+### Skill Evals
+
+Every skill should have evaluations that verify it behaves as expected. An eval defines test prompts (with files if needed), describes what good looks like, and checks whether the skill holds up. This is more concrete than general golden datasets: each eval targets a specific skill with specific success criteria.
+
+**What a skill eval contains:**
+
+- Test prompt (realistic input the skill would receive)
+- Expected behavior description (what the output must contain, tone, format)
+- Pass/fail criteria (specific, unambiguous, two experts would agree)
+
+**Benchmark mode** runs evals after model updates or during skill iteration and tracks three metrics together: eval pass rate, elapsed time, and token usage. When all three metrics are stable or improving, the skill is healthy. When pass rate drops or token usage spikes, something changed.
+
+**Parallel eval runs** use independent agents in clean contexts to eliminate cross-contamination between tests. Each run gets its own token and timing metrics. This prevents one failing eval from poisoning the results of another.
+
+### Skill Description Optimization
+
+A skill that does the right thing but triggers on the wrong inputs wastes tokens and confuses users. Skill description optimization analyzes the description text against sample prompts and identifies where it misfires.
+
+**Two failure modes to test:**
+
+- **False positives**: skill activates when it shouldn't (description is too broad)
+- **False negatives**: skill doesn't activate when it should (description is too narrow)
+
+**Method:** Run a diverse set of sample prompts against the skill's trigger description. For each prompt, check whether the skill correctly activates or stays silent. Adjust the description text until false positives and false negatives are minimized. This is a description refinement loop, not a prompt engineering task: the goal is matching the skill's scope to its actual capabilities.
+
 ### Failure Modes
 
 Agent systems fail in predictable ways. Knowing the common patterns helps you design defenses before problems occur. Most failures come from unclear boundaries, missing error handling, or coordination bugs.

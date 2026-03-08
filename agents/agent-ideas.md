@@ -679,6 +679,9 @@ Frameworks supported:
 - **Sponsorship vs. Mentorship**: Understanding and cultivating sponsors
 - **Level Expectations**: Understanding what's expected at next level
 - **Influence Without Authority**: Building cross-functional impact
+- **Personal SWOT Analysis**: Business SWOT turned inward. Strengths (what you do better than peers), Weaknesses (patterns that hold you back), Opportunities (chances outside your routine that could change trajectory), Threats (external forces that could stall growth). Most effective when paired with external feedback (360 reviews, Reflected Best Self) rather than self-report alone
+- **Reflected Best Self (Roberts, Spreitzer, Dutton, Quinn)**: Collect stories from colleagues about when you were at your best. Provides externally validated data for the Strengths quadrant, addressing the self-report bias problem in traditional self-assessment
+- **CliftonStrengths / StrengthsFinder (Gallup)**: Psychometric identification of top talent themes from 34 possibilities. Populates the Strengths quadrant with empirical rigor and reframes weaknesses as "lesser themes" to partner around rather than force-develop
 
 Possible skills:
 
@@ -687,6 +690,7 @@ Possible skills:
 - `increase-visibility`: strategies for appropriate self-promotion
 - `find-sponsors`: identify and cultivate executive sponsors
 - `prepare-conversation`: script for promotion discussion with manager
+- `run-personal-swot`: Map strengths (what you do better), weaknesses (patterns holding you back), opportunities (trajectory-changing chances), and threats (external forces). Cross-reference with CliftonStrengths data and peer feedback if available
 
 Possible inputs: `current_level`, `target_level`, `achievements`, `timeline`, `organizational_context`, `blockers`
 
@@ -703,6 +707,10 @@ References:
 - [Brag Document (Julia Evans)](https://jvns.ca/blog/brag-documents/): achievement tracking
 - [Staff Engineer (Will Larson)](https://staffeng.com/book): senior IC promotion paths
 - [HBR on Promotion](https://hbr.org/2021/01/how-to-ask-for-a-promotion): research-backed strategies
+- [How to Play to Your Strengths (Roberts et al., HBR 2005)](https://hbr.org/2005/01/how-to-play-to-your-strengths): Reflected Best Self Exercise for externally validated strengths identification
+- [MindTools Personal SWOT Analysis](https://www.mindtools.com/amtbj63/personal-swot-analysis): structured question prompts for each SWOT quadrant applied to career
+- [CliftonStrengths (Gallup)](https://www.gallup.com/cliftonstrengths/en/home.aspx): psychometric strengths assessment (34 talent themes, 30M+ assessments)
+- [Exploring SWOT Analysis (Helms & Nixon, 2010)](https://www.emerald.com/insight/content/doi/10.1108/17554251011064837/full/html): comprehensive academic review of SWOT methodology including personal applications
 
 ---
 
@@ -1010,48 +1018,92 @@ Frameworks supported:
 - **OKRs (strategic alignment)**: Connecting strategy to objectives at the highest level (detailed OKR writing → okr-agent)
 - **Porter's Five Forces**: Industry analysis (suppliers, buyers, substitutes, new entrants, rivalry)
 - **SWOT Analysis**: Strengths, Weaknesses, Opportunities, Threats assessment
+- **Second-Order Thinking (Howard Marks)**: First-order = what happens right away. Second-order = then what? Third-order = how does that impact other systems or people? Best for decisions with compounding impacts (hiring, investing, scaling)
+- **VRIO Framework (Jay Barney)**: Is a resource Valuable, Rare, Inimitable, and Organized to capture value? Filters capabilities to find genuine competitive advantages vs. table stakes
+- **McKinsey 7S**: Strategy, Structure, Systems, Shared Values, Style, Staff, Skills. Diagnoses organizational alignment: when growth or change efforts stall, the gap is usually between the hard elements (strategy, structure, systems) and the soft elements (values, style, staff, skills)
+- **Impact vs Effort Matrix (McKinsey)**: Prioritize actions into four quadrants: quick wins (high impact, low effort), strategic plays (high impact, high effort), low-value tasks (low impact, low effort, automate or delegate), time wasters (low impact, high effort, eliminate)
 - **Blue Ocean Strategy**: Creating uncontested market space vs. competing in existing markets
 - **Scenario Planning**: Exploring multiple futures to stress-test strategy
 - **Playing to Win**: Cascading choices (winning aspiration → where to play → how to win → capabilities → systems)
 
 Possible skills:
 
-- `define-arena`: clarify where to compete and where not to
-- `assess-position`: analyze current competitive position and market dynamics
+- `define-arena`: clarify where to compete and where not to. Uses Playing to Win cascade (winning aspiration → where to play → how to win → capabilities → systems) to force explicit strategic choices
+- `assess-position`: analyze current competitive position using SWOT for situational snapshot and Porter's Five Forces for industry dynamics. Outputs a one-page position assessment with strengths to leverage, weaknesses to address, opportunities to pursue, threats to monitor
+- `second-order-scan`: trace consequences beyond the immediate. Takes a proposed decision and maps first-order effects (what happens right away), second-order effects (then what?), and third-order effects (how does that impact other systems or people?). Best for hiring, investment, scaling, and reorganization decisions where compounding effects are the real risk
+- `vrio-filter`: assess whether a capability, resource, or advantage passes the VRIO test. Is it Valuable (exploits opportunity or neutralizes threat)? Rare (few competitors have it)? Inimitable (hard to copy)? Organized (the company is set up to capture value from it)? Separates genuine competitive advantages from table stakes that everyone has
+- `alignment-diagnostic`: use McKinsey 7S to diagnose organizational alignment gaps. Maps the seven elements (strategy, structure, systems, shared values, style, staff, skills) and identifies misalignment between hard elements (strategy, structure, systems) and soft elements (values, style, staff, skills). Best when growth stalls, change initiatives fail, or strategy execution breaks down
+- `prioritize-actions`: use Impact vs Effort Matrix to sort initiatives into four quadrants: quick wins (do immediately), strategic plays (plan and invest), low-value tasks (automate or delegate), time wasters (eliminate). Forces honest assessment of effort required, not just desirability of outcomes
+- `explore-scenarios`: develop and stress-test against multiple futures using scenario planning
 - `cascade-goals`: translate vision into aligned objectives across levels
-- `explore-scenarios`: develop and stress-test against multiple futures
-- `allocate-resources`: prioritize investments across initiatives
-- `identify-moats`: find sources of sustainable advantage
+- `allocate-resources`: prioritize investments across initiatives based on strategic position
+- `identify-moats`: find sources of sustainable advantage using VRIO and Blue Ocean lenses
 
-Possible inputs: `vision`, `current_position`, `market_context`, `time_horizon`, `constraints`, `stakeholder_priorities`
+Possible inputs: `vision`, `current_position`, `market_context`, `time_horizon`, `constraints`, `stakeholder_priorities`, `decision` (for second-order scan), `capability` (for VRIO filter), `initiatives` (for prioritization)
+
+Validation rules (check before generating):
+
+1. Strategic question (what decision, direction, or situation needs strategic analysis?)
+2. Context (what is the current position, market, or organizational reality?)
+3. Time horizon (are we thinking in quarters, years, or decades?)
+
+Output constraints:
+
+```text
+situation_assessment: 2-3 sentences. Current position and key dynamics.
+framework_applied: Which framework was used and why it fits this question.
+analysis: The structured output specific to the framework (SWOT grid, VRIO assessment, 7S map, second-order chain, prioritized matrix, etc.). Max 200 words.
+strategic_insight: The one thing this analysis reveals that wasn't obvious before, 1-2 sentences.
+recommended_action: Top 1-2 actions ranked by strategic leverage, one sentence each.
+
+Total output must not exceed 400 words.
+```
 
 Key principles:
 
-- **Strategy is choice**: Saying yes to everything is not strategy
+- **Strategy is choice**: Saying yes to everything is not strategy. Every "yes" has an implicit "no" that should be stated explicitly
 - **Where to play matters more than how**: Right arena beats perfect execution in wrong arena
+- **Second-order effects are where strategy lives**: First-order thinking gives you the obvious move. Second and third-order thinking gives you the strategic move
+- **Advantages decay without VRIO**: a valuable resource that isn't rare is table stakes. A rare resource that isn't inimitable is a temporary lead. Only organized, inimitable, rare, valuable resources create lasting advantage
+- **Alignment beats brilliance**: a mediocre strategy with organizational alignment outperforms a brilliant strategy with misaligned execution. McKinsey 7S exists because most strategy failures are execution failures
+- **Prioritization is elimination**: the value of the Impact vs Effort Matrix is not the quick wins quadrant (everyone finds those). It's the time wasters quadrant: what to stop doing
 - **Long-term over short-term**: Resist quarterly thinking; build durable advantage
 - **Outside-in perspective**: Start with market and customer, not internal capabilities
-- **Alignment cascades**: Strategy fails when layers don't connect
+
+Personalities:
+
+- **Board Advisor**: Calm, long-view, speaks in strategic frames. Treats every question as a positioning problem. "Let's look at this through the Playing to Win cascade"
+- **Operator**: Action-oriented, prioritization-focused, gets to "so what do we do?" fast. "Here's the Impact vs Effort breakdown, start with the quick wins"
+- **Professor**: Framework-literate, explains the reasoning behind each tool. Teaches strategic thinking while applying it. "VRIO tells us this advantage won't last because..."
 
 References:
 
 - [Playing to Win (Lafley & Martin)](https://www.amazon.com/Playing-Win-Strategy-Really-Works/dp/142218739X): strategic choice cascade
 - [Good Strategy Bad Strategy (Rumelt)](https://www.amazon.com/Good-Strategy-Bad-Difference-Matters/dp/0307886239): diagnosis, guiding policy, coherent action
 - [Blue Ocean Strategy (Kim & Mauborgne)](https://www.blueoceanstrategy.com/): creating uncontested market space
+- [The Most Important Thing (Howard Marks)](https://www.amazon.com/Most-Important-Thing-Thoughtful-Publishing/dp/0231153686): second-order thinking, contrarian reasoning
+- [Gaining and Sustaining Competitive Advantage (Barney)](https://www.amazon.com/Gaining-Sustaining-Competitive-Advantage-Jay/dp/0136120938): VRIO framework, resource-based view of the firm
+- [In Search of Excellence (Peters & Waterman)](https://www.amazon.com/Search-Excellence-Americas-Best-Run-Companies/dp/0060548789): McKinsey 7S framework origins
 - [Measure What Matters (Doerr)](https://www.whatmatters.com/): OKRs strategic context (detailed OKR work → okr-agent)
 - [The Art of the Long View (Schwartz)](https://www.amazon.com/Art-Long-View-Planning-Uncertain/dp/0385267320): scenario planning
+- [Competitive Strategy (Porter)](https://www.amazon.com/Competitive-Strategy-Techniques-Industries-Competitors/dp/0684841487): Five Forces, competitive positioning
 
 ---
 
 ## okr-agent
 
-Helps individuals, teams, and organizations write effective OKRs, score progress, align objectives across levels, and run OKR cycles. Operationalizes the expertise of OKR coaches who help companies move from vague goals to measurable outcomes. Complements the Strategist (which sets direction) by translating strategic intent into concrete, measurable objectives.
+Helps individuals, teams, and organizations set, structure, and execute goals using the right framework for their context. OKRs are the primary framework, but not every goal needs OKRs. The agent selects the right goal-setting approach based on the situation: OKRs for organizational alignment, V2MOM for cascading strategy, FAST as a quality filter, SMARTER for iterative personal goals, WOOP for motivation and follow-through, or EDGE for personal execution structure. Complements the Strategist (which sets direction) by translating strategic intent into concrete, measurable objectives.
 
 Frameworks supported:
 
-- **OKRs (Objectives & Key Results)**: Ambitious qualitative objectives paired with 3-5 measurable key results
+- **OKRs (Objectives & Key Results)**: Ambitious qualitative objectives paired with 3-5 measurable key results. Best when speed and focus matter. Created by Andy Grove at Intel, popularized by John Doerr at Google. Score 0.0-1.0, with 0.6-0.7 as the sweet spot for stretch goals
 - **CFRs (Conversations, Feedback, Recognition)**: Continuous performance management complement to OKRs
-- **Alignment & Cascading**: Connecting company, team, and individual OKRs vertically and horizontally
+- **V2MOM (Vision, Values, Methods, Obstacles, Measures)**: Marc Benioff's alignment framework used at Salesforce since 1999. Cascades from company to individual. The rank-ordered Methods force prioritization, and the Obstacles component explicitly names what blocks progress, preventing optimism bias. Best for lining up teams under one clear plan
+- **FAST Framework (Frequently discussed, Ambitious, Specific, Transparent)**: Quality criteria from Donald Sull and Charles Sull (MIT Sloan, 2018), based on analysis of 500,000+ goals. Not a goal-setting format but a quality filter applied on top of any framework. Transparency was the single strongest predictor of goal effectiveness in their dataset
+- **SMARTER Goals (Specific, Measurable, Achievable, Relevant, Time-bound, Evaluate, Revise)**: Extension of Doran's 1981 SMART framework by Michael Hyatt. Adds built-in review cycles: Evaluate forces mid-cycle check, Revise normalizes goal adjustment rather than treating it as failure. Turns fuzzy wishes into clear plans with feedback loops
+- **WOOP (Wish, Outcome, Obstacle, Plan)**: Dr. Gabriele Oettingen's motivation method backed by 20+ years of experimental psychology at NYU. Combines mental contrasting (imagining outcome then confronting obstacles) with implementation intentions (if-then plans). Pure positive visualization reduces motivation; WOOP harnesses that finding. Builds grit and turns dreams into action
+- **EDGE Method (Envision, Divide, Guardrails, Execute)**: Personal execution framework by Laura Garnett. Envision the finish line, Divide into weekly tasks, set Guardrails (what you will NOT do), Execute with daily action. The Guardrails step is distinctive: it uses commitment devices and implementation intentions to protect focus
+- **Alignment & Cascading**: Connecting company, team, and individual goals vertically and horizontally
 - **Scoring & Grading**: 0.0-1.0 scoring with 0.6-0.7 as the sweet spot for stretch goals
 
 Possible skills:
@@ -1061,8 +1113,12 @@ Possible skills:
 - `align-okrs`: Check vertical and horizontal alignment across company, team, and individual OKRs
 - `critique-okrs`: Review existing OKRs for common anti-patterns (too many, not measurable, sandbagged, activity-based)
 - `run-checkin`: Facilitate a weekly/biweekly OKR check-in with status updates and blockers
+- `pick-framework`: Given a goal context (individual vs team, short vs long term, motivation problem vs alignment problem), recommend which framework fits. OKRs for org alignment, V2MOM for cascading strategy, WOOP for personal motivation, EDGE for personal execution, FAST as quality check on any framework
+- `write-v2mom`: Draft a V2MOM with rank-ordered Methods and explicitly named Obstacles. Cascade from company V2MOM if available
+- `run-woop`: Walk through the WOOP process: name the Wish, vividly imagine the best Outcome, identify the main inner Obstacle, create an if-then Plan. Produces a concrete implementation intention
+- `apply-fast`: Audit any set of goals against FAST criteria. Are they frequently discussed? Ambitious enough? Specific with metrics? Transparent to stakeholders? Score each dimension and suggest improvements
 
-Possible inputs: `goal_or_initiative`, `level`, `time_period`, `existing_okrs`, `company_objectives`, `team_context`
+Possible inputs: `goal_or_initiative`, `level`, `time_period`, `existing_okrs`, `company_objectives`, `team_context`, `framework_preference`, `motivation_challenge`
 
 Key principles:
 
@@ -1072,6 +1128,9 @@ Key principles:
 - **Outcomes over outputs**: "Launch feature X" is an output; "Increase user retention by 15%" is an outcome
 - **Alignment is not cascade**: Teams should align to company OKRs, not copy them down verbatim
 - **Separation from compensation**: OKRs work best when decoupled from performance reviews
+- **Framework fit matters**: Not every goal needs OKRs. Individual motivation problems need WOOP, team alignment needs V2MOM, execution problems need EDGE. The wrong framework produces the right-shaped artifact with no behavioral change
+- **Transparency beats format**: FAST research shows that making goals visible across the organization matters more than which framework you use
+- **Positive visualization backfires**: Oettingen's research proves that imagining success without confronting obstacles reduces rather than increases motivation. WOOP addresses this directly
 
 References:
 
@@ -1080,6 +1139,13 @@ References:
 - [WhatMatters.com](https://www.whatmatters.com/faqs/okr-examples-and-how-to-write-them): OKR examples and how-to guides
 - [re:Work by Google](https://rework.withgoogle.com/intl/en/guides/set-goals-with-okrs): Google's OKR implementation guide
 - [Objectives and Key Results (Niven & Lamorte)](https://www.amazon.com/Objectives-Key-Results-Driving-Organization/dp/1119252393): comprehensive OKR methodology
+- [Behind the Cloud (Marc Benioff)](https://www.amazon.com/Behind-Cloud-Salesforce-com-Billion-Dollar-Company/dp/0470521163): V2MOM origin story, Chapter 7
+- [With Goals, FAST Beats SMART (Sull & Sull, MIT Sloan 2018)](https://sloanreview.mit.edu/article/with-goals-fast-beats-smart/): empirical research on 500k+ goals, transparency as strongest predictor
+- [Rethinking Positive Thinking (Gabriele Oettingen)](https://www.amazon.com/Rethinking-Positive-Thinking-Science-Motivation/dp/1617230235): the science behind WOOP and mental contrasting
+- [woopmylife.org](https://woopmylife.org): official WOOP method site with tools and science overview
+- [Your Best Year Ever (Michael Hyatt)](https://www.amazon.com/Your-Best-Year-Ever-Achieving/dp/0801075890): SMARTER Goals framework with built-in Evaluate and Revise cycles
+- [There's a S.M.A.R.T. Way to Write Goals (Doran, 1981)](https://community.mis.temple.edu/mis0855002fall2015/files/2015/10/S.M.A.R.T-Way-Management-Review.pdf): original SMART paper, Management Review
+- [Implementation Intentions (Gollwitzer, 1999)](https://psycnet.apa.org/doi/10.1037/0003-066X.54.7.493): "if-then" plans that automate goal pursuit, scientific basis for WOOP's Plan step
 
 ---
 
@@ -2753,6 +2819,9 @@ Frameworks supported:
 - **Decisional Balance**: Structured exploration of pros and cons of both changing and staying the same
 - **Readiness Ruler**: Self-assessed confidence and importance ratings that reveal where the block is
 - **Righting Reflex (to avoid)**: The instinct to fix, advise, or argue for change, which paradoxically increases resistance
+- **MIND Map (Motivators, Interference, Next Steps, Do This Now)**: A 4-quadrant coaching tool that maps what energizes someone (M), what blocks them (I), small momentum actions (N), and immediate steps (D). Bridges MI's diagnostic approach with concrete action planning. The "Interference" concept originates from Gallwey's Inner Game (Performance = Potential - Interference)
+- **Immunity to Change (Kegan & Lahey)**: Identifies hidden competing commitments that block change. Deeper than surface resistance: reveals unconscious assumptions that make the status quo feel necessary. Complements DARN-CAT by explaining why someone has desire but no commitment
+- **Force Field Analysis (Kurt Lewin)**: Maps driving forces (for change) and restraining forces (against change). Motivators = driving forces, Interference = restraining forces. Adding action orientation (Next Steps, Do This Now) bridges the gap Lewin's original model left open
 
 Possible skills:
 
@@ -2760,6 +2829,8 @@ Possible skills:
 - `evoke-change-talk`: Ask questions designed to draw out the person's own arguments for change rather than providing external motivation
 - `decisional-balance`: Map the four quadrants: benefits of change, costs of change, benefits of status quo, costs of status quo
 - `roll-with-resistance`: When someone pushes back, reflect rather than argue. Techniques for turning resistance into exploration
+- `map-mind`: Run the MIND Map diagnostic: identify motivators (what gives energy), interference (what drains or blocks), next steps (small momentum actions), and an immediate do-this-now action. Produces a visual 4-quadrant map of the person's motivational landscape
+- `diagnose-immunity`: Surface hidden competing commitments using Kegan & Lahey's framework. What is the person protecting by not changing? What big assumption keeps the immunity system in place?
 
 Possible inputs: `situation`, `what_they_agree_with`, `what_they_are_not_doing`, `what_you_have_tried`, `relationship_to_person`
 
@@ -2795,6 +2866,10 @@ References:
 - [Motivational Interviewing in Health Care (Rollnick, Miller, Butler)](https://www.amazon.com/Motivational-Interviewing-Health-Care-Patients/dp/1593856121): MI adapted for non-clinical settings
 - [Building Motivational Interviewing Skills (Rosengren)](https://www.amazon.com/Building-Motivational-Interviewing-Skills-Applications/dp/1462532063): practical exercises and skill-building
 - [DARN-CAT Framework](https://motivationalinterviewing.org/): change talk classification from the MI Network of Trainers
+- [The Inner Game of Tennis (Timothy Gallwey)](https://www.amazon.com/Inner-Game-Tennis-Classic-Performance/dp/0679778314): source of Performance = Potential - Interference, the theoretical ancestor of the MIND Map's "Interference" concept
+- [Immunity to Change (Kegan & Lahey)](https://www.amazon.com/Immunity-Change-Overcome-Unlock-Potential/dp/1422117367): hidden competing commitments that block change despite stated motivation
+- [Self-Determination Theory (Deci & Ryan)](https://selfdeterminationtheory.org/): autonomy, competence, relatedness as intrinsic motivation drivers, maps to the "Motivators" quadrant
+- [Force Field Analysis (Kurt Lewin)](https://www.mindtools.com/a26wbw4/force-field-analysis): driving vs restraining forces model, precursor to the motivators/interference split
 
 ## outcome-auditor-agent
 
@@ -2859,3 +2934,129 @@ References:
 - [Managing the Risks of Organizational Accidents (James Reason)](https://www.amazon.com/Managing-Risks-Organizational-Accidents-Reason/dp/1840141042): near-miss theory, Swiss cheese model
 - [Superforecasting (Tetlock & Gardner)](https://www.amazon.com/Superforecasting-Science-Prediction-Philip-Tetlock/dp/0804136718): calibration, distinguishing skill from luck in predictions
 - [Fooled by Randomness (Nassim Taleb)](https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerta/dp/0812975219): survivorship bias, narrative fallacy, confusing luck with skill
+
+## portfolio-health-agent
+
+Assesses the health of a multi-project portfolio by diagnosing the structural conditions that cause projects to fail together. Most portfolio problems are not individual project failures: they are systemic patterns like over-allocation, invisible dependencies, missing prioritization, and communication gaps that compound across projects. This agent doesn't manage projects. It asks the diagnostic questions that surface portfolio-level risks before they cascade.
+
+The core insight: managing multiple projects is not the same as managing one project multiple times. Portfolio health depends on cross-project dynamics that no single project plan captures: shared resources hitting capacity limits, dependencies between timelines, competing priorities that fragment attention, and risk contagion where one project's failure triggers others.
+
+Frameworks supported:
+
+- **Eisenhower Matrix**: Urgency vs impact prioritization. Surfaces the 20% of time executives waste on low-priority initiatives by forcing explicit categorization of every project into do now, schedule, delegate, or eliminate
+- **Critical Chain (Goldratt)**: Identifies the constraining resource across the portfolio, not just within a single project. Resource contention is the leading cause of multi-project delays because teams optimize locally without seeing the system-wide bottleneck
+- **Portfolio Kanban**: Work-in-progress limits applied at the portfolio level. Controls how many projects can be active simultaneously, preventing the context-switching tax that degrades quality across all projects
+- **RAID Log (Risks, Assumptions, Issues, Dependencies)**: Structured tracking of cross-project risks and dependencies. 70% of multi-project failures trace back to unmanaged risks that were visible but not tracked
+
+Possible skills:
+
+- `portfolio-health-check`: Diagnose which of the 7 portfolio management practices are in place and which are missing. Surfaces the highest-leverage gap: the one practice whose absence creates the most downstream damage
+- `dependency-scan`: Map cross-project dependencies and identify collision points where timelines, resources, or deliverables overlap. Flag dependencies that are implicit (assumed but not documented) versus explicit (tracked and owned)
+- `capacity-audit`: Assess resource allocation across the portfolio. Identify team members allocated above 80% across multiple projects (the threshold where context-switching costs spike). Surface the "resource over-allocation increases failure risk by 2x" pattern
+- `risk-contagion-map`: Trace how a failure in one project would cascade to others through shared resources, dependent timelines, or budget reallocation. Identify circuit breakers that could contain cascading failures
+
+Possible inputs: `projects` (list of active projects with status, timeline, team), `resources` (team members and their allocations), `dependencies` (known cross-project dependencies), `current_concerns` (what prompted this health check)
+
+Validation rules (check before generating):
+
+1. Projects (what projects are in the portfolio?)
+2. Resource picture (who is working on what, and at what allocation?)
+3. Concern trigger (what prompted this health check, or is it routine?)
+
+Output constraints:
+
+```text
+portfolio_snapshot: 2-3 sentences. Current state across all projects.
+health_score: RED | AMBER | GREEN per practice area (prioritization, scheduling, resources, tracking, risk, communication)
+critical_finding: The single highest-risk pattern across the portfolio, 2-3 sentences.
+dependencies_at_risk: Top 3 cross-project dependencies most likely to cause problems, one sentence each.
+recommended_actions: Top 3 actions ranked by portfolio-wide leverage, one sentence each.
+
+Total output must not exceed 400 words.
+```
+
+Key principles:
+
+- **Portfolio risk is not the sum of project risks**: cross-project dynamics create emergent risks that no individual project plan captures
+- **Resource contention is the silent killer**: a team member at 100% across three projects delivers less than a team member at 70% on one, context switching destroys throughput
+- **Dependencies are the attack surface**: every undocumented dependency is a failure mode waiting to activate
+- **Prioritization prevents everything else from breaking**: without explicit priority ranking, every project competes for the same resources and attention, and the loudest stakeholder wins
+- **Communication is cheap insurance**: standardized reporting across projects surfaces problems weeks earlier than ad-hoc updates
+
+Personalities:
+
+- **Portfolio Manager**: Structured, methodical, dashboard-oriented. Sees the portfolio as a system of interconnected projects. "Let's look at the numbers across all three projects"
+- **Executive Advisor**: Strategic, outcome-focused, cuts to what matters. Frames findings in business impact terms. "Here's what this means for Q3 delivery"
+- **Firefighter**: Triage-oriented, action-first, identifies what's burning now versus what can wait. "This dependency fails in 2 weeks if we don't act"
+
+References:
+
+- [Managing Multiple Projects (Tobis & Tobis)](https://www.amazon.com/Managing-Multiple-Projects-Irene-Tobis/dp/0071388966): practical guide to portfolio-level project management
+- [Critical Chain (Goldratt)](https://www.amazon.com/Critical-Chain-Eliyahu-M-Goldratt/dp/0884271536): theory of constraints applied to project management
+- [The Project Management Office (PMO)](https://www.pmi.org/learning/library/project-management-office-pmo-guide): PMI's guide to portfolio oversight structures
+- [Portfolio Kanban (LeanKit)](https://www.planview.com/resources/guide/introduction-to-kanban/portfolio-kanban/): WIP limits and flow management at the portfolio level
+
+## deep-work-agent
+
+Designs and protects the conditions for sustained, high-quality cognitive work. Most productivity advice focuses on task management: what to do and in what order. This agent focuses on the harder problem: how to create the environment, habits, and systems that let you actually think deeply on the things that matter. The gap between knowing what to work on and being able to concentrate on it is where most knowledge workers lose their best hours.
+
+The core insight: deep work is not a time management problem. It is an environment design problem. Blocking 90 minutes on your calendar accomplishes nothing if your phone buzzes, your Slack pings, your desk is cluttered, and your brain is running on coffee and anxiety. The five layers of deep work (time blocking, noise reduction, physical energy, systems, reflection) interact with each other. Missing any one layer degrades the others.
+
+Frameworks supported:
+
+- **Deep Work (Cal Newport)**: Sustained, distraction-free concentration on cognitively demanding tasks. The ability to do deep work is becoming rare and valuable at the same time. Those who cultivate it will thrive
+- **Time Blocking**: Assigning specific time slots to specific tasks. Not a to-do list but a schedule where every hour has a job. Reduces decision fatigue about what to work on next
+- **Attention Residue (Sophie Leroy)**: When you switch tasks, part of your attention stays on the previous task. The residue degrades performance on the new task. Minimizing switches is more important than minimizing time per task
+- **Ultradian Rhythms**: 90-minute cycles of high-frequency brain activity followed by 20-minute rest periods. Working with these cycles instead of against them produces more output with less fatigue
+- **Energy Management (Loehr & Schwartz)**: Performance is not about time management but about energy management across four dimensions: physical, emotional, mental, and spiritual. Full engagement requires drawing on all four sources
+- **Implementation Intentions (Peter Gollwitzer)**: "When X happens, I will do Y" planning. Specific if-then plans for protecting deep work time double follow-through rates compared to vague intentions
+
+Possible skills:
+
+- `design-deep-block`: Design a deep work session. Select one task, set duration (60-90 min), identify environment requirements (location, noise level, tools), define the "done" condition, and create pre-session ritual (clear desk, close apps, set timer). Outputs a ready-to-execute session plan
+- `noise-audit`: Diagnose what's fragmenting your attention across three horizons. Immediate: what interrupts you right now (notifications, open tabs, phone). Weekly: what fragments your schedule (scattered meetings, context switches). Structural: what organizational patterns prevent focus (always-on culture, unclear expectations). Outputs prioritized elimination list
+- `energy-map`: Assess where your cognitive energy goes versus where it should go. Map your typical week against your energy patterns: when are you sharpest, when do you crash, what drains versus fuels you? Identify the mismatch between your highest-energy hours and your highest-value work
+- `system-design`: Build a personal productivity system for sustained deep work. Covers five components: task capture (where random thoughts go), file organization (finding things fast), templates and checklists (reducing cognitive overhead on recurring work), automation candidates (what you do often that could be automated), and workspace setup (physical and digital environment)
+- `weekly-review`: End-of-week reflection ritual. Track deep work hours completed, compare to output produced, identify what helped and what hurt focus, set blocks for the coming week, and choose one big goal for the month ahead. The review is the habit that makes all other habits stick
+
+Possible inputs: `current_challenge` (what are you trying to focus on?), `typical_week` (what does your schedule look like?), `biggest_distraction` (what pulls you out of focus most?), `energy_pattern` (when are you sharpest?), `work_environment` (office, remote, hybrid?)
+
+Validation rules (check before generating):
+
+1. Focus target (what work requires deep concentration?)
+2. Current blockers (what prevents sustained focus now?)
+3. Environment (where and how do you work?)
+
+Output constraints:
+
+```text
+diagnosis: 2-3 sentences. What's fragmenting focus and why.
+time_horizon: IMMEDIATE | STEADY_PROGRESS | LONG_TERM based on what the user needs now.
+actions: 3-5 specific, concrete actions for the identified time horizon. One sentence each.
+environment_change: The single most impactful change to the physical or digital environment, 1-2 sentences.
+protection_plan: How to defend the deep work time from interruption, 1-2 sentences.
+
+Total output must not exceed 350 words.
+```
+
+Key principles:
+
+- **Deep work is a skill, not a personality trait**: it can be trained, and the training is designing the right environment and habits, not willpower
+- **Protect the asset**: your brain is the asset. Sleep, movement, nutrition, and quiet mornings are not luxuries but prerequisites for cognitive performance
+- **Systems beat intentions**: "I'll try to focus more" fails. "Every Tuesday and Thursday from 9-11am I close Slack, put my phone in the drawer, and work on the quarterly report" succeeds
+- **Noise compounds**: each individual interruption seems small. The accumulated attention residue from 20 small interruptions destroys an entire afternoon of cognitive capacity
+- **Track to improve**: you cannot improve what you don't measure. Tracking deep work hours per week, even roughly, creates accountability and reveals patterns
+
+Personalities:
+
+- **Architect**: Designs systems and environments for focus. Thinks in terms of structure, ritual, and habit design. "Let's redesign your Tuesday morning from scratch"
+- **Coach**: Supportive, developmental, helps build the deep work muscle over time. Celebrates progress, adjusts when habits slip. "You went from 2 to 6 deep hours this week, what changed?"
+- **Minimalist**: Elimination-focused, cuts ruthlessly. If it doesn't serve the deep work, it goes. "You have 14 apps sending notifications. Let's get that to 2"
+
+References:
+
+- [Deep Work (Cal Newport)](https://www.amazon.com/Deep-Work-Focused-Success-Distracted/dp/1455586692): the foundational case for sustained concentration as a competitive advantage
+- [The Power of Full Engagement (Loehr & Schwartz)](https://www.amazon.com/Power-Full-Engagement-Managing-Performance/dp/0743226755): energy management across physical, emotional, mental, and spiritual dimensions
+- [Atomic Habits (James Clear)](https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299): habit design, environment design, identity-based change
+- [Make Time (Jake Knapp & John Zeratsky)](https://www.amazon.com/Make-Time-Focus-Matters-Every/dp/0525572422): daily highlight system, distraction barriers, energy management
+- [Stolen Focus (Johann Hari)](https://www.amazon.com/Stolen-Focus-Think-Deeply-Again/dp/0593138511): systemic causes of attention fragmentation

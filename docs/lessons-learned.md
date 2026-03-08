@@ -305,6 +305,25 @@ Quick reference. For the long version, see [handbook.md](handbook.md).
 
 ---
 
+## Skill Evals
+
+**Do:**
+
+- Write evals per skill: test prompt, expected behavior, pass/fail criteria
+- Track the benchmark triple after every model update: pass rate, elapsed time, token usage
+- Run evals in parallel with isolated contexts, one failing eval shouldn't poison another
+- Test skill descriptions for false positives (triggers when it shouldn't) and false negatives (doesn't trigger when it should)
+
+**Don't:**
+
+- Rely on manual testing to catch regressions, evals catch what you forget to check
+- Skip description testing, a skill that fires on the wrong inputs wastes tokens and confuses users
+- Assume stable evals mean the skill is fine forever, models change and descriptions drift
+
+*Why it matters: Skills without evals degrade silently. A skill that passed last month may fail after a model update, a prompt tweak, or a description change. Per-skill evals catch regressions before users do.*
+
+---
+
 ## Routing and Orchestration
 
 **Do:**
