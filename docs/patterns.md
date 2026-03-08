@@ -8,7 +8,7 @@ Recurring structural patterns extracted from all 18 agent definitions. Use these
 
 **Default: 4 flows per agent, 3-5 steps per flow.**
 
-10 of 18 agents have exactly 4 flows. Corporate Navigator, Superhero, and Wargaming have 5. Six agents have 3 (Cat POV, Crisis Navigator, Decision Decomposer, Difficult Conversations, Pre-Mortem). Step counts per flow range 1-8, with 3-4 being the sweet spot. Flows with 7-8 steps (Research deep-research, Design Thinking full-sprint) represent comprehensive end-to-end workflows.
+10 of 18 agents have exactly 4 flows. Corporate Navigator, Superhero, and Wargaming have 5. Five agents have 3 (Cat POV, Crisis Navigator, Decision Decomposer, Difficult Conversations, Pre-Mortem). Step counts per flow range 1-8, with 3-4 being the sweet spot. Flows with 7-8 steps (Research deep-research, Design Thinking full-sprint) represent comprehensive end-to-end workflows.
 
 Flows are skills, not procedures. Each flow answers one question: "what can this agent do for me?" If a flow needs more than 5 steps, consider whether it's actually two flows composed.
 
@@ -42,7 +42,7 @@ Each tool includes an `x-agentlab.how_to_use` field: a 1-2 sentence contextual g
 
 **Default: 3 variants. At least one is a "Coach."**
 
-12 of 18 agents have exactly 3 variants. Cat POV, Question Decoder, and Storytelling have 4. Superhero has 7 (Marvel archetypes as personas, a domain-specific exception).
+14 of 18 agents have exactly 3 variants. Cat POV, Question Decoder, and Storytelling have 4. Superhero has 7 (Marvel archetypes as personas, a domain-specific exception).
 
 The Coach variant appears in the majority of agents, making it the most common personality mode. Other recurring archetypes: Executive/Strategic (common across analytical agents), Facilitator (common across team-facing agents).
 

@@ -56,7 +56,7 @@ Cross-generational communication bridge. Translates messages, explains cultural 
 
 ### [superhero-agent](agents/superhero-agent/)
 
-Reframes work challenges through superhero storytelling. You're the hero, work is the universe, every challenge is a mission. Uses Marvel archetypes to build confidence and find your unique approach. *3 prompts · 2 skills · 8 personalities.*
+Reframes work challenges through superhero storytelling. You're the hero, work is the universe, every challenge is a mission. Uses Marvel archetypes to build confidence and find your unique approach. *3 prompts · 5 skills · 7 personalities.*
 
 - **Skills:** frame-mission, suit-up, assemble-team, identify-power, map-villain
 - **Personalities:** iron-man, captain-america, black-widow, spider-man, thor, hulk, black-panther, doctor-strange
@@ -68,7 +68,7 @@ Reframes work challenges through superhero storytelling. You're the hero, work i
 
 ### [storytelling-agent](agents/storytelling-agent/)
 
-Crafts compelling narratives for professional contexts. Transforms facts, data, and experiences into stories that move people to action. *5 prompts · 4 skills · 3 personalities.*
+Crafts compelling narratives for professional contexts. Transforms facts, data, and experiences into stories that move people to action. *5 prompts · 4 skills · 4 personalities.*
 
 - **Skills:** craft-narrative, pitch-story, data-storytelling, origin-story
 - **Personalities:** narrator, business, inspirational
@@ -80,7 +80,7 @@ Crafts compelling narratives for professional contexts. Transforms facts, data, 
 
 ### [question-decoder-agent](agents/question-decoder-agent/)
 
-Decodes questions before answering them. Analyzes who is asking, why they're asking, and what they need to hear, then architects the right response. *5 prompts · 4 skills · 3 personalities.*
+Decodes questions before answering them. Analyzes who is asking, why they're asking, and what they need to hear, then architects the right response. *5 prompts · 4 skills · 4 personalities.*
 
 - **Skills:** decode-question, architect-answer, reframe-for-audience, anticipate-follow-ups
 - **Personalities:** strategic, empathetic, coach
@@ -116,7 +116,7 @@ Corporate politics and stakeholder navigator. Maps power dynamics, analyzes poli
 
 ### [design-thinking-agent](agents/design-thinking-agent/)
 
-Guides teams through the design thinking process. Facilitates empathy mapping, ideation, prototyping, and testing cycles. *6 prompts · 5 skills · 3 personalities.*
+Guides teams through the design thinking process. Facilitates empathy mapping, ideation, prototyping, and testing cycles. *8 prompts · 4 skills · 3 personalities.*
 
 - **Skills:** empathize, define-problem, ideate, prototype, test-iterate
 - **Personalities:** facilitator, coach, innovator
@@ -128,7 +128,7 @@ Guides teams through the design thinking process. Facilitates empathy mapping, i
 
 ### [leadership-coach-agent](agents/leadership-coach-agent/)
 
-Leadership style assessment and development coaching. Helps leaders understand their natural style, adapt to situations, and develop new capabilities. *5 prompts · 4 skills · 3 personalities.*
+Leadership style assessment and development coaching. Helps leaders understand their natural style, adapt to situations, and develop new capabilities. *8 prompts · 4 skills · 3 personalities.*
 
 - **Skills:** assess-style, situational-adapt, develop-capability, feedback-360, team-lead
 - **Personalities:** executive-coach, peer, mentor
@@ -140,7 +140,7 @@ Leadership style assessment and development coaching. Helps leaders understand t
 
 ### [networking-agent](agents/networking-agent/)
 
-Professional networking strategy and relationship building. Helps plan, execute, and maintain professional networks with genuine value exchange. *4 prompts · 4 skills · 3 personalities.*
+Professional networking strategy and relationship building. Helps plan, execute, and maintain professional networks with genuine value exchange. *8 prompts · 4 skills · 3 personalities.*
 
 - **Skills:** network-plan, conversation-prep, follow-up, relationship-maintain
 - **Personalities:** connector, strategist, introvert-friendly
@@ -164,7 +164,7 @@ Difficult conversations coach. Prepares for and navigates high-stakes interperso
 
 ### [cat-pov-agent](agents/cat-pov-agent/)
 
-Observes human workplace behavior from a cat's perspective. Uses feline instincts for boundary-setting, energy management, selective attention, and territorial awareness to reframe corporate challenges. *6 prompts · 3 skills · 3 personalities.*
+Observes human workplace behavior from a cat's perspective. Uses feline instincts for boundary-setting, energy management, selective attention, and territorial awareness to reframe corporate challenges. *6 prompts · 3 skills · 4 personalities.*
 
 - **Skills:** cat-scan, energy-audit, workplace-translation
 - **Personalities:** observer, sassy, wise
