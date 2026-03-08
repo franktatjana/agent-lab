@@ -5,6 +5,7 @@ import { useState } from "react";
 import { agents } from "@/data/agents";
 
 import { stories } from "@/data/stories";
+import { agentIdeas, ideaCategories, type IdeaCategory } from "@/data/agent-ideas";
 import Link from "next/link";
 import { AgentRecommender } from "@/components/agent-recommender";
 import {
@@ -73,30 +74,51 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
   fuchsia: { bg: "bg-fuchsia-50", border: "border-fuchsia-200", icon: "text-fuchsia-500", badge: "bg-fuchsia-100 text-fuchsia-700" },
 };
 
-type Tab = "agents" | "stories";
+type Tab = "agents" | "stories" | "ideas";
 
 export default function Home() {
 
   const [tab, setTab] = useState<Tab>("agents");
+  const [ideaFilter, setIdeaFilter] = useState<IdeaCategory | "all">("all");
 
 
 
   return (
     <div>
-      <div className="mb-12 pt-4">
+      <div className="mb-6 pt-4">
         <h1 className="text-3xl font-bold tracking-tight text-stone-900 mb-3">
           Portable agents that work across any LLM or framework.
         </h1>
-        <p className="text-stone-500 max-w-2xl text-lg">
+        <p className="text-stone-500 text-lg mb-4">
           Generate prompts for any LLM, download portable YAML specs, or validate agent specifications.
+          <br />
           Each agent is a portable specification with identity, personality variants, guardrails, and structured workflows.
         </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 rounded-lg bg-blue-50 border border-blue-200 px-5 py-4 text-sm text-stone-500">
+          <div>
+            <span className="font-medium text-blue-700">Why do I need an agent?</span>
+            <br />
+            An agent is a digital twin of a theoretical expert: it knows the frameworks, asks the right questions,
+            and applies proven methods so you don&#39;t have to be the expert yourself.
+          </div>
+          <div>
+            <span className="font-medium text-blue-700">So what?</span>
+            <br />
+            You get consistent, expert-level thinking on demand, without hiring a consultant or reading a textbook first.
+          </div>
+          <div>
+            <span className="font-medium text-blue-700">How do I use one?</span>
+            <br />
+            Pick an agent, choose a personality, and generate a prompt. Paste it into any LLM, or download the full spec to integrate into your workflow.
+          </div>
+        </div>
       </div>
 
       <div className="flex gap-1 mb-8 border-b border-stone-200">
         {([
           { id: "agents" as Tab, label: "Agents", count: agents.length },
           { id: "stories" as Tab, label: "Stories", count: stories.length },
+          { id: "ideas" as Tab, label: "Ideas", count: agentIdeas.length },
         ]).map((t) => (
           <button
             key={t.id}
@@ -239,10 +261,78 @@ export default function Home() {
       </div>
       )}
 
+      {tab === "ideas" && (
+      <div>
+        <p className="text-stone-500 mb-6 text-sm">
+          Agent concepts in the pipeline, with frameworks, skills, and references researched but not yet built.
+        </p>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {(["all", ...ideaCategories] as const).map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setIdeaFilter(cat)}
+              className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors ${
+                ideaFilter === cat
+                  ? "bg-stone-900 text-white border-stone-900"
+                  : "bg-white text-stone-500 border-stone-200 hover:border-stone-300 hover:text-stone-700"
+              }`}
+            >
+              {cat === "all" ? "All" : cat}
+              <span className={`ml-1 ${ideaFilter === cat ? "text-stone-400" : "text-stone-300"}`}>
+                {cat === "all" ? agentIdeas.length : agentIdeas.filter((i) => i.category === cat).length}
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {agentIdeas
+            .filter((idea) => ideaFilter === "all" || idea.category === ideaFilter)
+            .map((idea) => (
+            <div
+              key={idea.id}
+              className="group bg-white rounded-xl border border-stone-200 p-5 h-full transition-all hover:shadow-md hover:-translate-y-0.5"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-[10px] font-medium text-stone-400 bg-stone-100 rounded-full px-2 py-0.5">
+                  {idea.category}
+                </span>
+                {idea.group && (
+                  <span className="text-[10px] text-stone-300 bg-stone-50 border border-stone-200 rounded-full px-2 py-0.5">
+                    {idea.group}
+                  </span>
+                )}
+              </div>
+              <h3 className="text-sm font-semibold text-stone-900 mb-1">
+                {idea.name}
+              </h3>
+              <p className="text-xs text-stone-500 leading-relaxed mb-3">
+                {idea.description}
+              </p>
+              <div className="flex flex-nowrap gap-1.5 overflow-hidden">
+                {idea.frameworks && idea.frameworks.length > 0 && (
+                  <span className="text-[10px] text-stone-400 bg-stone-50 border border-stone-200 rounded-full px-2 py-0.5 shrink-0">
+                    {idea.frameworks.length} framework{idea.frameworks.length !== 1 ? "s" : ""}
+                  </span>
+                )}
+                <span className="text-[10px] text-stone-400 bg-stone-50 border border-stone-200 rounded-full px-2 py-0.5 shrink-0">
+                  {idea.skills.length} skill{idea.skills.length !== 1 ? "s" : ""}
+                </span>
+                {idea.references.length > 0 && (
+                  <span className="text-[10px] text-stone-400 bg-stone-50 border border-stone-200 rounded-full px-2 py-0.5 shrink-0">
+                    {idea.references.length} ref{idea.references.length !== 1 ? "s" : ""}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      )}
 
       <div className="mt-14 text-center text-sm text-stone-400">
         <p>
-          Specs are framework-agnostic: download the YAML, generate a prompt, or validate the specification.
+          Specs are framework-agnostic: export skills, guardrails, and resources, then run them on any LLM.
         </p>
       </div>
 
