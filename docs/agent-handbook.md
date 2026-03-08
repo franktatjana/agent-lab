@@ -45,6 +45,9 @@ Finding the right agent starts with your situation, not the agent's features.
 | About to launch and need to stress-test assumptions | [Pre-Mortem Agent](guides/pre-mortem-agent-guide.md) | Wargaming for competitive response |
 | Stuck choosing between options for weeks | [Decision Decomposer Agent](guides/decision-decomposer-agent-guide.md) | Six Hats for perspective shift |
 | Active crisis, stakeholders panicking | [Crisis Navigator Agent](guides/crisis-navigator-agent-guide.md) | Difficult Conversations if people conflict |
+| Signals conflict, situation is ambiguous | [Sensemaking Agent](guides/sensemaking-agent-guide.md) | Why Agent once situation is clear |
+| Need to test strategy against multiple futures | [Scenario Planning Agent](guides/scenario-planning-agent-guide.md) | Wargaming for competitive response |
+| Need to stress-test a proposal or decision | [Devil's Advocate Agent](guides/devils-advocate-agent-guide.md) | Pre-Mortem for comprehensive failure modes |
 
 ---
 
@@ -204,11 +207,32 @@ Provides structured response when the crisis is already happening. Triages sever
 **Best for**: production incidents, client escalations, organizational crises, any active emergency.
 **Frameworks**: OODA Loop (Boyd), Incident Command System, Cynefin (Snowden), PACE Planning.
 
+#### [Sensemaking Agent](guides/sensemaking-agent-guide.md)
+
+Clarifies ambiguous situations before decisions can be made. When signals conflict, when the problem keeps shifting, when stakeholders describe the same situation differently, the Sensemaking Agent figures out what is actually happening first. Synthesizes conflicting signals, surfaces competing narratives, classifies the domain using Cynefin, and reframes problems when the current definition is wrong.
+
+**Best for**: ambiguous situations, conflicting signals, post-merger confusion, when the team cannot agree on what the problem is.
+**Frameworks**: Sensemaking (Weick), Cynefin (Snowden), Problem Reframing (Wedell-Wedellsborg), Probe-Sense-Respond, OODA Observe Phase (Boyd).
+
+#### [Scenario Planning Agent](guides/scenario-planning-agent-guide.md)
+
+Builds alternative futures and stress-tests strategy against them. Instead of optimizing for one assumed future, constructs multiple plausible scenarios and tests whether a strategy survives across all of them. Uses Shell's 2x2 matrix method to identify critical uncertainties and build four distinct futures.
+
+**Best for**: market entry, strategic pivots, platform bets, any decision where the future is uncertain and the stakes are high.
+**Frameworks**: Shell Scenario Planning (2x2 matrix), Schwartz Method, Cone of Plausibility, Backcasting (Robinson), Wind Tunneling.
+
+#### [Devil's Advocate Agent](guides/devils-advocate-agent-guide.md)
+
+Stress-tests decisions, red-teams proposals, and finds blind spots before they become failures. Steelmans the idea first, then attacks its assumptions, maps vulnerabilities, and builds the strongest possible counter-argument. Delivers a survival assessment the team can act on.
+
+**Best for**: pre-commitment stress testing, proposal review, challenging groupthink, building intellectual rigor into decision processes.
+**Frameworks**: Pre-Mortem (Klein), Red Team / Blue Team, Adversarial Collaboration (Kahneman), Inversion (Munger), Steelmanning.
+
 ---
 
 ## Cross-Agent Patterns
 
-Several patterns appear across all 18 agents that explain why they work:
+Several patterns appear across all 21 agents that explain why they work:
 
 **Perspective shift is the primary value.** Agents help users see the same situation through a different lens: cat eyes, cultural dimensions, generational translation, villain archetypes, thinking hats. The information does not change. The frame does.
 
@@ -227,6 +251,6 @@ Several patterns appear across all 18 agents that explain why they work:
 - [Design Handbook](handbook.md): methodology and design patterns for building agents
 - [Tutorial](tutorial.md): step-by-step guide to creating an agent from idea to definition
 - [Agent Catalogue](../agent-catalogue.md): complete listing of all agents with specs
-- [Lessons Learned](lessons-learned.md): practical dos and don'ts from building 18 agents
+- [Lessons Learned](lessons-learned.md): practical dos and don'ts from building 21 agents
 - [Patterns](patterns.md): recurring structural patterns across agent definitions
 - [Definition Checklist](definition-checklist.md): validation checklist for agent specifications

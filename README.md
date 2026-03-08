@@ -78,15 +78,15 @@ Pain point narratives that show why structured thinking matters. Each story foll
 
 ## Agent Ideas
 
-60 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. Each idea card shows the concept, category, and key frameworks. Click to expand the full design brief.
+57 more agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. Each idea card shows the concept, category, and key frameworks. Click to expand the full design brief.
 
-![Agent ideas catalogue with 60 researched concepts](web/public/screenshots/3.png)
+![Agent ideas catalogue with 57 researched concepts](web/public/screenshots/3.png)
 
 ![Agent idea detail with frameworks, skills, and key principles](web/public/screenshots/4.png)
 
 ## Agents
 
-18 fully documented agents with prompts, skills, references, and personality variants:
+21 fully documented agents with prompts, skills, references, and personality variants:
 
 | Agent | Responsibility | Guide |
 |-------|---------------|-------|
@@ -108,6 +108,9 @@ Pain point narratives that show why structured thinking matters. Each story foll
 | [Pre-Mortem Agent](agents/pre-mortem-agent/) | Assumes your project already failed and works backward to find exactly why | [Guide](docs/guides/pre-mortem-agent-guide.md) |
 | [Decision Decomposer](agents/decision-decomposer-agent/) | Breaks complex decisions into components so you stop going in circles | [Guide](docs/guides/decision-decomposer-agent-guide.md) |
 | [Crisis Navigator](agents/crisis-navigator-agent/) | Provides structured thinking when everything is already on fire | [Guide](docs/guides/crisis-navigator-agent-guide.md) |
+| [Sensemaking Agent](agents/sensemaking-agent/) | Clarifies ambiguous situations before decisions can be made | |
+| [Scenario Planning Agent](agents/scenario-planning-agent/) | Builds alternative futures and stress-tests strategy against them | |
+| [Devil's Advocate Agent](agents/devils-advocate-agent/) | Stress-tests decisions, red-teams proposals, finds blind spots | |
 
 ## Portable Agent Specifications
 

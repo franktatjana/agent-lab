@@ -1,6 +1,6 @@
 # Agent Definition Patterns
 
-Recurring structural patterns extracted from all 18 agent definitions. Use these as defaults when building new agents. For the section-by-section checklist, see [definition-checklist.md](definition-checklist.md). For design rationale, see [handbook.md](handbook.md).
+Recurring structural patterns extracted from all 21 agent definitions. Use these as defaults when building new agents. For the section-by-section checklist, see [definition-checklist.md](definition-checklist.md). For design rationale, see [handbook.md](handbook.md).
 
 ---
 
@@ -8,7 +8,7 @@ Recurring structural patterns extracted from all 18 agent definitions. Use these
 
 **Default: 4 flows per agent, 3-5 steps per flow.**
 
-10 of 18 agents have exactly 4 flows. Corporate Navigator, Superhero, and Wargaming have 5. Five agents have 3 (Cat POV, Crisis Navigator, Decision Decomposer, Difficult Conversations, Pre-Mortem). Step counts per flow range 1-8, with 3-4 being the sweet spot. Flows with 7-8 steps (Research deep-research, Design Thinking full-sprint) represent comprehensive end-to-end workflows.
+13 of 21 agents have exactly 4 flows. Corporate Navigator, Superhero, and Wargaming have 5. Five agents have 3 (Cat POV, Crisis Navigator, Decision Decomposer, Difficult Conversations, Pre-Mortem). Step counts per flow range 1-8, with 3-4 being the sweet spot. Flows with 7-8 steps (Research deep-research, Design Thinking full-sprint) represent comprehensive end-to-end workflows.
 
 Flows are skills, not procedures. Each flow answers one question: "what can this agent do for me?" If a flow needs more than 5 steps, consider whether it's actually two flows composed.
 
@@ -32,7 +32,7 @@ This classification determines how to test the skill: encoded preferences need d
 | Minimal | ask-user, read-file | Question Decoder, Storytelling, Superhero |
 | Extended | domain-specific tools beyond the base set | Corporate Navigator (8), Research (5), Why (5) |
 
-`read-file` appears in nearly all agents. 12 of 18 agents use exactly 3 tools. Corporate Navigator has the largest toolset (8 tools) with domain-specific tools for company profiles, employee reviews, community discussions, and outreach. Research and Why agents each have 5 tools.
+`read-file` appears in nearly all agents. 12 of 21 agents use exactly 3 tools. Corporate Navigator has the largest toolset (8 tools) with domain-specific tools for company profiles, employee reviews, community discussions, and outreach. Research and Why agents each have 5 tools.
 
 Three risk levels are in use. Most tools are `risk: low` (no approval needed). `risk: medium` (may ask for approval) appears on tools like send-outreach and challenge-assumptions. `risk: high` (always asks for approval) appears on tools like submit-application and propose-root-cause where the output has real-world consequences.
 
@@ -42,7 +42,7 @@ Each tool includes an `x-agentlab.how_to_use` field: a 1-2 sentence contextual g
 
 **Default: 3 variants. At least one is a "Coach."**
 
-14 of 18 agents have exactly 3 variants. Cat POV, Question Decoder, and Storytelling have 4. Superhero has 7 (Marvel archetypes as personas, a domain-specific exception).
+17 of 21 agents have exactly 3 variants. Cat POV, Question Decoder, and Storytelling have 4. Superhero has 7 (Marvel archetypes as personas, a domain-specific exception).
 
 The Coach variant appears in the majority of agents, making it the most common personality mode. Other recurring archetypes: Executive/Strategic (common across analytical agents), Facilitator (common across team-facing agents).
 
@@ -64,7 +64,7 @@ Each prompt entry has: `description`, `source` (path to `.md` file), typed `inpu
 
 **Default: 3-4 required dimensions. Identical on_incomplete behavior.**
 
-All 18 agents enforce 3-4 required input dimensions before producing a full response. No agent permits partial execution.
+All 21 agents enforce 3-4 required input dimensions before producing a full response. No agent permits partial execution.
 
 Every agent uses the same `on_incomplete` template:
 
@@ -108,7 +108,7 @@ Research Agent has the highest tool limit (50). Superhero Agent has the lowest (
 | `persistent` | Cross-session | 2-3 items: learned patterns, preferences |
 | `shared` | Cross-agent | 1-2 items: handoff data |
 
-All 18 agents implement all 4 tiers. The taxonomy is framework-standard. Content varies by domain but structure does not.
+All 21 agents implement all 4 tiers. The taxonomy is framework-standard. Content varies by domain but structure does not.
 
 ## Context Strategy
 
@@ -120,7 +120,7 @@ All 18 agents implement all 4 tiers. The taxonomy is framework-standard. Content
 | 8000 | Why, Question Decoder, Six Hats, Research | Standard analytical agents |
 | 10000 | Culture, Corporate Navigator, Leadership Coach, Design Thinking, Networking, Storytelling, Cat POV, Difficult Conversations, Wargaming, Crisis Navigator, Decision Decomposer, Pre-Mortem | Information-heavy, multi-stakeholder, or multi-step |
 
-The majority of agents (12 of 18) use 10000 tokens, making it the new default. The newer agents trend toward higher budgets because their frameworks require loading more reference material.
+The majority of agents (15 of 21) use 10000 tokens, making it the new default. The newer agents trend toward higher budgets because their frameworks require loading more reference material.
 
 Priority order is invariant across all agents:
 1. System prompt with identity and constraints
@@ -174,7 +174,7 @@ Every agent includes three quality layers:
 
 **Default: 1 design prompt per agent at `visual/factsheet-prompt.md`.**
 
-All 18 agents include a self-contained design prompt that generates a one-pager factsheet when pasted into Figma AI, v0.dev, or Claude artifacts. Each prompt follows the same template (layout constraints, steel blue palette, color tokens, header/footer format) with agent-specific content: identity, skills, personalities, flow diagram, frameworks, connections, guardrails, decision tree, and case study.
+All 21 agents include a self-contained design prompt that generates a one-pager factsheet when pasted into Figma AI, v0.dev, or Claude artifacts. Each prompt follows the same template (layout constraints, steel blue palette, color tokens, header/footer format) with agent-specific content: identity, skills, personalities, flow diagram, frameworks, connections, guardrails, decision tree, and case study.
 
 The prompts are bundled into `definitions.json` as `designPrompts` and surfaced on the Canvas tab with a copy-to-clipboard button.
 

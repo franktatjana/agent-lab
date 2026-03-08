@@ -35,6 +35,7 @@ const tree: TreeStep = {
             description: "Before committing resources or launching something",
             recommendations: [
               { agentId: "pre-mortem-agent", reason: "Assumes failure happened and works backward to find why" },
+              { agentId: "devils-advocate-agent", reason: "Stress-tests proposals and finds blind spots before they become failures" },
               { agentId: "decision-decomposer-agent", reason: "Breaks complex decisions into manageable components" },
             ],
           },
@@ -50,6 +51,7 @@ const tree: TreeStep = {
             description: "Competitors will respond to your move",
             recommendations: [
               { agentId: "wargaming-agent", reason: "Simulates adversarial responses before you commit" },
+              { agentId: "scenario-planning-agent", reason: "Tests strategy against multiple plausible futures" },
             ],
           },
           {
@@ -142,6 +144,13 @@ const tree: TreeStep = {
       next: {
         question: "What kind of problem?",
         options: [
+          {
+            label: "Situation is unclear or signals conflict",
+            description: "Different people describe the same situation differently",
+            recommendations: [
+              { agentId: "sensemaking-agent", reason: "Clarifies ambiguous situations before decisions can be made" },
+            ],
+          },
           {
             label: "Need to find root cause",
             description: "Something keeps going wrong and you don't know why",

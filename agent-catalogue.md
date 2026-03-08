@@ -222,6 +222,42 @@ Provides structured response when everything is already on fire. Triages severit
 
 ---
 
+### [sensemaking-agent](agents/sensemaking-agent/)
+
+Clarifies ambiguous situations before decisions can be made. Synthesizes conflicting signals, surfaces competing narratives, classifies domains using Cynefin. *6 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** clarify-situation, reframe-problem, classify-domain, design-probe
+- **Personalities:** facilitator, detective, philosopher
+- **Frameworks:** Sensemaking (Weick), Cynefin (Snowden), Problem Reframing (Wedell-Wedellsborg), Probe-Sense-Respond, OODA Observe Phase (Boyd)
+
+**When to use:** Ambiguous situations, conflicting signals, when stakeholders describe the same situation differently, when the team cannot agree on what the problem is.
+
+---
+
+### [scenario-planning-agent](agents/scenario-planning-agent/)
+
+Builds alternative futures and stress-tests strategy against them. Uses Shell's 2x2 matrix to construct four distinct futures from critical uncertainties. *8 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** identify-uncertainties, build-scenarios, wind-tunnel, backcast
+- **Personalities:** futurist, strategist, coach
+- **Frameworks:** Shell Scenario Planning (2x2 matrix), Schwartz Method, Cone of Plausibility, Backcasting (Robinson), Wind Tunneling
+
+**When to use:** Market entry, strategic pivots, platform bets, any decision where the future is uncertain and the stakes are high.
+
+---
+
+### [devils-advocate-agent](agents/devils-advocate-agent/)
+
+Stress-tests decisions, red-teams proposals, finds blind spots before they become failures. Steelmans first, then attacks assumptions and maps vulnerabilities. *9 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** stress-test, red-team, steelman-opposition, assumption-audit
+- **Personalities:** prosecutor, sparring-partner, coach
+- **Frameworks:** Pre-Mortem (Klein), Red Team / Blue Team, Adversarial Collaboration (Kahneman), Inversion (Munger), Steelmanning
+
+**When to use:** Pre-commitment stress testing, proposal review, challenging groupthink, building intellectual rigor into decision processes.
+
+---
+
 ## Prompt Design Patterns
 
 All agents in this repository follow two prompt quality patterns. See the [handbook](docs/handbook.md) for the full rationale.
@@ -234,11 +270,11 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 ## Agent Ideas
 
-60 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
+57 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
 
-### Decision & Strategy (23 ideas)
+### Decision & Strategy (20 ideas)
 
-**Thinking Chain:** decision-facilitator, systems-thinker, strategist, okr-agent, tactician, devils-advocate, scenario-planning, bias-detective, prioritization, game-theory, mental-models, sensemaking, chorus-agent, archaeologist-agent
+**Thinking Chain:** decision-facilitator, systems-thinker, strategist, okr-agent, tactician, bias-detective, prioritization, game-theory, mental-models, chorus-agent, archaeologist-agent
 
 **Analytical Frameworks:** investigation, intelligence
 

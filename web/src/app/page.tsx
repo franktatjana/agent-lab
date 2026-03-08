@@ -163,6 +163,9 @@ export default function Home() {
           "pre-mortem-agent",
           "decision-decomposer-agent",
           "crisis-navigator-agent",
+          "sensemaking-agent",
+          "scenario-planning-agent",
+          "devils-advocate-agent",
         ].map((id) => agents.find((a) => a.id === id)!).filter(Boolean).map((agent) => {
           const colors = colorMap[agent.color] ?? colorMap.blue;
           const Icon = iconMap[agent.icon] ?? Globe;

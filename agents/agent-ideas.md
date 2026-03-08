@@ -47,15 +47,12 @@
 | [strategist-agent](#strategist-agent) | Long-term vision, positioning, and where to play |
 | [okr-agent](#okr-agent) | Writes, scores, and aligns OKRs across teams and levels |
 | [tactician-agent](#tactician-agent) | Short-term execution, how to win in the current context |
-| [devils-advocate-agent](#devils-advocate-agent) | Stress-tests decisions, red-teams proposals, finds blind spots before they become failures |
-| [scenario-planning-agent](#scenario-planning-agent) | Builds alternative futures and stress-tests strategy against them |
 | [bias-detective-agent](#bias-detective-agent) | Spots cognitive biases in reasoning: sunk cost, confirmation bias, anchoring, groupthink |
 | [prioritization-agent](#prioritization-agent) | Ranks competing options when everything feels urgent: frameworks for what to do first |
 | [game-theory-agent](#game-theory-agent) | Analyzes competitive interactions and incentive structures: what happens when outcomes depend on others |
 | [contradiction-solver-agent](#contradiction-solver-agent) | Resolves contradictions using TRIZ inventive principles: when improving one thing worsens another |
 | [ambivalence-agent](#ambivalence-agent) | Surfaces and resolves resistance using Motivational Interviewing: when someone agrees but doesn't move |
 | [mental-models-agent](#mental-models-agent) | Cross-domain pattern matching: maps problems to models from physics, biology, economics, and psychology |
-| [sensemaking-agent](#sensemaking-agent) | Clarifies ambiguous situations before you can decide: what's actually going on here? |
 | | **Use-Case Specific** *(may use personality frameworks internally)* |
 | [communication-adapter-agent](#communication-adapter-agent) | Adapts communication style for different audiences |
 | [strength-finder-agent](#strength-finder-agent) | Identifies and applies professional strengths |
@@ -1195,63 +1192,6 @@ References:
 
 ---
 
-## devils-advocate-agent
-
-Stress-tests decisions, red-teams proposals, and finds blind spots before they become failures. The Thinking Chain produces strategies and decisions, but nothing in it pressure-tests the output. The Devil's Advocate fills that gap: it takes a proposal, plan, or decision and systematically attacks it. Not to be destructive, but to find the cracks before reality does.
-
-Frameworks supported:
-
-- **Pre-Mortem (Klein)**: Imagine the project has failed, then work backward to explain why. Surfaces risks that optimism hides
-- **Red Team / Blue Team**: Military-origin adversarial review: Red attacks, Blue defends. Forces genuine stress-testing of plans
-- **Adversarial Collaboration**: Structured disagreement where both sides commit to following evidence, not winning the argument
-- **Inversion (Munger)**: Instead of asking how to succeed, ask how to guarantee failure, then avoid those paths
-- **Steelmanning**: Construct the strongest possible version of the opposing argument before responding to it
-
-Possible skills:
-
-- `stress-test`: Take a decision or proposal and systematically identify failure modes, weak assumptions, and blind spots
-- `run-pre-mortem`: Facilitate a pre-mortem exercise: imagine failure, then trace causes backward
-- `red-team`: Play adversary against a strategy: what would a competitor, critic, or hostile actor exploit?
-- `steelman-opposition`: Build the strongest case against a proposal to test if it survives genuine scrutiny
-- `assumption-audit`: List every assumption a plan relies on, rate confidence in each, flag the load-bearing ones
-
-Possible inputs: `proposal_or_decision`, `context`, `stakes`, `key_assumptions`, `timeline`
-
-Validation rules (check before generating):
-
-1. Proposal or decision (what is being stress-tested?)
-2. Context (what prompted this decision?)
-3. Stakes (what happens if it goes wrong?)
-
-Output constraints:
-
-```text
-assumptions_audit: Top 3-5 assumptions with confidence rating (HIGH/MEDIUM/LOW).
-failure_modes: Top 3 ways this could fail, one sentence each with severity.
-critique: The strongest case against this proposal, 3-4 sentences.
-survival_check: Does the proposal survive scrutiny? YES/CONDITIONAL/NO with justification.
-recommendation: 1-2 specific improvements to strengthen the decision.
-
-Total output must not exceed 400 words.
-```
-
-Key principles:
-
-- **Attack the idea, not the person**: adversarial thinking is a service, not hostility
-- **Find the load-bearing assumption**: every plan has one assumption that, if wrong, collapses everything
-- **Pre-mortem before post-mortem**: it's cheaper to find failure modes in imagination than in reality
-- **Steelman first**: you earn the right to criticize only after you've proven you understand
-- **Survivable failure matters most**: focus on risks that are both likely and hard to recover from
-
-References:
-
-- [Sources of Power (Gary Klein)](https://www.amazon.com/Sources-Power-People-Make-Decisions/dp/0262611465): pre-mortem technique and naturalistic decision-making
-- [Red Team (Micah Zenko)](https://www.amazon.com/Red-Team-Succeed-Thinking-Enemy/dp/0465048943): how organizations use adversarial thinking to improve
-- [Thinking in Bets (Annie Duke)](https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216355): decision quality vs outcome quality, separating signal from luck
-- [Poor Charlie's Almanack (Munger)](https://www.amazon.com/Poor-Charlies-Almanack-Essential-Charles/dp/1953953239): inversion, mental models, and avoiding stupidity
-
----
-
 ## bias-detective-agent
 
 Spots cognitive biases in reasoning and decision-making. Every other Decision & Strategy agent helps you think better. This one helps you see where you're thinking badly. Cognitive biases are systematic errors, not random ones, which means they're predictable and catchable once you know the patterns. Naming a bias doesn't make it disappear, but it creates the moment of pause where better thinking can happen.
@@ -1304,62 +1244,6 @@ References:
 - [Poor Charlie's Almanack (Munger)](https://www.amazon.com/Poor-Charlies-Almanack-Essential-Charles/dp/1953953239): 25 causes of human misjudgment
 - [Noise (Kahneman, Sibony, Sunstein)](https://www.amazon.com/Noise-Human-Judgment-Daniel-Kahneman/dp/0316451401): variability in judgment and how to reduce it
 - [Superforecasting (Tetlock)](https://www.amazon.com/Superforecasting-Science-Prediction-Philip-Tetlock/dp/0804136718): how the best forecasters overcome bias
-
----
-
-## scenario-planning-agent
-
-Builds alternative futures and stress-tests strategy against them. The Strategist picks a direction, but what if the world changes? Scenario planning is the missing foresight layer: it builds multiple plausible futures and tests whether your strategy survives across them. The core insight is that you can't predict the future, but you can prepare for several of them and build strategies that are robust across multiple scenarios rather than optimized for just one.
-
-Frameworks supported:
-
-- **Shell Scenario Planning**: Two critical uncertainties create a 2x2 matrix of four plausible futures. Strategy is tested against all four
-- **Schwartz Method**: The Art of the Long View: identify driving forces, rank by importance and uncertainty, build scenario narratives
-- **Cone of Plausibility**: Probable, plausible, possible, preposterous futures, narrowing focus to the plausible zone
-- **Backcasting**: Start from a desired future state and work backward to identify the steps needed to get there
-- **Wind Tunneling**: Take an existing strategy and "fly" it through each scenario to see where it breaks or thrives
-
-Possible skills:
-
-- `identify-uncertainties`: Surface the critical uncertainties that could reshape the landscape, rank by impact and unpredictability
-- `build-scenarios`: Construct 2-4 plausible future narratives from the intersection of key uncertainties
-- `wind-tunnel`: Test an existing strategy against each scenario: where does it thrive, survive, or fail?
-- `backcast`: Start from a desired future outcome and map the steps backward to present-day actions
-- `identify-signposts`: Define early warning indicators that signal which scenario is unfolding
-
-Possible inputs: `strategic_context`, `time_horizon`, `key_uncertainties`, `current_strategy`, `industry_or_domain`
-
-Validation rules (check before generating):
-
-1. Strategic context (what domain or decision is this about?)
-2. Time horizon (how far into the future?)
-3. Current strategy or assumption (what's the "official future" being tested?)
-
-Output constraints:
-
-```text
-critical_uncertainties: Top 2 uncertainties with rationale, one sentence each.
-scenarios: 2-4 named scenarios, 2-3 sentences each describing the world.
-wind_tunnel: How the current strategy performs in each scenario (THRIVES/SURVIVES/FAILS).
-signposts: 1-2 early indicators per scenario.
-recommendation: Strategic adjustments to improve robustness.
-
-Total output must not exceed 400 words.
-```
-
-Key principles:
-
-- **Scenarios are not predictions**: the goal is preparedness, not prophecy
-- **Two uncertainties, four futures**: the 2x2 matrix is the workhorse of scenario planning
-- **Robust beats optimal**: a strategy that works across multiple futures beats one optimized for a single guess
-- **Signposts matter**: knowing which scenario is unfolding early gives you time to adapt
-- **Challenge the official future**: every organization has an implicit assumption about what's coming. Name it, then question it
-
-References:
-
-- [The Art of the Long View (Peter Schwartz)](https://www.amazon.com/Art-Long-View-Planning-Future/dp/0385267320): foundational text on scenario planning for business
-- [Scenarios: The Art of Strategic Conversation (van der Heijden)](https://www.amazon.com/Scenarios-Art-Strategic-Conversation-Heijden/dp/047002368X): Shell's scenario planning methodology
-- [Superforecasting (Tetlock)](https://www.amazon.com/Superforecasting-Science-Prediction-Philip-Tetlock/dp/0804136718): calibrated uncertainty and probabilistic thinking
 
 ---
 
@@ -1532,63 +1416,6 @@ References:
 - [The Great Mental Models Vol. 1 (Parrish)](https://www.amazon.com/Great-Mental-Models-Thinking-Concepts/dp/1999449002): practical mental models for better thinking
 - [Seeking Wisdom (Bevelin)](https://www.amazon.com/Seeking-Wisdom-Darwin-Munger-3rd/dp/1578644283): from Darwin to Munger, a synthesis of thinking tools
 - [Super Thinking (Weinberg & McCann)](https://www.amazon.com/Super-Thinking-Book-Mental-Models/dp/0525533583): comprehensive catalog of mental models for daily decisions
-
----
-
-## sensemaking-agent
-
-Clarifies ambiguous situations before you can decide. Every other Thinking Chain agent assumes you know what you're dealing with. Sensemaking sits before all of them. When signals conflict, when the problem keeps shifting, when stakeholders describe the same situation differently, you don't need a decision framework, you need to figure out what's actually happening first. Karl Weick showed that organizations don't just make decisions about situations, they first have to construct what the situation even is. Thomas Wedell-Wedellsborg's reframing method adds a practical layer: most teams solve the wrong problem not because they're bad at solutions, but because they never questioned the problem definition.
-
-Frameworks supported:
-
-- **Sensemaking (Weick)**: Retrospective, social, ongoing process of creating meaning from ambiguous signals. Enactment, selection, retention
-- **Cynefin (Snowden)**: Clear, Complicated, Complex, Chaotic, Disorder. Match your approach to the domain: best practice, good practice, emergent practice, novel practice
-- **Problem Reframing (Wedell-Wedellsborg)**: Frame, Reframe, Move Forward. Check if you're solving the right problem before jumping to solutions
-- **Probe-Sense-Respond**: For complex domains: run safe-to-fail experiments, observe what happens, then adapt. Don't plan, probe
-- **OODA Observe Phase (Boyd)**: The most neglected phase: before you orient, decide, or act, observe without jumping to conclusions
-
-Possible skills:
-
-- `clarify-situation`: Given conflicting signals or ambiguous context, construct a coherent picture of what's actually happening
-- `reframe-problem`: Challenge the current problem definition using Wedell-Wedellsborg's reframing method: is this really the problem?
-- `classify-domain`: Use Cynefin to determine whether the situation is clear, complicated, complex, or chaotic, and match the approach
-- `design-probe`: For complex situations, design a safe-to-fail experiment that reveals information without committing to a path
-- `surface-narratives`: Identify the competing stories stakeholders tell about the same situation and find where they diverge
-
-Possible inputs: `situation`, `conflicting_signals`, `stakeholder_perspectives`, `what_feels_unclear`, `current_framing`
-
-Validation rules (check before generating):
-
-1. Situation (what's happening, as best you can describe it?)
-2. What's confusing or contradictory (where do signals conflict?)
-3. Current framing (how is this problem currently defined, and by whom?)
-
-Output constraints:
-
-```text
-current_framing: How the problem is currently defined, 1-2 sentences.
-reframe: An alternative problem definition that might be more accurate, 2-3 sentences.
-domain_classification: Clear/Complicated/Complex/Chaotic with justification, 1 sentence.
-competing_narratives: 2-3 stakeholder perspectives and where they diverge.
-recommended_action: Probe, analyze, or act, with one specific next step.
-
-Total output must not exceed 400 words.
-```
-
-Key principles:
-
-- **Name the confusion**: if you can't articulate what's unclear, you can't resolve it
-- **The problem might not be the problem**: most teams solve the wrong problem because they never questioned the definition
-- **Match approach to domain**: complex problems need probes, not plans. Don't treat every situation as merely complicated
-- **Multiple narratives are data**: when people disagree about what's happening, that disagreement is information
-- **Act to learn, don't plan to act**: in ambiguous situations, small actions reveal more than long analysis
-
-References:
-
-- [What's Your Problem? (Wedell-Wedellsborg)](https://www.amazon.com/Whats-Your-Problem-Toughest-Problems/dp/1633697223): problem reframing method: Frame, Reframe, Move Forward
-- [Sensemaking in Organizations (Weick)](https://www.amazon.com/Sensemaking-Organizations-Foundations-Organizational-Science/dp/080397177X): foundational text on how organizations construct meaning from ambiguity
-- [A Leader's Framework for Decision Making (Snowden & Boone)](https://hbr.org/2007/11/a-leaders-framework-for-decision-making): Cynefin framework for matching approach to situation complexity
-- [Are You Solving the Right Problems? (Wedell-Wedellsborg, HBR)](https://hbr.org/2017/01/are-you-solving-the-right-problems): HBR article on problem reframing in organizations
 
 ---
 
