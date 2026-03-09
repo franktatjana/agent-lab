@@ -120,6 +120,23 @@ outputs:
   - title: energy_diagnosis
     type: object
     description: Structured list of where energy is wasted
+    schema:
+      properties:
+        drains:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [territorial, social, environmental]
+              description:
+                type: string
+              severity:
+                type: string
+                enum: [high, medium, low]
+            required: [type, description, severity]
+      required: [drains]
   - title: cat_prescription
     type: string
     description: 2-3 sentences describing what a cat would do
@@ -274,6 +291,23 @@ flows:
         type: string
       - title: energy_diagnosis
         type: object
+        schema:
+          properties:
+            drains:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum: [territorial, social, environmental]
+                  description:
+                    type: string
+                  severity:
+                    type: string
+                    enum: [high, medium, low]
+                required: [type, description, severity]
+          required: [drains]
     x-agentlab:
       skill_type: encoded-preference
       workflow_shorthand:
@@ -304,6 +338,23 @@ flows:
     outputs:
       - title: energy_diagnosis
         type: object
+        schema:
+          properties:
+            drains:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum: [territorial, social, environmental]
+                  description:
+                    type: string
+                  severity:
+                    type: string
+                    enum: [high, medium, low]
+                required: [type, description, severity]
+          required: [drains]
       - title: cat_prescription
         type: string
     x-agentlab:
@@ -420,6 +471,20 @@ x-agentlab:
       outputs:
         - title: attention_filter
           type: object
+          # NOTE: schema inferred from spec, not validated against examples
+          schema:
+            properties:
+              ignore:
+                type: array
+                items:
+                  type: string
+              focus:
+                type: array
+                items:
+                  type: string
+              rationale:
+                type: string
+            required: [ignore, focus]
 
     diagnose-energy:
       description: Identify energy drains, categorize by type (territorial, social, environmental), and assess severity
@@ -434,6 +499,23 @@ x-agentlab:
       outputs:
         - title: energy_diagnosis
           type: object
+          schema:
+            properties:
+              drains:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [territorial, social, environmental]
+                    description:
+                      type: string
+                    severity:
+                      type: string
+                      enum: [high, medium, low]
+                  required: [type, description, severity]
+            required: [drains]
 
     prescribe-action:
       description: Prescribe what a cat would do to recover, conserve energy, and reclaim territory
@@ -511,6 +593,159 @@ x-agentlab:
     - Human shows signs of clinical depression or anxiety
     - Situation requires legal or HR intervention
     - The cat frame is clearly insufficient for the severity of the problem
+
+  handoffs:
+    - id: to-corporate-navigator
+      target: corporate-navigator-agent
+      condition:
+        description: "Territorial analysis reveals political dynamics needing deeper stakeholder mapping"
+        rule: null
+      passes:
+        - field: territory_map
+          description: "Territorial analysis with defended, abandoned, and contested zones"
+        - field: energy_diagnosis
+          description: "Energy drain categorization revealing organizational dynamics"
+      context_from_input:
+        - field: situation
+          description: "Original workplace situation"
+        - field: work_environment
+          description: "Physical and social context"
+      on_failure:
+        action: return_to_user
+        message: "Could not hand off to Corporate Navigator. Review the territory map for political dynamics yourself."
+
+    - id: to-leadership-coach
+      target: leadership-coach-agent  # future agent
+      condition:
+        description: "Energy and boundary patterns need structured development coaching"
+        rule: null
+      passes:
+        - field: energy_diagnosis
+          description: "Recurring energy drains and boundary violations"
+        - field: cat_prescription
+          description: "Cat-informed recovery recommendations to translate into coaching goals"
+      context_from_input:
+        - field: situation
+          description: "Original workplace situation"
+        - field: boundaries_you_struggle_with
+          description: "Specific boundary challenges"
+      on_failure:
+        action: return_to_user
+        message: "Could not hand off to Leadership Coach. Use the energy diagnosis and prescription to guide your own development."
+
+    - id: to-why-agent
+      target: why-agent
+      condition:
+        description: "Cat observation reveals symptoms whose root causes need investigation"
+        rule: null
+      passes:
+        - field: cat_observation
+          description: "Observed behavioral patterns that may have deeper causes"
+        - field: energy_diagnosis
+          description: "Energy drain patterns suggesting systemic issues"
+      context_from_input:
+        - field: situation
+          description: "Original workplace situation"
+      on_failure:
+        action: return_to_user
+        message: "Could not hand off to Why Agent. Consider investigating root causes of the observed patterns yourself."
+
+    - id: to-human-harassment
+      target: human
+      condition:
+        description: "Situation involves harassment, discrimination, or safety concerns"
+        rule: null
+      passes:
+        - field: cat_observation
+          description: "Initial observation noting the severity"
+      context_from_input:
+        - field: situation
+          description: "Original situation description"
+      on_failure:
+        action: return_to_user
+        message: "This situation requires professional HR or legal support."
+
+    - id: to-human-mental-health
+      target: human
+      condition:
+        description: "Human shows signs of clinical depression or anxiety"
+        rule: null
+      passes:
+        - field: cat_observation
+          description: "Observation noting concerning patterns"
+      context_from_input:
+        - field: situation
+          description: "Original situation description"
+      on_failure:
+        action: return_to_user
+        message: "This situation requires professional mental health support."
+
+    - id: to-human-legal-hr
+      target: human
+      condition:
+        description: "Situation requires legal or HR intervention"
+        rule: null
+      passes:
+        - field: cat_observation
+          description: "Observation noting the need for professional intervention"
+      context_from_input:
+        - field: situation
+          description: "Original situation description"
+      on_failure:
+        action: return_to_user
+        message: "This situation requires professional legal or HR counsel."
+
+    - id: to-human-severity
+      target: human
+      condition:
+        description: "The cat frame is clearly insufficient for the severity of the problem"
+        rule: null
+      passes:
+        - field: cat_observation
+          description: "Partial observation acknowledging limitations"
+      context_from_input:
+        - field: situation
+          description: "Original situation description"
+      on_failure:
+        action: return_to_user
+        message: "This situation exceeds what reframing can address. Please seek appropriate professional support."
+
+  chain_contracts:
+    as_receiver:
+      accepts_from:
+        - agent: "any"
+          expected_input:
+            - field: situation
+              type: string
+              required: true
+              maps_to: "situation"
+            - field: what_drains_you
+              type: string
+              required: true
+              maps_to: "what_drains_you"
+            - field: boundaries_you_struggle_with
+              type: string
+              required: false
+              maps_to: "boundaries_you_struggle_with"
+            - field: work_environment
+              type: string
+              required: false
+              maps_to: "work_environment"
+    as_sender:
+      guarantees:
+        - field: cat_observation
+          type: string
+          always_present: true
+          description: "3-4 sentences observing the situation from feline perspective"
+        - field: energy_diagnosis
+          type: object
+          always_present: true
+          description: "Structured energy drain categorization with type, description, and severity"
+        - field: human_translation
+          type: string
+          always_present: true
+          description: "Actionable workplace advice translated from cat prescription"
+      ready_condition: "cat_observation AND energy_diagnosis AND human_translation are all populated"
 
   human_in_the_loop_conditions:
     - Review recommended for prescriptions involving significant boundary changes

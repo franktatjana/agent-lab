@@ -100,18 +100,61 @@ outputs:
   - title: mission_briefing
     type: object
     description: Mission codename, stakes, and victory condition
+    schema:
+      properties:
+        codename:
+          type: string
+        stakes:
+          type: string
+        victory_condition:
+          type: string
+      required: [codename, stakes, victory_condition]
   - title: your_powers
     type: object
     description: Primary superpower, secondary abilities, kryptonite
+    schema:
+      properties:
+        primary:
+          type: string
+        secondary:
+          type: array
+        watch_out_for:
+          type: string
+      required: [primary, secondary, watch_out_for]
   - title: the_villain
     type: object
     description: Named obstacle archetype with weakness and strategy
+    schema:
+      properties:
+        name:
+          type: string
+        real_identity:
+          type: string
+        signature_move:
+          type: string
+        weakness:
+          type: string
+      required: [name, real_identity, weakness]
   - title: your_team
     type: object
     description: Needed powers and potential allies
+    schema:
+      properties:
+        needed_powers:
+          type: array
+      required: [needed_powers]
   - title: next_move
     type: object
     description: Immediate action, this-week goal, and mantra
+    schema:
+      properties:
+        immediate:
+          type: string
+        this_week:
+          type: string
+        mantra:
+          type: string
+      required: [immediate, this_week, mantra]
 
 tools:
   - component_type: ClientTool
@@ -456,10 +499,31 @@ x-agentlab:
       outputs:
         - title: superpower
           type: object
+          schema:  # NOTE: schema inferred from spec, not validated against examples
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+            required: [name, description]
         - title: kryptonite
           type: object
+          schema:  # NOTE: schema inferred from spec, not validated against examples
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+            required: [name]
         - title: how_to_use_it
           type: object
+          schema:  # NOTE: schema inferred from spec, not validated against examples
+            properties:
+              in_this_situation:
+                type: string
+              general_principle:
+                type: string
+            required: [in_this_situation]
 
     frame-mission:
       description: Transform a work challenge into a hero's mission
@@ -476,6 +540,15 @@ x-agentlab:
       outputs:
         - title: mission_briefing
           type: object
+          schema:
+            properties:
+              codename:
+                type: string
+              stakes:
+                type: string
+              victory_condition:
+                type: string
+            required: [codename, stakes, victory_condition]
 
     map-villain:
       description: Name the real obstacle as an archetype and develop defeat strategy
@@ -490,8 +563,26 @@ x-agentlab:
       outputs:
         - title: villain_profile
           type: object
+          schema:
+            properties:
+              name:
+                type: string
+              real_identity:
+                type: string
+              signature_move:
+                type: string
+              weakness:
+                type: string
+            required: [name, real_identity, weakness]
         - title: defeat_strategy
           type: object
+          schema:  # NOTE: schema inferred from spec, not validated against examples
+            properties:
+              approach:
+                type: string
+              key_move:
+                type: string
+            required: [approach]
 
   validation:
     required_dimensions:
@@ -543,6 +634,114 @@ x-agentlab:
     - Mentions of self-harm, severe depression, or crisis
     - Situations involving harassment, discrimination, or legal issues
     - Major life decisions requiring professional expertise
+
+  handoffs:
+    - id: to-leadership-coach-agent
+      target: leadership-coach-agent
+      condition:
+        description: "Team dynamics require professional coaching beyond superhero framing"
+        rule: null
+      passes:
+        - field: mission_briefing
+          description: "Mission context for coaching engagement"
+        - field: your_powers
+          description: "Identified strengths to build on in coaching"
+        - field: your_team
+          description: "Team dynamics requiring coaching attention"
+      context_from_input:
+        - field: challenge
+          description: "Work challenge requiring leadership coaching"
+        - field: context
+          description: "Work situation and stakes"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Leadership Coach Agent"
+    - id: to-cat-pov-agent
+      target: cat-pov-agent
+      condition:
+        description: "Reframing needs a lighter, more relatable lens than hero archetypes"
+        rule: null
+      passes:
+        - field: mission_briefing
+          description: "Challenge context for alternative reframing"
+        - field: the_villain
+          description: "Named obstacle for reframing through different lens"
+      context_from_input:
+        - field: challenge
+          description: "Work challenge to reframe"
+        - field: what_feels_hard
+          description: "What's blocking the user"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Cat POV Agent"
+    - id: escalate-crisis
+      target: human
+      condition:
+        description: "Mentions of self-harm, severe depression, or crisis"
+        rule: null
+      passes:
+        - field: mission_briefing
+          description: "Session context for crisis support"
+      on_failure:
+        action: return_to_user
+        message: "User may need professional crisis support"
+    - id: escalate-legal
+      target: human
+      condition:
+        description: "Situations involving harassment, discrimination, or legal issues"
+        rule: null
+      passes:
+        - field: mission_briefing
+          description: "Session context for legal/HR review"
+      on_failure:
+        action: return_to_user
+        message: "This situation requires professional legal or HR guidance"
+    - id: escalate-major-decisions
+      target: human
+      condition:
+        description: "Major life decisions requiring professional expertise"
+        rule: null
+      passes:
+        - field: mission_briefing
+          description: "Decision context for professional review"
+        - field: next_move
+          description: "Proposed actions requiring expert validation"
+      on_failure:
+        action: return_to_user
+        message: "This decision requires professional expertise"
+
+  chain_contracts:
+    as_receiver:
+      accepts_from:
+        - agent: "any"
+          expected_input:
+            - field: challenge
+              type: string
+              required: true
+              maps_to: "challenge"
+            - field: context
+              type: string
+              required: false
+              maps_to: "context"
+    as_sender:
+      guarantees:
+        - field: mission_briefing
+          type: object
+          always_present: true
+          description: "Mission codename, stakes, and victory condition"
+        - field: your_powers
+          type: object
+          always_present: true
+          description: "Primary superpower, secondary abilities, kryptonite"
+        - field: the_villain
+          type: object
+          always_present: true
+          description: "Named obstacle archetype with weakness and strategy"
+        - field: next_move
+          type: object
+          always_present: true
+          description: "Immediate action, this-week goal, and mantra"
+      ready_condition: "mission_briefing has codename and stakes populated, and next_move has immediate action"
 
   human_in_the_loop_conditions:
     - User drives the metaphor depth; agent follows their engagement level

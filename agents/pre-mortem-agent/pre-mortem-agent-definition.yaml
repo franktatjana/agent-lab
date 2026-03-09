@@ -122,12 +122,76 @@ outputs:
   - title: failure_modes
     type: object
     description: 5-7 specific failure modes, ranked by likelihood and impact
+    schema:
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              mode:
+                type: string
+              likelihood:
+                type: string
+                enum: [High, Medium, Low]
+              impact:
+                type: string
+                enum: [High, Medium, Low]
+              detectability:
+                type: string
+                enum: [Early, Late, Silent]
+              priority:
+                type: string
+                enum: [Critical, Major, Monitor]
+              category:
+                type: string
+                enum: [technology, regulatory, people, market, organizational, timeline]
+            required: [mode, likelihood, impact, detectability, priority, category]
   - title: blind_spots
     type: object
     description: 2-4 cognitive biases with evidence from the input
+    schema:
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              bias:
+                type: string
+              evidence:
+                type: string
+              risk:
+                type: string
+              test:
+                type: string
+            required: [bias, evidence, risk, test]
   - title: mitigations
     type: object
     description: 1 concrete action per top failure mode
+    schema:
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              failure_mode:
+                type: string
+              type:
+                type: string
+                enum: [prevent, detect, contain]
+              action:
+                type: string
+              owner:
+                type: string
+              deadline:
+                type: string
+              cost:
+                type: string
+              residual_risk:
+                type: string
+            required: [failure_mode, type, action, owner, deadline, cost, residual_risk]
   - title: regret_forecast
     type: string
     description: 3-4 sentences, forward-looking projection of future regrets
@@ -400,6 +464,31 @@ x-agentlab:
       outputs:
         - title: ranked_failure_modes
           type: object
+          schema:
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mode:
+                      type: string
+                    likelihood:
+                      type: string
+                      enum: [High, Medium, Low]
+                    impact:
+                      type: string
+                      enum: [High, Medium, Low]
+                    detectability:
+                      type: string
+                      enum: [Early, Late, Silent]
+                    priority:
+                      type: string
+                      enum: [Critical, Major, Monitor]
+                    category:
+                      type: string
+                      enum: [technology, regulatory, people, market, organizational, timeline]
+                  required: [mode, likelihood, impact, detectability, priority, category]
 
     surface-blind-spots:
       description: Map cognitive biases and organizational blind spots active in the decision
@@ -414,6 +503,22 @@ x-agentlab:
       outputs:
         - title: blind_spots
           type: object
+          schema:
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bias:
+                      type: string
+                    evidence:
+                      type: string
+                    risk:
+                      type: string
+                    test:
+                      type: string
+                  required: [bias, evidence, risk, test]
 
     regret-projection:
       description: Project forward 6-12 months and identify what the team will wish they had considered
@@ -440,6 +545,29 @@ x-agentlab:
       outputs:
         - title: mitigations
           type: object
+          schema:
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    failure_mode:
+                      type: string
+                    type:
+                      type: string
+                      enum: [prevent, detect, contain]
+                    action:
+                      type: string
+                    owner:
+                      type: string
+                    deadline:
+                      type: string
+                    cost:
+                      type: string
+                    residual_risk:
+                      type: string
+                  required: [failure_mode, type, action, owner, deadline, cost, residual_risk]
 
   validation:
     required_dimensions:
@@ -495,6 +623,170 @@ x-agentlab:
     - Analysis surfaces ethical concerns about the project's intent or impact
     - Team is using the pre-mortem to confirm a cancellation decision already made
     - Failure modes suggest organizational dysfunction beyond the project scope
+
+  handoffs:
+    - id: to-wargaming-agent
+      target: wargaming-agent
+      condition:
+        description: "Adversary or competitor response matters and needs dynamic simulation"
+        rule: "failure_modes contains items with category 'market' and priority 'Critical' or 'Major'"
+      passes:
+        - field: failure_modes
+          description: "Ranked failure modes, especially market and competitive threats"
+        - field: blind_spots
+          description: "Cognitive biases that may affect competitive analysis"
+      context_from_input:
+        - field: project_description
+          description: "Project context for competitive simulation"
+        - field: timeline
+          description: "Timeline and resource commitments"
+        - field: constraints
+          description: "Constraints shaping competitive response"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Wargaming Agent for competitive simulation"
+    - id: to-six-hats-agent
+      target: six-hats-agent
+      condition:
+        description: "Team needs structured multi-perspective exploration, not just failure modes"
+        rule: null
+      passes:
+        - field: failure_modes
+          description: "Failure modes as input for multi-perspective analysis"
+        - field: blind_spots
+          description: "Identified biases for perspective exploration"
+      context_from_input:
+        - field: project_description
+          description: "Project context"
+        - field: stakeholders
+          description: "Stakeholder perspectives to explore"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Six Hats Agent for multi-perspective exploration"
+    - id: to-why-agent
+      target: why-agent
+      condition:
+        description: "Root cause of a current problem is unclear and needs structured investigation"
+        rule: null
+      passes:
+        - field: failure_modes
+          description: "Failure modes that may have root causes needing investigation"
+        - field: blind_spots
+          description: "Biases that may obscure root causes"
+      context_from_input:
+        - field: project_description
+          description: "Project context for root cause analysis"
+        - field: assumptions
+          description: "Assumptions to challenge"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Why Agent for root cause investigation"
+    - id: escalate-safety-critical
+      target: human
+      condition:
+        description: "Project involves safety-critical systems where failure has physical consequences"
+        rule: null
+      passes:
+        - field: failure_modes
+          description: "Failure modes with safety implications"
+        - field: mitigations
+          description: "Proposed mitigations for human review"
+      on_failure:
+        action: return_to_user
+        message: "Safety-critical failure modes require professional risk management review"
+    - id: escalate-legal-regulatory
+      target: human
+      condition:
+        description: "Pre-mortem reveals potential legal or regulatory violations in the plan"
+        rule: null
+      passes:
+        - field: failure_modes
+          description: "Failure modes with legal/regulatory implications"
+        - field: blind_spots
+          description: "Biases that may have obscured regulatory risks"
+      on_failure:
+        action: return_to_user
+        message: "Potential legal or regulatory violations require professional counsel"
+    - id: escalate-ethical-concerns
+      target: human
+      condition:
+        description: "Analysis surfaces ethical concerns about the project's intent or impact"
+        rule: null
+      passes:
+        - field: failure_modes
+          description: "Failure modes with ethical implications"
+        - field: regret_forecast
+          description: "Forward-looking assessment for ethical review"
+      on_failure:
+        action: return_to_user
+        message: "Ethical concerns surfaced that require human judgment"
+    - id: escalate-organizational-dysfunction
+      target: human
+      condition:
+        description: "Failure modes suggest organizational dysfunction beyond the project scope"
+        rule: null
+      passes:
+        - field: failure_modes
+          description: "Failure modes indicating organizational issues"
+        - field: blind_spots
+          description: "Organizational blind spots identified"
+      on_failure:
+        action: return_to_user
+        message: "Failure analysis suggests organizational issues beyond project scope"
+
+  chain_contracts:
+    as_receiver:
+      accepts_from:
+        - agent: "any"
+          expected_input:
+            - field: project_description
+              type: string
+              required: true
+              maps_to: "project_description"
+            - field: timeline
+              type: string
+              required: true
+              maps_to: "timeline"
+            - field: assumptions
+              type: string
+              required: false
+              maps_to: "assumptions"
+        - agent: decision-decomposer-agent
+          expected_input:
+            - field: sub_decisions
+              type: object
+              required: true
+              maps_to: "project_description"
+              transform: "sub_decisions summarized as project components to stress-test"
+            - field: reversibility_matrix
+              type: object
+              required: true
+              maps_to: "assumptions"
+              transform: "reversibility_matrix items with 'Practically irreversible' as key assumptions"
+            - field: recommendation
+              type: string
+              required: false
+              maps_to: "project_description"
+              transform: "recommendation appended to project_description"
+    as_sender:
+      guarantees:
+        - field: failure_modes
+          type: object
+          always_present: true
+          description: "5-7 specific failure modes ranked by likelihood and impact"
+        - field: blind_spots
+          type: object
+          always_present: true
+          description: "2-4 cognitive biases with evidence from the input"
+        - field: mitigations
+          type: object
+          always_present: true
+          description: "1 concrete action per top failure mode"
+        - field: regret_forecast
+          type: string
+          always_present: true
+          description: "Forward-looking projection of future regrets"
+      ready_condition: "failure_modes has 5-7 items each with mode, likelihood, impact, and priority populated"
 
   human_in_the_loop_conditions:
     - Review recommended before acting on pre-mortem-derived changes to project scope

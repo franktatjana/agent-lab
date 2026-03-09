@@ -100,18 +100,77 @@ outputs:
   - title: audience_profile
     type: object
     description: Asker's role, expertise, preferred format, communication style, primary concern
+    schema:
+      properties:
+        role:
+          type: string
+        expertise_level:
+          type: string
+        preferred_format:
+          type: string
+        communication_style:
+          type: string
+        primary_concern:
+          type: string
+      required: [role, expertise_level, preferred_format, communication_style, primary_concern]
   - title: decoded_intent
     type: object
     description: Literal question, real question, trigger, what they're seeking, confidence level
+    schema:
+      properties:
+        literal_question:
+          type: string
+        real_question:
+          type: string
+        trigger:
+          type: string
+        seeking:
+          type: string
+        confidence:
+          type: string
+          enum: [high, medium, low]
+        alternative_intents:
+          type: array
+          items:
+            type: string
+      required: [literal_question, real_question, trigger, seeking, confidence]
   - title: answer_architecture
     type: object
     description: Format, depth, framing, lead, and supporting points
+    schema:
+      properties:
+        format:
+          type: string
+        depth:
+          type: string
+        framing:
+          type: string
+        lead:
+          type: string
+        supporting_points:
+          type: array
+          items:
+            type: string
+      required: [format, depth, framing, lead]
   - title: drafted_response
     type: string
     description: The crafted answer ready to deliver
   - title: anticipated_follow_ups
     type: array
     description: Likely follow-up questions with prepared responses (max 3)
+    schema:
+      items:
+        type: object
+        properties:
+          question:
+            type: string
+          prepared_response:
+            type: string
+          why_likely:
+            type: string
+          likelihood:
+            type: string
+        required: [question, prepared_response]
 
 tools:
   - component_type: ClientTool
@@ -398,6 +457,19 @@ x-agentlab:
       outputs:
         - title: audience_profile
           type: object
+          schema:
+            properties:
+              role:
+                type: string
+              expertise_level:
+                type: string
+              preferred_format:
+                type: string
+              communication_style:
+                type: string
+              primary_concern:
+                type: string
+            required: [role, expertise_level, preferred_format, communication_style, primary_concern]
 
     decode-question:
       description: Identify the question behind the question
@@ -412,6 +484,24 @@ x-agentlab:
       outputs:
         - title: decoded_intent
           type: object
+          schema:
+            properties:
+              literal_question:
+                type: string
+              real_question:
+                type: string
+              trigger:
+                type: string
+              seeking:
+                type: string
+              confidence:
+                type: string
+                enum: [high, medium, low]
+              alternative_intents:
+                type: array
+                items:
+                  type: string
+            required: [literal_question, real_question, trigger, seeking, confidence]
 
     architect-answer:
       description: Structure the optimal response format, depth, framing, and lead
@@ -426,6 +516,21 @@ x-agentlab:
       outputs:
         - title: answer_architecture
           type: object
+          schema:
+            properties:
+              format:
+                type: string
+              depth:
+                type: string
+              framing:
+                type: string
+              lead:
+                type: string
+              supporting_points:
+                type: array
+                items:
+                  type: string
+            required: [format, depth, framing, lead]
         - title: drafted_response
           type: string
 
@@ -454,6 +559,19 @@ x-agentlab:
       outputs:
         - title: follow_ups
           type: array
+          schema:
+            items:
+              type: object
+              properties:
+                question:
+                  type: string
+                prepared_response:
+                  type: string
+                why_likely:
+                  type: string
+                likelihood:
+                  type: string
+              required: [question, prepared_response]
 
   validation:
     required_dimensions:
@@ -505,6 +623,103 @@ x-agentlab:
     - User appears to be crafting answers to deceive or cover up problems
     - The decoded intent suggests a conversation that needs professional mediation
     - Insufficient context to decode with reasonable confidence
+
+  handoffs:
+    - id: to-difficult-conversations-agent
+      target: difficult-conversations-agent
+      condition:
+        description: "Decoding reveals the real issue is an unresolved interpersonal conversation"
+        rule: "decoded_intent.seeking contains 'conflict_resolution' or decoded_intent.real_question indicates interpersonal conflict"
+      passes:
+        - field: decoded_intent
+          description: "Decoded intent analysis for conversation context"
+        - field: audience_profile
+          description: "Profile of the person involved"
+      context_from_input:
+        - field: who_is_asking
+          description: "Identity of the person asking the original question"
+        - field: context
+          description: "Surrounding circumstances"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Difficult Conversations Agent"
+    - id: escalate-legal-hr-compliance
+      target: human
+      condition:
+        description: "Question involves legal, HR, or compliance implications"
+        rule: null
+      passes:
+        - field: decoded_intent
+          description: "Full analysis for human review"
+      on_failure:
+        action: return_to_user
+        message: "This situation requires professional legal, HR, or compliance assessment"
+    - id: escalate-deception
+      target: human
+      condition:
+        description: "User appears to be crafting answers to deceive or cover up problems"
+        rule: null
+      passes:
+        - field: decoded_intent
+          description: "Analysis showing deceptive intent indicators"
+      on_failure:
+        action: return_to_user
+        message: "This request conflicts with the agent's guardrails against deception"
+    - id: escalate-mediation-needed
+      target: human
+      condition:
+        description: "The decoded intent suggests a conversation that needs professional mediation"
+        rule: null
+      passes:
+        - field: decoded_intent
+          description: "Full analysis for mediation assessment"
+      on_failure:
+        action: return_to_user
+        message: "This situation requires professional mediation"
+    - id: escalate-insufficient-context
+      target: human
+      condition:
+        description: "Insufficient context to decode with reasonable confidence"
+        rule: "decoded_intent.confidence == 'low' and insufficient input dimensions"
+      passes:
+        - field: decoded_intent
+          description: "Partial analysis with confidence assessment"
+      on_failure:
+        action: return_to_user
+        message: "Cannot decode with reasonable confidence given available context"
+
+  chain_contracts:
+    as_receiver:
+      accepts_from:
+        - agent: "any"
+          expected_input:
+            - field: question
+              type: string
+              required: true
+              maps_to: "question"
+            - field: who_is_asking
+              type: string
+              required: true
+              maps_to: "who_is_asking"
+            - field: context
+              type: string
+              required: true
+              maps_to: "context"
+    as_sender:
+      guarantees:
+        - field: decoded_intent
+          type: object
+          always_present: true
+          description: "The real question behind the literal question"
+        - field: audience_profile
+          type: object
+          always_present: true
+          description: "Profile of the person who asked the question"
+        - field: answer_architecture
+          type: object
+          always_present: true
+          description: "Recommended structure for the response"
+      ready_condition: "decoded_intent.literal_question and decoded_intent.real_question and decoded_intent.confidence are populated"
 
   human_in_the_loop_conditions:
     - Review recommended for high-stakes answers (board presentations, executive conversations)

@@ -101,15 +101,52 @@ outputs:
   - title: questioning_sequence
     type: array
     description: Numbered chain, max 5 levels. Each level = one "why" with the answer
+    schema:
+      items:
+        type: object
+        properties:
+          level:
+            type: integer
+          question:
+            type: string
+          answer:
+            type: string
+        required: [level, question, answer]
   - title: root_causes
     type: array
     description: Max 3 actionable root causes, one sentence each with confidence level
+    schema:
+      items:
+        type: object
+        properties:
+          cause:
+            type: string
+          confidence:
+            type: string
+            enum: [high, medium, low]
+          evidence:
+            type: string
+          category:
+            type: string
+        required: [cause, confidence, evidence]
   - title: verification
     type: array
     description: "1 sentence per root cause: if we fix X, does Y stop?"
+    schema:
+      items:
+        type: object
+        properties:
+          test:
+            type: string
+          result:
+            type: string
+        required: [test, result]
   - title: next_steps
     type: array
     description: Max 3 actions ranked by leverage, one sentence each
+    schema:
+      items:
+        type: string
 
 tools:
   - component_type: ClientTool
@@ -461,6 +498,21 @@ x-agentlab:
       outputs:
         - title: categorized_causes
           type: object
+          schema:
+            description: "Causes grouped by fishbone category (People, Process, Technology, Environment, Materials, Measurement)"
+            additionalProperties:
+              type: array
+              items:
+                type: object
+                properties:
+                  cause:
+                    type: string
+                  likelihood:
+                    type: string
+                    enum: [high, medium, low]
+                  evidence:
+                    type: string
+                required: [cause]
 
     challenge-assumption:
       description: Question underlying beliefs and hidden constraints driving the problem
@@ -473,8 +525,14 @@ x-agentlab:
       outputs:
         - title: assumptions
           type: array
+          schema:
+            items:
+              type: string
         - title: questions
           type: array
+          schema:
+            items:
+              type: string
 
   validation:
     required_dimensions:
@@ -527,6 +585,123 @@ x-agentlab:
     - User needs emotional support, not analysis (to Supportive Colleague Agent)
     - Multiple root causes with competing priorities (to Tactician Agent)
     - Cannot reach root cause after max_depth levels
+
+  handoffs:
+    - id: to-tactician-agent
+      target: tactician-agent  # future agent
+      condition:
+        description: "Root causes identified and solutions need to be designed"
+        rule: "root_causes is populated and next_steps require implementation planning"
+      passes:
+        - field: root_causes
+          description: "Validated root causes with confidence levels"
+        - field: next_steps
+          description: "Recommended actions ranked by leverage"
+      context_from_input:
+        - field: problem
+          description: "Original problem statement"
+        - field: context
+          description: "Background context"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Tactician Agent"
+    - id: to-systems-thinker-agent
+      target: systems-thinker-agent  # future agent
+      condition:
+        description: "Problem is a symptom of a larger system issue requiring dynamic analysis"
+        rule: "root_causes suggest systemic patterns or feedback loops"
+      passes:
+        - field: root_causes
+          description: "Root causes suggesting systemic issues"
+        - field: questioning_sequence
+          description: "The causal chain revealing system connections"
+      context_from_input:
+        - field: problem
+          description: "Original problem statement"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Systems Thinker Agent"
+    - id: to-strategist-agent
+      target: strategist-agent  # future agent
+      condition:
+        description: "Root cause requires a strategic decision beyond operational fix"
+        rule: "root_causes involve strategic trade-offs or resource allocation"
+      passes:
+        - field: root_causes
+          description: "Root causes requiring strategic decisions"
+        - field: problem_statement
+          description: "Clarified problem statement"
+      context_from_input:
+        - field: context
+          description: "Business context"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Strategist Agent"
+    - id: to-supportive-colleague-agent
+      target: supportive-colleague-agent  # future agent
+      condition:
+        description: "User needs emotional support, not analysis"
+        rule: null
+      passes:
+        - field: problem_statement
+          description: "Context for emotional support"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Supportive Colleague Agent"
+    - id: escalate-max-depth
+      target: human
+      condition:
+        description: "Cannot reach root cause after max_depth levels of questioning"
+        rule: "questioning_sequence.length >= max_depth and no root_cause verified"
+      passes:
+        - field: questioning_sequence
+          description: "Full questioning chain for human review"
+        - field: root_causes
+          description: "Candidate causes with low confidence"
+      on_failure:
+        action: return_to_user
+        message: "Root cause analysis reached maximum depth without resolution"
+
+  chain_contracts:
+    as_receiver:
+      accepts_from:
+        - agent: "any"
+          expected_input:
+            - field: problem
+              type: string
+              required: true
+              maps_to: "problem"
+            - field: context
+              type: string
+              required: true
+              maps_to: "context"
+        - agent: question-decoder-agent
+          expected_input:
+            - field: decoded_intent
+              type: object
+              required: true
+              maps_to: "problem"
+              transform: "decoded_intent.real_question"
+            - field: audience_profile
+              type: object
+              required: false
+              maps_to: "context"
+              transform: "audience_profile.primary_concern"
+    as_sender:
+      guarantees:
+        - field: root_causes
+          type: array
+          always_present: true
+          description: "Actionable root causes with confidence levels"
+        - field: problem_statement
+          type: string
+          always_present: true
+          description: "Clarified problem statement"
+        - field: questioning_sequence
+          type: array
+          always_present: true
+          description: "The chain of why questions and answers"
+      ready_condition: "root_causes has at least 1 item with cause, confidence, and evidence populated"
 
   human_in_the_loop_conditions:
     - User provides answers to "why" questions (agent facilitates, user knows the domain)

@@ -100,18 +100,66 @@ outputs:
   - title: analysis
     type: object
     description: Source style, target preferences, friction points, context factors
+    schema:
+      # NOTE: schema inferred from spec, not validated against examples
+      properties:
+        source_style:
+          type: string
+        target_preferences:
+          type: string
+        friction_points:
+          type: array
+          items:
+            type: string
+        context_factors:
+          type: array
+          items:
+            type: string
+      required: [source_style, target_preferences, friction_points]
   - title: adapted_message
     type: string
     description: The rewritten message ready to use
   - title: explanation
     type: object
     description: Changes made and elements preserved with reasoning
+    schema:
+      # NOTE: schema inferred from spec, not validated against examples
+      properties:
+        changes:
+          type: array
+          items:
+            type: object
+            properties:
+              original:
+                type: string
+              adapted:
+                type: string
+              reason:
+                type: string
+            required: [original, adapted, reason]
+        preserved:
+          type: array
+          items:
+            type: string
+      required: [changes]
   - title: alternatives
     type: array
     description: Other valid approaches with tradeoffs (max 2)
+    schema:
+      items:
+        type: object
+        properties:
+          approach:
+            type: string
+          tradeoff:
+            type: string
+        required: [approach, tradeoff]
   - title: recommendations
     type: array
     description: Broader communication suggestions
+    schema:
+      items:
+        type: string
   - title: confidence
     type: string
     description: "high | medium | low"
@@ -450,8 +498,30 @@ x-agentlab:
           type: string
         - title: changes
           type: array
+          schema:
+            # NOTE: schema inferred from spec, not validated against examples
+            items:
+              type: object
+              properties:
+                original:
+                  type: string
+                adapted:
+                  type: string
+                reason:
+                  type: string
+              required: [original, adapted]
         - title: alternatives
           type: array
+          schema:
+            # NOTE: schema inferred from spec, not validated against examples
+            items:
+              type: object
+              properties:
+                approach:
+                  type: string
+                tradeoff:
+                  type: string
+              required: [approach, tradeoff]
         - title: caution
           type: string
 
@@ -470,10 +540,22 @@ x-agentlab:
       outputs:
         - title: communication_preferences
           type: array
+          schema:
+            # NOTE: schema inferred from spec, not validated against examples
+            items:
+              type: string
         - title: formative_context
           type: array
+          schema:
+            # NOTE: schema inferred from spec, not validated against examples
+            items:
+              type: string
         - title: common_misinterpretations
           type: array
+          schema:
+            # NOTE: schema inferred from spec, not validated against examples
+            items:
+              type: string
         - title: individual_variation
           type: string
 
@@ -494,12 +576,58 @@ x-agentlab:
       outputs:
         - title: clash_analysis
           type: array
+          schema:
+            items:
+              type: object
+              properties:
+                area:
+                  type: string
+                generation_a_preference:
+                  type: string
+                generation_b_preference:
+                  type: string
+                why_it_creates_friction:
+                  type: string
+              required: [area, generation_a_preference, generation_b_preference, why_it_creates_friction]
         - title: shared_values
           type: array
+          schema:
+            items:
+              type: object
+              properties:
+                value:
+                  type: string
+                how_a_expresses_it:
+                  type: string
+                how_b_expresses_it:
+                  type: string
+              required: [value, how_a_expresses_it, how_b_expresses_it]
         - title: bridge_strategies
           type: array
+          schema:
+            items:
+              type: object
+              properties:
+                strategy:
+                  type: string
+                description:
+                  type: string
+                for_generation_a:
+                  type: string
+                for_generation_b:
+                  type: string
+              required: [strategy, description]
         - title: conversation_starters
           type: array
+          schema:
+            items:
+              type: object
+              properties:
+                scenario:
+                  type: string
+                phrase:
+                  type: string
+              required: [scenario, phrase]
 
     coach-sender:
       description: Help someone develop long-term cross-generational communication skills
@@ -520,12 +648,64 @@ x-agentlab:
       outputs:
         - title: assessment
           type: object
+          schema:
+            properties:
+              current_patterns:
+                type: array
+                items:
+                  type: string
+              strengths_to_leverage:
+                type: array
+                items:
+                  type: string
+              growth_areas:
+                type: array
+                items:
+                  type: string
+            required: [current_patterns, strengths_to_leverage, growth_areas]
         - title: skill_development
           type: array
+          schema:
+            items:
+              type: object
+              properties:
+                skill:
+                  type: string
+                why_it_matters:
+                  type: string
+                current_level:
+                  type: string
+                target_level:
+                  type: string
+              required: [skill, why_it_matters, current_level, target_level]
         - title: exercises
           type: array
+          schema:
+            items:
+              type: object
+              properties:
+                exercise:
+                  type: string
+                purpose:
+                  type: string
+                how_to_do_it:
+                  type: string
+                success_looks_like:
+                  type: string
+              required: [exercise, purpose, how_to_do_it, success_looks_like]
         - title: mental_models
           type: array
+          schema:
+            items:
+              type: object
+              properties:
+                model:
+                  type: string
+                description:
+                  type: string
+                when_to_apply:
+                  type: string
+              required: [model, description, when_to_apply]
 
   validation:
     required_dimensions:
@@ -576,6 +756,113 @@ x-agentlab:
     - Conflict requires mediation beyond communication style
     - User needs emotional support, not translation (escalate to Supportive Colleague Agent)
     - Communication issue is actually about power/authority, not generation
+
+  handoffs:
+    - id: to-supportive-colleague-agent
+      target: supportive-colleague-agent  # future agent
+      condition:
+        description: "User needs emotional support, not translation or coaching"
+        rule: null
+      passes:
+        - field: analysis
+          description: "Communication analysis providing context for emotional support"
+      context_from_input:
+        - field: context
+          description: "Workplace context"
+        - field: relationship
+          description: "Relationship dynamics"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Supportive Colleague Agent"
+    - id: to-difficult-conversations-agent
+      target: difficult-conversations-agent
+      condition:
+        description: "Conflict requires mediation beyond communication style, involving difficult interpersonal dynamics"
+        rule: null
+      passes:
+        - field: analysis
+          description: "Generational analysis as context for conversation preparation"
+      context_from_input:
+        - field: message
+          description: "Original message or situation"
+        - field: context
+          description: "Workplace context"
+        - field: relationship
+          description: "Relationship dynamics"
+      on_failure:
+        action: return_to_user
+        message: "Unable to hand off to Difficult Conversations Agent"
+    - id: escalate-age-discrimination
+      target: human
+      condition:
+        description: "Request involves potential age discrimination requiring HR or legal review"
+        rule: null
+      passes:
+        - field: analysis
+          description: "Analysis context for human review"
+      on_failure:
+        action: return_to_user
+        message: "This situation may involve age discrimination and requires HR or legal review"
+    - id: escalate-power-authority
+      target: human
+      condition:
+        description: "Communication issue is about power or authority dynamics, not generational differences"
+        rule: null
+      passes:
+        - field: analysis
+          description: "Analysis revealing power/authority dynamics"
+      on_failure:
+        action: return_to_user
+        message: "This communication issue appears driven by power dynamics, not generational differences"
+
+  chain_contracts:
+    as_receiver:
+      accepts_from:
+        - agent: "any"
+          expected_input:
+            - field: message
+              type: string
+              required: true
+              maps_to: "message"
+            - field: source_generation
+              type: string
+              required: true
+              maps_to: "source_generation"
+            - field: target_generation
+              type: string
+              required: true
+              maps_to: "target_generation"
+            - field: context
+              type: string
+              required: true
+              maps_to: "context"
+        - agent: difficult-conversations-agent
+          expected_input:
+            - field: situation_assessment
+              type: object
+              required: true
+              maps_to: "context"
+              transform: "situation_assessment.gap as communication context"
+            - field: approach
+              type: object
+              required: false
+              maps_to: "context"
+              transform: "approach.framework as conversation context"
+    as_sender:
+      guarantees:
+        - field: analysis
+          type: object
+          always_present: true
+          description: "Source style, target preferences, and friction points"
+        - field: adapted_message
+          type: string
+          always_present: true
+          description: "Rewritten message ready to use"
+        - field: confidence
+          type: string
+          always_present: true
+          description: "Confidence level (high/medium/low)"
+      ready_condition: "analysis is populated and adapted_message is non-empty"
 
   human_in_the_loop_conditions:
     - User provides context about specific individuals and relationships
