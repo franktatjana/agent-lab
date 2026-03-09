@@ -1,0 +1,63 @@
+# Break Frame Example
+# Demonstrates the trickster rejecting a false dilemma entirely
+# The "build or buy" binary is itself the problem
+
+input:
+  stuck_situation: "Should we build or buy our analytics platform?"
+  context: "Series B startup, 60 people, growing fast. Current analytics is a patchwork of spreadsheets and basic tools. Need something robust for the next stage of growth."
+  what_youve_tried: "Evaluated three vendors (too expensive, poor fit, or lock-in risk). Scoped a build (6-month estimate, which we know means 12+). Neither option feels right."
+  constraints: "Limited engineering bandwidth, need something working within 4 months"
+
+output:
+  invisible_assumptions:
+    - assumption: "The only two options are build from scratch or buy a complete vendor solution"
+      why_invisible: "Build vs. buy is such a standard framing in tech that it feels like a complete menu of options"
+      what_if_violated: "A whole category of options appears: partner, open-source, compose, or eliminate the need entirely"
+    - assumption: "We need a single unified analytics platform"
+      why_invisible: "The word 'platform' makes it sound like one thing, so we assume it must be one solution"
+      what_if_violated: "What if different analytics needs are best served by different tools, and the 'platform' is actually a lightweight integration layer?"
+    - assumption: "Analytics is primarily a technology problem"
+      why_invisible: "Engineers frame everything as technology problems. That is what engineers do."
+      what_if_violated: "What if the real bottleneck is not the tool but the process? What if better analytics habits with simpler tools would outperform a sophisticated platform with current habits?"
+    - assumption: "The solution must be ready for our next stage of growth"
+      why_invisible: "Forward-planning feels responsible"
+      what_if_violated: "What if solving for today's actual needs is better than building for hypothetical future scale? What if the next stage of growth changes the requirements entirely?"
+
+  inversions:
+    - original_frame: "We need to choose between building and buying"
+      inverted_frame: "We need to refuse to choose between building and buying"
+      absurd_solution: "Hold a company-wide vote where every employee picks their favorite analytics tool, then use all of them simultaneously"
+      real_insight_hidden_inside: "Different teams have different analytics needs. The 'one platform' assumption might be creating the false dilemma. A composable approach with the right tool per use case, connected by a thin data layer, might be faster and cheaper than either building or buying a monolith."
+
+    - original_frame: "We need something robust for the next stage of growth"
+      inverted_frame: "We need something disposable that we will replace at the next stage of growth"
+      absurd_solution: "Build the cheapest possible analytics solution that is designed to be thrown away in 18 months"
+      real_insight_hidden_inside: "A deliberately temporary solution removes the pressure to get it perfect now. If you know you will replace it, you can optimize for speed-to-value today and make a better-informed decision about the long-term solution after you actually experience the next stage of growth."
+
+  frame_break:
+    current_game: "Choosing between build (control, cost, time risk) and buy (fit, lock-in, expense) for a unified analytics platform"
+    new_game: "Composing a lightweight analytics stack from best-fit pieces, designed to evolve as needs become clearer"
+    rule_that_changed: "The assumption that analytics must be a single unified platform acquired through a single build-or-buy decision"
+    what_opens_up: "Open-source foundations with commercial add-ons, different tools for different teams connected by a shared data layer, intentionally temporary solutions that buy time for better decisions, and the option to make the 'real' build-or-buy decision 12 months from now with actual usage data"
+
+  trickster_counsel: >
+    You are stuck choosing between two doors, and neither one leads
+    where you want to go. So stop staring at the doors. The wall they
+    are mounted on is not load-bearing. Walk through the wall. Compose
+    your analytics from pieces that fit, plan to replace them when you
+    know more, and stop trying to make a permanent decision with
+    temporary information.
+
+  serious_options:
+    - option: "Deploy an open-source analytics foundation (e.g., PostHog, Metabase) and add commercial tools only for specific gaps"
+      why_it_was_invisible: "The build-vs-buy frame excluded 'assemble from open-source components' as a category"
+      risk: "Integration overhead between components; may need dedicated analytics engineering time"
+      potential: "Faster time-to-value than building, lower cost and less lock-in than buying, and you retain the ability to swap any component"
+    - option: "Give each team a budget and let them choose their own analytics tools, connected by a shared data warehouse"
+      why_it_was_invisible: "The 'unified platform' assumption made per-team tools look like chaos"
+      risk: "Data silos if the shared warehouse is not well-maintained; inconsistent metrics across teams"
+      potential: "Each team gets exactly what they need, adoption is higher because teams chose their own tools, and the data warehouse provides the single source of truth"
+    - option: "Build a deliberately temporary solution in 6 weeks, designed to last 12-18 months, and defer the real platform decision"
+      why_it_was_invisible: "Building something disposable feels wasteful; the frame assumed the solution must be durable"
+      risk: "The temporary solution becomes permanent (the 'nothing is more permanent than a temporary fix' problem)"
+      potential: "You make the real decision with 12 months of actual usage data instead of projections, and you meet your 4-month deadline easily"

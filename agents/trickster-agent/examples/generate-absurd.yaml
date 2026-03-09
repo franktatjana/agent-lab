@@ -1,0 +1,67 @@
+# Generate Absurd Solutions Example
+# Demonstrates how deliberately absurd proposals surface real insights
+# Each absurd solution targets a specific invisible assumption
+
+input:
+  stuck_situation: "Our meetings are unproductive but we can't reduce them because everything requires alignment"
+  context: "150-person company, rapid growth phase. Average employee has 18 hours of meetings per week. Multiple attempts to 'fix meetings' have failed: no-meeting Fridays lasted two weeks, meeting audits produced temporary improvement then reverted."
+  constraints: "Cross-functional work requires coordination. Remote-first team. Can't just tell people to stop meeting."
+
+output:
+  invisible_assumptions:
+    - assumption: "Meetings are the primary mechanism for alignment"
+      why_invisible: "For most organizations, alignment and meetings are synonymous. The idea that you could align without meeting feels like saying you could eat without food."
+      what_if_violated: "What other alignment mechanisms exist? Written proposals, async video updates, shared dashboards, decision logs. Meetings might be the least efficient alignment tool, used by default because it is the most familiar."
+    - assumption: "The problem is that meetings are unproductive (quality issue)"
+      why_invisible: "Every meeting improvement initiative focuses on making meetings better: agendas, facilitators, time limits"
+      what_if_violated: "What if the problem is not meeting quality but meeting quantity? What if individual meetings are fine but the aggregate load is the issue? What if the fix is not better meetings but fewer decisions that require meetings?"
+    - assumption: "Cross-functional work requires real-time synchronous coordination"
+      why_invisible: "In a remote-first company, video calls feel like the closest substitute for in-person collaboration"
+      what_if_violated: "What if most cross-functional coordination works better asynchronously, and real-time meetings are only needed for the 10% of decisions that involve genuine ambiguity or conflict?"
+    - assumption: "Meeting culture is a behavior problem that can be fixed with rules"
+      why_invisible: "No-meeting Fridays, meeting audits, and agenda requirements all treat meetings as a behavior to regulate"
+      what_if_violated: "What if meeting culture is a structural problem? What if people meet because the organization's decision-making architecture requires it, and fixing the architecture would fix the meetings?"
+
+  inversions:
+    - original_frame: "Our meetings are unproductive"
+      inverted_frame: "Our productivity is unmeetinged"
+      absurd_solution: "Make every meeting cost $100 per person per hour, deducted from each team's budget. Want a 1-hour meeting with 8 people? That will be $800 from your quarterly budget."
+      real_insight_hidden_inside: "Meetings have no visible cost in most organizations, so they are treated as free. Making the cost visible, even through internal accounting rather than actual money, changes the calculus. Teams would self-select which meetings are worth the cost and which alignment needs could be met more cheaply through async methods."
+
+    - original_frame: "We can't reduce meetings because everything requires alignment"
+      inverted_frame: "We can't get aligned because we have too many meetings"
+      absurd_solution: "Ban all meetings for one month. Every single one. If something is important enough, people will figure out how to coordinate without a calendar invite."
+      real_insight_hidden_inside: "A temporary meeting ban would reveal which meetings are genuinely necessary (people would find ways to recreate them) and which exist purely from habit or organizational anxiety. The meetings that survive a ban are the ones worth keeping. The rest were never producing alignment, just the feeling of alignment."
+
+    - original_frame: "We need to make meetings more productive"
+      inverted_frame: "We need to make non-meeting work more visible"
+      absurd_solution: "Hold all meetings standing in the parking lot. No chairs, no screens, no comfort. If you want to present slides, bring a whiteboard and markers."
+      real_insight_hidden_inside: "Discomfort is a filter. The parking lot absurdity points toward a real principle: the easier meetings are to hold, the more of them proliferate. Introducing friction (even mild friction like requiring a written pre-read, a decision to be made, or a specific deliverable) filters out meetings that exist for comfort rather than productivity."
+
+  frame_break:
+    current_game: "Improving meeting quality through rules, norms, and facilitation techniques"
+    new_game: "Redesigning the decision-making architecture so fewer decisions require meetings"
+    rule_that_changed: "The assumption that meetings are the alignment mechanism and the question is how to make them better"
+    what_opens_up: "Decision rights (who can decide what without a meeting), async-first protocols (written proposals with comment periods), escalation criteria (what actually needs real-time discussion), and organizational design changes that reduce the coordination overhead in the first place"
+
+  trickster_counsel: >
+    Your meetings are not unproductive. They are productive at the wrong
+    thing: they produce the feeling of alignment without actual alignment.
+    Stop trying to fix the meetings. Fix the reason you need so many of
+    them. Every meeting that exists because "we need to align" is a
+    confession that your decision-making architecture is broken. Fix the
+    architecture and the meetings will fix themselves.
+
+  serious_options:
+    - option: "Implement internal meeting pricing: every meeting has a calculated cost (attendees x hourly rate x duration) displayed on the calendar invite"
+      why_it_was_invisible: "Meetings are treated as free, and making their cost visible felt too aggressive or corporate"
+      risk: "Could create friction or resentment if perceived as punitive rather than informational"
+      potential: "Makes the cost-benefit calculation visible for every meeting, naturally reducing low-value meetings without any rules or mandates"
+    - option: "Create a decision rights matrix that specifies which decisions can be made by individuals, which need async review, and which require a meeting"
+      why_it_was_invisible: "The frame focused on meeting behavior rather than the decision-making structure that generates meetings"
+      risk: "Initial overhead to create and maintain the matrix; requires leadership alignment on delegation"
+      potential: "Eliminates meetings that exist only because nobody knows who has the authority to decide alone; reduces meeting load structurally rather than behaviorally"
+    - option: "Require every meeting request to include a written pre-read and a specific decision to be made, with async-first as the default"
+      why_it_was_invisible: "Previous meeting improvement attempts focused on what happens inside meetings, not on the threshold for calling one"
+      risk: "Could slow down genuinely urgent coordination if applied too rigidly"
+      potential: "Forces meeting organizers to clarify their purpose before booking time; many will discover the pre-read alone produces the alignment they needed, making the meeting unnecessary"

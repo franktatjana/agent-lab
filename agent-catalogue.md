@@ -258,6 +258,78 @@ Stress-tests decisions, red-teams proposals, finds blind spots before they becom
 
 ---
 
+### [mythology-agent](agents/mythology-agent/)
+
+Reframes workplace challenges through mythological archetypes from world traditions: Greek, Norse, Slavic, Japanese, Hindu. Matches situations to myths, then uses the myth's internal logic to reveal options invisible from inside the current frame. *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** match-archetype, reframe-through-myth, reveal-options, mythic-counsel
+- **Personalities:** oracle, sage, bard
+- **Frameworks:** Jungian Archetypes, Campbell's Monomyth, Cross-Cultural Narrative Psychology
+
+**When to use:** Repeating patterns, threshold moments, impossible choices, transformation journeys, when standard frameworks feel insufficient and the situation needs a deeper lens.
+
+---
+
+### [time-traveler-agent](agents/time-traveler-agent/)
+
+Examines decisions from three temporal vantage points: what forces created this moment (past), an honest snapshot stripped of bias (present), and two divergent futures (inaction vs action). *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** temporal-map, hindsight-analysis, foresight-projection, bias-correction
+- **Personalities:** historian, futurist, analyst
+- **Frameworks:** Temporal Discounting, Hindsight Bias Correction, Scenario Planning, Second-Order Effects Analysis
+
+**When to use:** Major architectural decisions, strategic pivots, when present-tense urgency is distorting judgment, when you need to see both how you got here and where each path leads.
+
+---
+
+### [chorus-agent](agents/chorus-agent/)
+
+Creates a chorus of context-specific characters who simultaneously comment on a situation, modeled on the ancient Greek chorus. Not generic roles but voices generated from the specific decision. *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** cast-voices, stage-dialogue, synthesize-perspectives, reveal-blind-spots
+- **Personalities:** director, moderator, provocateur
+- **Frameworks:** de Bono's Six Hats (foundation), Stakeholder Mapping, Perspective-Taking, Dramaturgical Analysis
+
+**When to use:** Architecture decisions, hiring choices, product pivots, any decision where multiple stakeholders have different stakes and a single perspective misses what matters.
+
+---
+
+### [archaeologist-agent](agents/archaeologist-agent/)
+
+Excavates decisions. Digs through layers of legacy systems, processes, and "we've always done it this way" to reconstruct why decisions were made, what constraints existed, and whether those constraints still hold. *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** excavate-decision, reconstruct-context, assess-constraints, archaeological-report
+- **Personalities:** forensic, diplomat, curator
+- **Frameworks:** Chesterton's Fence, Constraint Archaeology, Decision Provenance, Architectural Decision Records
+
+**When to use:** Legacy system decisions, process reform, policy review, any situation where someone says "we've always done it this way" and nobody remembers why.
+
+---
+
+### [trickster-agent](agents/trickster-agent/)
+
+The trickster archetype from world mythology for situations where straightforward approaches have failed. Deliberately inverts problems, proposes absurd solutions to discover non-obvious real ones, and breaks frames of thinking entirely. *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** invert-problem, break-frame, generate-absurd, trickster-synthesis
+- **Personalities:** coyote, jester, sage-fool
+- **Frameworks:** Lateral Thinking (de Bono), Bisociation (Koestler), Paradoxical Intervention, Reframing, Creative Destruction
+
+**When to use:** Stuck situations where every option within the current frame looks bad, false binaries, groupthink, when the problem is the frame itself.
+
+---
+
+### [gardener-agent](agents/gardener-agent/)
+
+Long-term cultivation of ideas, relationships, skills, and initiatives. Thinks in seasons, not sprints. Optimizes for timing, patience, and compounding returns instead of speed and throughput. *4 prompts · 4 skills · 3 personalities.*
+
+- **Skills:** assess-garden, plan-season, diagnose-timing, tend-portfolio
+- **Personalities:** permaculturist, bonsai-master, wild-gardener
+- **Frameworks:** Permaculture Principles, Compounding Returns, Patience Economics, Ecological Succession
+
+**When to use:** Portfolio management, career cultivation, relationship tending, timing decisions, when the pressure to act fast is working against what needs slow, sustained attention.
+
+---
+
 ## Prompt Design Patterns
 
 All agents in this repository follow two prompt quality patterns. See the [handbook](docs/handbook.md) for the full rationale.
@@ -270,17 +342,17 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 ## Agent Ideas
 
-57 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
+51 agent concepts with frameworks, skills, validation rules, output constraints, and IP notes researched. See [agents/agent-ideas.md](agents/agent-ideas.md) for full details.
 
 ### Decision & Strategy (20 ideas)
 
-**Thinking Chain:** decision-facilitator, systems-thinker, strategist, okr-agent, tactician, bias-detective, prioritization, game-theory, mental-models, chorus-agent, archaeologist-agent
+**Thinking Chain:** decision-facilitator, systems-thinker, strategist, okr-agent, tactician, bias-detective, prioritization, game-theory, mental-models
 
 **Analytical Frameworks:** investigation, intelligence
 
 **Engagement & Narrative:** superhero, gamification, discworld, alien
 
-**Philosophy & Wisdom:** rhetoric, stoic-adviser, personal-philosopher, trickster-agent, oracle-agent, mythology-agent
+**Philosophy & Wisdom:** rhetoric, stoic-adviser, personal-philosopher, oracle-agent
 
 ### Communication (9 ideas)
 
@@ -294,7 +366,7 @@ All agents in this repository follow two prompt quality patterns. See the [handb
 
 **Job Search:** interview-prep, resume, salary-negotiation
 
-**Professional Growth:** mentorship, promotion, skill-gap, strength-finder, management-consultant, career-narrative, performance-review, midlife-crisis, empty-nest, time-traveler-agent, last-lecture-agent, bibliophile-agent, cinephile-agent, gardener-agent
+**Professional Growth:** mentorship, promotion, skill-gap, strength-finder, management-consultant, career-narrative, performance-review, midlife-crisis, empty-nest, last-lecture-agent, bibliophile-agent, cinephile-agent
 
 **Change & Transition:** permafrost-agent
 

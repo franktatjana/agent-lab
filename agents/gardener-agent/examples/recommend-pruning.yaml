@@ -1,0 +1,126 @@
+# Recommend Pruning Example
+# Leader with 8 active projects, needs to thin to 4
+
+input:
+  garden_assessment:
+    summary: |
+      Director of Engineering managing 8 active projects simultaneously.
+      Team of 20 across 4 squads. All projects have some merit but resource
+      competition is severe. Nothing is getting full attention.
+
+    items:
+      - name: "Core platform rewrite"
+        stage: "established"
+        health: "needs_attention"
+        notes: "18 months in, critical but chronically under-resourced"
+      - name: "AI feature prototype"
+        stage: "seedling"
+        health: "overwatered"
+        notes: "Executive pet project, consuming disproportionate director time"
+      - name: "Developer experience initiative"
+        stage: "established"
+        health: "healthy"
+        notes: "Self-sustaining team, low director involvement needed"
+      - name: "SOC 2 compliance"
+        stage: "flowering"
+        health: "needs_attention"
+        notes: "Audit in 4 months, needs focused push to complete"
+      - name: "Mobile app v2"
+        stage: "seed"
+        health: "neglected"
+        notes: "Approved 3 months ago, no one has started, keeps getting bumped"
+      - name: "Technical debt reduction"
+        stage: "established"
+        health: "neglected"
+        notes: "Recurring commitment that keeps losing to shinier projects"
+      - name: "Hiring pipeline for 5 roles"
+        stage: "seedling"
+        health: "needs_attention"
+        notes: "Started 2 months ago, inconsistent attention, 0 hires"
+      - name: "Cross-team API standardization"
+        stage: "seedling"
+        health: "neglected"
+        notes: "Good idea, wrong time, no one has bandwidth"
+
+  concerns: |
+    I know I need to cut. My team is demoralized because nothing gets
+    finished. I keep saying yes to new things because they all sound
+    important. My VP keeps adding priorities without removing any.
+
+output:
+  pruning_recommendations:
+    - item: "Cross-team API standardization"
+      recommendation: "let-go"
+      reasoning: |
+        This is a good idea planted in the wrong season. No one has bandwidth,
+        and it has been neglected since inception. The soil is not ready. Let
+        it go now and revisit after the platform rewrite and SOC 2 are complete,
+        when the team has capacity and the API standardization can build on
+        the rewritten platform.
+      emotional_difficulty: "low"
+      freed_resources: "Removes a guilt-generating item from the mental load. Frees planning time spent on a project that was never going to get attention this quarter."
+
+    - item: "Mobile app v2"
+      recommendation: "let-go"
+      reasoning: |
+        Approved 3 months ago but never started. The garden is telling you
+        something: this seed keeps getting bumped because the soil (team
+        bandwidth) is occupied. Starting it now means another under-resourced
+        seedling competing for light. Defer to next quarter at minimum, or
+        until the platform rewrite frees capacity.
+      emotional_difficulty: "medium"
+      freed_resources: "Removes future resource commitment. Prevents a new seedling from competing with the 6 existing items. Signals to the team that you can say 'not now.'"
+
+    - item: "AI feature prototype"
+      recommendation: "prune"
+      reasoning: |
+        This is receiving more director-level attention than its stage warrants
+        because it is an executive pet project, not because it needs it. A
+        seedling should be tended by the team closest to it, not the director.
+        Prune your involvement: set clear milestones, delegate daily oversight
+        to a senior engineer, and check in bi-weekly instead of daily. The
+        prototype will grow fine without you hovering over it.
+      emotional_difficulty: "high"
+      freed_resources: "Recovers 5-8 hours per week of director time. Redirects that time to the platform rewrite and SOC 2 compliance, which are both closer to harvest and more strategically critical."
+
+    - item: "Technical debt reduction"
+      recommendation: "transplant"
+      reasoning: |
+        This keeps losing to shinier projects because it lives in the same
+        garden as feature work. Transplant it: make it a standing allocation
+        (20% of each sprint) rather than a separate project competing for
+        prioritization. Embed it into the development process so it does not
+        need its own slot on the priority list.
+      emotional_difficulty: "low"
+      freed_resources: "Removes the recurring prioritization battle. Debt reduction happens consistently without needing director-level advocacy each sprint."
+
+  cultivation_plan: |
+    Your garden has eight items competing for the light that four can
+    realistically share. The core problem is not that any single project is
+    wrong, it is that you have twice the garden you can tend. Your team's
+    demoralization comes from partial attention: everything moves, nothing
+    finishes, and the list only grows.
+
+    After pruning, your focused portfolio becomes four items: the platform
+    rewrite (your most critical established plant, finally getting the
+    resources it deserves), SOC 2 compliance (flowering, with a hard
+    harvest deadline in 4 months), the developer experience initiative
+    (healthy and largely self-sustaining), and the hiring pipeline (a
+    seedling that needs consistent weekly attention to produce results).
+    Technical debt becomes embedded in the process rather than competing
+    as a project. The AI prototype gets tended by the team, not by you.
+
+    The hardest conversation will be with your VP about the pruned items.
+    Frame it as a capacity conversation, not a refusal: "Here are the four
+    things we can finish well this quarter. Here are the two we are deferring
+    to next quarter so we can actually deliver on the four." Leaders who
+    can articulate tradeoffs earn more trust than those who say yes to
+    everything and deliver on nothing.
+
+  confidence: "high"
+
+  caveats:
+    - "Cannot assess organizational politics around the AI prototype's executive sponsorship"
+    - "VP's reaction to pruning is unknown and may require negotiation"
+    - "Technical debt transplant approach depends on team buy-in and sprint process flexibility"
+    - "Hiring pipeline timeline depends on external factors (market, recruiter capacity) not visible here"

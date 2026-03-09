@@ -1,0 +1,44 @@
+# Example: Hindsight Analysis — Lost Major Client
+# Demonstrates the hindsight-analysis flow with historian personality
+
+skill: hindsight-analysis
+personality: historian
+
+input:
+  situation: "We lost our largest client, Meridian Corp, last quarter. They represented 18% of our revenue ($3.2M ARR). The account had been with us for 4 years. They switched to a competitor, and the leadership team is trying to understand what went wrong."
+  context: "B2B SaaS company, $17.8M ARR, 92 employees. Meridian was our first enterprise client and our largest account. The account manager who originally closed the deal left 14 months ago. The replacement account manager inherited 8 accounts simultaneously. Our product has not had a major feature release targeting enterprise workflows in 16 months."
+  timeframe: "4 years"
+
+output:
+  past_analysis:
+    forces_that_created_this:
+      - force: "Meridian was acquired as the company's first enterprise client during a period when the product was evolving rapidly to meet their needs"
+        timeframe: "4 years ago"
+        causal_chain: "In the first 18 months, the company built 6 features specifically requested by Meridian. This created the perception of a deeply responsive vendor. As the company grew to 200+ clients, the ratio of Meridian-specific development to total development shifted from roughly 40% to under 5%, but Meridian's expectations were anchored to the early experience."
+      - force: "Company shifted product strategy from enterprise-specific to mid-market platform 2 years ago"
+        timeframe: "2 years ago"
+        causal_chain: "Series A growth analysis showed that mid-market deals closed 3x faster than enterprise deals at 60% of the ACV. Product roadmap pivoted to mid-market features: self-service onboarding, template workflows, simplified pricing. Enterprise-specific features (custom integrations, dedicated support workflows, compliance reporting) were deprioritized. This was a rational strategy decision but it was never communicated to existing enterprise clients as a strategic shift."
+      - force: "Original account manager departure and insufficient transition"
+        timeframe: "14 months ago"
+        causal_chain: "The original AM had a 4-year relationship with Meridian's VP of Operations, including monthly strategic reviews and proactive feature advocacy. The transition to the replacement AM was a 30-minute handoff call. The replacement AM inherited 8 accounts and defaulted to reactive support rather than strategic engagement. Monthly reviews stopped. Meridian's renewal was 12 months away at transition, which felt like plenty of time."
+      - force: "Competitor launched enterprise-tier product 10 months ago"
+        timeframe: "10 months ago"
+        causal_chain: "The competitor had been a mid-market player but launched a dedicated enterprise offering with the compliance reporting, custom integrations, and dedicated support that Meridian valued. The competitor's sales team contacted Meridian 8 months ago. Meridian began a quiet evaluation. Our team learned about the evaluation 6 weeks before the contract expired."
+    key_decisions:
+      - decision: "Pivoted product roadmap from enterprise-first to mid-market platform"
+        context_at_the_time: "The data supported the decision. Mid-market deals represented 70% of new revenue growth. Enterprise deals required 3x the sales cycle, 2x the implementation effort, and generated a disproportionate share of support tickets. The board and investors aligned on mid-market as the growth vector. No analysis was conducted on the retention risk to existing enterprise clients."
+        what_it_led_to: "Mid-market growth accelerated as planned. Enterprise feature gap widened over 16 months. Enterprise clients received no communication about the strategic shift, experienced it as gradual neglect rather than a deliberate choice."
+      - decision: "Did not backfill the original account manager's strategic review cadence"
+        context_at_the_time: "The replacement AM was a strong performer being stretched across too many accounts. Management knew the account load was high but did not prioritize reducing it because overall retention metrics were healthy (94% net retention). Meridian was not flagged as at-risk because they had not complained."
+        what_it_led_to: "The absence of complaints was interpreted as satisfaction. In retrospect, Meridian had stopped complaining because they had started evaluating alternatives. The shift from vocal to silent is a leading indicator of churn that the team did not have instrumented."
+      - decision: "Learned about competitor evaluation 6 weeks before contract expiration"
+        context_at_the_time: "The company did not have a formal competitive intelligence process. The replacement AM's relationship with Meridian was transactional (support tickets, not strategic). No one was monitoring Meridian's vendor evaluation activity. By the time the evaluation was discovered, Meridian had already completed a pilot with the competitor."
+        what_it_led_to: "The save attempt was too late. Meridian had emotionally and operationally committed to the transition. The 6-week window was spent on discounting and promises rather than on the strategic engagement that would have been effective 8 months earlier."
+    constraints_then:
+      - "4 years ago: the company was pre-product-market-fit and could afford to build around a single client's needs. This constraint (small, flexible, responsive) dissolved as the client base grew."
+      - "2 years ago: growth metrics favored mid-market. Enterprise retention risk was not measured because no enterprise client had churned. The data supported the pivot because it did not include the data that would have challenged it."
+      - "14 months ago: account management was understaffed relative to portfolio size, but overall retention metrics masked the risk in individual accounts. The constraint was bandwidth, not capability."
+    what_was_invisible:
+      - "The transition from vocal dissatisfaction to silence was a churn signal, not a satisfaction signal. This pattern is well-documented in customer success literature but was not instrumented or monitored."
+      - "Meridian's VP of Operations had a personal relationship with the original AM that extended beyond the product. The replacement AM never built this relationship because the handoff focused on account data, not relationship context."
+      - "The competitor's enterprise launch was visible 10 months ago through their marketing, press releases, and job postings. Nobody at the company was monitoring competitor product launches against the existing enterprise client base."

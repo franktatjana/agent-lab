@@ -1,0 +1,160 @@
+# Example: Temporal Map — Monolith to Microservices Decision
+# Demonstrates the temporal-map flow with historian personality
+
+skill: temporal-map
+personality: historian
+
+input:
+  situation: "We have a monolithic application that has been in production for 6 years. It started as a Django app serving 50 customers. We now have 2,400 customers and 14 engineers. Deployments take 4 hours and happen once a week. We are discussing whether to migrate to microservices."
+  decision: "Migrate from monolith to microservices architecture"
+  context: "Series B company, $18M ARR, 85 employees. Engineering is 14 people across 3 teams. The CTO joined 2 years ago from a microservices-native company. Two senior engineers have been with the company since the beginning and are skeptical. Last quarter we had 3 customer-facing outages traced to deployment complexity."
+  timeframe: "5 years"
+
+output:
+  past_analysis:
+    forces_that_created_this:
+      - force: "Django monolith was selected when the team was 3 engineers and the product had 12 beta customers"
+        timeframe: "6 years ago"
+        causal_chain: "At the time, a monolith was the rational choice: one codebase, one deployment, one database. The team needed to iterate on product-market fit, not optimize for scale. The architecture served its purpose through the first 500 customers and $4M ARR."
+      - force: "Rapid hiring from 5 to 14 engineers in 18 months following Series A"
+        timeframe: "3 years ago"
+        causal_chain: "Hiring outpaced architectural evolution. Each new engineer added code to the monolith without a shared understanding of module boundaries, creating coupling that made deployments slower and riskier over time."
+      - force: "New CTO arrived from a microservices-native organization"
+        timeframe: "2 years ago"
+        causal_chain: "CTO's experience at previous company (200-engineer, microservices architecture) shaped expectations about what 'good' architecture looks like. The conversation shifted from 'how do we improve our monolith' to 'when do we migrate to microservices.'"
+      - force: "Deployment pipeline accumulated complexity without dedicated infrastructure investment"
+        timeframe: "Gradual, last 3 years"
+        causal_chain: "Each deployment workaround (manual steps, rollback scripts, deployment windows) added friction. The 4-hour deployment window is not a technical constraint of monoliths, it is the accumulated cost of 3 years of workarounds without infrastructure investment."
+    key_decisions:
+      - decision: "Chose Django monolith for the initial product"
+        context_at_the_time: "Team of 3, no customers, needed to validate product-market fit. Budget was 8 months of runway. Alternative was a more complex architecture that would have consumed 40% of engineering time on infrastructure rather than product. Rails, Flask, and Django were all reasonable choices. The monolith was not a mistake."
+        what_it_led_to: "Fast iteration through product-market fit. First 500 customers acquired in 18 months. Architecture served the company through $4M ARR. Technical debt began accumulating after headcount exceeded 8 engineers without architectural investment."
+      - decision: "Did not invest in deployment infrastructure during the Series A growth phase"
+        context_at_the_time: "All engineering bandwidth was allocated to product features to meet Series A growth targets. The deployment process was painful but functional. Infrastructure work was repeatedly deprioritized because it did not directly drive customer acquisition or retention metrics."
+        what_it_led_to: "Deployment time grew from 45 minutes to 4 hours over 2 years. Deployment frequency dropped from daily to weekly. The weekly cadence created batching, which increased risk per deployment, which increased the need for the 4-hour window."
+      - decision: "CTO framed the architecture discussion as monolith vs. microservices"
+        context_at_the_time: "CTO's reference point was a 200-engineer organization where microservices were necessary. The framing was influenced by the CTO's experience, not by an analysis of the current team's constraints. The two senior founding engineers pushed back but did not have an alternative framework to offer."
+        what_it_led_to: "18 months of recurring architecture debates without resolution. The team split into 'pro-microservices' (aligned with CTO) and 'pro-monolith' (aligned with founding engineers). The actual deployment problems remained unaddressed while the strategic debate continued."
+    constraints_then:
+      - "6 years ago: 3 engineers, 8 months runway, no customers. Architecture complexity was a direct threat to survival."
+      - "3 years ago: Series A growth mandate required all engineering on product features. Infrastructure investment had negative short-term ROI against growth metrics."
+      - "2 years ago: CTO's mandate was to 'professionalize engineering.' Microservices migration was perceived as the mechanism, constraining the solution space before the problem was fully diagnosed."
+    what_was_invisible:
+      - "The deployment problem would have been largely solvable with CI/CD investment without architectural migration. This option was invisible because the framing was 'monolith vs. microservices' rather than 'what specifically is causing deployment pain.'"
+      - "The team's monolith expertise was a strategic asset, not a liability. The founding engineers' deep knowledge of the codebase enabled rapid debugging and feature delivery that would be lost during a migration."
+      - "Industry data on microservices migrations at companies with fewer than 20 engineers shows a 60-70% rate of significant timeline overruns. This reference class was not consulted."
+
+  present_snapshot:
+    honest_assessment: >
+      The company has a 6-year-old monolithic application serving 2,400 customers
+      at $18M ARR with 14 engineers. Deployments take 4 hours weekly. Three
+      customer-facing outages occurred last quarter. The team has been debating
+      architecture for 18 months without action. Two factions exist: the CTO and
+      newer engineers favor microservices, the founding engineers are skeptical.
+      The deployment pain is real. The question of whether microservices is the
+      right solution has not been separated from the question of whether the
+      deployment pain needs to be solved.
+    narrative_biases_stripped:
+      - narrative: "We have outgrown our monolith"
+        reality: "The monolith serves 2,400 customers at $18M ARR. The deployment pain is real but may be caused by insufficient CI/CD investment rather than architectural limitations. Companies with comparable scale (10-20 engineers, similar ARR) operate successfully on monolithic architectures with proper tooling."
+      - narrative: "Microservices will solve our deployment problems"
+        reality: "The 4-hour deployment window is caused by manual steps, lack of automated rollback, and accumulated workarounds. Microservices would replace this problem with a different set of operational challenges (service discovery, distributed debugging, network latency, data consistency). The deployment pain would change shape, not disappear."
+      - narrative: "The founding engineers are resistant to change"
+        reality: "The founding engineers have raised specific, technical concerns about migration risk at the company's current scale and team size. Their skepticism is grounded in domain knowledge of the codebase, not in generalized resistance. Their concerns align with published data on migration outcomes at comparable company sizes."
+    current_constraints:
+      - "Hard: 14 engineers total, no additional headcount approved until Series B"
+      - "Hard: $18M ARR with 2,400 customers depending on system stability during any transition"
+      - "Soft: CTO's professional identity is partially invested in the microservices direction"
+      - "Soft: 18 months of debate has created fatigue, the team wants a decision more than the right decision"
+      - "Inherited: the assumption that the choice is binary (monolith vs. microservices) rather than incremental (improve the monolith's deployment pipeline first, then evaluate)"
+    what_is_actually_true:
+      - "Deployments take 4 hours and happen weekly"
+      - "3 customer-facing outages last quarter, all traced to deployment complexity"
+      - "14 engineers across 3 teams"
+      - "18 months of architecture debate without resolution"
+      - "No CI/CD investment has been made in the last 2 years"
+
+  future_inaction:
+    trajectory: >
+      Without action, the deployment pipeline continues to degrade. Weekly
+      deployments become bi-weekly as the team batches more changes to reduce
+      deployment frequency. Deployment risk increases with batch size.
+      Customer-facing outages increase from 3 per quarter to 5-7. The
+      architecture debate continues without resolution, consuming leadership
+      bandwidth and deepening the faction split.
+    consequences:
+      - consequence: "Deployment frequency drops to bi-weekly as risk-per-deployment increases with batch size"
+        timeframe: "6 months"
+        severity: Medium
+      - consequence: "1-2 senior engineers leave, citing lack of technical direction as the primary reason"
+        timeframe: "12 months"
+        severity: High
+      - consequence: "Customer churn increases as outage frequency rises and competitor reliability improves"
+        timeframe: "18 months"
+        severity: High
+      - consequence: "Series B due diligence flags technical infrastructure risk, potentially affecting valuation or terms"
+        timeframe: "2 years"
+        severity: High
+      - consequence: "The eventual migration (which becomes unavoidable) costs 3-5x more than it would today because the codebase has grown and the experienced engineers have left"
+        timeframe: "3-5 years"
+        severity: High
+    second_order_effects:
+      - effect: "The architecture debate becomes a proxy war for CTO vs. founding engineers, poisoning organizational trust beyond the technical question"
+        mechanism: "Unresolved technical disagreements that persist for 18+ months become identity conflicts. Each side's position hardens, and the debate shifts from 'what is the right architecture' to 'whose judgment is trusted.'"
+      - effect: "New engineering hires self-select based on which faction they align with, creating a team composition that reinforces the split rather than resolving it"
+        mechanism: "Job postings and interviews subtly signal the company's architectural direction (or lack thereof). Candidates who thrive in ambiguity join, candidates who want clear technical direction go elsewhere."
+      - effect: "Product roadmap slows as deployment friction consumes an increasing share of engineering capacity, making the company less competitive against faster-shipping rivals"
+        mechanism: "4-hour deployments at weekly frequency means 16 hours/month of deployment time across the team. As this grows to bi-weekly with longer windows, the fraction of engineering capacity consumed by operations increases from 3% to 8-10%."
+    who_is_affected:
+      - "Customers: increased outage frequency and slower feature delivery"
+      - "Engineering team: continued frustration and faction dynamics"
+      - "Founding engineers: professional reputation tied to a codebase that is deteriorating"
+      - "CTO: credibility erodes as the debate he initiated remains unresolved"
+      - "Sales team: harder to close deals against competitors with better reliability track records"
+
+  future_action:
+    trajectory: >
+      The team invests 2-3 months in CI/CD infrastructure for the existing
+      monolith: automated testing, blue-green deployments, automated rollback.
+      Deployment time drops from 4 hours to 30 minutes. Deployment frequency
+      increases from weekly to daily. The team evaluates whether microservices
+      migration is still needed once the deployment pain is resolved. If it is,
+      they begin an incremental strangler-fig migration of the highest-churn
+      modules.
+    consequences:
+      - consequence: "Deployment time reduced from 4 hours to 30 minutes through CI/CD investment"
+        timeframe: "3 months"
+        likelihood: High
+      - consequence: "Customer-facing outages reduce from 3/quarter to 0-1/quarter through automated rollback"
+        timeframe: "6 months"
+        likelihood: High
+      - consequence: "Architecture debate resolves as the team sees that much of the 'monolith problem' was actually a tooling problem"
+        timeframe: "6 months"
+        likelihood: Medium
+      - consequence: "If microservices migration proceeds via strangler-fig pattern, first module extracted successfully with minimal disruption"
+        timeframe: "12 months"
+        likelihood: Medium
+      - consequence: "Engineering velocity increases as deployment friction decreases, enabling faster feature delivery and stronger competitive position"
+        timeframe: "18 months"
+        likelihood: High
+    second_order_effects:
+      - effect: "The faction split heals because the team has a shared win (deployment improvement) before tackling the harder question (architectural direction)"
+        mechanism: "Successful CI/CD investment demonstrates that both sides can collaborate on infrastructure improvements. The founding engineers' monolith expertise is validated while the CTO's push for modernization produces tangible results."
+      - effect: "Faster deployments enable smaller changes, which reduce risk per change, which enable even faster deployments, creating a positive feedback loop"
+        mechanism: "The CI/CD investment breaks the batching cycle. Smaller, more frequent deployments are individually lower risk, which reduces deployment anxiety, which encourages even more frequent deployments."
+    who_benefits:
+      - "Customers: fewer outages, faster feature delivery"
+      - "Engineering team: reduced deployment friction, resolved faction dynamics"
+      - "CTO: demonstrates leadership through pragmatic action rather than strategic debate"
+      - "Founding engineers: their codebase expertise is leveraged rather than deprecated"
+      - "Company: stronger position for Series B with demonstrable infrastructure maturity"
+
+  temporal_insight: >
+    The monolith was the right choice six years ago, and the forces that made it
+    right no longer apply. But the assumption that microservices is the answer
+    skips a step: the deployment pain that is driving the migration conversation
+    was created by 3 years of CI/CD underinvestment, not by the monolith itself.
+    Investing in deployment tooling first resolves the immediate pain, heals the
+    team faction split, and creates the foundation for an informed architectural
+    decision, one based on evidence from the improved system rather than
+    frustration with the neglected one.

@@ -50,6 +50,42 @@ export const agentResources: Record<string, { references: string[]; visualImage?
   "wargaming-agent": {
     references: ["wargaming-frameworks.md", "glossary-and-resources.md"],
   },
+  "pre-mortem-agent": {
+    references: ["frameworks.md", "glossary-and-resources.md"],
+  },
+  "decision-decomposer-agent": {
+    references: ["frameworks.md", "glossary-and-resources.md"],
+  },
+  "crisis-navigator-agent": {
+    references: ["frameworks.md", "glossary-and-resources.md"],
+  },
+  "sensemaking-agent": {
+    references: ["frameworks.md", "glossary-and-resources.md"],
+  },
+  "scenario-planning-agent": {
+    references: ["frameworks.md", "glossary-and-resources.md"],
+  },
+  "devils-advocate-agent": {
+    references: ["frameworks.md", "glossary-and-resources.md"],
+  },
+  "mythology-agent": {
+    references: ["mythological-frameworks.md", "glossary-and-resources.md"],
+  },
+  "time-traveler-agent": {
+    references: ["temporal-frameworks.md", "glossary-and-resources.md"],
+  },
+  "chorus-agent": {
+    references: ["perspective-frameworks.md", "glossary-and-resources.md"],
+  },
+  "archaeologist-agent": {
+    references: ["decision-archaeology-frameworks.md", "glossary-and-resources.md"],
+  },
+  "trickster-agent": {
+    references: ["lateral-thinking-frameworks.md", "glossary-and-resources.md"],
+  },
+  "gardener-agent": {
+    references: ["cultivation-frameworks.md", "glossary-and-resources.md"],
+  },
 };
 
 export function FrameworkBadge({ name, agentId, onOpenFlyout }: { name: string; agentId: string; onOpenFlyout: (f: { title: string; content: string }) => void }) {

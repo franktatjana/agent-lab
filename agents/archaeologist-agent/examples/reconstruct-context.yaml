@@ -1,0 +1,58 @@
+# Example: Reconstruct Context — Custom ORM
+# Demonstrates the reconstruct-context skill with curator personality
+
+skill: reconstruct-context
+personality: curator
+
+input:
+  artifact: "Our application uses a custom ORM built 8 years ago by a founding engineer who has since left. It handles database access for all 14 microservices. Some developers want to replace it with a standard ORM (SQLAlchemy or similar). Others say it handles edge cases that standard ORMs do not. The codebase is approximately 15,000 lines."
+  context: "Python-based SaaS platform. 50 engineers across 6 teams. The custom ORM is a shared library that all services depend on. It has no external documentation beyond inline comments."
+  known_history: "The founding engineer built it in 2017 when the company was a 3-person startup. One senior engineer who overlapped with the founder for 2 years says the founder chose to build custom because 'nothing available at the time handled our multi-tenant data isolation requirements.'"
+
+output:
+  excavation:
+    artifact_description: "A custom Python ORM providing database access for 14 microservices. Approximately 15,000 lines including a query builder, connection pooler, migration framework, and multi-tenant isolation layer. All services import it as an internal library."
+    estimated_origin: "2017, during the company's first year as a 3-person startup."
+    layers_identified:
+      - layer: 1
+        period: "2017"
+        change: "Initial ORM created with multi-tenant isolation as the core design constraint."
+        trigger: "No available Python ORM in 2017 provided row-level multi-tenant isolation with acceptable performance for the company's data model."
+        evidence_quality: inferred
+      - layer: 2
+        period: "2018-2019"
+        change: "Query builder extended, connection pooling added, migration framework built."
+        trigger: "Growing data volume and service count required features beyond the original scope."
+        evidence_quality: inferred
+      - layer: 3
+        period: "2020-2021"
+        change: "Multi-service support added. ORM extracted into shared library consumed by all services."
+        trigger: "Microservices architecture adoption required the ORM to serve multiple independent services."
+        evidence_quality: documented
+      - layer: 4
+        period: "2022-present"
+        change: "Maintenance patches, bug fixes, no major feature additions. Founding engineer departed in 2022."
+        trigger: "Ongoing operational needs. No new development, only sustaining engineering."
+        evidence_quality: documented
+
+  decision_reconstruction:
+    original_decision: "Build a custom ORM with native multi-tenant row-level isolation rather than using SQLAlchemy (the leading Python ORM at the time) with a bolted-on tenant isolation layer."
+    original_constraints:
+      - constraint: "SQLAlchemy in 2017 did not provide built-in row-level multi-tenant isolation. Implementing it required extensive session-level customization that was fragile and had significant performance overhead for the company's query patterns."
+        category: technical
+        evidence: "Inferred from SQLAlchemy documentation history and the testimony of the overlapping senior engineer. SQLAlchemy added improved multi-tenant patterns in version 1.4 (2021) and refined them further in 2.0 (2023)."
+      - constraint: "The founding team had 3 engineers and needed to move fast. Building a purpose-built ORM scoped to their exact data model was faster than fighting SQLAlchemy's abstractions for a use case it was not designed for."
+        category: resource
+        evidence: "Inferred from the startup's stage and team size in 2017."
+      - constraint: "The company's data model required every query to be tenant-scoped at the database level, not the application level, for compliance with their enterprise customers' data isolation requirements."
+        category: regulatory
+        evidence: "Inferred from the multi-tenant isolation layer's design, which enforces tenant scoping at the query builder level rather than relying on application-level filtering."
+    alternatives_rejected:
+      - alternative: "SQLAlchemy with custom session-level tenant isolation"
+        rejection_reason: "Performance overhead was unacceptable for the query patterns. The 2017 version of SQLAlchemy required per-query session manipulation for tenant isolation, adding latency to every database call."
+      - alternative: "Django ORM"
+        rejection_reason: "The application was not built on Django. Adopting Django's ORM would have required adopting the Django framework, which was disproportionate to the need."
+      - alternative: "Raw SQL with a thin abstraction layer"
+        rejection_reason: "The founding engineer (based on code style and comments) valued type safety and query composition. Raw SQL would have sacrificed the composability that the multi-service architecture later required."
+    decision_makers: "The founding engineer, as the primary technical decision-maker in a 3-person startup. The decision was likely individual rather than committee-based, consistent with early-stage startup decision-making patterns."
+    rationale: "Given that no available Python ORM in 2017 handled multi-tenant row-level isolation with acceptable performance, and the team needed to ship a tenant-isolated product for enterprise customers within months, building a purpose-specific ORM was the pragmatic choice. The founding engineer's evident care for code quality (visible in the codebase) suggests this was a deliberate architectural choice, not a shortcut."

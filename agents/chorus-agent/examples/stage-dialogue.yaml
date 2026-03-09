@@ -1,0 +1,82 @@
+# Stage Dialogue Example
+# Hiring decision: promote internal candidate vs. hire externally
+# 5 voices with rich dialogue interactions
+
+input:
+  situation: "VP of Engineering position is open after departure"
+  context: "Series B startup, 80 employees, the outgoing VP built most of the current architecture. Two strong internal candidates and pressure from the board to consider external hires."
+  decision: "Promote a senior director internally or hire an external VP with scale-up experience"
+  stakeholders: "Board, two internal candidates, engineering team"
+
+output:
+  cast:
+    - voice_name: "The senior director who has been here since employee twelve"
+      perspective: "Knows every system, every shortcut, every technical debt decision and why it was made"
+      stake_in_outcome: "Has been building toward this role for three years and will likely leave if passed over"
+      likely_position: "Believes institutional knowledge and team trust matter more than 'scale-up playbook' experience"
+
+    - voice_name: "The board member who backed three failed scale-ups"
+      perspective: "Has watched companies die because they promoted loyal insiders who could not handle the next phase"
+      stake_in_outcome: "Needs this company to reach Series C metrics or the fund's thesis fails"
+      likely_position: "Wants an external hire with a proven track record of scaling engineering teams past 200 people"
+
+    - voice_name: "The engineer who joined last month"
+      perspective: "Chose this company based on the team culture and technical reputation, has no loyalty to any candidate"
+      stake_in_outcome: "Their career trajectory depends on whether the new VP creates growth opportunities or just manages the status quo"
+      likely_position: "Wants whoever will create the best engineering culture, internal or external"
+
+    - voice_name: "The outgoing VP who built everything"
+      perspective: "Knows where the bodies are buried, both technical and organizational"
+      stake_in_outcome: "Their legacy depends on whether the successor protects or dismantles what they built"
+      likely_position: "Privately wants the internal candidate who will preserve the architecture, but knows the company may need fresh perspective"
+
+    - voice_name: "The company eighteen months from now"
+      perspective: "Lives with the full consequences: the team that stayed or left, the architecture that scaled or cracked, the culture that held or fractured"
+      stake_in_outcome: "Everything, this decision shapes who the company becomes"
+      likely_position: "Wants the decision that optimizes for the company in 2027, not the company in 2025"
+
+  dialogue:
+    - voice_name: "The board member who backed three failed scale-ups"
+      statement: "I have seen this movie before. You promote the loyal insider, they struggle with the jump from managing 15 engineers to 80, and by the time you realize it, your best people have already started interviewing. We need someone who has done this before."
+      emotion: "Fear rooted in personal experience of watching promotions fail"
+      challenges: "The assumption that internal knowledge compensates for scaling experience"
+
+    - voice_name: "The senior director who has been here since employee twelve"
+      statement: "The last three external VPs I have worked with at other companies spent their first six months breaking things that worked while learning what we already knew. You cannot download institutional knowledge from a LinkedIn profile."
+      emotion: "Defensive pride mixed with genuine concern about continuity"
+      challenges: "The board member's assumption that external hires are lower risk"
+
+    - voice_name: "The engineer who joined last month"
+      statement: "I do not care who gets the title. I care whether my pull requests get reviewed in a day or a week, whether I get to work on interesting problems, and whether there is a path to senior engineer here. Neither candidate has talked to me about any of that."
+      emotion: "Pragmatic detachment, mild frustration at the political focus"
+      challenges: "Both sides for making this about the candidates instead of the team's needs"
+
+    - voice_name: "The outgoing VP who built everything"
+      statement: "The architecture will need a significant overhaul in the next year regardless of who sits in my chair. The question is whether you want someone who understands why it was built this way doing the overhaul, or someone who treats the legacy as a problem to be replaced."
+      emotion: "Protective anxiety about their life's work, trying to sound neutral"
+      challenges: "The board member's implicit assumption that everything needs to change"
+
+    - voice_name: "The company eighteen months from now"
+      statement: "You chose the external hire. She was brilliant. She also replaced 40% of the engineering team in her first year, and the institutional knowledge walked out with them. The new architecture is better on paper but the team that knows how to operate it does not exist yet."
+      emotion: "Resignation, telling a story that has already happened"
+      challenges: "The assumption that talent is fungible and culture rebuilds itself"
+
+    - voice_name: "The board member who backed three failed scale-ups"
+      statement: "Fine, but I have also seen the alternative. You promote internally, the person struggles, and by the time you admit it you have lost two quarters and the person you promoted. That is worse for everyone, including them."
+      emotion: "Genuine concern for the internal candidate, wrapped in strategic pragmatism"
+      challenges: "The narrative that the internal promotion is the kind option"
+
+  consensus_points:
+    - "Every voice agrees that the transition will be disruptive regardless of the choice"
+    - "All voices, including the board member, acknowledge that institutional knowledge has real value that cannot be transferred in an onboarding document"
+
+  fault_lines:
+    - disagreement: "Whether scaling experience or institutional knowledge matters more at this stage"
+      voices_involved: ["The board member who backed three failed scale-ups", "The senior director who has been here since employee twelve"]
+      underlying_tension: "A values conflict between optimizing for the company's next phase vs. honoring the contributions that built the current one"
+
+    - disagreement: "Whether culture is preserved by continuity or refreshed by disruption"
+      voices_involved: ["The outgoing VP who built everything", "The company eighteen months from now"]
+      underlying_tension: "The outgoing VP cannot see that some of what they built needs to change, while the future view cannot see what was valuable about the original design decisions"
+
+  synthesis: "The chorus reveals that the team is debating candidates when the real question is scope. No single person, internal or external, can simultaneously preserve institutional knowledge, scale the team, overhaul the architecture, and maintain culture. The hidden option is to promote internally and pair the new VP with an external advisor or fractional CTO who brings the scaling playbook. Every voice is right about what matters, they just disagree about whether one person can hold all of it."

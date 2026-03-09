@@ -1,0 +1,74 @@
+# Basic Garden Assessment Example
+# Professional portfolio with 5 initiatives, 3 relationships, 2 skills
+
+input:
+  portfolio: |
+    Initiatives:
+    1. Platform migration project (lead, 12 months in, 70% complete)
+    2. New onboarding program for the team (started 3 months ago, going well)
+    3. Internal developer tools project (started 8 months ago, stalled for 2 months)
+    4. Cost optimization initiative (just kicked off last week)
+    5. Quarterly business review process redesign (6 months in, nearly done)
+
+    Relationships:
+    1. VP of Engineering (monthly 1:1s for 6 months, building trust)
+    2. Product counterpart (close collaborator, solid relationship)
+    3. New CTO (joined 2 months ago, had one intro meeting, nothing since)
+
+    Skills:
+    1. Public speaking (joined Toastmasters 4 months ago, attending weekly)
+    2. Data analytics (bought a course 6 months ago, completed 20%, haven't touched it in 2 months)
+
+  context: "Senior engineering manager, 3 years in role, team of 12. Feeling stretched thin across too many things."
+  concerns: "I think I have too many plates spinning. Something is going to drop."
+
+output:
+  garden_assessment:
+    healthy_growth:
+      - item: "Platform migration"
+        stage: "fruiting"
+        notes: "12 months of sustained effort paying off at 70%. This is your strongest plant, approaching harvest."
+      - item: "New onboarding program"
+        stage: "seedling"
+        notes: "3 months in and growing well. Still fragile, needs consistent attention to establish roots."
+      - item: "VP of Engineering relationship"
+        stage: "established"
+        notes: "6 months of regular contact building trust. Healthy growth pattern with monthly cadence."
+      - item: "Product counterpart relationship"
+        stage: "flowering"
+        notes: "Solid and producing visible results through collaboration. Low-maintenance but high-value."
+      - item: "Public speaking"
+        stage: "seedling"
+        notes: "Weekly practice is the right cadence. Growing steadily at 4 months."
+
+    needs_attention:
+      - item: "New CTO relationship"
+        what_it_needs: "A second meaningful interaction within the next 2 weeks. One intro meeting creates a seed, not a relationship."
+        urgency: "medium, window is open while the CTO is still forming impressions"
+      - item: "Cost optimization initiative"
+        what_it_needs: "Clear scoping and early momentum. New seeds need protection and consistent early watering."
+        urgency: "low, just started, but don't let it sit unwatered"
+
+    overwatered: []
+
+    neglected:
+      - item: "Internal developer tools project"
+        how_long: "2 months of no activity"
+        salvageable: true
+        action: "Decide: revive with a focused sprint or let it go. Two months of stalling is the garden telling you something."
+      - item: "Data analytics course"
+        how_long: "2 months since last touch, only 20% complete in 6 months"
+        salvageable: true
+        action: "This is wilting. Either recommit with a specific weekly schedule or acknowledge it's not the right season for this skill."
+
+    ready_to_harvest:
+      - item: "QBR process redesign"
+        what_to_harvest: "Formalize the new process, get leadership sign-off, communicate the change. Collect the credit for this work."
+        how: "Schedule a presentation to leadership within the next 2 weeks. This fruit is ripe."
+
+  confidence: "high"
+
+  caveats:
+    - "Assessment based on self-reported descriptions, actual health may differ from perception"
+    - "Cannot assess team dynamics or organizational factors not described"
+    - "Resource competition analysis assumes the user's time is the primary constraint"

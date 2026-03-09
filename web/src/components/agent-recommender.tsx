@@ -44,6 +44,7 @@ const tree: TreeStep = {
             description: "Want to think through all angles before deciding",
             recommendations: [
               { agentId: "six-hats-agent", reason: "Structured parallel thinking from six distinct perspectives" },
+              { agentId: "chorus-agent", reason: "Creates context-specific character voices for multi-perspective debate" },
             ],
           },
           {
@@ -52,6 +53,7 @@ const tree: TreeStep = {
             recommendations: [
               { agentId: "wargaming-agent", reason: "Simulates adversarial responses before you commit" },
               { agentId: "scenario-planning-agent", reason: "Tests strategy against multiple plausible futures" },
+              { agentId: "time-traveler-agent", reason: "Examines your decision from past lessons and two divergent futures" },
             ],
           },
           {
@@ -149,6 +151,7 @@ const tree: TreeStep = {
             description: "Different people describe the same situation differently",
             recommendations: [
               { agentId: "sensemaking-agent", reason: "Clarifies ambiguous situations before decisions can be made" },
+              { agentId: "archaeologist-agent", reason: "Excavates past decisions to check if original constraints still hold" },
             ],
           },
           {
@@ -163,6 +166,7 @@ const tree: TreeStep = {
             description: "Design thinking, innovation, user-centered approach",
             recommendations: [
               { agentId: "design-thinking-agent", reason: "Guides teams through the design thinking process" },
+              { agentId: "trickster-agent", reason: "Inverts the problem and breaks frames when obvious approaches fail" },
             ],
           },
           {
@@ -186,6 +190,7 @@ const tree: TreeStep = {
             description: "Need to feel like a hero before a big moment",
             recommendations: [
               { agentId: "superhero-agent", reason: "Reframes challenges through hero archetypes to build confidence" },
+              { agentId: "mythology-agent", reason: "Reframes challenges through mythological archetypes from world traditions" },
             ],
           },
           {
@@ -193,6 +198,13 @@ const tree: TreeStep = {
             description: "Need someone to call out what I'm not seeing",
             recommendations: [
               { agentId: "cat-pov-agent", reason: "Observes workplace behavior through an outsider's lens" },
+            ],
+          },
+          {
+            label: "Patience and long-term thinking",
+            description: "Playing the long game, compounding over time",
+            recommendations: [
+              { agentId: "gardener-agent", reason: "Long-term cultivation with patience, timing, and compounding returns" },
             ],
           },
         ],

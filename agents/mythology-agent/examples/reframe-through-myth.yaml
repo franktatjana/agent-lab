@@ -1,0 +1,48 @@
+# reframe-through-myth.yaml
+# Example input/output for the reframe-through-myth skill
+# New hire navigating unfamiliar organization → Theseus in the labyrinth
+
+input:
+  situation: "New hire in a massive organization, no idea how anything works"
+  context: "Senior PM joining a Fortune 500, everything feels political and opaque, three months in and still lost"
+  tradition: "any"
+  personality: "bard"
+
+output:
+  archetype_match:
+    archetype_name: "Theseus"
+    tradition: "Greek"
+    myth_summary: "Theseus entered the labyrinth of Crete to face the Minotaur at its center. The labyrinth was built by Daedalus to trap and confuse. What saved Theseus was not his strength or cleverness but Ariadne's thread: a relationship that let him trace his path and always find his way back."
+    recognition_moment: "You have entered a labyrinth. The corridors are org charts that do not reflect actual power. The walls are unwritten rules. And the question at the center is whether you belong here at all."
+    confidence: 0.89
+
+  situation_mapping:
+    user_situation: "Three months into a Fortune 500 role, still unable to navigate the informal power structures and unwritten processes"
+    mythic_parallel: "Theseus did not try to understand the entire labyrinth before moving. He moved deliberately, with a thread tied to someone who understood the design. The fourteen Athenians who entered before him had no thread. They had courage, strength, intelligence. None of it mattered without the relationship."
+    key_insight: "Your first task is not to understand the organization. Your first task is to find your thread, one relationship with someone who knows the real corridors."
+
+  reframed_perspective:
+    current_frame: "I need to learn how everything works before I can be effective"
+    mythic_frame: "You need one thread, one guide, one honest relationship. Everything else follows from that."
+    options_revealed:
+      - option: "Find your Ariadne"
+        mythic_basis: "The thread was a relationship, not a tool"
+        practical_action: "Identify one person who has been here long enough to know where real power lives but recent enough to remember the confusion. Buy them coffee this week."
+      - option: "Trace the thread as you go"
+        mythic_basis: "Theseus could always find his way back because the thread marked his path"
+        practical_action: "Document what you learn as you navigate. Build your own map of how things actually work, not the org chart version."
+      - option: "The Minotaur can wait"
+        mythic_basis: "Theseus did not rush to the center. He navigated deliberately."
+        practical_action: "Stop trying to have impact in month three. Invest the next 60 days in relationships and understanding. The impact will come faster once you know the corridors."
+    transformation_path: "From 'how do I learn everything quickly' to 'who will be my thread through this labyrinth'"
+
+  narrative: |
+    You have entered a labyrinth. Not the tidy hedge mazes of English gardens,
+    but the one Daedalus built beneath Crete: corridors that fold back on
+    themselves, passages that look like progress until they dead-end. Fourteen
+    Athenians entered before Theseus. None returned. The labyrinth did not kill
+    them. It confused them until the Minotaur could. Theseus survived because
+    of Ariadne's thread, a single relationship with someone who understood the
+    design. Your first task is not to understand the organization. Your first
+    task is to find your Ariadne. One person, one honest guide, one thread tied
+    to someone who remembers what it felt like to be new here.

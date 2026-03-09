@@ -1,0 +1,76 @@
+# Reveal Blind Spots Example
+# Product pivot decision where the cast is missing the customer voice
+
+input:
+  situation: "Considering pivoting the product from B2B project management to B2B resource planning"
+  context: "18-month-old SaaS startup, 340 paying customers, $1.2M ARR, runway for 14 months. Growth has stalled at project management, but three enterprise prospects independently asked for resource planning features."
+  decision: "Pivot to resource planning or stay the course on project management"
+
+output:
+  cast:
+    - voice_name: "The founder who has been building project management for 18 months"
+      perspective: "Has deep knowledge of the market and has invested their identity in the original vision"
+      stake_in_outcome: "A pivot means admitting the original thesis was wrong, or at least incomplete"
+      likely_position: "Wants to believe the current product just needs better marketing, not a fundamental change"
+
+    - voice_name: "The lead investor who funded the project management thesis"
+      perspective: "Invested based on a specific market analysis that assumed project management as the wedge"
+      stake_in_outcome: "A pivot changes the investment thesis and the competitive landscape they evaluated"
+      likely_position: "Open to pivot if the data is strong, but wants to see evidence that three enterprise prospects represent a market, not an anomaly"
+
+    - voice_name: "The head of engineering who will have to rebuild"
+      perspective: "Sees the technical cost of a pivot: months of rework, wasted code, team morale risk"
+      stake_in_outcome: "Their team shipped a year of features that may become irrelevant"
+      likely_position: "Wants to find a path that leverages existing code rather than starting over"
+
+    - voice_name: "The startup that pivoted to resource planning two years ago and failed"
+      perspective: "Learned that the resource planning market is dominated by entrenched enterprise players with decade-long contracts"
+      stake_in_outcome: "None directly, but their experience is a warning sign"
+      likely_position: "Would warn that the three enterprise prospects are the easy part, the hard part is displacing what they already use"
+
+  dialogue:
+    - voice_name: "The lead investor who funded the project management thesis"
+      statement: "Three enterprise prospects is a signal, not a market. Before we pivot, I need to see 30 conversations, not 3. The most expensive mistake a startup can make is pivoting on anecdote."
+      emotion: "Cautious optimism tempered by pattern recognition"
+      challenges: "The founder's temptation to read three data points as a mandate"
+
+    - voice_name: "The founder who has been building project management for 18 months"
+      statement: "Growth stalled four months ago and nothing we have tried has moved the needle. At some point, staying the course is not discipline, it is denial."
+      emotion: "Painful honesty, frustration at stagnation"
+      challenges: "The investor's preference for more data before acting"
+
+    - voice_name: "The head of engineering who will have to rebuild"
+      statement: "If we pivot, we lose three months minimum to rebuild. That is three months of runway we cannot get back. Can we build resource planning as a module on top of what we have instead of starting from scratch?"
+      emotion: "Pragmatic anxiety about wasted work and compressed timeline"
+      challenges: "The assumption that pivot means full rebuild"
+
+    - voice_name: "The startup that pivoted to resource planning two years ago and failed"
+      statement: "We had five enterprise prospects when we pivoted. All five had existing contracts with Planview or Smartsheet that they could not exit for 18 months. By the time they could switch, we were out of money."
+      emotion: "Bitter hindsight"
+      challenges: "The assumption that enterprise interest converts to enterprise revenue on a startup timeline"
+
+  consensus_points:
+    - "All voices agree that the current project management trajectory is not working"
+    - "All voices agree that three prospects are insufficient evidence for a full pivot"
+
+  fault_lines:
+    - disagreement: "Whether stalled growth requires a pivot or better execution"
+      voices_involved: ["The founder who has been building project management for 18 months", "The lead investor who funded the project management thesis"]
+      underlying_tension: "The founder is emotionally ready to move on while the investor wants the current thesis thoroughly disproven before committing new capital to a different one"
+
+  synthesis: "The chorus agrees the current path is dying but disagrees on whether the new path is real. The hidden insight is that the team is framing this as a binary: pivot or stay. The engineering voice opened a third door, build resource planning as a module, not a replacement, which lets them test the market without burning their runway or their existing product."
+
+  missing_voices:
+    - voice_name: "The 340 existing paying customers"
+      why_missing: "The entire discussion is about acquiring new enterprise customers. Nobody asked whether the existing customers, who actually pay money today, want resource planning or would churn during a pivot."
+      what_they_would_say: "We signed up for project management. If you pivot, we need to find a replacement. Your pivot is our migration project, and we did not budget for that."
+
+    - voice_name: "The customer success manager who talks to users daily"
+      why_missing: "The decision is being made by founders, investors, and engineers. The person who hears customer feedback every day was not included."
+      what_they_would_say: "Our top 20 customers use 30% of the features. They do not need resource planning, they need the existing product to be deeper. The churn is not about missing features, it is about shallow ones."
+
+    - voice_name: "The sales team that has to sell whatever gets built"
+      why_missing: "The conversation is about product and technology, not go-to-market. Selling resource planning to enterprises requires a fundamentally different sales motion than selling project management to mid-market."
+      what_they_would_say: "Enterprise resource planning is a 9-month sales cycle with procurement, security review, and legal. Our pipeline math does not work on a 14-month runway."
+
+  collective_avoidance: "Nobody in the cast addressed the 340 existing customers. The entire pivot conversation treated the current user base as irrelevant to the future strategy, which means the team has unconsciously decided that current customers do not matter. If that is true, the company has a bigger problem than product-market fit."

@@ -1,0 +1,84 @@
+# Example: Foresight Projection — Delaying Senior Engineer Hire
+# Demonstrates the foresight-projection flow with analyst personality
+
+skill: foresight-projection
+personality: analyst
+
+input:
+  situation: "We are a 6-person engineering team at a seed-stage startup with 12 months of runway. We need a senior backend engineer to lead our API platform, but the hire would cost $220K fully loaded and reduce our runway by 2 months. The CEO wants to wait until after the Series A to make the hire."
+  decision: "Hire a senior backend engineer now vs. wait until after Series A"
+  context: "Seed-stage startup, $1.2M raised, 12 months runway. Product is a developer API platform. Current team: 1 CTO (full-stack), 3 mid-level engineers, 1 junior engineer, 1 DevOps. No one on the team has built production API platforms at scale before. Series A target: 6 months from now, contingent on demonstrating API reliability and reaching 50 paying customers (currently at 18)."
+  timeframe: "3 years"
+
+output:
+  future_inaction:
+    trajectory: >
+      The team continues without a senior backend engineer. The CTO absorbs
+      architecture decisions alongside CEO-level responsibilities. API design
+      decisions are made by mid-level engineers without production API platform
+      experience. Technical debt accumulates in the API layer at a rate that
+      becomes visible to customers around month 6-8.
+    consequences:
+      - consequence: "API reliability drops below 99.5% as usage scales from 18 to 30+ customers, causing 2-3 enterprise prospects to delay signing during due diligence"
+        timeframe: "6 months"
+        severity: High
+      - consequence: "CTO spends 60-70% of time on technical firefighting rather than Series A preparation and investor conversations"
+        timeframe: "4-6 months"
+        severity: Medium
+      - consequence: "Series A delayed by 3-6 months due to insufficient API reliability metrics and slower customer acquisition (35 customers instead of 50 target)"
+        timeframe: "8 months"
+        severity: High
+      - consequence: "The senior hire is eventually made post-Series A, but the new hire spends first 3-4 months refactoring API architecture rather than building new capabilities"
+        timeframe: "12-14 months"
+        severity: Medium
+      - consequence: "Total cost of delay: $220K hire avoided now costs approximately $550K-$700K when accounting for 3-4 months of refactoring time, delayed Series A opportunity cost, and lost enterprise deals"
+        timeframe: "18 months"
+        severity: High
+    second_order_effects:
+      - effect: "Mid-level engineers develop habits and patterns around the API architecture they built, creating cultural resistance to the refactoring the senior hire will need to do"
+        mechanism: "6-8 months of building without senior guidance creates an installed base of code, documentation, and mental models. The senior hire's recommendations are perceived as criticism of existing work rather than improvement, slowing adoption of better patterns."
+      - effect: "Early customers who experienced reliability issues during the scaling phase become the company's reference base, anchoring the market perception of the product's maturity"
+        mechanism: "Customers acquired during months 4-8 (the reliability dip period) form impressions that persist even after reliability improves. These customers are less likely to provide strong references for enterprise prospects, affecting the sales pipeline for 12-18 months after the technical issues are resolved."
+      - effect: "The CTO's divided attention during the Series A process results in suboptimal fundraising terms because technical due diligence reveals architectural concerns"
+        mechanism: "Investors who conduct technical DD find API architecture patterns that signal inexperience at scale. This does not kill the deal but shifts leverage: the Series A closes at a 15-25% lower valuation than it would have with a clean technical audit."
+    who_is_affected:
+      - "CTO: bears the highest personal cost through overwork and divided attention"
+      - "Mid-level engineers: build skills on patterns they will later need to unlearn"
+      - "Customers: experience reliability gaps during the critical growth phase"
+      - "Sales team: loses enterprise deals during the Series A preparation window"
+      - "All employees: Series A delay extends the period of financial uncertainty"
+
+  future_action:
+    trajectory: >
+      The senior backend engineer is hired within 8 weeks. Runway decreases
+      from 12 to 10 months. The senior hire establishes API architecture
+      patterns, mentors the mid-level team, and enables the CTO to focus on
+      Series A preparation. API reliability stays above 99.9% as the customer
+      base scales.
+    consequences:
+      - consequence: "API architecture patterns established by experienced engineer, reducing technical debt accumulation rate by an estimated 60-70%"
+        timeframe: "3 months"
+        likelihood: High
+      - consequence: "CTO reclaims 30-40% of time previously spent on architecture decisions, redirecting to investor relationships and Series A preparation"
+        timeframe: "2 months"
+        likelihood: High
+      - consequence: "Runway reduced to 10 months, creating tighter timeline pressure for Series A (increases urgency but also focus)"
+        timeframe: "Immediate"
+        likelihood: High
+      - consequence: "Customer acquisition reaches 45-55 target range with API reliability as a competitive differentiator during enterprise sales conversations"
+        timeframe: "6 months"
+        likelihood: Medium
+      - consequence: "Series A closes on original timeline at target valuation, with clean technical due diligence as a contributing factor"
+        timeframe: "6-8 months"
+        likelihood: Medium
+    second_order_effects:
+      - effect: "Mid-level engineers level up 6-12 months faster than they would without senior mentorship, increasing the team's effective capacity without additional hires"
+        mechanism: "Daily code review, architecture pairing, and pattern guidance from the senior hire transfer skills that would otherwise take 1-2 years of independent learning. By month 6, the mid-level engineers are operating at a higher level, making the next hire less urgent."
+      - effect: "The senior hire's presence signals to investors that the team takes engineering excellence seriously, improving the qualitative dimension of Series A evaluation"
+        mechanism: "Series A investors evaluate team composition as a leading indicator of execution capability. A senior backend hire at the seed stage (despite runway cost) signals discipline and long-term thinking. This is difficult to quantify but consistently cited by investors as a positive signal."
+    who_benefits:
+      - "CTO: regains bandwidth for strategic work and fundraising"
+      - "Mid-level engineers: gain mentorship and faster skill development"
+      - "Customers: experience reliable API from the start, no reliability dip"
+      - "Company: stronger Series A position with clean technical foundation"
+      - "Future hires: join a codebase with established patterns rather than accumulated workarounds"

@@ -1,0 +1,61 @@
+# Basic Chorus Agent Example
+# Architecture decision with 4 voices: monolith vs microservices
+
+input:
+  situation: "Deciding whether to migrate from monolith to microservices"
+  context: "E-commerce platform, 12-person engineering team, 2 years old, growing fast"
+  decision: "Full microservices migration vs. modular monolith refactor"
+
+output:
+  cast:
+    - voice_name: "You, one year from now"
+      perspective: "Sees the consequences of today's choice after living with it for a year"
+      stake_in_outcome: "Has to maintain whatever gets built and explain it to every new hire"
+      likely_position: "Wants the option that makes onboarding easiest, not the one that sounds impressive on a conference talk"
+
+    - voice_name: "The junior developer who joins next quarter"
+      perspective: "Encounters the codebase with no historical context and no patience for tribal knowledge"
+      stake_in_outcome: "Their first 90 days of productivity depend entirely on how learnable the architecture is"
+      likely_position: "Prefers a single codebase with clear boundaries over 30 repositories with implicit dependencies"
+
+    - voice_name: "The CFO reviewing next year's infrastructure budget"
+      perspective: "Sees cost lines, not architecture diagrams"
+      stake_in_outcome: "Microservices multiply infrastructure, monitoring, and operational costs in ways that compound quarterly"
+      likely_position: "Wants the option with the most predictable and lowest operational expense"
+
+    - voice_name: "The competitor who ships features while you rewrite"
+      perspective: "Sees your engineering investment as their market opportunity"
+      stake_in_outcome: "Every month you spend on migration is a month they spend on features and customer acquisition"
+      likely_position: "Quietly hopes you choose the most ambitious, longest path"
+
+  dialogue:
+    - voice_name: "The competitor who ships features while you rewrite"
+      statement: "Please, take 18 months to do this properly. I have a product roadmap that will love the head start."
+      emotion: "Delight masked as professional respect"
+      challenges: "The assumption that migration is a neutral pause in feature delivery"
+
+    - voice_name: "You, one year from now"
+      statement: "I have spent the last six months explaining 47 services to every new hire. Half our incidents are service-to-service communication failures that would not exist in a monolith. We went too far."
+      emotion: "Regret and exhaustion"
+      challenges: "The current excitement about microservices by showing its lived consequences"
+
+    - voice_name: "The junior developer who joins next quarter"
+      statement: "My first two weeks were spent figuring out which service calls which. At my last company I had a monolith and I shipped my first feature on day three."
+      emotion: "Frustration and confusion"
+      challenges: "The assumption that microservices are inherently more professional or modern"
+
+    - voice_name: "The CFO reviewing next year's infrastructure budget"
+      statement: "This migration added $340K in annual infrastructure costs. I cannot find a single new revenue line item to justify it. What exactly did we buy?"
+      emotion: "Controlled anger, bordering on buyer's remorse"
+      challenges: "The technical framing that treats infrastructure cost as an externality"
+
+  consensus_points:
+    - "All voices agree that migration speed matters more than migration ambition"
+    - "Nobody in the cast believes a full microservices rewrite should happen all at once"
+
+  fault_lines:
+    - disagreement: "How far to decompose the architecture"
+      voices_involved: ["You, one year from now", "The junior developer who joins next quarter"]
+      underlying_tension: "Simplicity for learning vs. flexibility for scaling, and the team is not large enough yet to need the flexibility"
+
+  synthesis: "The chorus reveals that the real decision is not 'monolith vs. microservices' but 'how much organizational disruption can this 12-person team absorb while continuing to ship?' Every voice warns about the cost of ambition from a different angle: time, money, complexity, and competitive position. The question to answer first is not 'which architecture?' but 'how much change can we metabolize in the next 12 months?'"

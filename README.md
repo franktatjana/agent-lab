@@ -86,7 +86,7 @@ Pain point narratives that show why structured thinking matters. Each story foll
 
 ## Agents
 
-21 fully documented agents with prompts, skills, references, and personality variants:
+27 fully documented agents with prompts, skills, references, and personality variants:
 
 | Agent | Responsibility | Guide |
 |-------|---------------|-------|
@@ -111,6 +111,12 @@ Pain point narratives that show why structured thinking matters. Each story foll
 | [Sensemaking Agent](agents/sensemaking-agent/) | Clarifies ambiguous situations before decisions can be made | |
 | [Scenario Planning Agent](agents/scenario-planning-agent/) | Builds alternative futures and stress-tests strategy against them | |
 | [Devil's Advocate Agent](agents/devils-advocate-agent/) | Stress-tests decisions, red-teams proposals, finds blind spots | |
+| [Mythology Agent](agents/mythology-agent/) | Reframes challenges through mythological archetypes from world traditions | |
+| [Time Traveler Agent](agents/time-traveler-agent/) | Examines decisions from past, present, and two divergent futures | |
+| [Chorus Agent](agents/chorus-agent/) | Creates context-specific character voices for multi-perspective analysis | |
+| [Archaeologist Agent](agents/archaeologist-agent/) | Excavates historical decisions to assess whether original constraints still hold | |
+| [Trickster Agent](agents/trickster-agent/) | Inverts problems and breaks frames when straightforward approaches fail | |
+| [Gardener Agent](agents/gardener-agent/) | Long-term cultivation with patience, timing, and compounding returns | |
 
 ## Portable Agent Specifications
 

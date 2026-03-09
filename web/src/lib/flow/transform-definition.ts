@@ -11,7 +11,7 @@ export interface FlowGraphColors {
 const NODE_W = 210;
 const AGENT_H = 180;
 const FLOW_GAP = 240;
-const ROW_GAP = 70;
+const ROW_GAP = 140;
 const SIDE_GAP = 60;
 const PROMPT_GAP = 90;
 const DETAIL_W = 240;

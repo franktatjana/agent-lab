@@ -1,0 +1,92 @@
+# Example: Assess Constraints — "No External Dependencies" Policy
+# Demonstrates the assess-constraints skill with diplomat personality
+
+skill: assess-constraints
+personality: diplomat
+
+input:
+  artifact: "Our engineering team has a policy that prohibits external dependencies in production services. All functionality must be built in-house or use the standard library only. This applies to all backend services. The policy is enforced through code review and a custom linter that flags import statements for non-approved packages."
+  context: "Enterprise software company, 120 engineers. The policy was established roughly 6 years ago. The company has grown from 20 to 120 engineers in that time. Some teams are building new services and finding the no-external-dependencies policy severely limits their velocity."
+  known_history: "A principal engineer who has been with the company since the policy was created says it was a response to a supply chain attack that affected the company through a compromised npm package in 2019. At the time, there were no lockfiles, no dependency scanning tools, and no SBOM practices. The incident caused a 2-day outage and a formal security review."
+
+output:
+  excavation:
+    artifact_description: "A blanket policy prohibiting external dependencies in production backend services, enforced through code review conventions and a custom linter. All functionality must be implemented using only the standard library or in-house code."
+    estimated_origin: "2019, following a supply chain security incident."
+    layers_identified:
+      - layer: 1
+        period: "2019"
+        change: "Policy created prohibiting all external dependencies in production services."
+        trigger: "Supply chain attack via compromised npm package caused 2-day outage."
+        evidence_quality: documented
+      - layer: 2
+        period: "2020"
+        change: "Custom linter created to enforce policy automatically during CI."
+        trigger: "Manual code review enforcement was inconsistent as team grew."
+        evidence_quality: inferred
+      - layer: 3
+        period: "2021-present"
+        change: "No modification to policy despite significant changes in the supply chain security landscape."
+        trigger: "No trigger for review. Policy has been preserved by inertia and the institutional memory of the original incident."
+        evidence_quality: inferred
+
+  decision_reconstruction:
+    original_decision: "Prohibit all external dependencies in production services as a response to a supply chain attack, rather than implementing dependency vetting, lockfiles, or scanning."
+    original_constraints:
+      - constraint: "In 2019, the team had no lockfile discipline, no dependency scanning tools, and no Software Bill of Materials (SBOM) practices. External dependencies were effectively unaudited and unmonitored."
+        category: technical
+        evidence: "Documented in the post-incident security review."
+      - constraint: "The 20-person engineering team did not have a dedicated security function. There was no one responsible for vetting dependencies or monitoring for compromised packages."
+        category: organizational
+        evidence: "Inferred from team size and the absence of a security team at that time."
+      - constraint: "The incident caused a 2-day customer-facing outage. The emotional and reputational impact drove a zero-tolerance response."
+        category: incident-driven
+        evidence: "Documented incident report and the testimony of the principal engineer who was present."
+    alternatives_rejected:
+      - alternative: "Implement lockfiles and dependency pinning to control which versions enter production"
+        rejection_reason: "At the time, the team lacked the tooling and discipline to maintain lockfiles reliably. The simpler rule (no external dependencies) was chosen over the more nuanced approach that required ongoing operational discipline the team did not yet have."
+      - alternative: "Create an approved dependency list with a vetting process"
+        rejection_reason: "The 20-person team could not staff a dependency vetting process. A blanket ban was operationally simpler than a curated allow-list."
+    decision_makers: "The CTO and the principal engineer, in response to the security review board's recommendations."
+    rationale: "Given the absence of any dependency management infrastructure and the emotional weight of a 2-day outage, a blanket prohibition was the simplest policy that eliminated the attack vector entirely. The alternatives required ongoing operational investment that the 20-person team could not sustain."
+
+  constraint_assessment:
+    original_constraints:
+      - "No lockfile discipline or dependency scanning tools"
+      - "No dedicated security function to vet dependencies"
+      - "Recent supply chain attack with severe customer impact"
+    still_valid:
+      - constraint: "No lockfile discipline or dependency scanning tools"
+        status: expired
+        evidence: "The company adopted lockfiles (package-lock.json, go.sum) in 2021. Dependency scanning via Snyk was implemented in 2022. SBOM generation was added in 2023. The technical constraint that made dependency management impossible has been comprehensively addressed."
+        confidence: high
+      - constraint: "No dedicated security function to vet dependencies"
+        status: expired
+        evidence: "The company hired a 4-person security team in 2021. They operate a dependency review process for the frontend (which was exempted from the policy because browsers require external packages). The organizational constraint that prevented dependency vetting no longer exists."
+        confidence: high
+      - constraint: "Recent supply chain attack with severe customer impact"
+        status: changed
+        evidence: "The specific attack vector (compromised npm package without lockfile) has been mitigated by lockfiles and scanning. However, supply chain attacks remain a real and growing threat. The underlying security concern is still valid, but the blanket prohibition is a disproportionate response given the mitigations now in place."
+        confidence: medium
+    changed_since:
+      - change: "Lockfiles, dependency scanning, and SBOM practices are now industry standard and implemented at the company"
+        impact_on_original_rationale: "Eliminates the primary technical constraint. Dependencies can now be audited, pinned, scanned, and monitored, the exact capabilities that were missing when the policy was created."
+      - change: "The engineering team grew from 20 to 120 engineers"
+        impact_on_original_rationale: "The cost of the policy has increased dramatically. Building everything in-house at 120 engineers means maintaining custom implementations of functionality available in well-tested open source libraries. The velocity cost is proportional to team size."
+      - change: "Supply chain security tooling has matured significantly (Sigstore, SLSA framework, npm provenance)"
+        impact_on_original_rationale: "The industry has developed robust approaches to dependency security that do not require a blanket prohibition. The policy addresses a 2019 threat landscape with a 2019 solution."
+      - change: "The company now has a dedicated security team"
+        impact_on_original_rationale: "The organizational constraint that prevented dependency vetting has been resolved. The security team already vets frontend dependencies successfully."
+
+  recommendation:
+    verdict: modify
+    reasoning: "Two of the three original constraints have expired: dependency management tooling now exists and a security team is in place to operate it. The third constraint (supply chain security risk) is still valid but has changed: the risk is real, but the blanket prohibition is now a disproportionate response given the mitigations available. Recommend replacing the blanket ban with a curated dependency policy: lockfiles required, Snyk scanning mandatory, SBOM generated per release, and a security team review for new dependencies. This addresses the valid underlying concern while removing the velocity constraint."
+    risks_of_change:
+      - "Introducing external dependencies creates a new attack surface that must be continuously monitored"
+      - "The security team will need capacity to handle dependency review requests from 120 engineers"
+      - "The institutional muscle memory of 'no external dependencies' has created a culture of self-reliance that has value beyond security"
+    risks_of_keeping:
+      - "Engineering velocity is constrained by rebuilding functionality available in mature open source libraries"
+      - "Custom implementations of common functionality (HTTP clients, serialization, testing utilities) accumulate maintenance burden"
+      - "The policy creates a false sense of security: the real risk is unmonitored dependencies, not dependencies themselves"
+      - "Hiring is affected: experienced engineers expect to use standard tools and libraries"

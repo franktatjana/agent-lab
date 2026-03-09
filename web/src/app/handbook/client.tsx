@@ -30,7 +30,7 @@ const categories: { label: string; description: string; ids: string[] }[] = [
   {
     label: "Perspective & Reframing",
     description: "See the same situation through a different lens",
-    ids: ["cat-pov-agent", "superhero-agent"],
+    ids: ["cat-pov-agent", "superhero-agent", "mythology-agent", "trickster-agent"],
   },
   {
     label: "Communication & Translation",
@@ -45,12 +45,12 @@ const categories: { label: string; description: string; ids: string[] }[] = [
   {
     label: "Analysis & Decision-Making",
     description: "Structure thinking, investigate causes, and test strategies",
-    ids: ["six-hats-agent", "why-agent", "design-thinking-agent", "research-agent", "wargaming-agent"],
+    ids: ["six-hats-agent", "why-agent", "design-thinking-agent", "research-agent", "wargaming-agent", "chorus-agent", "time-traveler-agent", "archaeologist-agent"],
   },
   {
     label: "Decisions & Risk",
     description: "Structure decisions, anticipate failures, and navigate active crises",
-    ids: ["pre-mortem-agent", "decision-decomposer-agent", "crisis-navigator-agent"],
+    ids: ["pre-mortem-agent", "decision-decomposer-agent", "crisis-navigator-agent", "gardener-agent"],
   },
 ];
 
@@ -73,6 +73,12 @@ const decisionTree: { situation: string; agentId: string; also: string }[] = [
   { situation: "About to launch and need to stress-test assumptions", agentId: "pre-mortem-agent", also: "Wargaming for competitive response" },
   { situation: "Stuck choosing between options for weeks", agentId: "decision-decomposer-agent", also: "Six Hats for perspective shift" },
   { situation: "Active crisis, stakeholders panicking", agentId: "crisis-navigator-agent", also: "Difficult Conversations if people conflict" },
+  { situation: "Need a meaningful archetype for a recurring challenge", agentId: "mythology-agent", also: "Superhero Agent for quick confidence boost" },
+  { situation: "Decision feels different depending on timeframe", agentId: "time-traveler-agent", also: "Scenario Planning for multiple futures" },
+  { situation: "Need diverse viewpoints beyond your own team", agentId: "chorus-agent", also: "Six Hats for structured perspectives" },
+  { situation: "Old decision blocking progress, unclear why it was made", agentId: "archaeologist-agent", also: "Why Agent to dig deeper" },
+  { situation: "Stuck, every obvious approach has been tried", agentId: "trickster-agent", also: "Design Thinking for user-centered fresh start" },
+  { situation: "Need results but rushing is making things worse", agentId: "gardener-agent", also: "Pre-Mortem to stress-test timing" },
 ];
 
 export default function HandbookClient() {

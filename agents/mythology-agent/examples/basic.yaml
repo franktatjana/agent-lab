@@ -1,0 +1,30 @@
+# basic.yaml
+# Example input/output for the match-archetype skill
+# Manager stuck in repeating failed initiatives → Sisyphus archetype
+
+input:
+  situation: "I keep rebuilding the same system every 18 months"
+  context: "Engineering VP, fourth platform migration in 6 years, each one promised to be the last"
+  tradition: "greek"
+  personality: "oracle"
+
+output:
+  archetype_match:
+    archetype_name: "Sisyphus"
+    tradition: "Greek"
+    myth_summary: "Condemned to roll a boulder uphill for eternity, watching it roll back down each time he neared the summit. The punishment was not the labor but the awareness of its futility."
+    recognition_moment: "You already know this feeling. The boulder reaches the top, the migration completes, and within months the next one begins. The question is not how to push harder."
+    confidence: 0.92
+
+  alternative_matches:
+    - archetype_name: "Penelope"
+      tradition: "Greek"
+      fit_reason: "Penelope wove by day and unwove by night, deliberately maintaining a cycle to buy time. If the migrations serve a hidden purpose (avoiding larger decisions, maintaining team relevance), this may be the deeper match."
+    - archetype_name: "Izanagi"
+      tradition: "Japanese"
+      fit_reason: "Izanagi descended to Yomi to retrieve what was lost, only to discover it had changed beyond recognition. If each migration attempts to recapture a past state rather than move forward, this pattern applies."
+
+  situation_mapping:
+    user_situation: "Fourth platform migration in six years, each promised as the final one"
+    mythic_parallel: "Sisyphus did not fail because he was weak. He failed because the task was designed to repeat. The pattern is the problem, not the execution."
+    key_insight: "You are optimizing the push when you should be questioning the hill."

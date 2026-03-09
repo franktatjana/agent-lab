@@ -1,0 +1,73 @@
+# Diagnose Timing Example
+# "Should I ask for a promotion now?"
+
+input:
+  portfolio: |
+    I've been a senior product manager for 18 months. I want to be promoted
+    to Director of Product. I've shipped two major features this year:
+    the enterprise dashboard (big success, customers love it) and the
+    API redesign (went well technically but had a rough launch with some
+    downtime). I lead a team of 4 PMs informally but don't have the title.
+
+  concerns: |
+    A colleague who started around the same time just got promoted to
+    Director in a different org. My skip-level manager mentioned "leadership
+    potential" in my last review but didn't bring up promotion. I'm worried
+    if I wait too long, the window closes or they'll think I'm not ambitious.
+    But I'm also not sure my track record is strong enough yet, especially
+    with the API launch issues.
+
+  context: |
+    Mid-size SaaS company, 500 people. Promotion cycles happen twice a year,
+    next one is in 3 months. My manager is supportive but conflict-averse,
+    unlikely to advocate without me asking. The company just went through
+    layoffs 4 months ago, budgets are tight.
+
+output:
+  timing_guidance:
+    - item: "Director of Product promotion"
+      action: "Start the conversation now, but frame it as a development discussion, not a promotion ask"
+      timing: "soon"
+      why_not_now_or_why_now: |
+        The promotion itself is still at seedling stage, it needs 1-2 more
+        quarters of visible results to have strong roots. But the conversation
+        about the promotion path should start now, for three reasons:
+
+        First, the next promotion cycle is in 3 months. If your manager is
+        conflict-averse, they need time to build the case internally. Starting
+        the conversation now gives them runway.
+
+        Second, the API launch issues are recent. Waiting another quarter lets
+        you demonstrate recovery and learning, which is often more impressive
+        than an unblemished record. One more clean, visible win converts
+        "had a rough patch" into "recovered and grew from it."
+
+        Third, your colleague's promotion creates social proof but also
+        pressure. Acting from urgency ("they got promoted, so I should too")
+        produces a weaker case than acting from readiness. The garden tells
+        us this seedling needs a bit more root development.
+
+        The risk of asking too directly right now: the API launch is still
+        recent, budgets are tight post-layoffs, and the case has one strong
+        data point (dashboard) and one mixed one (API). A premature ask in
+        a tight budget environment could get a "not yet" that is harder to
+        revisit than never having asked.
+
+        The risk of waiting too long: if the next cycle passes without any
+        conversation, your manager may not know you want it. Another quarter
+        without signal could mean waiting a full year.
+
+        The move: schedule a 1:1 focused on career development. Ask your
+        manager what the path to Director looks like and what specific gaps
+        they see. This plants the seed in their mind without forcing a
+        premature decision. Then use the next 2-3 months to close the gaps
+        they identify, especially demonstrating recovery from the API issues.
+      patience_required: "medium, active patience with clear milestones, not passive waiting"
+
+  confidence: "medium"
+
+  caveats:
+    - "Cannot assess internal politics or budget constraints beyond what was described"
+    - "Manager's actual level of support is inferred from behavior, not confirmed"
+    - "Colleague's promotion may have different context that does not apply to your situation"
+    - "Post-layoff promotion dynamics vary significantly by company culture"

@@ -1,0 +1,65 @@
+# mythic-counsel.yaml
+# Example input/output for the full mythic-counsel skill
+# Leader facing impossible choice → Arjuna's dilemma (Bhagavad Gita)
+
+input:
+  situation: "Leader facing an impossible choice between two good options"
+  context: "CTO deciding between investing heavily in existing product (the team loves it, customers rely on it) or building a new platform (the market demands it, the board wants it). Both are defensible. Analysis will not resolve it."
+  tradition: "hindu"
+  personality: "sage"
+
+output:
+  archetype_match:
+    archetype_name: "Arjuna"
+    tradition: "Hindu"
+    myth_summary: "In the Bhagavad Gita, the warrior Arjuna stands between two armies on the battlefield of Kurukshetra. Both sides contain people he loves, teachers he respects, family he is bound to. Every option leads to loss. Krishna, his charioteer, does not resolve the dilemma by choosing a side. He reframes the question entirely."
+    recognition_moment: "Both options contain people and commitments you care about. The analysis will not converge because this is not an analytical decision. It is a question of duty."
+    confidence: 0.94
+
+  situation_mapping:
+    user_situation: "CTO must choose between investing in the existing product (the team's passion, customer dependency) or building a new platform (market demand, board pressure). Both paths have genuine merit and real cost."
+    mythic_parallel: "Arjuna's paralysis was not weakness. It was the natural response of a thoughtful person facing a choice where every path leads to loss. The armies on both sides of Kurukshetra were not abstractions. They were relationships, obligations, and years of shared history. Your two options carry the same weight."
+    key_insight: "Krishna did not tell Arjuna which army to fight. He shifted the question from 'which option causes less harm' to 'what is my dharma, my core duty, regardless of outcome.' The decision criteria changed, and with it, the paralysis broke."
+
+  reframed_perspective:
+    current_frame: "Which option is the better bet, existing product or new platform?"
+    mythic_frame: "What is your fundamental duty as CTO, not which option wins, but which option aligns with why you hold this role?"
+    options_revealed:
+      - option: "Act from dharma, not outcome prediction"
+        mythic_basis: "Krishna's core teaching: you have a right to action, not to the fruits of action. Detach from which option 'wins' and ask which aligns with your deepest obligation."
+        practical_action: "Write down in one sentence why you became CTO. Not the job description, the real reason. Use that as the decision criterion instead of financial projections."
+      - option: "The hidden third path"
+        mythic_basis: "Arjuna assumed the choice was fight or flee. Krishna revealed a third option: fight without attachment to outcome, fulfilling duty with clear eyes."
+        practical_action: "What if you invest in the existing product while laying the technical foundation that makes a future platform possible? Not a compromise, but a sequence that honors both obligations."
+      - option: "Name the real battle"
+        mythic_basis: "Kurukshetra was not about territory. It was about dharma vs. adharma, righteous duty vs. corruption. What is the deeper battle beneath your two options?"
+        practical_action: "Reframe the decision to the board: this is not 'product A vs. product B.' This is 'what kind of technology company are we?' That question has a clearer answer."
+    transformation_path: "From 'which option is the better bet' to 'what is my duty as the person in this role, and which option serves that duty regardless of outcome'"
+
+  narrative: |
+    The Bhagavad Gita, composed between the 5th and 2nd centuries BCE, opens
+    with Arjuna frozen on the battlefield of Kurukshetra. Both armies contain
+    people he loves. Every option leads to loss. This is not a story about war.
+    It is a story about what happens when a capable person faces a choice where
+    every path has genuine cost, and paralysis feels like the only morally
+    clean option.
+
+    Krishna's counsel has survived 2,500 years because it addresses something
+    every leader eventually faces: the moment when analysis will not resolve
+    the decision because the decision is not an analytical one. Krishna does
+    not tell Arjuna which army to fight. He reframes the question entirely,
+    from "which option causes less harm" to "what is my duty regardless of
+    outcome."
+
+    Your decision maps precisely to this structure. Both options have genuine
+    merit. The people advocating each path have legitimate reasons. The analysis
+    will not converge because both are defensible. The Gita suggests: stop
+    asking which option wins. Ask instead what your fundamental obligation is
+    as the person holding this role. That shift, from prediction to duty,
+    often breaks the paralysis because it changes the criteria for the decision.
+
+  counsel_summary:
+    myth_in_one_line: "Arjuna froze between two armies, both containing people he loved, until Krishna shifted the question from outcome to duty."
+    your_parallel: "Your two options both have genuine merit, and the analysis will not converge because this is not an analytical decision."
+    the_shift: "From 'which option is the better bet' to 'what is my duty as the person in this role.'"
+    next_step: "Write down in one sentence why you became CTO. Use that as the decision criterion."

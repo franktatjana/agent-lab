@@ -1,0 +1,58 @@
+# Basic Trickster Agent Example
+# Simplest valid input demonstrating core functionality
+# The inversion reveals that the causal arrow points the opposite direction
+
+input:
+  stuck_situation: "We can't ship faster because we have too much technical debt"
+  context: "B2B SaaS, 20-person engineering team, customers churning due to slow feature delivery"
+  what_youve_tried: "Dedicated debt sprint every quarter, but new debt accumulates faster than we pay it down"
+
+output:
+  invisible_assumptions:
+    - assumption: "Technical debt must be paid down before you can ship faster"
+      why_invisible: "It sounds obviously true, like saying you must fix the road before you can drive faster"
+      what_if_violated: "What if shipping faster is itself the way to reduce debt? What if speed and quality are not opposites?"
+    - assumption: "Debt accumulates because the team moves too fast and cuts corners"
+      why_invisible: "This is the standard engineering narrative, repeated so often it feels like a law of nature"
+      what_if_violated: "What if debt accumulates because the team moves too slowly? Long-lived branches, stale code, deferred decisions that compound the longer they wait"
+    - assumption: "Addressing debt requires dedicated, separate time"
+      why_invisible: "Every 'responsible' engineering org carves out debt sprints, so it feels like best practice"
+      what_if_violated: "What if debt is best addressed in the flow of feature work, never as a separate activity?"
+
+  inversions:
+    - original_frame: "Technical debt slows us down"
+      inverted_frame: "Slowness creates technical debt"
+      absurd_solution: "Ship every single commit to production the moment it is written, zero batching, zero staging"
+      real_insight_hidden_inside: "Smaller, more frequent deployments reduce debt by forcing cleaner boundaries, faster feedback, and smaller blast radius. The absurd extreme points toward continuous deployment as a debt reduction strategy."
+
+    - original_frame: "We need to stop and fix the debt before we can move forward"
+      inverted_frame: "Stopping to fix debt is what creates more debt"
+      absurd_solution: "Abolish the concept of technical debt entirely, ban the phrase, delete the backlog, pretend it does not exist"
+      real_insight_hidden_inside: "The 'debt backlog' creates a psychological trap: the longer the list, the more hopeless it feels, the less anyone addresses debt in their daily work. Eliminating the backlog and embedding quality in every task might actually reduce debt faster than quarterly debt sprints."
+
+  frame_break:
+    current_game: "Balancing speed vs. quality by allocating time between features and debt repayment"
+    new_game: "Making speed and quality the same thing through smaller batches, continuous deployment, and built-in quality practices"
+    rule_that_changed: "The assumption that speed and quality trade off against each other"
+    what_opens_up: "Continuous deployment, trunk-based development, feature flags, and automated testing become the strategy rather than a nice-to-have. The debt conversation transforms from 'when do we pay it down' to 'how do we stop generating it.'"
+
+  trickster_counsel: >
+    Here is the joke your codebase is playing on you: you have technical
+    debt BECAUSE you do not ship fast enough, not the other way around.
+    Every quarter you stop to pay down debt, and every quarter new debt
+    piles up because your slow, batched process IS the debt factory.
+    The road does not need fixing. You need a different vehicle.
+
+  serious_options:
+    - option: "Switch to trunk-based development with feature flags and ship to production daily"
+      why_it_was_invisible: "The 'fix debt first, then go fast' frame made daily deployment look reckless"
+      risk: "Requires upfront investment in CI/CD pipeline and test automation"
+      potential: "Faster feedback loops naturally reduce debt; smaller changes are easier to review and less likely to create new debt"
+    - option: "Eliminate dedicated debt sprints and address debt exclusively in the context of feature work"
+      why_it_was_invisible: "Feels irresponsible, like ignoring the problem"
+      risk: "Some systemic architecture-level debt may not surface during feature work"
+      potential: "Forces the team to address debt where it actually hurts rather than where it theoretically exists on a backlog"
+    - option: "Set a 'debt ceiling' policy: any change that increases complexity must also simplify something else"
+      why_it_was_invisible: "The frame assumed debt is something you accumulate and then pay off, not something you can prevent at the point of creation"
+      risk: "Could slow individual PRs if enforced rigidly"
+      potential: "Makes debt a real-time engineering constraint rather than a deferred problem, gradually improving the codebase without dedicated debt time"

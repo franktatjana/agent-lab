@@ -1,0 +1,41 @@
+# Example: Excavate Decision — Legacy Deployment Approval Process
+# Demonstrates the excavate-decision skill with forensic personality
+
+skill: excavate-decision
+personality: forensic
+
+input:
+  artifact: "Our deployment pipeline requires three separate approvals (team lead, QA manager, ops lead) before anything reaches production. Deployments take 2-3 days because of approval wait times. The process has been in place for about 4 years. Nobody on the current team was here when it was created."
+  context: "Mid-size SaaS company, 30 engineers. We now have a full CI/CD pipeline with automated testing, canary deployments, and automated rollback. The three-approval process was created before any of this automation existed."
+  known_history: "An engineer who joined 3 years ago remembers being told it was created after 'a bad production incident.' No written record of the incident has been found."
+
+output:
+  excavation:
+    artifact_description: "A three-stage manual approval gate in the deployment pipeline. Before any code reaches production, it must be approved sequentially by: (1) the team lead of the authoring team, (2) the QA manager, and (3) the operations lead. Each approval is a manual checkbox in the deployment tool. Average time from merge to production: 2.4 days, with 80% of that time spent waiting for approvals."
+    estimated_origin: "Late 2021, likely Q4. Coincides with a period when the company had 12 engineers, no CI/CD pipeline, and manual deployment via SSH. The three-approval structure maps to the three senior technical roles that existed at that team size."
+    layers_identified:
+      - layer: 1
+        period: "Q4 2021 (estimated)"
+        change: "Initial creation of the three-approval process. All three approvals were substantive: team lead reviewed code (no automated tests existed), QA manager verified manual test results, ops lead checked deployment readiness (manual SSH deployment)."
+        trigger: "A production incident where an unauthorized code change caused 4 hours of downtime for a key customer. The incident was not formally documented but is referenced in Slack messages from December 2021."
+        evidence_quality: inferred
+      - layer: 2
+        period: "Q2 2022"
+        change: "Addition of a deployment checklist attached to the ops lead approval step. 12-item checklist covering database migrations, config changes, and rollback procedures."
+        trigger: "A second production incident involving a database migration that was not coordinated with the ops team."
+        evidence_quality: documented
+      - layer: 3
+        period: "Q1 2023"
+        change: "CI/CD pipeline introduced with automated unit and integration tests. The team lead approval step became largely redundant for code quality purposes, but the approval checkbox remained."
+        trigger: "Engineering initiative to reduce deployment friction. CI/CD was adopted but the approval process was not revisited."
+        evidence_quality: documented
+      - layer: 4
+        period: "Q3 2023"
+        change: "Canary deployments and automated rollback introduced. The ops lead approval step became largely redundant for deployment safety, but the approval checkbox remained."
+        trigger: "Platform team initiative to improve deployment reliability."
+        evidence_quality: documented
+      - layer: 5
+        period: "Q2 2024 to present"
+        change: "No structural changes. The three-approval process continues unchanged despite the automation that now covers the original purposes of two of the three approvals."
+        trigger: "No trigger. The process has been preserved by inertia and the residual anxiety from the original incidents."
+        evidence_quality: inferred
